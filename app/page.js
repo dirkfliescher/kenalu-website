@@ -1,7 +1,8 @@
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Link from 'next/link';
-import Storyblok from '../lib/storyblok';
+import StoryblokClient from 'storyblok-js-client';
+const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 async function getHomeContent() {
   try {
