@@ -31,7 +31,7 @@ export default function Insights() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
             <div>
               <p className="section-label" style={{ color: 'var(--sage)' }}>Neuester Beitrag</p>
-              <h2 style={{ color: 'var(--ivory)', margin: '0.5rem 0 1.5rem' }}>Warum "User-Centered" nicht reicht.</h2>
+              <h2 style={{ color: 'var(--ivory)', margin: '0.5rem 0 1.5rem' }}>Warum &quot;User-Centered&quot; nicht reicht.</h2>
               <p style={{ color: 'var(--softline)', lineHeight: '1.7', marginBottom: '1rem' }}>User-Centered Design ist heute Standard. Jedes Unternehmen behauptet, es zu machen. Aber echte Experiences entstehen erst, wenn man über den Nutzer hinausdenkt.</p>
               <a href="#" className="btn btn-light" style={{ marginTop: '0.5rem' }}>Beitrag lesen <span className="arrow">→</span></a>
             </div>
@@ -51,12 +51,10 @@ export default function Insights() {
       <section style={{ padding: '5rem var(--gutter) 7rem' }}>
         <div className="container">
           <p className="section-label">Alle Beiträge</p>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '2rem', marginTop: '3rem' }}>
+          <div className="insights-grid">
             {articles.map(({ tag, date, title, desc }) => (
-              <a key={title} href="#" style={{ display: 'flex', flexDirection: 'column', border: '1.5px solid var(--mineral)', borderRadius: 'var(--radius)', overflow: 'hidden', transition: 'border-color var(--transition), transform var(--transition)' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--sage)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--mineral)'; e.currentTarget.style.transform = ''; }}>
-                <div style={{ background: 'var(--mineral)', aspectRatio: '16/9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <a key={title} href="#" className="insight-card">
+                <div className="insight-card-image">
                   <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" fill="none" style={{ width: '80%', opacity: 0.4 }}>
                     <g stroke="#A7B5A6" strokeWidth="1.5">
                       <path d="M 10 60 Q 50 30 100 60 Q 150 90 190 60"/>
@@ -65,15 +63,15 @@ export default function Insights() {
                     </g>
                   </svg>
                 </div>
-                <div style={{ padding: '1.75rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-                    <span style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', background: 'var(--mineral)', color: 'var(--stone)', padding: '0.2rem 0.6rem', borderRadius: '20px' }}>{tag}</span>
-                    <span style={{ fontSize: '0.8rem', color: 'var(--stone)' }}>{date}</span>
+                <div className="insight-card-body">
+                  <div className="insight-meta">
+                    <span className="insight-tag">{tag}</span>
+                    <span className="insight-date">{date}</span>
                   </div>
-                  <h3 style={{ fontSize: '1.15rem', lineHeight: '1.3', marginBottom: '0.75rem' }}>{title}</h3>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--stone)', lineHeight: '1.6', flex: 1 }}>{desc}</p>
-                  <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid var(--mineral)' }}>
-                    <span className="link-arrow" style={{ fontSize: '0.875rem' }}>Lesen <span>→</span></span>
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                  <div className="insight-card-footer">
+                    <span className="link-arrow">Lesen <span>→</span></span>
                   </div>
                 </div>
               </a>
