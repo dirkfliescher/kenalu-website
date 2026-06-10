@@ -6,11 +6,14 @@ const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN
 
 async function getHomeContent() {
   try {
+    console.log('Token:', process.env.STORYBLOK_TOKEN ? 'vorhanden' : 'FEHLT');
     const { data } = await Storyblok.get('cdn/stories/home', {
-      version: 'published',
+      version: 'draft',
     });
+    console.log('Storyblok OK:', data.story.content.headline);
     return data.story.content;
   } catch (e) {
+    console.error('Storyblok Fehler:', e.message);
     return null;
   }
 }
@@ -21,7 +24,7 @@ export default async function Home() {
   const headline = content?.headline || 'Digitale Erlebnisse,\ndie wirklich\nfunktionieren.';
   const subline = content?.subline || 'kenalu verbindet Strategie, Nutzerverständnis und Technologie — für digitale Experiences, die Menschen bewegen und Unternehmen voranbringen.';
   const intro = content?.intro || 'Zu viele digitale Produkte sind für Unternehmen gebaut — nicht für Menschen. kenalu hilft, das zu ändern.';
-  const ctaText = content?.cta_text || 'Gespräch buchen';
+  const ctaText = content?.cta || 'Gespräch buchen';
 
   return (
     <>
