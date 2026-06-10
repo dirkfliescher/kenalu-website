@@ -1,8 +1,27 @@
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Link from 'next/link';
+import Storyblok from '../lib/storyblok';
 
-export default function Home() {
+async function getHomeContent() {
+  try {
+    const { data } = await Storyblok.get('cdn/stories/home', {
+      version: 'published',
+    });
+    return data.story.content;
+  } catch (e) {
+    return null;
+  }
+}
+
+export default async function Home() {
+  const content = await getHomeContent();
+
+  const headline = content?.headline || 'Digitale Erlebnisse,\ndie wirklich\nfunktionieren.';
+  const subline = content?.subline || 'kenalu verbindet Strategie, Nutzerverständnis und Technologie — für digitale Experiences, die Menschen bewegen und Unternehmen voranbringen.';
+  const intro = content?.intro || 'Zu viele digitale Produkte sind für Unternehmen gebaut — nicht für Menschen. kenalu hilft, das zu ändern.';
+  const ctaText = content?.cta_text || 'Gespräch buchen';
+
   return (
     <>
       <Nav />
@@ -11,16 +30,11 @@ export default function Home() {
       <section className="hero">
         <div className="hero-content">
           <p className="hero-label">Intelligent Experiences</p>
-          <h1 className="hero-headline">
-            Digitale Erlebnisse,<br />die wirklich<br />funktionieren.
-          </h1>
-          <p className="hero-sub">
-            kenalu verbindet Strategie, Nutzerverständnis und Technologie —
-            für digitale Experiences, die Menschen bewegen und Unternehmen voranbringen.
-          </p>
+          <h1 className="hero-headline">{headline}</h1>
+          <p className="hero-sub">{subline}</p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <Link href="/contact" className="btn btn-primary">
-              Gespräch buchen <span className="arrow">→</span>
+              {ctaText} <span className="arrow">→</span>
             </Link>
             <Link href="/services" className="btn btn-outline">
               Services ansehen
@@ -47,14 +61,11 @@ export default function Home() {
         <div className="container">
           <div className="provocation-grid">
             <div>
-              <p className="lead">
-                Zu viele digitale Produkte sind für Unternehmen gebaut —
-                nicht für Menschen.
-              </p>
+              <p className="lead">{intro}</p>
               <p className="body-text">
-                kenalu hilft, das zu ändern. Wir gestalten Experiences, die
-                echte Bedürfnisse adressieren, technologische Möglichkeiten
-                sinnvoll nutzen und Unternehmen langfristig stärken.
+                Wir gestalten Experiences, die echte Bedürfnisse adressieren,
+                technologische Möglichkeiten sinnvoll nutzen und Unternehmen
+                langfristig stärken.
               </p>
             </div>
             <div className="provocation-values">
@@ -115,18 +126,9 @@ export default function Home() {
             <div className="why-text">
               <p className="section-label">Warum kenalu</p>
               <h2>Strategie trifft Erlebnis.</h2>
-              <p>
-                Ich verbinde strategisches Denken mit gestalterischer Intelligenz.
-                Das Ergebnis sind Lösungen, die nicht nur funktionieren —
-                sondern die Menschen wirklich bewegen.
-              </p>
-              <p>
-                Kein Agentur-Overhead. Kein Pitch-Theater. Direkte, ehrliche
-                Zusammenarbeit mit jemandem, der wirklich mitdenkt.
-              </p>
-              <Link href="/about" className="link-arrow">
-                Mehr über kenalu <span>→</span>
-              </Link>
+              <p>Ich verbinde strategisches Denken mit gestalterischer Intelligenz. Das Ergebnis sind Lösungen, die nicht nur funktionieren — sondern die Menschen wirklich bewegen.</p>
+              <p>Kein Agentur-Overhead. Kein Pitch-Theater. Direkte, ehrliche Zusammenarbeit mit jemandem, der wirklich mitdenkt.</p>
+              <Link href="/about" className="link-arrow">Mehr über kenalu <span>→</span></Link>
             </div>
             <div className="why-features">
               {[
@@ -160,12 +162,9 @@ export default function Home() {
           <div className="cta-inner">
             <p className="cta-label">Loslegen</p>
             <h2 className="cta-headline">Bereit für eine bessere digitale Experience?</h2>
-            <p className="cta-sub">
-              Lass uns in einem ersten Gespräch herausfinden, wo kenalu helfen kann.
-              Kein Pitch — ein echtes Gespräch.
-            </p>
+            <p className="cta-sub">Lass uns in einem ersten Gespräch herausfinden, wo kenalu helfen kann. Kein Pitch — ein echtes Gespräch.</p>
             <Link href="/contact" className="btn btn-light">
-              Gespräch buchen <span className="arrow">→</span>
+              {ctaText} <span className="arrow">→</span>
             </Link>
           </div>
         </div>
