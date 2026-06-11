@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
+import Nav from '../components/Nav';
 
 const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500'] });
 
@@ -15,7 +16,10 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://api.fontshare.com" />
         <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
       </head>
-      <body>{children}</body>
+      <body>
+        <Nav />
+        {children}
+      </body>
     </html>
   );
 }
