@@ -1,6 +1,5 @@
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../components/DynamicBlock';
-import Footer from '../components/Footer';
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
@@ -24,7 +23,6 @@ export default async function Home() {
       {body.map((blok) => (
         <DynamicBlock key={blok._uid} blok={blok} />
       ))}
-      <Footer />
     </>
   );
 }

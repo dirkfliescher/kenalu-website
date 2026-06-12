@@ -15,15 +15,17 @@ export default function Nav() {
   }, []);
 
   const isActive = (path) => pathname?.startsWith(path);
+  const onDark = pathname !== '/';
 
   return (
-    <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
+    <nav className={`nav${scrolled ? ' scrolled' : ''}${onDark ? ' on-dark' : ''}`}>
       <div className="nav-inner">
         <Link href="/" className="nav-logo">kenalu</Link>
         <ul className={`nav-links${open ? ' open' : ''}`}>
-          <li><Link href="/services" style={isActive('/services') ? { color: 'var(--charcoal)' } : {}}>Services</Link></li>
-          <li><Link href="/about" style={isActive('/about') ? { color: 'var(--charcoal)' } : {}}>About</Link></li>
-          <li><Link href="/insights" style={isActive('/insights') ? { color: 'var(--charcoal)' } : {}}>Insights</Link></li>
+          <li><Link href="/services" className={isActive('/services') ? 'active' : ''}>Services</Link></li>
+          <li><Link href="/about" className={isActive('/about') ? 'active' : ''}>About</Link></li>
+          <li><Link href="/insights" className={isActive('/insights') ? 'active' : ''}>Insights</Link></li>
+          <li><Link href="/zusammenarbeit" className={isActive('/zusammenarbeit') ? 'active' : ''}>Zusammenarbeit</Link></li>
           <li>
             <Link href="/contact" className="btn btn-sm btn-primary">Gespräch buchen</Link>
           </li>
