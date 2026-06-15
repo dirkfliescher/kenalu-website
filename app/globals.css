@@ -109,6 +109,27 @@ p { color: var(--charcoal); }
 .service-card p { font-size: 0.95rem; color: var(--stone); line-height: 1.6; transition: color var(--transition); }
 .services-cta { margin-top: 3rem; }
 
+.help-section { padding: 8rem var(--gutter); background: var(--mineral); }
+.help-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+.help-card { background: var(--ivory); border: 1.5px solid var(--softline); border-radius: var(--radius); padding: 2.5rem 2rem; transition: var(--transition); }
+.help-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; color: var(--charcoal); transition: color var(--transition); hyphens: auto; overflow-wrap: break-word; }
+.help-card p { font-size: 0.95rem; color: var(--stone); line-height: 1.6; }
+.help-card:hover { border-color: var(--terracotta); }
+.help-card:hover h3 { color: var(--terracotta); }
+.help-connector { margin-top: 3rem; max-width: 720px; font-size: 1rem; color: var(--stone); line-height: 1.65; border-top: 1px solid var(--softline); padding-top: 2rem; }
+
+.thinking-section { padding: 8rem var(--gutter); background: var(--ivory); }
+.thinking-section .section-sub { max-width: 640px; }
+.thinking-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 3rem; }
+.thinking-card { padding-top: 1.5rem; border-top: 1px solid var(--softline); transition: border-color var(--transition); }
+.thinking-card:hover { border-top-color: var(--terracotta); }
+.thinking-card h3 { font-size: 1.15rem; line-height: 1.3; margin-bottom: 0.75rem; color: var(--charcoal); transition: color var(--transition); hyphens: auto; overflow-wrap: break-word; }
+.thinking-card:hover h3 { color: var(--terracotta); }
+.thinking-card p { font-size: 0.95rem; color: var(--stone); line-height: 1.6; }
+.thinking-cta { margin-top: 3.5rem; }
+@media (max-width: 900px) { .thinking-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .thinking-grid { grid-template-columns: 1fr; } }
+
 .why { background: var(--mineral); padding: 8rem var(--gutter); }
 .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 .why-text h2 { margin: 0.5rem 0 1.5rem; }
@@ -151,6 +172,7 @@ p { color: var(--charcoal); }
   .provocation-grid, .why-grid, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
   .provocation-values { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
   .services-grid { grid-template-columns: 1fr 1fr; }
+  .help-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 640px) {
   :root { --gutter: 1.25rem; }
@@ -159,6 +181,7 @@ p { color: var(--charcoal); }
   .nav-links li a { font-size: 1.4rem; color: var(--charcoal); }
   .nav-toggle { display: flex; z-index: 101; }
   .services-grid { grid-template-columns: 1fr; }
+  .help-grid { grid-template-columns: 1fr; }
   .provocation-values { grid-template-columns: 1fr 1fr; }
 }
 .insights-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 3rem; }

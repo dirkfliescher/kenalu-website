@@ -8,7 +8,6 @@ import TextBlock from './blocks/TextBlock';
 import ServicesDetailSection from './blocks/ServicesDetailSection';
 import ProcessSection from './blocks/ProcessSection';
 import HelpSection from './blocks/HelpSection';
-import ThinkingSection from './blocks/ThinkingSection';
 import AboutIntro from './blocks/AboutIntro';
 import AboutBeliefs from './blocks/AboutBeliefs';
 import AboutName from './blocks/AboutName';
@@ -27,7 +26,6 @@ const Components = {
   services_detail_section: ServicesDetailSection,
   process_section: ProcessSection,
   help_section: HelpSection,
-  thinking_section: ThinkingSection,
   about_intro: AboutIntro,
   about_beliefs: AboutBeliefs,
   about_name: AboutName,
