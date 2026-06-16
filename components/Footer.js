@@ -30,6 +30,12 @@ export default function Footer() {
             <Link href="/impressum">Impressum</Link>
             <Link href="/datenschutz">Datenschutz</Link>
           </nav>
+          <p className="footer-built">
+            Built with{' '}
+            <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">Next.js</a>
+            {' & '}
+            <a href="https://www.storyblok.com" target="_blank" rel="noopener noreferrer">Storyblok</a>
+          </p>
         </div>
       </div>
     </footer>

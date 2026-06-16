@@ -203,6 +203,9 @@ p { color: var(--charcoal); }
 .footer-legal { display: flex; gap: 1.5rem; }
 .footer-legal a { color: var(--stone); text-decoration: none; transition: color var(--transition); }
 .footer-legal a:hover { color: var(--ivory); }
+.footer-built { color: var(--stone); }
+.footer-built a { color: var(--stone); text-decoration: none; transition: color var(--transition); }
+.footer-built a:hover { color: var(--ivory); }
 .legal-page { padding: 8rem var(--gutter); }
 .legal-page h1 { margin-bottom: 1rem; }
 .legal-intro { font-size: 1.1rem; color: var(--stone); margin-bottom: 3rem; }
