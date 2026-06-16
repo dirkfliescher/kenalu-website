@@ -1,7 +1,7 @@
 export default function AboutName({ blok }) {
   return (
     <section className="about-name">
-      <div className="container about-name-grid">
+      <div className="container container--narrow about-name-grid">
         <div>
           {blok.about_name_label && <p className="section-label" style={{ color: 'var(--sage)' }}>{blok.about_name_label}</p>}
           {blok.about_name_headline && <h2 style={{ color: 'var(--ivory)', margin: '0.5rem 0 2rem' }}>{blok.about_name_headline}</h2>}

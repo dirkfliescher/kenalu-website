@@ -1,3 +1,4 @@
+import Reveal from './Reveal';
 import Hero from './blocks/Hero';
 import PageHero from './blocks/PageHero';
 import CtaSection from './blocks/CtaSection';
@@ -36,13 +37,23 @@ const Components = {
   zusammenarbeit_open: ZusammenarbeitOpen,
 };
 
+// Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist
+const NO_REVEAL = new Set(['hero', 'page_hero']);
+
 export default function DynamicBlock({ blok }) {
   if (!blok) return null;
 
   const Component = Components[blok.component];
 
   if (Component) {
-    return <Component blok={blok} />;
+    if (NO_REVEAL.has(blok.component)) {
+      return <Component blok={blok} />;
+    }
+    return (
+      <Reveal>
+        <Component blok={blok} />
+      </Reveal>
+    );
   }
 
   // Unbekannter Block – nichts rendern, aber im Editor sichtbar machen

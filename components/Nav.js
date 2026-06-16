@@ -10,27 +10,46 @@ export default function Nav() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', onScroll);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // Mobile-Menü: Hintergrund-Scroll sperren, solange das Menü offen ist
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  // Menü beim Navigieren auf eine neue Seite automatisch schliessen
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   const isActive = (path) => pathname?.startsWith(path);
   const onDark = pathname !== '/';
 
   return (
-    <nav className={`nav${scrolled ? ' scrolled' : ''}${onDark ? ' on-dark' : ''}`}>
+    <nav className={`nav${scrolled ? ' scrolled' : ''}${onDark ? ' on-dark' : ''}${open ? ' menu-open' : ''}`}>
       <div className="nav-inner">
         <Link href="/" className="nav-logo">kenalu</Link>
         <ul className={`nav-links${open ? ' open' : ''}`}>
           <li><Link href="/services" className={isActive('/services') ? 'active' : ''}>Services</Link></li>
           <li><Link href="/about" className={isActive('/about') ? 'active' : ''}>About</Link></li>
           <li><Link href="/insights" className={isActive('/insights') ? 'active' : ''}>Insights</Link></li>
-          <li><Link href="/zusammenarbeit" className={isActive('/zusammenarbeit') ? 'active' : ''}>Zusammenarbeit</Link></li>
+
           <li>
             <Link href="/contact" className="btn btn-sm btn-primary">Gespräch buchen</Link>
           </li>
         </ul>
-        <button className="nav-toggle" onClick={() => setOpen(!open)} aria-label="Menu">
+        <button
+          className="nav-toggle"
+          onClick={() => setOpen(!open)}
+          aria-label="Menu"
+          aria-expanded={open}
+        >
           <span /><span /><span />
         </button>
       </div>

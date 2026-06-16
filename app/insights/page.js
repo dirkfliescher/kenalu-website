@@ -1,7 +1,7 @@
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../components/DynamicBlock';
 import InsightsFeatured from '../../components/blocks/InsightsFeatured';
-import InsightCard from '../../components/blocks/InsightCard';
+import InsightsFilter from '../../components/blocks/InsightsFilter';
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
@@ -29,9 +29,35 @@ async function getArticles() {
       excluding_slugs: 'insights/',
       sort_by: 'content.insight_date:desc',
     });
-    return data.stories || [];
+    return (data.stories || []).filter((story) => story.content?.insight_title);
   } catch (e) {
     return [];
+  }
+}
+
+async function getAuthors(articles) {
+  const uuids = Array.from(
+    new Set(
+      articles
+        .map((article) => article.content?.insight_author)
+        .filter((value) => typeof value === 'string' && value)
+    )
+  );
+  if (uuids.length === 0) return {};
+  try {
+    const { data } = await Storyblok.get('cdn/stories', {
+      version: 'draft',
+      by_uuids: uuids.join(','),
+    });
+    const map = {};
+    (data.stories || []).forEach((story) => {
+      if (story.content?.team_member_name) {
+        map[story.uuid] = story.content.team_member_name;
+      }
+    });
+    return map;
+  } catch (e) {
+    return {};
   }
 }
 
@@ -42,6 +68,7 @@ export default async function Insights() {
   const bottomBlocks = body.filter((blok) => blok.component === 'cta_section');
   const articles = await getArticles();
   const [latest, ...rest] = articles;
+  const authors = await getAuthors(rest);
 
   return (
     <>
@@ -55,11 +82,7 @@ export default async function Insights() {
         <section className="insights-list">
           <div className="container">
             <p className="section-label">Alle Beiträge</p>
-            <div className="insights-grid">
-              {rest.map((article) => (
-                <InsightCard key={article.uuid} article={article} />
-              ))}
-            </div>
+            <InsightsFilter articles={rest} authors={authors} />
           </div>
         </section>
       )}

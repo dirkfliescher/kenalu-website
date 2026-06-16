@@ -6,7 +6,7 @@ export default function ServiceDetail({ blok }) {
 
   return (
     <div className="service-detail-item">
-      <div className="sdi-number">{blok.service_detail_number}</div>
+      <span className="sdi-bignum" aria-hidden="true">{blok.service_detail_number}</span>
       <div className="sdi-main">
         {blok.service_detail_tag && <span className="service-tag">{blok.service_detail_tag}</span>}
         {blok.service_detail_headline && <h2>{blok.service_detail_headline}</h2>}

@@ -3,7 +3,7 @@ import ServiceItem from './ServiceItem';
 export default function ServicesSection({ blok }) {
   return (
     <section className="services">
-      <div className="container">
+      <div className="container container--wide">
         <div className="section-header">
           {blok.services_section_label && <div className="section-label">{blok.services_section_label}</div>}
           {blok.services_section_headline && <h2>{blok.services_section_headline}</h2>}

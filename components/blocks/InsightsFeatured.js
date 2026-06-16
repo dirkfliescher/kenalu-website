@@ -14,7 +14,7 @@ export default function InsightsFeatured({ article }) {
 
   return (
     <section className="insights-featured">
-      <div className="container">
+      <div className="container container--wide">
         <p className="section-label">Neuster Artikel</p>
         <Link href={`/insights/${slug}`} className="insights-featured-card">
           <div className="insights-featured-image">

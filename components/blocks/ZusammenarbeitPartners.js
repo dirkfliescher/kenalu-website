@@ -3,7 +3,7 @@ import PartnerCard from './PartnerCard';
 export default function ZusammenarbeitPartners({ blok }) {
   return (
     <section className="zusammenarbeit-partners">
-      <div className="container">
+      <div className="container container--wide">
         {blok.zusammenarbeit_partners_label && <p className="section-label">{blok.zusammenarbeit_partners_label}</p>}
         {blok.zusammenarbeit_partners_headline && <h2>{blok.zusammenarbeit_partners_headline}</h2>}
         {blok.zusammenarbeit_partners_intro && <p className="section-sub">{blok.zusammenarbeit_partners_intro}</p>}

@@ -1,7 +1,7 @@
 export default function AboutIntro({ blok }) {
   return (
     <section className="about-intro">
-      <div className="container about-intro-grid">
+      <div className="container container--wide about-intro-grid">
         <div>
           <div className="about-intro-image">
             {blok.about_intro_image?.filename ? (

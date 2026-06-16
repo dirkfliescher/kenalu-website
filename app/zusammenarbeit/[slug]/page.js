@@ -1,5 +1,6 @@
 import StoryblokClient from 'storyblok-js-client';
 import TestimonialItem from '../../../components/blocks/TestimonialItem';
+import InsightsFilter from '../../../components/blocks/InsightsFilter';
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
@@ -11,6 +12,22 @@ async function getMember(slug) {
     return data.story;
   } catch (e) {
     return null;
+  }
+}
+
+async function getArticlesByAuthor(uuid) {
+  if (!uuid) return [];
+  try {
+    const { data } = await Storyblok.get('cdn/stories', {
+      version: 'draft',
+      starts_with: 'insights/',
+      sort_by: 'content.insight_date:desc',
+    });
+    return (data.stories || []).filter(
+      (story) => story.content?.insight_title && story.content?.insight_author === uuid
+    );
+  } catch (e) {
+    return [];
   }
 }
 
@@ -42,6 +59,7 @@ export default async function TeamMemberPage({ params }) {
 
   const { content } = story;
   const testimonials = content.team_member_testimonials || [];
+  const articles = await getArticlesByAuthor(story.uuid);
 
   return (
     <>
@@ -86,6 +104,17 @@ export default async function TeamMemberPage({ params }) {
                 <TestimonialItem key={item._uid} blok={item} />
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {articles.length > 0 && (
+        <section className="insights-list">
+          <div className="container">
+            <p className="section-label">
+              {content.team_member_name ? `Artikel von ${content.team_member_name}` : 'Artikel'}
+            </p>
+            <InsightsFilter articles={articles} />
           </div>
         </section>
       )}

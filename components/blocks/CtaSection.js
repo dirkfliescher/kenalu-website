@@ -1,6 +1,11 @@
+import WaveBackground from '../WaveBackground';
+
 export default function CtaSection({ blok }) {
   return (
     <section className="cta-section">
+      <div className="cta-wave">
+        <WaveBackground variant="dark" />
+      </div>
       <div className="container cta-inner">
         {blok.cta_section_label && <div className="cta-label">{blok.cta_section_label}</div>}
         {blok.cta_section_headline && <h2 className="cta-headline">{blok.cta_section_headline}</h2>}
