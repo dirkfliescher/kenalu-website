@@ -16,6 +16,7 @@ import AboutName from './blocks/AboutName';
 import ZusammenarbeitPartners from './blocks/ZusammenarbeitPartners';
 import ZusammenarbeitTeam from './blocks/ZusammenarbeitTeam';
 import ZusammenarbeitOpen from './blocks/ZusammenarbeitOpen';
+import ExperienceWall from './blocks/ExperienceWall';
 
 const Components = {
   hero: Hero,
@@ -35,6 +36,7 @@ const Components = {
   zusammenarbeit_partners: ZusammenarbeitPartners,
   zusammenarbeit_team: ZusammenarbeitTeam,
   zusammenarbeit_open: ZusammenarbeitOpen,
+  experience_wall: ExperienceWall,
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist
