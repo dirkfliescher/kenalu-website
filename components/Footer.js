@@ -25,7 +25,11 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© 2025 kenalu – dirk fliescher consulting gmbh</p>
+          <p>© 2026 kenalu – dirk fliescher consulting gmbh</p>
+          <nav className="footer-legal">
+            <Link href="/impressum">Impressum</Link>
+            <Link href="/datenschutz">Datenschutz</Link>
+          </nav>
         </div>
       </div>
     </footer>

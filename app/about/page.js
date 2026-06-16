@@ -5,7 +5,7 @@ const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN
 
 export const metadata = {
   title: 'About – kenalu',
-  description: 'Dirk Fliescher – Gründer von kenalu.',
+  description: 'kenalu gestaltet digitale Experiences, die Menschen wirklich führen – kontextbewusst, aufgabenorientiert und menschlich. Gegründet von Dirk Fliescher.',
 };
 
 async function getContent() {
