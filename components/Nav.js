@@ -29,7 +29,11 @@ export default function Nav() {
   }, [pathname]);
 
   const isActive = (path) => pathname?.startsWith(path);
-  const onDark = pathname !== '/';
+
+  // Seiten mit dunklem Hero-Hintergrund → Nav startet mit hellem Text
+  // Alle anderen Seiten starten mit dunklem Text auf hellem Hintergrund
+  const DARK_HERO_PAGES = ['/services', '/about', '/insights', '/zusammenarbeit'];
+  const onDark = DARK_HERO_PAGES.some((p) => pathname?.startsWith(p));
 
   return (
     <nav className={`nav${scrolled ? ' scrolled' : ''}${onDark ? ' on-dark' : ''}${open ? ' menu-open' : ''}`}>
