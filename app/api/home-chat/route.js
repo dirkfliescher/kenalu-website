@@ -7,6 +7,37 @@ const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN
 let articleCache = null;
 let cacheTime = 0;
 
+// Personen-Cache (10 Minuten)
+let personCache = null;
+let personCacheTime = 0;
+
+async function getPersons() {
+  if (personCache && Date.now() - personCacheTime < 1000 * 60 * 10) return personCache;
+  try {
+    const { data } = await Storyblok.get('cdn/stories', {
+      version: 'draft',
+      starts_with: 'team/',
+      excluding_slugs: 'team/',
+      sort_by: 'content.team_member_order:asc',
+      per_page: 20,
+    });
+    personCache = (data.stories || [])
+      .filter((s) => s.content?.team_member_name)
+      .map((s) => ({
+        name: s.content.team_member_name,
+        role: s.content.team_member_role || '',
+        tag: s.content.team_member_tag || '',
+        slug: s.slug,
+        photo: s.content.team_member_photo?.filename || null,
+        teaser: (s.content.team_member_teaser || '').slice(0, 100),
+      }));
+    personCacheTime = Date.now();
+    return personCache;
+  } catch {
+    return [];
+  }
+}
+
 async function getArticles() {
   if (articleCache && Date.now() - cacheTime < 1000 * 60 * 10) return articleCache;
   try {
@@ -34,8 +65,20 @@ async function getArticles() {
 
 const KENALU_CONTEXT = `
 kenalu ist die Unternehmensberatung von Dirk Fliescher, Zürich.
-Fokus: Intelligent Experiences – digitale Erlebnisse die Strategie, Nutzerverständnis, Technologie und Umsetzung verbinden.
+Fokus: Intelligent Experiences – digitale Lösungen, die Strategie, Nutzerverständnis, KI und Umsetzung verbinden.
 kenalu steht für: Bewegung, Wandel, Intelligenz, Tiefe, starke Erlebnisse.
+
+kenalu arbeitet in zwei Richtungen:
+1. Kundenorientiert: Websites, Apps, Portale und digitale Services, die Nutzer besser führen, stärker konvertieren und Erlebnisse schaffen, die begeistern.
+2. Intern: Prozesse, Workflows und interne Tools, die Teams entlasten – durch KI und kluge Systemgestaltung.
+
+Was Kunden von kenalu haben:
+- Bessere Konversionsraten und stärkere Kundenbindung
+- Entlastete Teams durch intelligente interne Prozesse
+- Digitale Produkte, die messbar zum Unternehmenswachstum beitragen
+- Mitarbeitende, die gerne mit den Tools arbeiten
+
+kenalu arbeitet bis und mit Prototyp selbst; für die technische Umsetzung mit ausgewählten Spezialisten.
 `;
 
 const KENALU_SERVICES = [
@@ -48,13 +91,18 @@ const KENALU_SERVICES = [
 
 export async function POST(request) {
   try {
-    const { query } = await request.json();
+    const { messages } = await request.json();
 
-    if (!query || query.trim().length < 3) {
+    if (!Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json({ answer: null, widgets: [] });
     }
 
-    const articles = await getArticles();
+    const lastUserMessage = messages[messages.length - 1]?.content || '';
+    if (lastUserMessage.trim().length < 3) {
+      return NextResponse.json({ answer: null, widgets: [] });
+    }
+
+    const [articles, persons] = await Promise.all([getArticles(), getPersons()]);
 
     const articleList = articles
       .slice(0, 15)
@@ -67,15 +115,21 @@ export async function POST(request) {
       .map((s) => `- ${s.name}: ${s.description}`)
       .join('\n');
 
-    const SYSTEM_PROMPT = `Du bist kenalu – nicht ein Assistent über kenalu, sondern kenalu selbst.
+    const personList = persons
+      .map((p) => `- Name: "${p.name}" | Rolle: "${p.role}" | Tag: "${p.tag}" | Slug: ${p.slug} | Teaser: "${p.teaser}"`)
+      .join('\n');
+
+    const SYSTEM_PROMPT = `Du bist Kai – die KI von kenalu. Kai steht für Wasser und Welle auf Hawaiianisch, passend zum kenalu-Markennamen.
+Du sprichst im Namen von kenalu, aber mit eigenem Charakter: neugierig, direkt, intelligent, ohne Floskeln.
 ${KENALU_CONTEXT}
 
-Du antwortest auf Fragen und Situationen von Website-Besuchern.
+Du antwortest auf Fragen und Situationen von Website-Besuchern. Es kann ein mehrteiliges Gespräch entstehen – du erinnerst dich an den bisherigen Verlauf und beziehst dich darauf, wenn sinnvoll.
 
 Regeln für die Antwort:
 - Direkt, menschlich, auf Deutsch
 - 2–3 Sätze – klar und ohne Floskeln
 - Echte Perspektive zeigen, kein Marketing-Sprech
+- Du heisst Kai, nicht "ich bin eine KI" – das ist dein Name
 
 Verfügbare kenalu Leistungen:
 ${serviceList}
@@ -83,7 +137,10 @@ ${serviceList}
 Verfügbare Insights-Artikel:
 ${articleList}
 
-Gib zusätzlich zur Antwort 1–3 Widgets zurück. Widget-Typen:
+Verfügbare Personen (Team / Partner):
+${personList}
+
+Gib zusätzlich zur Antwort 0–3 Widgets zurück, die zur LETZTEN Frage passen. Widget-Typen:
 
 1. "article" – wenn ein Artikel direkt relevant ist:
    { "type": "article", "title": "...", "slug": "...", "tag": "...", "excerpt": "..." }
@@ -93,22 +150,24 @@ Gib zusätzlich zur Antwort 1–3 Widgets zurück. Widget-Typen:
    { "type": "service", "name": "...", "description": "...", "href": "/services" }
    Verwende exakt einen der 5 Leistungsnamen.
 
-3. "contact" – wenn ein Gespräch der sinnvollste nächste Schritt ist:
+3. "person" – wenn eine Person direkt relevant ist (z.B. wenn nach Ansprechpersonen, Expertise oder Team gefragt wird):
+   { "type": "person", "name": "...", "role": "...", "tag": "...", "slug": "...", "photo": "..." }
+   Verwende echte Werte aus der Personen-Liste oben.
+
+4. "contact" – wenn ein Gespräch der sinnvollste nächste Schritt ist:
    { "type": "contact", "label": "Gespräch anfragen", "description": "30 Minuten, unverbindlich – direkt mit Dirk." }
 
 Wann welches Widget:
 - Artikel: wenn das Thema in einem Artikel behandelt wird
 - Service: wenn die Frage eine spezifische Leistung nahelegt
-- Contact: immer wenn jemand konkret etwas verändern oder starten will – zusätzlich zu anderen Widgets
+- Person: wenn nach Team, Ansprechpersonen oder spezifischer Expertise gefragt wird
+- Contact: wenn jemand konkret etwas verändern oder starten will
+- Keine Widgets (leeres Array): bei reinen Nachfragen oder wenn kein Inhalt wirklich passt
 
 Antworte AUSSCHLIESSLICH mit gültigem JSON (kein Markdown):
 {
   "answer": "Deine Antwort, 2–3 Sätze.",
-  "widgets": [
-    { "type": "article", "title": "...", "slug": "...", "tag": "...", "excerpt": "..." },
-    { "type": "service", "name": "Discovery", "description": "...", "href": "/services" },
-    { "type": "contact", "label": "Gespräch anfragen", "description": "..." }
-  ]
+  "widgets": []
 }`;
 
     const res = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -121,7 +180,7 @@ Antworte AUSSCHLIESSLICH mit gültigem JSON (kein Markdown):
         model: 'gpt-4o-mini',
         messages: [
           { role: 'system', content: SYSTEM_PROMPT },
-          { role: 'user', content: query.trim() },
+          ...messages,
         ],
         max_tokens: 700,
         temperature: 0.6,
@@ -134,17 +193,22 @@ Antworte AUSSCHLIESSLICH mit gültigem JSON (kein Markdown):
     const data = await res.json();
     const parsed = JSON.parse(data.choices[0].message.content);
 
-    // Artikel-Widgets gegen die echte Artikelliste validieren
+    // Widgets gegen echte Daten validieren
     const validatedWidgets = (parsed.widgets || []).map((w) => {
       if (w.type === 'article') {
         const real = articles.find((a) => a.slug === w.slug);
-        if (!real) return null; // halluzinierten Slug verwerfen
+        if (!real) return null;
         return { ...w, title: real.title, tag: real.tag, excerpt: real.excerpt };
       }
       if (w.type === 'service') {
         const validService = KENALU_SERVICES.find((s) => s.name === w.name);
         if (!validService) return null;
         return { ...w, href: validService.href };
+      }
+      if (w.type === 'person') {
+        const real = persons.find((p) => p.slug === w.slug);
+        if (!real) return null;
+        return { ...w, name: real.name, role: real.role, tag: real.tag, photo: real.photo };
       }
       return w;
     }).filter(Boolean).slice(0, 3);

@@ -3,6 +3,7 @@ import DynamicBlock from '../components/DynamicBlock';
 import Reveal from '../components/Reveal';
 import ThinkingSection from '../components/blocks/ThinkingSection';
 import HomeChat from '../components/blocks/HomeChat';
+import OutcomesSection from '../components/blocks/OutcomesSection';
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
@@ -49,6 +50,11 @@ export default async function Home() {
 
       {/* Intelligenter Einstieg – direkt unter dem Hero */}
       <HomeChat />
+
+      {/* Was kenalu bewirkt – Outcomes */}
+      <Reveal>
+        <OutcomesSection />
+      </Reveal>
 
       {/* Alle weiteren Storyblok-Blöcke */}
       {restBlocks.map((blok) => {
