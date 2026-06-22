@@ -26,10 +26,12 @@ export default function ContactBookingWidget({
     if (userCount >= 3) setDone(true);
   }, [userCount]);
 
-  // Scroll ans Ende wenn neue Nachricht kommt
+  // Scroll ans Ende wenn neue Nachricht kommt – aber nicht beim ersten Laden
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, loading]);
+    if (userCount > 0) {
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages, loading, userCount]);
 
   async function handleSend() {
     const val = input.trim();
