@@ -1,62 +1,81 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
-const DEFAULT_RESPONSES = [
-  'Danke – das klingt nach einem spannenden Vorhaben. Bist du bereits in einer konkreten Phase (z.B. Konzept, Redesign, Neuausrichtung), oder geht es noch darum, die richtige Richtung zu finden?',
-  'Gut zu wissen. Und wie gross ist das Team oder Unternehmen, um das es geht? Das hilft mir einzuschätzen, welchen Ansatz ich vorschlage.',
-  'Perfekt – das gibt mir bereits ein gutes Bild. Dirk wird gut vorbereitet ins Gespräch gehen. Wähle jetzt einen Termin, der dir passt.',
-];
+const INITIAL_MESSAGE = {
+  role: 'assistant',
+  text: 'Hallo! Was bringt dich zu kenalu? Beschreib kurz deine Situation – das hilft, das Gespräch optimal vorzubereiten.',
+};
 
 export default function ContactBookingWidget({
   headline,
   intro,
   calendlyUrl,
-  qualifierResponses,
 }) {
-  const [messages, setMessages] = useState([
-    {
-      type: 'ai',
-      text: 'Hallo! Was bringt dich zu kenalu? Beschreib kurz deine Situation – das hilft, das Gespräch optimal vorzubereiten.',
-    },
-  ]);
+  const [messages, setMessages] = useState([INITIAL_MESSAGE]);
   const [input, setInput] = useState('');
-  const [responseIndex, setResponseIndex] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const bottomRef = useRef(null);
 
-  // Storyblok liefert qualifier_responses als mehrzeiliger Text –
-  // wir splitten an Leerzeilen, fallback auf hardcoded Liste
-  const responses = (() => {
-    if (qualifierResponses && qualifierResponses.trim()) {
-      return qualifierResponses
-        .split(/\n{2,}/)
-        .map((s) => s.trim())
-        .filter(Boolean);
-    }
-    return DEFAULT_RESPONSES;
-  })();
+  // Anzahl Nutzer-Nachrichten zählen
+  const userCount = messages.filter((m) => m.role === 'user').length;
 
-  function handleSend() {
+  // Nach 3 Nutzer-Antworten Calendly-CTA einblenden
+  useEffect(() => {
+    if (userCount >= 3) setDone(true);
+  }, [userCount]);
+
+  // Scroll ans Ende wenn neue Nachricht kommt
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, loading]);
+
+  async function handleSend() {
     const val = input.trim();
-    if (!val) return;
+    if (!val || loading) return;
 
-    const next = [...messages, { type: 'user', text: val }];
+    const userMsg = { role: 'user', text: val };
+    const updated = [...messages, userMsg];
+    setMessages(updated);
     setInput('');
+    setLoading(true);
 
-    if (responseIndex < responses.length) {
-      setTimeout(() => {
-        setMessages([...next, { type: 'ai', text: responses[responseIndex] }]);
-        setResponseIndex((i) => i + 1);
-        if (responseIndex + 1 >= responses.length) setDone(true);
-      }, 600);
-    } else {
-      setMessages(next);
-      setDone(true);
+    try {
+      // Konversation im OpenAI-Format aufbereiten
+      // Das initiale Greeting kommt aus dem System-Prompt, nicht als History
+      const apiMessages = updated
+        .filter((m, i) => !(i === 0 && m.role === 'assistant'))
+        .map((m) => ({ role: m.role, content: m.text }));
+
+      const res = await fetch('/api/qualify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: apiMessages }),
+      });
+
+      if (!res.ok) throw new Error('API error');
+
+      const data = await res.json();
+      setMessages([...updated, { role: 'assistant', text: data.message }]);
+    } catch (e) {
+      setMessages([
+        ...updated,
+        {
+          role: 'assistant',
+          text: 'Entschuldige – da ist etwas schiefgelaufen. Du kannst auch direkt einen Termin buchen.',
+        },
+      ]);
+    } finally {
+      setLoading(false);
     }
   }
 
   function handleKey(e) {
-    if (e.key === 'Enter') handleSend();
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
   }
 
   const bookingUrl = calendlyUrl || 'https://calendly.com/dirk-kenalu';
@@ -78,10 +97,16 @@ export default function ContactBookingWidget({
 
         <div className="qualifier-messages">
           {messages.map((msg, i) => (
-            <p key={i} className={`qualifier-msg ${msg.type}`}>
+            <p key={i} className={`qualifier-msg ${msg.role}`}>
               {msg.text}
             </p>
           ))}
+          {loading && (
+            <p className="qualifier-msg assistant qualifier-typing">
+              <span>·</span><span>·</span><span>·</span>
+            </p>
+          )}
+          <div ref={bottomRef} />
         </div>
 
         {!done && (
@@ -93,8 +118,14 @@ export default function ContactBookingWidget({
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKey}
+              disabled={loading}
             />
-            <button className="qualifier-send" onClick={handleSend} aria-label="Senden">
+            <button
+              className="qualifier-send"
+              onClick={handleSend}
+              disabled={loading || !input.trim()}
+              aria-label="Senden"
+            >
               →
             </button>
           </div>

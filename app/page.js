@@ -2,6 +2,7 @@ import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../components/DynamicBlock';
 import Reveal from '../components/Reveal';
 import ThinkingSection from '../components/blocks/ThinkingSection';
+import HomeChat from '../components/blocks/HomeChat';
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
@@ -38,9 +39,19 @@ export default async function Home() {
   const body = content?.body || [];
   const latestArticles = await getLatestArticles();
 
+  // Hero (erstes Block) vom Rest trennen, damit HomeChat direkt danach erscheint
+  const [heroBlock, ...restBlocks] = body;
+
   return (
     <>
-      {body.map((blok) => {
+      {/* Hero */}
+      {heroBlock && <DynamicBlock key={heroBlock._uid} blok={heroBlock} />}
+
+      {/* Intelligenter Einstieg – direkt unter dem Hero */}
+      <HomeChat />
+
+      {/* Alle weiteren Storyblok-Blöcke */}
+      {restBlocks.map((blok) => {
         if (blok.component === 'thinking_section') {
           return (
             <Reveal key={blok._uid}>

@@ -1,6 +1,7 @@
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../components/DynamicBlock';
 import InsightsFeatured from '../../components/blocks/InsightsFeatured';
+import InsightsChat from '../../components/blocks/InsightsChat';
 import InsightsFilter from '../../components/blocks/InsightsFilter';
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
@@ -79,12 +80,23 @@ export default async function Insights() {
       {latest && <InsightsFeatured article={latest} />}
 
       {rest.length > 0 && (
-        <section className="insights-list">
-          <div className="container">
-            <p className="section-label">Alle Beiträge</p>
-            <InsightsFilter articles={rest} authors={authors} />
-          </div>
-        </section>
+        <>
+          {/* KI-Chat */}
+          <section className="insights-list">
+            <div className="container container--wide">
+              <p className="section-label">Frag die Insights</p>
+              <InsightsChat />
+            </div>
+          </section>
+
+          {/* Normaler Filter + Grid */}
+          <section className="insights-list insights-list--browse">
+            <div className="container container--wide">
+              <p className="section-label">Alle Beiträge</p>
+              <InsightsFilter articles={rest} authors={authors} />
+            </div>
+          </section>
+        </>
       )}
 
       {bottomBlocks.map((blok) => (
