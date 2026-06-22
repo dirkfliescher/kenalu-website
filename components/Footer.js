@@ -1,13 +1,32 @@
 import Link from 'next/link';
+import StoryblokClient from 'storyblok-js-client';
 
-export default function Footer() {
+const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
+
+async function getFooterContent() {
+  try {
+    const { data } = await Storyblok.get('cdn/stories/config/footer', { version: 'draft' });
+    return data.story.content;
+  } catch (e) {
+    return null;
+  }
+}
+
+export default async function Footer() {
+  const f = await getFooterContent();
+
+  const tagline   = f?.footer_tagline   || 'AI Products. Gebaut, nicht konfiguriert.';
+  const email     = f?.footer_email     || 'dirk@kenalu.ch';
+  const address   = f?.footer_address   || 'Zürich, Schweiz';
+  const copyright = f?.footer_copyright || `© ${new Date().getFullYear()} kenalu – dirk fliescher consulting gmbh`;
+
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
             <span className="footer-logo">kenalu</span>
-            <p>Intelligent Experiences for a more human digital world.</p>
+            <p>{tagline}</p>
           </div>
           <div className="footer-nav">
             <h4>Navigation</h4>
@@ -20,12 +39,12 @@ export default function Footer() {
           </div>
           <div className="footer-contact">
             <h4>Kontakt</h4>
-            <p><a href="mailto:dirk@kenalu.ch">dirk@kenalu.ch</a></p>
-            <p>Zürich, Schweiz</p>
+            <p><a href={`mailto:${email}`}>{email}</a></p>
+            <p>{address}</p>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© 2026 kenalu – dirk fliescher consulting gmbh</p>
+          <p>{copyright}</p>
           <nav className="footer-legal">
             <Link href="/impressum">Impressum</Link>
             <Link href="/datenschutz">Datenschutz</Link>
