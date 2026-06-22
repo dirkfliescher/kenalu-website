@@ -1830,40 +1830,63 @@ p { color: var(--charcoal); }
 
 /* ── Insight-Artikel: Selbstcheck-CTA ──────────────────────── */
 .insight-check-cta {
-  margin-top: 3.5rem;
-  padding: 2rem 2.5rem;
-  background: var(--mineral);
-  border-radius: var(--radius);
+  margin-top: 4rem;
+  padding: 3rem 3rem;
+  background: var(--ocean);
+  border-radius: 12px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.insight-check-cta-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin: 0;
 }
 
 .insight-check-cta-text {
-  font-size: 1rem;
-  color: var(--charcoal);
-  font-weight: 500;
+  font-family: var(--font-headline);
+  font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  color: var(--ivory);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.insight-check-cta-sub {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
   margin: 0;
 }
 
 .insight-check-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--ivory);
+  color: var(--ocean);
+  border-radius: var(--radius);
   font-size: 0.9rem;
   font-weight: 700;
-  color: var(--ocean);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  white-space: nowrap;
-  transition: color var(--transition);
+  text-decoration: none;
+  align-self: flex-start;
+  transition: background var(--transition), transform var(--transition);
 }
 
 .insight-check-cta-link:hover {
-  color: var(--terracotta);
+  background: #fff;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 560px) {
-  .insight-check-cta { flex-direction: column; align-items: flex-start; }
+  .insight-check-cta { padding: 2rem 1.75rem; }
+  .insight-check-cta-link { width: 100%; justify-content: center; }
 }
 
 /* ── Contact: Selbstcheck-Hinweis ───────────────────────────── */
