@@ -18,7 +18,7 @@ function formatDate(dateString) {
 async function getArticle(slug) {
   try {
     const { data } = await Storyblok.get(`cdn/stories/insights/${slug}`, {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
     });
     return data.story;
   } catch (e) {
@@ -30,7 +30,7 @@ async function getAuthor(uuid) {
   if (!uuid) return null;
   try {
     const { data } = await Storyblok.get('cdn/stories', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
       by_uuids: uuid,
     });
     return (data.stories || [])[0] || null;
@@ -43,7 +43,7 @@ async function getAuthorArticles(uuid, excludeSlug, limit = 3) {
   if (!uuid) return [];
   try {
     const { data } = await Storyblok.get('cdn/stories', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
       starts_with: 'insights/',
       sort_by: 'content.insight_date:desc',
     });

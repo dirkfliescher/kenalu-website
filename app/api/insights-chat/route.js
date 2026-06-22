@@ -46,7 +46,7 @@ async function embed(text) {
 
 async function buildCache() {
   const { data } = await Storyblok.get('cdn/stories', {
-    version: 'draft',
+    version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
     starts_with: 'insights/',
     excluding_slugs: 'insights/',
     sort_by: 'content.insight_date:desc',

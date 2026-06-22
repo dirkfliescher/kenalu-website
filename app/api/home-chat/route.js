@@ -15,7 +15,7 @@ async function getPersons() {
   if (personCache && Date.now() - personCacheTime < 1000 * 60 * 10) return personCache;
   try {
     const { data } = await Storyblok.get('cdn/stories', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
       starts_with: 'team/',
       excluding_slugs: 'team/',
       sort_by: 'content.team_member_order:asc',
@@ -42,7 +42,7 @@ async function getArticles() {
   if (articleCache && Date.now() - cacheTime < 1000 * 60 * 10) return articleCache;
   try {
     const { data } = await Storyblok.get('cdn/stories', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
       starts_with: 'insights/',
       excluding_slugs: 'insights/',
       sort_by: 'content.insight_date:desc',

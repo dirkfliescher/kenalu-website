@@ -14,7 +14,7 @@ export const metadata = {
 async function getContent() {
   try {
     const { data } = await Storyblok.get('cdn/stories/zusammenarbeit', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
     });
     return data.story.content;
   } catch (e) {
@@ -25,7 +25,7 @@ async function getContent() {
 async function getTeamMembers() {
   try {
     const { data } = await Storyblok.get('cdn/stories', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
       starts_with: 'team/',
       excluding_slugs: 'team/',
       sort_by: 'content.team_member_order:asc',

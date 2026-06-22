@@ -33,12 +33,16 @@ export default function OutcomesSection({ blok }) {
         <div className="outcomes-grid">
           {items.map((item, i) => (
             <div key={item._uid || i} className="outcome-card">
-              <div className="outcome-meta">
-                <span className="outcome-number">{item.outcome_number}</span>
-                <span className="outcome-area">{item.outcome_area}</span>
+              <span className="outcome-number-bg" aria-hidden="true">
+                {item.outcome_number}
+              </span>
+              <div className="outcome-content">
+                {item.outcome_area && (
+                  <span className="outcome-area">{item.outcome_area}</span>
+                )}
+                <h3 className="outcome-headline">{item.outcome_headline}</h3>
+                <p className="outcome-body">{item.outcome_body}</p>
               </div>
-              <h3 className="outcome-headline">{item.outcome_headline}</h3>
-              <p className="outcome-body">{item.outcome_body}</p>
             </div>
           ))}
         </div>

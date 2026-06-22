@@ -9,7 +9,7 @@ const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN
 async function getMember(slug) {
   try {
     const { data } = await Storyblok.get(`cdn/stories/team/${slug}`, {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
     });
     return data.story;
   } catch (e) {
@@ -21,7 +21,7 @@ async function getArticlesByAuthor(uuid) {
   if (!uuid) return [];
   try {
     const { data } = await Storyblok.get('cdn/stories', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
       starts_with: 'insights/',
       sort_by: 'content.insight_date:desc',
     });

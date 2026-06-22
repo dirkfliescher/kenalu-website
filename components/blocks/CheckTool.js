@@ -179,17 +179,18 @@ export default function CheckTool() {
     return (
       <main className="check-page">
         <section className="check-intro">
-          <div className="container">
-            <p className="section-label">Selbstcheck</p>
+          <div className="check-intro-inner">
             <h1 className="check-intro-headline">
-              Wie hoch ist<br />dein Veränderungsdruck?
+              Wie hoch ist dein<br />Veränderungsdruck?
             </h1>
-            <p className="check-intro-sub">
-              6 Fragen. 2 Minuten. Eine ehrliche Einschätzung: Wo stehst du zwischen dem Frust mit Standardsoftware und der Angst vor dem Schritt in etwas Eigenes?
-            </p>
-            <button className="btn btn-primary check-start-btn" onClick={start}>
-              Jetzt einschätzen →
-            </button>
+            <div className="check-intro-foot">
+              <p className="check-intro-sub">
+                6 Fragen. 2 Minuten. Eine ehrliche Einschätzung: Wo stehst du zwischen dem Frust mit Standardsoftware und der Angst vor dem Schritt in etwas Eigenes?
+              </p>
+              <button className="btn btn-primary check-start-btn" onClick={start}>
+                Jetzt einschätzen →
+              </button>
+            </div>
           </div>
         </section>
       </main>

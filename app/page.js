@@ -12,7 +12,7 @@ const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN
 async function getHomeContent() {
   try {
     const { data } = await Storyblok.get('cdn/stories/home', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
     });
     return data.story.content;
   } catch (e) {
@@ -23,7 +23,7 @@ async function getHomeContent() {
 async function getLatestArticles(limit = 3) {
   try {
     const { data } = await Storyblok.get('cdn/stories', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
       starts_with: 'insights/',
       excluding_slugs: 'insights/',
       sort_by: 'content.insight_date:desc',

@@ -10,7 +10,7 @@ const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN
 async function getContent() {
   try {
     const { data } = await Storyblok.get('cdn/stories/services', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
     });
     return data.story.content;
   } catch (e) {

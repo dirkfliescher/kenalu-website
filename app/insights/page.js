@@ -16,7 +16,7 @@ export const metadata = {
 async function getPageContent() {
   try {
     const { data } = await Storyblok.get('cdn/stories/insights', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
     });
     return data.story.content;
   } catch (e) {
@@ -27,7 +27,7 @@ async function getPageContent() {
 async function getArticles() {
   try {
     const { data } = await Storyblok.get('cdn/stories', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
       starts_with: 'insights/',
       excluding_slugs: 'insights/',
       sort_by: 'content.insight_date:desc',
@@ -49,7 +49,7 @@ async function getAuthors(articles) {
   if (uuids.length === 0) return {};
   try {
     const { data } = await Storyblok.get('cdn/stories', {
-      version: 'draft',
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
       by_uuids: uuids.join(','),
     });
     const map = {};
