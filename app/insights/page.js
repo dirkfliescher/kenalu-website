@@ -4,6 +4,8 @@ import InsightsFeatured from '../../components/blocks/InsightsFeatured';
 import InsightsChat from '../../components/blocks/InsightsChat';
 import InsightsFilter from '../../components/blocks/InsightsFilter';
 
+export const revalidate = 60;
+
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 export const metadata = {

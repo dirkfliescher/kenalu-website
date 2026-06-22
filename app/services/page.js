@@ -3,6 +3,8 @@ import DynamicBlock from '../../components/DynamicBlock';
 import ServicesFinder from '../../components/blocks/ServicesFinder';
 import Reveal from '../../components/Reveal';
 
+export const revalidate = 60;
+
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 async function getContent() {

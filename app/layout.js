@@ -3,6 +3,8 @@ import './globals.css';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 
+export const revalidate = 60;
+
 const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500'] });
 
 export const metadata = {

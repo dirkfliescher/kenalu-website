@@ -3,6 +3,8 @@ import { renderRichText } from '../../lib/richtext';
 import InsightAuthor from '../../../components/blocks/InsightAuthor';
 import InsightCard from '../../../components/blocks/InsightCard';
 
+export const revalidate = 60;
+
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 function formatDate(dateString) {

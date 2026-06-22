@@ -2,6 +2,8 @@ import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../components/DynamicBlock';
 import ZusammenarbeitTeam from '../../components/blocks/ZusammenarbeitTeam';
 
+export const revalidate = 60;
+
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 export const metadata = {

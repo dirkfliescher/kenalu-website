@@ -3,6 +3,8 @@ import DynamicBlock from '../../components/DynamicBlock';
 import AboutTeam from '../../components/blocks/AboutTeam';
 import Reveal from '../../components/Reveal';
 
+export const revalidate = 60;
+
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 export const metadata = {

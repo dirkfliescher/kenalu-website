@@ -2,6 +2,8 @@ import StoryblokClient from 'storyblok-js-client';
 import TestimonialItem from '../../../components/blocks/TestimonialItem';
 import InsightsFilter from '../../../components/blocks/InsightsFilter';
 
+export const revalidate = 60;
+
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 async function getMember(slug) {

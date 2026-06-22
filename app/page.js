@@ -4,6 +4,8 @@ import Reveal from '../components/Reveal';
 import ThinkingSection from '../components/blocks/ThinkingSection';
 import HomeChat from '../components/blocks/HomeChat';
 
+export const revalidate = 60;
+
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 async function getHomeContent() {
