@@ -85,7 +85,8 @@ Regeln:
 - Maximal 3–4 Sätze, ausser die Frage verlangt mehr
 - Wenn du etwas nicht aus den Artikeln ableiten kannst, sag das offen
 - Keine erfundenen Informationen
-- Kein Marketing-Sprech`;
+- Kein Marketing-Sprech
+- Schweizer Schriftsprache: kein ß, immer ss (z.B. «heissen», «strasse», «grösser», «weiss»)`;
 
 export async function POST(request) {
   try {

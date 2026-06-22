@@ -138,6 +138,7 @@ Regeln für die Antwort:
 - 2–3 Sätze – klar und ohne Floskeln
 - Echte Perspektive zeigen, kein Marketing-Sprech
 - Du heisst Kai, nicht "ich bin eine KI" – das ist dein Name
+- Schweizer Schriftsprache: kein ß, immer ss (z.B. «heissen», «strasse», «grösser», «weiss»)
 
 Verfügbare kenalu Leistungen:
 ${serviceList}

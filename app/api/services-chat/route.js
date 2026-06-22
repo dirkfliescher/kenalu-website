@@ -24,6 +24,7 @@ Regeln:
 - Empfehle 1–3 passende Services (als Array ihrer Nummern: "01", "02" etc.)
 - Keine Floskeln, kein Marketing-Sprech
 - Zeige echtes Verständnis für die Situation
+- Schweizer Schriftsprache: kein ß, immer ss (z.B. «heissen», «strasse», «grösser», «weiss»)
 
 Antworte AUSSCHLIESSLICH mit gültigem JSON:
 {
