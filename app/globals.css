@@ -1690,3 +1690,83 @@ p { color: var(--charcoal); }
   .check-profile-tagline { font-size: 1.2rem; }
   .check-result-actions { flex-direction: column; align-items: flex-start; }
 }
+
+/* ── Check Teaser (Homepage) ────────────────────────────────── */
+.check-teaser {
+  background: #1e2124;
+  padding: 6rem 0;
+}
+
+.check-teaser-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.check-teaser-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 1.25rem;
+}
+
+.check-teaser-headline {
+  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: white;
+  margin-bottom: 1.25rem;
+}
+
+.check-teaser-sub {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  max-width: 440px;
+}
+
+.check-teaser-btn {
+  font-size: 0.95rem;
+}
+
+.check-teaser-profiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.check-teaser-profile {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 1.1rem 1.25rem;
+  transition: border-color 0.2s ease;
+}
+
+.check-teaser-profile:hover {
+  border-color: rgba(203, 101, 76, 0.5);
+}
+
+.check-teaser-profile-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 860px) {
+  .check-teaser-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .check-teaser-profiles {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .check-teaser { padding: 4rem 0; }
+  .check-teaser-profiles { grid-template-columns: 1fr; }
+}

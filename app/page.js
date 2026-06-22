@@ -3,6 +3,7 @@ import DynamicBlock from '../components/DynamicBlock';
 import Reveal from '../components/Reveal';
 import ThinkingSection from '../components/blocks/ThinkingSection';
 import HomeChat from '../components/blocks/HomeChat';
+import CheckTeaser from '../components/blocks/CheckTeaser';
 
 export const revalidate = 60;
 
@@ -63,6 +64,11 @@ export default async function Home() {
         }
         return <DynamicBlock key={blok._uid} blok={blok} />;
       })}
+
+      {/* Selbstcheck-Teaser */}
+      <Reveal>
+        <CheckTeaser />
+      </Reveal>
     </>
   );
 }
