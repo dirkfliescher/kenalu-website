@@ -102,7 +102,7 @@ export default function InsightsChat() {
             ) : (
               <div key={i} className="ic-answer-block">
                 <div className="ic-answer">
-                  <span className="ic-label ic-label--ai">kenalu</span>
+                  <span className="ic-label ic-label--ai">Kai</span>
                   <p className="ic-answer-text">{msg.content}</p>
                 </div>
 
@@ -137,7 +137,7 @@ export default function InsightsChat() {
           {loading && (
             <div className="ic-answer-block">
               <div className="ic-answer">
-                <span className="ic-label ic-label--ai">kenalu</span>
+                <span className="ic-label ic-label--ai">Kai</span>
                 <p className="ic-answer-text ic-typing"><span>·</span><span>·</span><span>·</span></p>
               </div>
             </div>
