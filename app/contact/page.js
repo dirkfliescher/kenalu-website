@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../components/DynamicBlock';
 
@@ -27,6 +28,12 @@ export default async function Contact() {
 
   return (
     <>
+      <div className="contact-check-hint">
+        <div className="container">
+          <span className="contact-check-hint-text">Noch unsicher, ob das der richtige Schritt ist?</span>
+          <Link href="/check" className="contact-check-hint-link">Mach erst den Selbstcheck →</Link>
+        </div>
+      </div>
       {body.map((blok) => (
         <DynamicBlock key={blok._uid} blok={blok} />
       ))}

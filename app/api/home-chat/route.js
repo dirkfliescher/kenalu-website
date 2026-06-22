@@ -166,11 +166,15 @@ Gib zusätzlich zur Antwort 0–3 Widgets zurück, die zur LETZTEN Frage passen.
 4. "contact" – wenn ein Gespräch der sinnvollste nächste Schritt ist:
    { "type": "contact", "label": "Gespräch anfragen", "description": "30 Minuten, unverbindlich – direkt mit Dirk." }
 
+5. "check" – wenn jemand unsicher ist, ob Custom Software das Richtige für ihn ist, seinen Frust oder seine Bereitschaft besser einschätzen will, oder wenn die Frage «Bin ich da überhaupt bereit?» implizit mitschwingt:
+   { "type": "check", "label": "Selbstcheck machen", "description": "6 Fragen. 2 Minuten. Ehrliche Einschätzung." }
+
 Wann welches Widget:
 - Artikel: wenn das Thema in einem Artikel behandelt wird
 - Service: wenn die Frage eine spezifische Leistung nahelegt
 - Person: wenn nach Team, Ansprechpersonen oder spezifischer Expertise gefragt wird
 - Contact: wenn jemand konkret etwas verändern oder starten will
+- Check: wenn jemand seinen eigenen Frust oder seine Bereitschaft einschätzen will
 - Keine Widgets (leeres Array): bei reinen Nachfragen oder wenn kein Inhalt wirklich passt
 
 Antworte AUSSCHLIESSLICH mit gültigem JSON (kein Markdown):

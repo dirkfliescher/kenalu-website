@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import StoryblokClient from 'storyblok-js-client';
 import { renderRichText } from '../../lib/richtext';
 import InsightAuthor from '../../../components/blocks/InsightAuthor';
@@ -111,6 +112,13 @@ export default async function InsightArticle({ params }) {
             <div className="insight-article-body" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
           )}
           <InsightAuthor author={author} />
+
+          <div className="insight-check-cta">
+            <p className="insight-check-cta-text">Erkennst du dich in diesem Thema?</p>
+            <Link href="/check" className="insight-check-cta-link">
+              Selbstcheck machen →
+            </Link>
+          </div>
         </div>
       </section>
 

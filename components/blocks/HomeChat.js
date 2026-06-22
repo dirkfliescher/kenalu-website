@@ -77,19 +77,37 @@ function PersonWidget({ widget }) {
   );
 }
 
+function CheckWidget({ widget }) {
+  return (
+    <Link href="/check" className="hcw-check">
+      <div className="hcw-check-inner">
+        <div>
+          <p className="hcw-check-label">{widget.label || 'Selbstcheck machen'}</p>
+          {widget.description && (
+            <p className="hcw-check-desc">{widget.description}</p>
+          )}
+        </div>
+        <span className="hcw-contact-arrow">→</span>
+      </div>
+    </Link>
+  );
+}
+
 function Widget({ widget }) {
   if (widget.type === 'article') return <ArticleWidget widget={widget} />;
   if (widget.type === 'service') return <ServiceWidget widget={widget} />;
   if (widget.type === 'contact') return <ContactWidget widget={widget} />;
   if (widget.type === 'person') return <PersonWidget widget={widget} />;
+  if (widget.type === 'check') return <CheckWidget widget={widget} />;
   return null;
 }
 
 // ── Ein einzelnes Q&A-Paar ─────────────────────────────────────────
 
 function Exchange({ exchange }) {
-  const contentWidgets = exchange.widgets.filter((w) => w.type !== 'contact');
-  const contactWidget = exchange.widgets.find((w) => w.type === 'contact');
+  const FULL_WIDTH_TYPES = ['contact', 'check'];
+  const contentWidgets = exchange.widgets.filter((w) => !FULL_WIDTH_TYPES.includes(w.type));
+  const fullWidthWidgets = exchange.widgets.filter((w) => FULL_WIDTH_TYPES.includes(w.type));
 
   return (
     <div className="hc-exchange">
@@ -105,11 +123,11 @@ function Exchange({ exchange }) {
           ))}
         </div>
       )}
-      {contactWidget && (
-        <div className="hcw-contact-wrap">
-          <ContactWidget widget={contactWidget} />
+      {fullWidthWidgets.map((w, i) => (
+        <div key={i} className="hcw-contact-wrap">
+          <Widget widget={w} />
         </div>
-      )}
+      ))}
     </div>
   );
 }
