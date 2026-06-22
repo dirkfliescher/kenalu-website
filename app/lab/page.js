@@ -14,7 +14,7 @@ const CASE = {
   name: 'kenalu.ch',
   tagline: 'Das Studio als erstes Produkt',
   tags: ['Laufend', 'AI Product'],
-  situation: 'Ein AI Product Studio, das über sich selbst sagt, es baut intelligente Dinge – aber eine Standardwebsite betreibt. Das passt nicht. kenalu.ch musste selbst ein Proof of Concept sein: gebaut mit den gleichen Methoden, den gleichen Überzeugungen, dem gleichen Anspruch. Headless, React, Next.js – kein WordPress, kein Page-Builder. Derselbe Stack, auf dem grosse Unternehmen ihre digitalen Plattformen betreiben. Umgesetzt in unter 10 Tagen.',
+  situation: 'Ein AI Product Studio, das über sich selbst sagt, es baut intelligente Dinge – aber eine Standardwebsite betreibt. Das passt nicht. kenalu.ch musste selbst ein Proof of Concept sein: gebaut mit den gleichen Methoden, den gleichen Überzeugungen, dem gleichen Anspruch. Headless, React, Next.js – kein WordPress, kein Page-Builder. Derselbe Stack, auf dem grosse Unternehmen ihre digitalen Plattformen betreiben.\n\nkenalu.ch war der einfachste Auftrag: Wir wussten von Anfang an, was entstehen soll. Bei echten Projekten ist das selten so – und genau da beginnt unsere Arbeit. Verstehen, was wirklich gebraucht wird. Dann bauen.',
   decisions: [
     {
       title: 'KI als primärer Touchpoint',
@@ -36,7 +36,7 @@ const CASE = {
   stack: ['Next.js', 'Storyblok', 'OpenAI GPT-4o-mini', 'Vercel', 'Satoshi'],
   metrics: [
     { value: '60s', label: 'Content-Update live' },
-    { value: '< 10 T.', label: 'Zeit bis Launch' },
+    { value: '1', label: 'Person. Kein Team.' },
     { value: 'Kai', label: 'AI-Assistent live' },
     { value: '0', label: 'Agenturen beteiligt' },
   ],
