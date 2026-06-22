@@ -10,11 +10,18 @@ export default function Hero({ blok }) {
         {blok.hero_label && <div className="hero-label">{blok.hero_label}</div>}
         {blok.hero_headline && <h1 className="hero-headline">{blok.hero_headline}</h1>}
         {blok.hero_subline && <p className="hero-sub">{blok.hero_subline}</p>}
-        {blok.hero_cta_text && (
-          <a href={blok.hero_cta_link || '#'} className="btn btn-primary">
-            {blok.hero_cta_text} <span className="arrow">→</span>
-          </a>
-        )}
+        <div className="hero-ctas">
+          {blok.hero_cta_text && (
+            <a href={blok.hero_cta_link || '#'} className="btn btn-primary">
+              {blok.hero_cta_text} <span className="arrow">→</span>
+            </a>
+          )}
+          {blok.hero_secondary_cta_text && (
+            <a href={blok.hero_secondary_cta_link || '#'} className="btn btn-ghost">
+              {blok.hero_secondary_cta_text}
+            </a>
+          )}
+        </div>
       </div>
     </section>
   );
