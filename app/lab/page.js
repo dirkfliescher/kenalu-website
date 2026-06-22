@@ -26,7 +26,7 @@ const CASE = {
     },
     {
       title: 'Inhalte gebaut mit AI',
-      text: '14 Insights-Artikel – konzipiert, geschrieben, mit AI-Unterstützung finalisiert. Nicht als Shortcut, sondern als Demonstration: So arbeiten wir. Schnell, eigenständig, mit echtem Inhalt.',
+      text: 'Texte, Konzepte, Strukturen – entstanden im Dialog mit AI, verfeinert durch Urteil. Kein Copy-Paste, kein Massenoutput. Sondern ein Arbeitsmodus, den wir auch für Kundenprojekte einsetzen: schnell zu echtem Inhalt, ohne Qualität zu opfern.',
     },
     {
       title: 'ISR statt statischer Build',

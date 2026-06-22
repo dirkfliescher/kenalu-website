@@ -32,7 +32,7 @@ export default function Nav() {
 
   // Seiten mit dunklem Hero-Hintergrund → Nav startet mit hellem Text
   // Alle anderen Seiten starten mit dunklem Text auf hellem Hintergrund
-  const DARK_HERO_PAGES = ['/services', '/about', '/insights', '/zusammenarbeit', '/lab'];
+  const DARK_HERO_PAGES = ['/services', '/about', '/insights', '/zusammenarbeit'];
   const onDark = DARK_HERO_PAGES.some((p) => pathname?.startsWith(p));
 
   return (
