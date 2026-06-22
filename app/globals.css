@@ -180,6 +180,57 @@ p { color: var(--charcoal); }
 .feature-title { font-family: var(--font-headline); font-weight: 600; font-size: 1rem; margin-bottom: 0.4rem; }
 .feature-desc { font-size: 0.9rem; color: var(--stone); line-height: 1.6; }
 
+/* ── ServicesFinder ─────────────────────────────────────────── */
+.sf-section { padding: 6rem var(--gutter); background: var(--mineral); }
+.sf-header { max-width: 640px; margin-bottom: 3rem; }
+.sf-header h2 { margin: 0.5rem 0 0; }
+
+.sf-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+.sf-pill { font-family: var(--font-body); font-size: 0.875rem; color: var(--charcoal); background: var(--ivory); border: 1.5px solid var(--softline); border-radius: 20px; padding: 0.5rem 1.1rem; cursor: pointer; transition: border-color var(--transition), background var(--transition), color var(--transition); }
+.sf-pill:hover { border-color: var(--ocean); color: var(--ocean); }
+.sf-pill--active { background: var(--ocean); color: var(--ivory); border-color: var(--ocean); }
+.sf-pill--custom { border-style: dashed; color: var(--stone); }
+.sf-pill--custom:hover { border-color: var(--ocean); color: var(--ocean); border-style: solid; }
+
+.sf-input-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; max-width: 640px; }
+.sf-input { flex: 1; border: 1.5px solid var(--mineral); border-radius: 20px; background: var(--ivory); font-family: var(--font-body); font-size: 0.95rem; color: var(--charcoal); padding: 0.7rem 1.2rem; outline: none; transition: border-color var(--transition); }
+.sf-input:focus { border-color: var(--ocean); }
+.sf-send { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--ocean); color: var(--ivory); font-size: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background var(--transition); }
+.sf-send:hover { background: #0e2d3e; }
+.sf-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.sf-result { margin-top: 2.5rem; }
+.sf-answer-card { background: var(--charcoal); border-radius: var(--radius); padding: 1.5rem 2rem; margin-bottom: 2rem; max-width: 720px; }
+.sf-answer-card--loading { min-height: 80px; }
+.sf-kai-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta); display: block; margin-bottom: 0.5rem; }
+.sf-answer-text { color: var(--ivory); font-size: 1rem; line-height: 1.65; }
+.sf-typing { display: flex; gap: 0.3rem; align-items: center; height: 1.5rem; }
+.sf-typing span { color: var(--sage); font-size: 1.5rem; animation: sf-bounce 1.2s infinite; }
+.sf-typing span:nth-child(2) { animation-delay: 0.2s; }
+.sf-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes sf-bounce { 0%, 80%, 100% { opacity: 0.3; } 40% { opacity: 1; } }
+
+.sf-matches { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.sf-match { display: flex; align-items: center; gap: 0.6rem; border-radius: var(--radius); padding: 0.75rem 1.25rem; border: 1.5px solid transparent; transition: all 0.35s ease; }
+.sf-match--active { background: var(--ocean); border-color: var(--ocean); }
+.sf-match--dim { background: var(--ivory); border-color: var(--softline); opacity: 0.45; }
+.sf-match-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: var(--sage); }
+.sf-match--active .sf-match-num { color: rgba(167,181,166,0.8); }
+.sf-match-name { font-family: var(--font-headline); font-size: 0.9rem; font-weight: 600; color: var(--charcoal); }
+.sf-match--active .sf-match-name { color: var(--ivory); }
+.sf-match-check { font-size: 0.8rem; color: var(--terracotta); margin-left: 0.25rem; }
+.sf-match--active .sf-match-check { color: var(--sage); }
+
+.sf-actions { display: flex; align-items: center; gap: 1.5rem; }
+.sf-reset { font-size: 0.85rem; color: var(--stone); text-decoration: underline; text-underline-offset: 3px; background: none; border: none; cursor: pointer; }
+.sf-reset:hover { color: var(--charcoal); }
+
+@media (max-width: 640px) {
+  .sf-section { padding: 4rem var(--gutter); }
+  .sf-matches { gap: 0.5rem; }
+  .sf-match { padding: 0.6rem 1rem; }
+}
+
 /* ── Outcomes-Sektion ────────────────────────────────────────── */
 .outcomes-section { padding: 8rem var(--gutter); background: var(--ivory); }
 .outcomes-header { max-width: 640px; margin-bottom: 4rem; }

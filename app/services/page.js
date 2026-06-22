@@ -1,5 +1,7 @@
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../components/DynamicBlock';
+import ServicesFinder from '../../components/blocks/ServicesFinder';
+import Reveal from '../../components/Reveal';
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
@@ -18,9 +20,19 @@ export default async function Services() {
   const content = await getContent();
   const body = content?.body || [];
 
+  // PageHero (erster Block) vom Rest trennen
+  const [heroBlock, ...restBlocks] = body;
+
   return (
     <>
-      {body.map((blok) => (
+      {heroBlock && <DynamicBlock key={heroBlock._uid} blok={heroBlock} />}
+
+      {/* Kai – Leistungsfinder */}
+      <Reveal>
+        <ServicesFinder />
+      </Reveal>
+
+      {restBlocks.map((blok) => (
         <DynamicBlock key={blok._uid} blok={blok} />
       ))}
     </>
