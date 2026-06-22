@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 
 const SERVICES = [
-  { number: '01', name: 'Lösungsfindung & Strategie', description: 'Die richtige Lösung finden – nicht welches Produkt gekauft werden soll, sondern was wirklich gebraucht wird.' },
-  { number: '02', name: 'Discovery', description: 'Nutzer, Kontext, Systeme verstehen – Klarheit schaffen, bevor entschieden wird.' },
+  { number: '01', name: 'Lösungsfindung & Strategie', description: 'Die richtige Lösung finden. Nicht welches Produkt gekauft werden soll, sondern was wirklich gebraucht wird.' },
+  { number: '02', name: 'Discovery', description: 'Nutzer, Kontext, Systeme verstehen. Klarheit schaffen, bevor entschieden wird.' },
   { number: '03', name: 'Konzept & Architektur', description: 'Die richtige Lösung skalierbar denken, KI als Kernlogik integrieren, Systeme entwerfen.' },
-  { number: '04', name: 'Prototyping', description: 'Früh anfassen, früh validieren – Erkenntnisse durch Erleben, nicht durch Dokumente.' },
-  { number: '05', name: 'Entwicklung & Umsetzung', description: 'AI-Produkte bauen – auf bewährten Fundamenten, mit ausgewählten Spezialisten, enterprise-ready.' },
+  { number: '04', name: 'Prototyping', description: 'Früh anfassen, früh validieren. Erkenntnisse durch Erleben, nicht durch Dokumente.' },
+  { number: '05', name: 'Entwicklung & Umsetzung', description: 'AI-Produkte bauen. Auf bewährten Fundamenten, mit ausgewählten Spezialisten, enterprise-ready.' },
 ];
 
 const SYSTEM_PROMPT = `Du bist Kai – die KI von kenalu. Du hilfst Website-Besuchern herauszufinden, welche kenalu-Leistungen zu ihrer Situation passen.

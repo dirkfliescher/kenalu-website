@@ -5,8 +5,8 @@ import Link from 'next/link';
 
 // ── Testfälle – klickbare Beispiel-Prompts ─────────────────────────
 const TEST_PROMPTS = [
-  'Wir passen uns unserer Software an – das kann nicht so bleiben.',
-  'Wir wollen KI einsetzen – aber sinnvoll, nicht als Gimmick.',
+  'Wir passen uns unserer Software an. Das kann nicht so bleiben.',
+  'Wir wollen KI einsetzen. Aber sinnvoll, nicht als Gimmick.',
   'Was genau macht kenalu?',
   'Wir haben eine Idee und suchen jemanden, der sie baut.',
 ];
@@ -209,7 +209,7 @@ export default function HomeChat() {
           <>
             <h2 className="hc-headline">Was ist eure Situation?</h2>
             <p className="hc-sub">
-              Kai ist kenalus AI – beschreibt eure Situation und er zeigt, wo kenalu helfen kann.
+              Kai ist kenalus AI. Beschreibt eure Situation und er zeigt, wo kenalu helfen kann.
             </p>
           </>
         )}

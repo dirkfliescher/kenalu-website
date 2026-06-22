@@ -3,13 +3,13 @@
 import { useState, useRef, useEffect } from 'react';
 
 const SCENARIOS = [
-  'Wir passen uns unserer Software an – nicht umgekehrt.',
+  'Wir passen uns unserer Software an. Nicht umgekehrt.',
   'Wir wollen KI einsetzen, wissen aber nicht wo anfangen.',
   'Unsere Customer Experience verliert Kunden, die wir halten sollten.',
   'Unsere Teams vergeuden Zeit mit manuellen Prozessen.',
   'Wir haben eine Idee und wollen sie früh testen.',
   'Wir brauchen etwas Skalierbares für enterprise Anforderungen.',
-  'Wir wollen KI als Kern – nicht als Feature draufsetzen.',
+  'Wir wollen KI als Kern. Nicht als Feature draufsetzen.',
   'Wir brauchen Klarheit, bevor wir investieren.',
 ];
 
@@ -111,7 +111,7 @@ export default function ServicesFinder() {
           <>
             <span style={s.label}>Kai · AI Assistant</span>
             <h2 style={s.headline}>Was ist eure Situation?</h2>
-            <p style={s.sub}>Wählt eine Situation – oder beschreibt kurz, womit ihr kämpft. Kai zeigt, wo kenalu helfen kann.</p>
+            <p style={s.sub}>Wählt eine Situation oder beschreibt kurz, womit ihr kämpft. Kai zeigt, wo kenalu helfen kann.</p>
           </>
         )}
 

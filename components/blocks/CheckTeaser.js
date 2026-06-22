@@ -11,11 +11,11 @@ export default function CheckTeaser() {
           <div className="check-teaser-content">
             <p className="check-teaser-label">Selbstcheck</p>
             <h2 className="check-teaser-headline">
-              Leidest du an deiner Software –<br />
+              Leidest du an deiner Software<br />
               oder fürchtest du die Alternative?
             </h2>
             <p className="check-teaser-sub">
-              6 Fragen. 2 Minuten. Eine ehrliche Einschätzung, wo du zwischen Frust und Angst stehst – und was das bedeutet.
+              6 Fragen. 2 Minuten. Eine ehrliche Einschätzung: Wo stehst du zwischen Frust und Angst, und was bedeutet das?
             </p>
             <Link href="/check" className="btn btn-primary check-teaser-btn">
               Jetzt einschätzen →

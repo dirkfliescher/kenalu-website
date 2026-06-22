@@ -86,7 +86,7 @@ export default function InsightsChat() {
             />
             <button className="ic-send" onClick={handleSend} disabled={loading || !input.trim()} aria-label="Senden">→</button>
           </div>
-          <p className="ic-hint">Die KI durchsucht alle Artikel semantisch – stell eine echte Frage.</p>
+          <p className="ic-hint">Die KI durchsucht alle Artikel semantisch. Stell eine echte Frage.</p>
         </div>
       )}
 

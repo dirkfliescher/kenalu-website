@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 
 const INITIAL_MESSAGE = {
   role: 'assistant',
-  text: 'Hallo! Was bringt dich zu kenalu? Beschreib kurz deine Situation – das hilft, das Gespräch optimal vorzubereiten.',
+  text: 'Hallo! Was bringt dich zu kenalu? Beschreib kurz deine Situation. Das hilft, das Gespräch optimal vorzubereiten.',
 };
 
 export default function ContactBookingWidget({
@@ -63,7 +63,7 @@ export default function ContactBookingWidget({
         ...updated,
         {
           role: 'assistant',
-          text: 'Entschuldige – da ist etwas schiefgelaufen. Du kannst auch direkt einen Termin buchen.',
+          text: 'Entschuldige, da ist etwas schiefgelaufen. Du kannst auch direkt einen Termin buchen.',
         },
       ]);
     } finally {

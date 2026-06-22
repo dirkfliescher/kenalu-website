@@ -11,7 +11,9 @@ export const metadata = {
 
 async function getLegalContent(slug) {
   try {
-    const { data } = await Storyblok.get(`cdn/stories/legal/${slug}`, { version: 'draft' });
+    const { data } = await Storyblok.get(`cdn/stories/legal/${slug}`, {
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
+    });
     return data.story.content;
   } catch (e) {
     return null;

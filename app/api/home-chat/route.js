@@ -90,11 +90,11 @@ kenalu arbeitet bis und mit Prototyp direkt mit Dirk; für die technische Umsetz
 `;
 
 const KENALU_SERVICES = [
-  { name: 'Lösungsfindung & Strategie', description: 'Situation verstehen, die richtige Lösung finden – nicht welches Produkt gekauft werden soll, sondern was wirklich gebraucht wird.', href: '/services' },
-  { name: 'Discovery', description: 'Nutzer, Kontext, Systeme – Klarheit schaffen, bevor entschieden wird.', href: '/services' },
+  { name: 'Lösungsfindung & Strategie', description: 'Situation verstehen, die richtige Lösung finden. Nicht welches Produkt gekauft werden soll, sondern was wirklich gebraucht wird.', href: '/services' },
+  { name: 'Discovery', description: 'Nutzer, Kontext, Systeme. Klarheit schaffen, bevor entschieden wird.', href: '/services' },
   { name: 'Konzept & Architektur', description: 'Die richtige Lösung skalierbar denken, KI als Kernlogik integrieren, Systeme entwerfen.', href: '/services' },
   { name: 'Prototyping', description: 'Früh anfassen, früh validieren. Erkenntnisse durch Erleben, nicht durch Dokumente.', href: '/services' },
-  { name: 'Entwicklung & Umsetzung', description: 'AI-Produkte bauen – auf bewährten Fundamenten, mit ausgewählten Spezialisten, enterprise-ready.', href: '/services' },
+  { name: 'Entwicklung & Umsetzung', description: 'AI-Produkte bauen. Auf bewährten Fundamenten, mit ausgewählten Spezialisten, enterprise-ready.', href: '/services' },
 ];
 
 export async function POST(request) {

@@ -4,7 +4,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: 'Lab – kenalu',
-  description: 'Was kenalu gebaut hat. Nicht beschrieben – gezeigt.',
+  description: 'Was kenalu gebaut hat. Nicht beschrieben, sondern gezeigt.',
 };
 
 const CASE = {
@@ -14,23 +14,23 @@ const CASE = {
   name: 'kenalu.ch',
   tagline: 'Das Studio als erstes Produkt',
   tags: ['Laufend', 'AI Product'],
-  situation: 'Ein AI Product Studio, das über sich selbst sagt, es baut intelligente Dinge – aber eine Standardwebsite betreibt. Das passt nicht. kenalu.ch musste selbst ein Proof of Concept sein: gebaut mit den gleichen Methoden, den gleichen Überzeugungen, dem gleichen Anspruch. Headless, React, Next.js – kein WordPress, kein Page-Builder. Derselbe Stack, auf dem grosse Unternehmen ihre digitalen Plattformen betreiben.\n\nkenalu.ch war der einfachste Auftrag: Wir wussten von Anfang an, was entstehen soll. Bei echten Projekten ist das selten so – und genau da beginnt unsere Arbeit. Verstehen, was wirklich gebraucht wird. Dann bauen.',
+  situation: 'Ein AI Product Studio, das über sich selbst sagt, es baut intelligente Dinge, aber eine Standardwebsite betreibt. Das passt nicht. kenalu.ch musste selbst ein Proof of Concept sein: gebaut mit den gleichen Methoden, den gleichen Überzeugungen, dem gleichen Anspruch. Headless, React, Next.js. Kein WordPress, kein Page-Builder. Derselbe Stack, auf dem grosse Unternehmen ihre digitalen Plattformen betreiben.\n\nkenalu.ch war der einfachste Auftrag: Wir wussten von Anfang an, was entstehen soll. Bei echten Projekten ist das selten so. Genau da beginnt unsere Arbeit. Verstehen, was wirklich gebraucht wird. Dann bauen.',
   decisions: [
     {
       title: 'KI als primärer Touchpoint',
-      text: 'Statt eines Kontaktformulars: Kai – ein AI-Assistent, der Unternehmen in Echtzeit hilft zu verstehen, ob und wie kenalu helfen kann. Kein Gimmick. Der erste echte Gesprächspartner, der qualifiziert, einordnet und weiterführt.',
+      text: 'Statt eines Kontaktformulars: Kai. Ein AI-Assistent, der Unternehmen in Echtzeit hilft zu verstehen, ob und wie kenalu helfen kann. Kein Gimmick. Der erste echte Gesprächspartner, der qualifiziert, einordnet und weiterführt.',
     },
     {
       title: 'Content-Ownership ohne Deployments',
-      text: 'Alle Seiteninhalte laufen über Storyblok. Texte, Sektionen, Artikel – editierbar ohne Code-Änderung. Nach dem ersten Deploy gehört der Content dem Team, nicht dem Entwickler.',
+      text: 'Alle Seiteninhalte laufen über Storyblok. Texte, Sektionen, Artikel: editierbar ohne Code-Änderung. Nach dem ersten Deploy gehört der Content dem Team, nicht dem Entwickler.',
     },
     {
       title: 'Inhalte gebaut mit AI',
-      text: 'Texte, Konzepte, Strukturen – entstanden im Dialog mit AI, verfeinert durch Urteil. Kein Copy-Paste, kein Massenoutput. Sondern ein Arbeitsmodus, den wir auch für Kundenprojekte einsetzen: schnell zu echtem Inhalt, ohne Qualität zu opfern.',
+      text: 'Texte, Konzepte, Strukturen. Entstanden im Dialog mit AI, verfeinert durch Urteil. Kein Copy-Paste, kein Massenoutput. Sondern ein Arbeitsmodus, den wir auch für Kundenprojekte einsetzen: schnell zu echtem Inhalt, ohne Qualität zu opfern.',
     },
     {
       title: 'ISR statt statischer Build',
-      text: 'Storyblok-Änderungen erscheinen innerhalb von 60 Sekunden live – ohne Redeploy. Incremental Static Regeneration kombiniert Performance mit Content-Flexibilität.',
+      text: 'Storyblok-Änderungen erscheinen innerhalb von 60 Sekunden live. Kein Redeploy nötig. Incremental Static Regeneration kombiniert Performance mit Content-Flexibilität.',
     },
   ],
   stack: ['Next.js', 'Storyblok', 'OpenAI GPT-4o-mini', 'Vercel', 'Satoshi'],
@@ -55,7 +55,7 @@ export default function Lab() {
             Wir reden nicht<br />über Bauen.<br />Wir bauen.
           </h1>
           <p className="lab-intro-sub">
-            Lab ist der Ort, wo kenalu zeigt, was es kann – nicht als Case-Study-Hochglanz, sondern als ehrlicher Blick auf echte Projekte. Was war die Situation? Welche Entscheidungen haben wir getroffen? Was ist entstanden?
+            Lab ist der Ort, wo kenalu zeigt, was es kann. Nicht als Case-Study-Hochglanz, sondern als ehrlicher Blick auf echte Projekte. Was war die Situation? Welche Entscheidungen haben wir getroffen? Was ist entstanden?
           </p>
         </div>
       </section>

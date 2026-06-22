@@ -113,7 +113,7 @@ export async function POST(request) {
 
     if (topMatches.length === 0) {
       return NextResponse.json({
-        answer: 'Dazu habe ich noch keinen Artikel. Dirk schreibt laufend neue Insights – schau bald wieder vorbei.',
+        answer: 'Dazu habe ich noch keinen Artikel. Dirk schreibt laufend neue Insights. Schau bald wieder vorbei.',
         articles: [],
       });
     }

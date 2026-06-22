@@ -5,28 +5,28 @@ import Link from 'next/link';
 const QUESTIONS = [
   {
     axis: 'frustration',
-    question: 'Wie oft passt du Prozesse an deine Software an – statt umgekehrt?',
+    question: 'Wie oft passt du Prozesse an deine Software an, statt umgekehrt?',
     options: [
-      { label: 'Selten – die Tools passen gut zu uns', value: 1 },
-      { label: 'Manchmal – wir kommen zurecht', value: 2 },
-      { label: 'Ständig – wir bauen unsere Arbeit um die Software herum', value: 3 },
+      { label: 'Selten. Die Tools passen gut zu uns.', value: 1 },
+      { label: 'Manchmal. Wir kommen zurecht.', value: 2 },
+      { label: 'Ständig. Wir bauen unsere Arbeit um die Software herum.', value: 3 },
     ],
   },
   {
     axis: 'frustration',
-    question: 'Wie viele manuelle Umwege nutzt du wöchentlich – Excel, Copy-Paste, E-Mail statt System?',
+    question: 'Wie viele manuelle Umwege nutzt du wöchentlich? Excel, Copy-Paste, E-Mail statt System?',
     options: [
-      { label: 'Kaum – unsere Prozesse laufen digital durch', value: 1 },
-      { label: 'Ein paar – nichts Dramatisches', value: 2 },
-      { label: 'Zu viele – es kostet uns täglich wertvolle Zeit', value: 3 },
+      { label: 'Kaum. Unsere Prozesse laufen digital durch.', value: 1 },
+      { label: 'Ein paar. Nichts Dramatisches.', value: 2 },
+      { label: 'Zu viele. Es kostet uns täglich wertvolle Zeit.', value: 3 },
     ],
   },
   {
     axis: 'frustration',
     question: 'Wie oft denkst du: «Das müsste eigentlich automatisch gehen»?',
     options: [
-      { label: 'Selten – ich bin zufrieden', value: 1 },
-      { label: 'Manchmal – einzelne Dinge nerven', value: 2 },
+      { label: 'Selten. Ich bin zufrieden.', value: 1 },
+      { label: 'Manchmal. Einzelne Dinge nerven.', value: 2 },
       { label: 'Fast täglich', value: 3 },
     ],
   },
@@ -36,23 +36,23 @@ const QUESTIONS = [
     options: [
       { label: 'Keine grossen Bedenken', value: 1 },
       { label: 'Kosten und Dauer des Projekts', value: 2 },
-      { label: 'Abhängigkeit – wer pflegt das danach?', value: 3 },
+      { label: 'Abhängigkeit. Wer pflegt das danach?', value: 3 },
     ],
   },
   {
     axis: 'fear',
     question: 'Wie hoch schätzt du das Risiko eines Custom-Softwareprojekts ein?',
     options: [
-      { label: 'Überschaubar – mit dem richtigen Partner', value: 1 },
-      { label: 'Mittel – ich wäre vorsichtig', value: 2 },
-      { label: 'Hoch – wir hatten schon schlechte Erfahrungen', value: 3 },
+      { label: 'Überschaubar. Mit dem richtigen Partner.', value: 1 },
+      { label: 'Mittel. Ich wäre vorsichtig.', value: 2 },
+      { label: 'Hoch. Wir hatten schon schlechte Erfahrungen.', value: 3 },
     ],
   },
   {
     axis: 'fear',
     question: 'Was blockiert dich am meisten, wenn du an eine eigene Lösung denkst?',
     options: [
-      { label: 'Nichts Konkretes – ich bin offen', value: 1 },
+      { label: 'Nichts Konkretes. Ich bin offen.', value: 1 },
       { label: 'Budget und interne Überzeugungsarbeit', value: 2 },
       { label: 'Ich weiss nicht, ob wir dafür bereit sind', value: 3 },
     ],
@@ -63,25 +63,25 @@ const PROFILES = {
   gefangene: {
     name: 'Der Gefangene',
     tagline: 'Du weisst, dass es besser gehen muss. Aber der nächste Schritt fühlt sich riskant an.',
-    description: 'Genau hier entsteht der grösste stille Schaden: der Frust wächst, aber die Angst vor Veränderung lähmt. Du brauchst keinen grossen Sprung – sondern einen ersten, sicheren Schritt mit dem richtigen Partner.',
+    description: 'Genau hier entsteht der grösste stille Schaden: der Frust wächst, aber die Angst vor Veränderung lähmt. Du brauchst keinen grossen Sprung. Sondern einen ersten, sicheren Schritt mit dem richtigen Partner.',
     action: 'Lass uns gemeinsam schauen, was möglich ist.',
   },
   bereite: {
     name: 'Der Bereite',
     tagline: 'Du bist überzeugt. Du wartest auf den richtigen Partner.',
-    description: 'Der Schmerz mit Standardsoftware ist real, die Bereitschaft für etwas Eigenes ist da. Was fehlt, ist Vertrauen in die Umsetzung – und Klarheit darüber, wo man anfängt. Genau das ist kenalus Terrain.',
+    description: 'Der Schmerz mit Standardsoftware ist real, die Bereitschaft für etwas Eigenes ist da. Was fehlt, ist Vertrauen in die Umsetzung und Klarheit darüber, wo man anfängt. Genau das ist kenalus Terrain.',
     action: 'Jetzt konkret werden.',
   },
   vorsichtige: {
     name: 'Der Vorsichtige',
     tagline: 'Der Frust hält sich in Grenzen. Die Angst nicht.',
-    description: 'Aktuell ist der Leidensdruck noch nicht hoch genug. Aber wenn dein Unternehmen wächst, wächst der Druck mit. Es lohnt sich zu verstehen, wo deine Tools an Grenzen stossen – bevor es dich überrascht.',
+    description: 'Aktuell ist der Leidensdruck noch nicht hoch genug. Aber wenn dein Unternehmen wächst, wächst der Druck mit. Es lohnt sich zu verstehen, wo deine Tools an Grenzen stossen. Bevor es dich überrascht.',
     action: 'Früh verstehen, was sich ändert.',
   },
   zufriedene: {
     name: 'Der Zufriedene',
     tagline: 'Du hast deine Tools im Griff. Das ist gut.',
-    description: 'Aktuell besteht kein dringender Handlungsbedarf. Aber die Welt ändert sich schnell – besonders durch KI. Wenn du wissen willst, wo neue Möglichkeiten entstehen, ist kenalu ein guter Gesprächspartner.',
+    description: 'Aktuell besteht kein dringender Handlungsbedarf. Aber die Welt ändert sich schnell. Besonders durch KI. Wenn du wissen willst, wo neue Möglichkeiten entstehen, ist kenalu ein guter Gesprächspartner.',
     action: 'Zukunft besprechen.',
   },
 };
@@ -155,7 +155,7 @@ export default function CheckTool() {
               Wie hoch ist<br />dein Veränderungsdruck?
             </h1>
             <p className="check-intro-sub">
-              6 Fragen. 2 Minuten. Eine ehrliche Einschätzung, wo du stehst – zwischen dem Frust mit Standardsoftware und der Angst vor dem Schritt in etwas Eigenes.
+              6 Fragen. 2 Minuten. Eine ehrliche Einschätzung: Wo stehst du zwischen dem Frust mit Standardsoftware und der Angst vor dem Schritt in etwas Eigenes?
             </p>
             <button className="btn btn-primary check-start-btn" onClick={start}>
               Jetzt einschätzen →

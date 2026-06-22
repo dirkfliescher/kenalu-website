@@ -5,7 +5,9 @@ const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN
 
 async function getFooterContent() {
   try {
-    const { data } = await Storyblok.get('cdn/stories/config/footer', { version: 'draft' });
+    const { data } = await Storyblok.get('cdn/stories/config/footer', {
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
+    });
     return data.story.content;
   } catch (e) {
     return null;
@@ -16,7 +18,7 @@ export default async function Footer() {
   const f = await getFooterContent();
 
   const tagline   = f?.footer_tagline   || 'AI Products. Gebaut, nicht konfiguriert.';
-  const email     = f?.footer_email     || 'dirk@kenalu.ch';
+  const email     = f?.footer_email     || 'dirk@fliescher.ch';
   const address   = f?.footer_address   || 'Zürich, Schweiz';
   const copyright = f?.footer_copyright || `© ${new Date().getFullYear()} kenalu – dirk fliescher consulting gmbh`;
 
