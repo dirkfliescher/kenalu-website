@@ -4,8 +4,12 @@ export default function ServiceDetail({ blok }) {
     .map((s) => s.trim())
     .filter(Boolean);
 
+  const anchor = blok.service_detail_number
+    ? `service-${blok.service_detail_number}`
+    : undefined;
+
   return (
-    <div className="service-detail-item">
+    <div className="service-detail-item" id={anchor}>
       <span className="sdi-bignum" aria-hidden="true">{blok.service_detail_number}</span>
       <div className="sdi-main">
         {blok.service_detail_tag && <span className="service-tag">{blok.service_detail_tag}</span>}

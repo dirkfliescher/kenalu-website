@@ -14,11 +14,11 @@ const SCENARIOS = [
 ];
 
 const SERVICES = [
-  { number: '01', name: 'Lösungsfindung & Strategie' },
-  { number: '02', name: 'Discovery' },
-  { number: '03', name: 'Konzept & Architektur' },
-  { number: '04', name: 'Prototyping' },
-  { number: '05', name: 'Entwicklung & Umsetzung' },
+  { number: '01', name: 'Lösungsfindung & Strategie', anchor: '#service-01' },
+  { number: '02', name: 'Discovery',                  anchor: '#service-02' },
+  { number: '03', name: 'Konzept & Architektur',      anchor: '#service-03' },
+  { number: '04', name: 'Prototyping',                anchor: '#service-04' },
+  { number: '05', name: 'Entwicklung & Umsetzung',    anchor: '#service-05' },
 ];
 
 const s = {
@@ -150,12 +150,17 @@ export default function ServicesFinder() {
                 <div style={s.matches}>
                   {SERVICES.map((svc) => {
                     const matched = result.services?.includes(svc.number);
+                    const Tag = matched ? 'a' : 'div';
                     return (
-                      <div key={svc.number} style={s.match(matched)}>
+                      <Tag
+                        key={svc.number}
+                        style={{ ...s.match(matched), textDecoration: 'none' }}
+                        {...(matched ? { href: svc.anchor } : {})}
+                      >
                         <span style={s.matchNum(matched)}>{svc.number}</span>
                         <span style={s.matchName(matched)}>{svc.name}</span>
-                        {matched && <span style={s.matchCheck}>✓</span>}
-                      </div>
+                        {matched && <span style={s.matchCheck}>↓</span>}
+                      </Tag>
                     );
                   })}
                 </div>
