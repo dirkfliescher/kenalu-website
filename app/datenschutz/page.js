@@ -5,8 +5,8 @@ export const revalidate = 60;
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 export const metadata = {
-  title: 'Impressum – kenalu',
-  description: 'Rechtliche Angaben zu kenalu und der dirk fliescher consulting gmbh.',
+  title: 'Datenschutz – kenalu',
+  description: 'Datenschutzerklärung von kenalu und der dirk fliescher consulting gmbh.',
 };
 
 async function getLegalContent(slug) {
@@ -18,10 +18,10 @@ async function getLegalContent(slug) {
   }
 }
 
-export default async function Impressum() {
-  const content = await getLegalContent('impressum');
+export default async function Datenschutz() {
+  const content = await getLegalContent('datenschutz');
 
-  const title    = content?.legal_title || 'Impressum';
+  const title    = content?.legal_title || 'Datenschutz';
   const intro    = content?.legal_intro || '';
   const sections = content?.legal_sections || [];
 
