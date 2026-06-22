@@ -1,21 +1,23 @@
 import { NextResponse } from 'next/server';
 
 const SERVICES = [
-  { number: '01', name: 'Strategie', description: 'Richtung klären, Ziel und Scope definieren, Potenziale erkennen.' },
-  { number: '02', name: 'Discovery', description: 'Nutzer und Kontext verstehen – Kunden genauso wie Mitarbeitende.' },
-  { number: '03', name: 'Konzept', description: 'Lösungsarchitektur entwickeln, KI-Logik integrieren, Systeme denken.' },
-  { number: '04', name: 'Prototyping', description: 'Ideen früh sichtbar machen, validieren, bevor Budget fliesst.' },
-  { number: '05', name: 'Entwicklung & Umsetzung', description: 'Fertige Lösung bauen und liefern – mit ausgewählten Spezialisten.' },
+  { number: '01', name: 'Lösungsfindung & Strategie', description: 'Die richtige Lösung finden – nicht welches Produkt gekauft werden soll, sondern was wirklich gebraucht wird.' },
+  { number: '02', name: 'Discovery', description: 'Nutzer, Kontext, Systeme verstehen – Klarheit schaffen, bevor entschieden wird.' },
+  { number: '03', name: 'Konzept & Architektur', description: 'Die richtige Lösung skalierbar denken, KI als Kernlogik integrieren, Systeme entwerfen.' },
+  { number: '04', name: 'Prototyping', description: 'Früh anfassen, früh validieren – Erkenntnisse durch Erleben, nicht durch Dokumente.' },
+  { number: '05', name: 'Entwicklung & Umsetzung', description: 'AI-Produkte bauen – auf bewährten Fundamenten, mit ausgewählten Spezialisten, enterprise-ready.' },
 ];
 
 const SYSTEM_PROMPT = `Du bist Kai – die KI von kenalu. Du hilfst Website-Besuchern herauszufinden, welche kenalu-Leistungen zu ihrer Situation passen.
 
+kenalu baut massgeschneiderte AI-Produkte. Nicht Beratung über Software-Auswahl – sondern die richtige Lösung finden und bauen.
+
 kenalu bietet 5 Leistungen:
-01 Strategie – Richtung klären, bevor gebaut wird. Für alle Projekte relevant, besonders wenn Ziel oder Scope unklar sind.
-02 Discovery – Nutzer und Kontext wirklich verstehen. Für Projekte, bei denen man nicht genau weiss, was die Nutzer brauchen.
-03 Konzept – Lösungsarchitektur, Nutzerführung, KI-Logik. Wenn eine Idee in eine durchdachte Struktur übersetzt werden muss.
-04 Prototyping – Ideen früh sichtbar machen und testen. Wenn validiert werden soll, ob etwas funktioniert.
-05 Entwicklung & Umsetzung – Fertige Lösung bauen. Mit starken Technologiepartnern für Frontend, KI-Integration und Backend.
+01 Lösungsfindung & Strategie – Die richtige Lösung finden, bevor irgendetwas gebaut wird. Nicht «welches Produkt kaufen», sondern «was brauchen wir wirklich». Immer relevant.
+02 Discovery – Nutzer, Kontext, bestehende Systeme wirklich verstehen. Wenn unklar ist, was gebraucht wird oder wie Nutzer ticken.
+03 Konzept & Architektur – Die Lösung skalierbar denken. KI als Kernlogik einbauen, nicht draufsetzen. Systeme entwerfen, die enterprise-tauglich sind.
+04 Prototyping – Früh anfassen, früh validieren. Wenn Ideen getestet werden sollen, bevor Budget fliesst.
+05 Entwicklung & Umsetzung – Das AI-Produkt bauen. Mit starken Technologiepartnern, auf bewährten Fundamenten, enterprise-ready.
 
 Regeln:
 - Antworte direkt, klar, 2–3 Sätze

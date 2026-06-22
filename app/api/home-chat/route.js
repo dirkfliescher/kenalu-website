@@ -64,29 +64,37 @@ async function getArticles() {
 }
 
 const KENALU_CONTEXT = `
-kenalu ist die Unternehmensberatung von Dirk Fliescher, Zürich.
-Fokus: Intelligent Experiences – digitale Lösungen, die Strategie, Nutzerverständnis, KI und Umsetzung verbinden.
-kenalu steht für: Bewegung, Wandel, Intelligenz, Tiefe, starke Erlebnisse.
+kenalu ist das AI Product Studio von Dirk Fliescher, Zürich.
+kenalu baut massgeschneiderte AI-Produkte – für Unternehmen, die nicht mehr Kompromisse mit Standardsoftware eingehen wollen.
 
-kenalu arbeitet in zwei Richtungen:
-1. Kundenorientiert: Websites, Apps, Portale und digitale Services, die Nutzer besser führen, stärker konvertieren und Erlebnisse schaffen, die begeistern.
-2. Intern: Prozesse, Workflows und interne Tools, die Teams entlasten – durch KI und kluge Systemgestaltung.
+Kernthese: Standardsoftware war ein Kompromiss, den man akzeptieren musste, weil Custom zu teuer und zu langsam war. Mit AI stimmt das nicht mehr. kenalu baut in Wochen, was früher Monate kostete – passgenau, intelligent, enterprise-ready.
+
+Was kenalu baut:
+1. Customer Intelligence: AI-gestützte Erlebnisse, die Kunden verstehen, führen und konvertieren. Websites, Portale, digitale Services – mit KI als Kernlogik, nicht als Zusatz.
+2. Internal Intelligence: AI-Workflows, die Teams von repetitiver Arbeit befreien. Interne Tools, Prozessautomatisierung, Entscheidungsunterstützung – gebaut für echten Entlastungseffekt.
+
+Wie kenalu arbeitet:
+- Lösungsfindung statt Produktauswahl: nicht «welche Software passt», sondern «was ist die richtige Lösung»
+- Ausprobieren vor Ausformulieren: frühe Prototypen statt langer Lastenhefte
+- Gebaut auf bewährten Fundamenten (z.B. Storyblok, OpenAI) – schnell, risikoarm, erweiterbar
+- Enterprise-ready: skalierbar, integrierbar, sicher – von Anfang an
+- Mit AI gebaut UND AI nutzend: das Endprodukt ist selbst intelligent
 
 Was Kunden von kenalu haben:
-- Bessere Konversionsraten und stärkere Kundenbindung
-- Entlastete Teams durch intelligente interne Prozesse
-- Digitale Produkte, die messbar zum Unternehmenswachstum beitragen
-- Mitarbeitende, die gerne mit den Tools arbeiten
+- Software, die genau passt – kein Vendor-Lock-in auf Feature-Ebene
+- Entlastete Teams durch intelligente, massgeschneiderte Workflows
+- Kundenexperiences, die wirklich führen und konvertieren
+- Lösungen, die wachsen und sich weiterentwickeln lassen
 
-kenalu arbeitet bis und mit Prototyp selbst; für die technische Umsetzung mit ausgewählten Spezialisten.
+kenalu arbeitet bis und mit Prototyp direkt mit Dirk; für die technische Umsetzung mit ausgewählten Spezialisten.
 `;
 
 const KENALU_SERVICES = [
-  { name: 'Strategy', description: 'Richtung klären, Potenziale erkennen, mutige Positionen entwickeln.', href: '/services' },
-  { name: 'Discovery', description: 'Nutzer und Kontext verstehen, Grundlagen schaffen – bevor entschieden wird.', href: '/services' },
-  { name: 'Konzept', description: 'Lösungen entwickeln, Erlebnisse gestalten, Systeme denken.', href: '/services' },
-  { name: 'Prototyping', description: 'Ideen greifbar machen, schnell validieren, zeigen was möglich ist.', href: '/services' },
-  { name: 'Umsetzungsbegleitung', description: 'Qualität sichern, Teams befähigen, Projekte erfolgreich landen.', href: '/services' },
+  { name: 'Lösungsfindung & Strategie', description: 'Situation verstehen, die richtige Lösung finden – nicht welches Produkt gekauft werden soll, sondern was wirklich gebraucht wird.', href: '/services' },
+  { name: 'Discovery', description: 'Nutzer, Kontext, Systeme – Klarheit schaffen, bevor entschieden wird.', href: '/services' },
+  { name: 'Konzept & Architektur', description: 'Die richtige Lösung skalierbar denken, KI als Kernlogik integrieren, Systeme entwerfen.', href: '/services' },
+  { name: 'Prototyping', description: 'Früh anfassen, früh validieren. Erkenntnisse durch Erleben, nicht durch Dokumente.', href: '/services' },
+  { name: 'Entwicklung & Umsetzung', description: 'AI-Produkte bauen – auf bewährten Fundamenten, mit ausgewählten Spezialisten, enterprise-ready.', href: '/services' },
 ];
 
 export async function POST(request) {

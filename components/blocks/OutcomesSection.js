@@ -3,27 +3,27 @@
 const OUTCOMES = [
   {
     number: '01',
-    headline: 'Aus Besuchern werden Kunden',
-    body: 'Kundenseitige Experiences, die den richtigen nächsten Schritt zeigen – und damit Konversionen steigern.',
-    area: 'Kundenorientiert',
+    headline: 'Software, die passt',
+    body: 'Kein Kompromiss mehr. Kein Anpassen an ein System, das nicht für euch gebaut wurde. Sondern genau das, was gebraucht wird.',
+    area: 'Fit',
   },
   {
     number: '02',
-    headline: 'Aus Aufwand wird Leichtigkeit',
-    body: 'Interne Tools und Prozesse, die Teams entlasten statt behindern – durch Intelligenz, nicht durch Bürokratie.',
+    headline: 'Teams, die entlastet sind',
+    body: 'Intelligente Workflows, die repetitive Aufgaben übernehmen. Mehr Zeit für das, was Menschen wirklich gut können.',
     area: 'Intern',
   },
   {
     number: '03',
-    headline: 'Aus Investitionen werden Erträge',
-    body: 'Digitale Produkte, die messbar zum Wachstum beitragen – weil sie auf echten Bedürfnissen und klarer Strategie aufbauen.',
-    area: 'Business',
+    headline: 'Kunden, die besser geführt werden',
+    body: 'Experiences, die verstehen und führen – nicht Oberflächen, die einfach vorhanden sind. Das ist der Unterschied.',
+    area: 'Kunde',
   },
   {
     number: '04',
-    headline: 'Aus Erlebnissen wird Loyalität',
-    body: 'Kunden und Mitarbeitende, die bleiben, weiterempfehlen und sich verstanden fühlen – das ist der Massstab.',
-    area: 'Wirkung',
+    headline: 'Lösungen, die wachsen',
+    body: 'Enterprise-ready von Tag 1. Skalierbar, integrierbar, wartbar – gebaut für echte Anforderungen, nicht für den Demo-Tag.',
+    area: 'Scale',
   },
 ];
 
@@ -35,7 +35,7 @@ export default function OutcomesSection() {
           <p className="section-label">Was entsteht</p>
           <h2>Ergebnisse, die zählen</h2>
           <p className="section-sub">
-            kenalu verbindet Strategie, Nutzerverständnis und KI – und schafft damit konkrete Wirkung auf beiden Seiten: aussen wie innen.
+            Massgeschneiderte AI-Produkte, die wirklich passen – für Kunden, Teams und das Unternehmen als Ganzes.
           </p>
         </div>
         <div className="outcomes-grid">

@@ -3,20 +3,20 @@
 import { useState, useRef, useEffect } from 'react';
 
 const SCENARIOS = [
-  'Wir wissen nicht, wo wir mit KI anfangen sollen.',
-  'Wir haben eine Idee und wollen sie früh validieren.',
-  'Unsere internen Abläufe kosten zu viel Zeit.',
-  'Wir stehen vor einem grossen Relaunch.',
-  'Wir brauchen schnell etwas Sichtbares.',
-  'Wir haben ein Konzept – jetzt brauchen wir Umsetzung.',
-  'Wir wollen unsere digitale Experience verbessern.',
-  'Wir möchten KI sinnvoll integrieren.',
+  'Wir passen uns unserer Software an – nicht umgekehrt.',
+  'Wir wollen KI einsetzen, wissen aber nicht wo anfangen.',
+  'Unsere Customer Experience verliert Kunden, die wir halten sollten.',
+  'Unsere Teams vergeuden Zeit mit manuellen Prozessen.',
+  'Wir haben eine Idee und wollen sie früh testen.',
+  'Wir brauchen etwas Skalierbares für enterprise Anforderungen.',
+  'Wir wollen KI als Kern – nicht als Feature draufsetzen.',
+  'Wir brauchen Klarheit, bevor wir investieren.',
 ];
 
 const SERVICES = [
-  { number: '01', name: 'Strategie' },
+  { number: '01', name: 'Lösungsfindung & Strategie' },
   { number: '02', name: 'Discovery' },
-  { number: '03', name: 'Konzept' },
+  { number: '03', name: 'Konzept & Architektur' },
   { number: '04', name: 'Prototyping' },
   { number: '05', name: 'Entwicklung & Umsetzung' },
 ];
@@ -109,9 +109,9 @@ export default function ServicesFinder() {
         {/* Header – nur im Ruhezustand */}
         {!isActive && (
           <>
-            <span style={s.label}>Finde deine Leistung</span>
-            <h2 style={s.headline}>Was ist deine Situation?</h2>
-            <p style={s.sub}>Wähle eine Situation oder beschreib sie kurz – Kai zeigt dir, welche kenalu-Leistungen passen.</p>
+            <span style={s.label}>Kai · AI Assistant</span>
+            <h2 style={s.headline}>Was ist eure Situation?</h2>
+            <p style={s.sub}>Wählt eine Situation – oder beschreibt kurz, womit ihr kämpft. Kai zeigt, wo kenalu helfen kann.</p>
           </>
         )}
 
