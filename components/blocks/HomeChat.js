@@ -5,10 +5,10 @@ import Link from 'next/link';
 
 // ── Testfälle – klickbare Beispiel-Prompts ─────────────────────────
 const TEST_PROMPTS = [
-  'Wir wollen unsere App komplett neu denken.',
-  'Ich weiss nicht, wo wir mit KI anfangen sollen.',
-  'Was macht kenalu eigentlich genau?',
-  'Wir haben eine konkrete Idee und suchen einen Partner.',
+  'Wir passen uns unserer Software an – das kann nicht so bleiben.',
+  'Wir wollen KI einsetzen – aber sinnvoll, nicht als Gimmick.',
+  'Was genau macht kenalu?',
+  'Wir haben eine Idee und suchen jemanden, der sie baut.',
 ];
 
 // ── Widget-Komponenten ─────────────────────────────────────────────
@@ -207,9 +207,9 @@ export default function HomeChat() {
         {/* ── Ruhezustand ── */}
         {!isActive && (
           <>
-            <h2 className="hc-headline">Was beschäftigt dich gerade?</h2>
+            <h2 className="hc-headline">Was ist eure Situation?</h2>
             <p className="hc-sub">
-              Kai ist kenalus KI – er kennt alle Insights und Leistungen und zeigt dir direkt den nächsten Schritt.
+              Kai ist kenalus AI – beschreibt eure Situation und er zeigt, wo kenalu helfen kann.
             </p>
           </>
         )}
