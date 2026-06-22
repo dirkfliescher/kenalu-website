@@ -18,7 +18,7 @@ const CASE = {
   decisions: [
     {
       title: 'KI als primärer Touchpoint',
-      text: 'Statt einem Kontaktformular: Kai – ein AI-Assistent, der Unternehmen in Echtzeit hilft zu verstehen, ob und wie kenalu helfen kann. Kein Gimmick. Der erste echte Gesprächspartner, der qualifiziert, einordnet und weiterführt.',
+      text: 'Statt eines Kontaktformulars: Kai – ein AI-Assistent, der Unternehmen in Echtzeit hilft zu verstehen, ob und wie kenalu helfen kann. Kein Gimmick. Der erste echte Gesprächspartner, der qualifiziert, einordnet und weiterführt.',
     },
     {
       title: 'Content-Ownership ohne Deployments',
@@ -35,8 +35,8 @@ const CASE = {
   ],
   stack: ['Next.js', 'Storyblok', 'OpenAI GPT-4o-mini', 'Vercel', 'Satoshi'],
   metrics: [
-    { value: '8 Wo.', label: 'Konzept bis Launch' },
-    { value: '14', label: 'Artikel im Archiv' },
+    { value: '60s', label: 'Content-Update live' },
+    { value: '100%', label: 'CMS-gesteuert' },
     { value: 'Kai', label: 'AI-Assistent live' },
     { value: '0', label: 'Agenturen beteiligt' },
   ],
