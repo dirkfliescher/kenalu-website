@@ -38,26 +38,19 @@ export default async function About() {
   const [content, members] = await Promise.all([getContent(), getTeamMembers()]);
   const body = content?.body || [];
 
-  // AboutTeam zwischen letztem Inhaltsblock und CTA einfügen
-  const ctaIndex = body.findIndex((b) => b.component === 'cta_section');
-  const beforeCta = ctaIndex >= 0 ? body.slice(0, ctaIndex) : body;
-  const fromCta   = ctaIndex >= 0 ? body.slice(ctaIndex) : [];
-
   return (
     <>
-      {beforeCta.map((blok) => (
-        <DynamicBlock key={blok._uid} blok={blok} />
-      ))}
-
-      {members.length > 0 && (
-        <Reveal>
-          <AboutTeam members={members} />
-        </Reveal>
-      )}
-
-      {fromCta.map((blok) => (
-        <DynamicBlock key={blok._uid} blok={blok} />
-      ))}
+      {body.map((blok) => {
+        // about_team bekommt zusätzlich die members-Daten aus dem team/-Ordner
+        if (blok.component === 'about_team') {
+          return (
+            <Reveal key={blok._uid}>
+              <AboutTeam blok={blok} members={members} />
+            </Reveal>
+          );
+        }
+        return <DynamicBlock key={blok._uid} blok={blok} />;
+      })}
     </>
   );
 }
