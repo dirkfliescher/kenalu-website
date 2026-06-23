@@ -1,13 +1,15 @@
 import StoryblokClient from 'storyblok-js-client';
 import TeamMemberTeaser from '../../components/blocks/TeamMemberTeaser';
 import TeamIntro from '../../components/blocks/TeamIntro';
+import FitTest from '../../components/blocks/FitTest';
 import Reveal from '../../components/Reveal';
+import Link from 'next/link';
 
 export const revalidate = 60;
 
 export const metadata = {
   title: 'Team – kenalu',
-  description: 'Lerne Dirk und Stan kennen — die Menschen hinter kenalu. Stell Fragen, spiel ein Spiel, oder finde heraus, mit wem du mehr gemeinsam hast.',
+  description: 'Lerne Dirk und Stan kennen — die Menschen hinter kenalu. Stell Fragen, spiel ein Spiel, oder finde heraus, ob du zu uns passt.',
 };
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
@@ -62,6 +64,29 @@ export default async function TeamPage() {
       {/* Interaktiver Block */}
       <Reveal>
         <TeamIntro />
+      </Reveal>
+
+      {/* Fit-Test */}
+      <Reveal>
+        <FitTest />
+      </Reveal>
+
+      {/* CTA */}
+      <Reveal>
+        <section className="team-cta-section">
+          <div className="container">
+            <div className="team-cta-inner">
+              <h2 className="team-cta-headline">Bereit für ein Gespräch?</h2>
+              <p className="team-cta-sub">
+                Kein Pitch, kein Sales-Funnel. Nur ein offenes Gespräch darüber,
+                was du brauchst — und ob wir die Richtigen dafür sind.
+              </p>
+              <Link href="/contact" className="btn btn-primary">
+                Gespräch anfragen →
+              </Link>
+            </div>
+          </div>
+        </section>
       </Reveal>
     </main>
   );
