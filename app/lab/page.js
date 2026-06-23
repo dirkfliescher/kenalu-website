@@ -11,6 +11,27 @@ export const metadata = {
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
+const DEFAULTS = {
+  lp_label:        'Lab',
+  lp_headline:     'Wir reden nicht\nüber Bauen.\nWir bauen.',
+  lp_sub:          'Lab ist der Ort, wo kenalu zeigt, was es kann. Nicht als Case-Study-Hochglanz, sondern als ehrlicher Blick auf echte Projekte.',
+  lp_next_eyebrow: 'Projekt 02',
+  lp_next_text:    'Das nächste Projekt entsteht gerade.\nOder es ist deines.',
+  lp_next_cta:     'Gespräch starten →',
+  lp_next_cta_link: '/contact',
+};
+
+async function getPageContent() {
+  try {
+    const { data } = await Storyblok.get('cdn/stories/lab', {
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
+    });
+    return { ...DEFAULTS, ...data.story.content };
+  } catch {
+    return DEFAULTS;
+  }
+}
+
 // Storyblok-Inhalt in das CASE-Format umwandeln
 function storyToCase(story) {
   const c = story.content;
@@ -54,7 +75,11 @@ async function getCases() {
 }
 
 export default async function Lab() {
-  const cases = await getCases();
+  const [cases, page] = await Promise.all([getCases(), getPageContent()]);
+
+  // Headline: Zeilenumbrüche aus Storyblok (\n) in <br /> umwandeln
+  const headlineLines = page.lp_headline.split('\n');
+  const nextTextLines = page.lp_next_text.split('\n');
 
   return (
     <main className="lab-page">
@@ -62,13 +87,13 @@ export default async function Lab() {
       {/* ── Intro ─────────────────────────────────────────────────── */}
       <section className="lab-intro">
         <div className="container">
-          <p className="section-label">Lab</p>
+          <p className="section-label">{page.lp_label}</p>
           <h1 className="lab-intro-headline">
-            Wir reden nicht<br />über Bauen.<br />Wir bauen.
+            {headlineLines.map((line, i) => (
+              <span key={i}>{line}{i < headlineLines.length - 1 && <br />}</span>
+            ))}
           </h1>
-          <p className="lab-intro-sub">
-            Lab ist der Ort, wo kenalu zeigt, was es kann. Nicht als Case-Study-Hochglanz, sondern als ehrlicher Blick auf echte Projekte. Was war die Situation? Welche Entscheidungen haben wir getroffen? Was ist entstanden?
-          </p>
+          <p className="lab-intro-sub">{page.lp_sub}</p>
         </div>
       </section>
 
@@ -172,13 +197,14 @@ export default async function Lab() {
       {/* ── Next ──────────────────────────────────────────────────── */}
       <section className="lab-next">
         <div className="container">
-          <p className="lab-next-eyebrow">Projekt 02</p>
+          <p className="lab-next-eyebrow">{page.lp_next_eyebrow}</p>
           <p className="lab-next-text">
-            Das nächste Projekt entsteht gerade.<br />
-            Oder es ist deines.
+            {nextTextLines.map((line, i) => (
+              <span key={i}>{line}{i < nextTextLines.length - 1 && <br />}</span>
+            ))}
           </p>
-          <Link href="/contact" className="btn btn-primary">
-            Gespräch starten →
+          <Link href={page.lp_next_cta_link} className="btn btn-primary">
+            {page.lp_next_cta}
           </Link>
         </div>
       </section>
