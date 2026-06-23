@@ -45,9 +45,11 @@ export default function Nav() {
           <li><Link href="/team" className={isActive('/team') ? 'active' : ''}>Team</Link></li>
           <li><Link href="/insights" className={isActive('/insights') ? 'active' : ''}>Insights</Link></li>
 
-          <li>
-            <Link href="/contact" className="btn btn-sm btn-primary">Gespräch buchen</Link>
-          </li>
+          {pathname !== '/contact' && (
+            <li>
+              <Link href="/contact" className="btn btn-sm btn-primary">Gespräch buchen</Link>
+            </li>
+          )}
         </ul>
         <button
           className="nav-toggle"
