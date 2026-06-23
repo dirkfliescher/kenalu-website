@@ -298,13 +298,11 @@ p { color: var(--charcoal); }
 @media (max-width: 768px) {
   :root { --gutter: 1.25rem; }
 
-  /* Nav auf Mobile: immer dunkler Hintergrund → Hamburger + Logo immer sichtbar */
-  .nav { background: rgba(30, 33, 36, 0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-  .nav-logo { color: var(--ivory); }
+  /* Hamburger-Button: immer dunkler Hintergrund → immer sichtbar */
+  .nav-toggle { background: rgba(30, 33, 36, 0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 8px; padding: 8px 10px; }
   .nav-toggle span { background: var(--ivory); }
-  .nav.on-dark:not(.scrolled) .nav-logo { color: var(--ivory); }
   .nav.on-dark:not(.scrolled) .nav-toggle span { background: var(--ivory); }
-  .nav.scrolled { background: rgba(30, 33, 36, 0.97); box-shadow: 0 1px 0 rgba(255,255,255,0.08); }
+  .nav.scrolled .nav-toggle span { background: var(--ivory); }
 
   /* Hamburger-Overlay */
   .nav-links {
