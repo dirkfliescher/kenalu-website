@@ -298,9 +298,10 @@ p { color: var(--charcoal); }
 @media (max-width: 768px) {
   :root { --gutter: 1.25rem; }
 
-  /* Nav auf Mobile: immer dunkler Hintergrund */
-  .nav { background: rgba(30, 33, 36, 0.97) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: none; }
-  .nav.scrolled { background: rgba(30, 33, 36, 0.97) !important; box-shadow: 0 1px 0 rgba(255,255,255,0.08); }
+  /* Nav auf Mobile: immer dunkler Hintergrund, KEIN backdrop-filter
+     (backdrop-filter würde position:fixed Kinder an die Nav ketten statt an den Viewport) */
+  .nav { background: rgb(30, 33, 36) !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: none; }
+  .nav.scrolled { background: rgb(30, 33, 36) !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: 0 1px 0 rgba(255,255,255,0.08); }
   .nav-logo { color: var(--ivory) !important; }
   .nav-toggle { background: none; padding: 4px; }
   .nav-toggle span { background: var(--ivory); }
