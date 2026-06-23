@@ -2338,6 +2338,11 @@ p { color: var(--charcoal); }
   line-height: 1.7;
 }
 
+.team-profiles {
+  padding: 5rem 0;
+  border-bottom: 1.5px solid var(--mineral);
+}
+
 /* ── About → /team Teaser ───────────────────────────────────────── */
 .about-team-teaser {
   padding: 4rem 0;
