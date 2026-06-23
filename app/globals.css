@@ -298,13 +298,13 @@ p { color: var(--charcoal); }
 @media (max-width: 768px) {
   :root { --gutter: 1.25rem; }
 
-  /* Nav auf Mobile: immer leichter Hintergrund → Hamburger immer sichtbar */
-  .nav { background: rgba(250, 248, 245, 0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-  .nav-logo { color: var(--charcoal); }
-  .nav-toggle span { background: var(--charcoal); }
-  /* on-dark Override zurücksetzen (Desktop-Regel soll auf Mobile nicht greifen) */
-  .nav.on-dark:not(.scrolled) .nav-logo { color: var(--charcoal); }
-  .nav.on-dark:not(.scrolled) .nav-toggle span { background: var(--charcoal); }
+  /* Nav auf Mobile: immer dunkler Hintergrund → Hamburger + Logo immer sichtbar */
+  .nav { background: rgba(30, 33, 36, 0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .nav-logo { color: var(--ivory); }
+  .nav-toggle span { background: var(--ivory); }
+  .nav.on-dark:not(.scrolled) .nav-logo { color: var(--ivory); }
+  .nav.on-dark:not(.scrolled) .nav-toggle span { background: var(--ivory); }
+  .nav.scrolled { background: rgba(30, 33, 36, 0.97); box-shadow: 0 1px 0 rgba(255,255,255,0.08); }
 
   /* Hamburger-Overlay */
   .nav-links {
