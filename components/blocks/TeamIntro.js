@@ -391,12 +391,11 @@ function ModeQuiz() {
   );
 }
 
-// ── Fit-Test ─────────────────────────────────────────────────────
 // ── Haupt-Komponente ──────────────────────────────────────────────
 const MODI = [
-  { id: ‘chat’,  label: ‘Fragen stellen’ },
-  { id: ‘spiel’, label: ‘3 Aussagen, 1 Lüge’ },
-  { id: ‘quiz’,  label: ‘Wer bist du eher?’ },
+  { id: 'chat',  label: 'Fragen stellen' },
+  { id: 'spiel', label: '3 Aussagen, 1 Lüge' },
+  { id: 'quiz',  label: 'Wer bist du eher?' },
 ];
 
 export default function TeamIntro() {

@@ -67,7 +67,7 @@ const ERGEBNISSE = [
   {
     minScore: 8,
     titel: 'Wir müssten reden.',
-    sub: 'Das Potenzial ist da. Aber irgendwo hakt’s noch — und das ist ok.',
+    sub: "Das Potenzial ist da. Aber irgendwo hakt's noch — und das ist ok.",
     farbe: 'mittel',
     cta: false,
   },
