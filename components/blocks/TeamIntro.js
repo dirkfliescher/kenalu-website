@@ -391,18 +391,180 @@ function ModeQuiz() {
   );
 }
 
+// ── Fit-Test ─────────────────────────────────────────────────────
+const FIT_FRAGEN = [
+  {
+    frage: 'Ein Kunde schickt dir ein 60-seitiges Briefing. Was machst du zuerst?',
+    optionen: [
+      { label: 'Ich lese es komplett durch und mache Notizen.',               punkte: 1 },
+      { label: 'Ich fasse es auf eine Seite zusammen und frage, ob das stimmt.', punkte: 2 },
+      { label: 'Ich frage, was das eigentliche Problem hinter dem Briefing ist.', punkte: 3 },
+    ],
+  },
+  {
+    frage: 'Jemand sagt: «Mach einfach mal was mit AI.» Was sagst du?',
+    optionen: [
+      { label: '«Gerne — ich schicke dir bis Freitag eine Roadmap.»',          punkte: 0 },
+      { label: '«Was soll sich für wen konkret verändern?»',                   punkte: 3 },
+      { label: '«Wir sollten zuerst einen Workshop machen.»',                  punkte: 1 },
+    ],
+  },
+  {
+    frage: 'Du merkst mitten im Projekt, dass ihr am falschen Problem arbeitet. Was passiert?',
+    optionen: [
+      { label: 'Ich mache weiter — wir haben ein Commitment.',                 punkte: 0 },
+      { label: 'Ich vermerke es intern und schaue, ob es sich klärt.',         punkte: 1 },
+      { label: 'Ich spreche es sofort an, auch wenn es unbequem ist.',         punkte: 3 },
+    ],
+  },
+  {
+    frage: 'Was ist für dich ein gutes Meeting?',
+    optionen: [
+      { label: 'Alle reden, alle bringen sich ein.',                           punkte: 0 },
+      { label: 'Wir haben Updates ausgetauscht und alle sind informiert.',     punkte: 1 },
+      { label: 'Es gibt eine klare Entscheidung am Ende.',                     punkte: 3 },
+    ],
+  },
+  {
+    frage: 'Was bedeutet «fertig» bei einem Produkt?',
+    optionen: [
+      { label: 'Wenn alle Features aus dem Lastenheft umgesetzt sind.',        punkte: 0 },
+      { label: 'Wenn der Kunde zufrieden ist.',                                punkte: 1 },
+      { label: 'Wenn der Mensch, der es benutzt, sein Problem gelöst hat.',    punkte: 3 },
+    ],
+  },
+  {
+    frage: 'Wie arbeitest du am liebsten?',
+    optionen: [
+      { label: 'Mit klaren Prozessen und definierten Rollen.',                 punkte: 0 },
+      { label: 'Im ständigen Austausch mit dem Team.',                         punkte: 1 },
+      { label: 'Eigenverantwortlich, mit viel Kontext statt vielen Regeln.',   punkte: 3 },
+    ],
+  },
+];
+
+const FIT_MAX = FIT_FRAGEN.reduce((s, f) => s + Math.max(...f.optionen.map(o => o.punkte)), 0);
+
+const FIT_ERGEBNISSE = [
+  {
+    minScore: 15,
+    titel: 'Du passt.',
+    sub: 'Direkt, keine Überraschungen. Meld dich.',
+    farbe: 'gut',
+  },
+  {
+    minScore: 8,
+    titel: 'Wir müssten reden.',
+    sub: 'Das Potenzial ist da. Aber irgendwo hakt's noch — und das ist ok.',
+    farbe: 'mittel',
+  },
+  {
+    minScore: 0,
+    titel: 'Nicht jetzt.',
+    sub: 'Vielleicht zu einem anderen Zeitpunkt. Oder bei einem anderen Team.',
+    farbe: 'nein',
+  },
+];
+
+function ModeFit() {
+  const [schritt, setSchritt]     = useState(0);
+  const [antworten, setAntworten] = useState([]);
+  const [gewaehlt, setGewaehlt]   = useState(null);
+  const [fertig, setFertig]       = useState(false);
+
+  const frage = FIT_FRAGEN[schritt];
+  const progress = (schritt / FIT_FRAGEN.length) * 100;
+
+  function waehle(idx) {
+    setGewaehlt(idx);
+  }
+
+  function weiter() {
+    if (gewaehlt === null) return;
+    const next = [...antworten, frage.optionen[gewaehlt].punkte];
+    setAntworten(next);
+    if (next.length >= FIT_FRAGEN.length) {
+      setFertig(true);
+    } else {
+      setSchritt(s => s + 1);
+      setGewaehlt(null);
+    }
+  }
+
+  function neustart() {
+    setSchritt(0);
+    setAntworten([]);
+    setGewaehlt(null);
+    setFertig(false);
+  }
+
+  if (fertig) {
+    const score = antworten.reduce((s, p) => s + p, 0);
+    const ergebnis = FIT_ERGEBNISSE.find(e => score >= e.minScore);
+
+    return (
+      <div className="ti-fit-ergebnis">
+        <div className={`ti-fit-result-badge ti-fit-${ergebnis.farbe}`}>
+          {ergebnis.titel}
+        </div>
+        <p className="ti-fit-result-sub">{ergebnis.sub}</p>
+        <p className="ti-fit-result-score">
+          {score} / {FIT_MAX} Punkte
+        </p>
+        {ergebnis.farbe === 'gut' && (
+          <a href="/contact" className="btn btn-primary ti-fit-cta">
+            Gespräch anfragen →
+          </a>
+        )}
+        <button className="ti-fit-neustart" onClick={neustart}>
+          Nochmals
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="ti-fit">
+      <div className="ti-quiz-progress-bar">
+        <div className="ti-quiz-progress-fill" style={{ width: `${progress}%` }} />
+      </div>
+      <p className="ti-quiz-counter">{schritt + 1} / {FIT_FRAGEN.length}</p>
+      <p className="ti-fit-frage">{frage.frage}</p>
+      <div className="ti-fit-optionen">
+        {frage.optionen.map((o, i) => (
+          <button
+            key={i}
+            className={`ti-fit-option${gewaehlt === i ? ' gewaehlt' : ''}`}
+            onClick={() => waehle(i)}
+          >
+            {o.label}
+          </button>
+        ))}
+      </div>
+      <button
+        className={`ti-fit-weiter${gewaehlt !== null ? ' aktiv' : ''}`}
+        onClick={weiter}
+        disabled={gewaehlt === null}
+      >
+        {schritt + 1 < FIT_FRAGEN.length ? 'Weiter →' : 'Auswertung →'}
+      </button>
+    </div>
+  );
+}
+
 // ── Haupt-Komponente ──────────────────────────────────────────────
 const MODI = [
   { id: 'chat',  label: 'Fragen stellen' },
   { id: 'spiel', label: '3 Aussagen, 1 Lüge' },
   { id: 'quiz',  label: 'Wer bist du eher?' },
+  { id: 'fit',   label: 'Passt du zu uns?' },
 ];
 
 export default function TeamIntro() {
   const [modus, setModus]   = useState('chat');
   const [person, setPerson] = useState('dirk');
 
-  const showPerson = modus !== 'quiz';
+  const showPerson = modus !== 'quiz' && modus !== 'fit';
 
   return (
     <section className="ti-section">
@@ -439,6 +601,7 @@ export default function TeamIntro() {
             {modus === 'chat'  && <ModeChat  key={person} person={person} />}
             {modus === 'spiel' && <ModeSpiel key={person} person={person} />}
             {modus === 'quiz'  && <ModeQuiz />}
+            {modus === 'fit'   && <ModeFit />}
           </div>
         </div>
       </div>

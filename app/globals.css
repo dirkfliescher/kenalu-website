@@ -2859,6 +2859,115 @@ p { color: var(--charcoal); }
   margin-bottom: 0.5rem;
 }
 
+/* ── Fit-Test ──────────────────────────────────────────────────── */
+.ti-fit { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.ti-fit-frage {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.ti-fit-optionen {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ti-fit-option {
+  padding: 0.9rem 1.1rem;
+  font-size: 0.9rem;
+  text-align: left;
+  background: var(--surface);
+  border: 1.5px solid var(--mineral);
+  border-radius: 8px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  line-height: 1.4;
+}
+
+.ti-fit-option:hover {
+  border-color: var(--ocean);
+  background: rgba(18,56,75,0.04);
+}
+
+.ti-fit-option.gewaehlt {
+  border-color: var(--ocean);
+  background: rgba(18,56,75,0.07);
+  font-weight: 600;
+}
+
+.ti-fit-weiter {
+  align-self: flex-end;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  background: var(--mineral);
+  color: var(--stone);
+  cursor: default;
+  transition: background 0.2s, color 0.2s;
+}
+
+.ti-fit-weiter.aktiv {
+  background: var(--ocean);
+  color: #fff;
+  cursor: pointer;
+}
+
+.ti-fit-weiter.aktiv:hover {
+  background: var(--ocean-dark, #0e2c3c);
+}
+
+.ti-fit-ergebnis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.ti-fit-result-badge {
+  font-family: var(--font-headline);
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.ti-fit-gut    { color: var(--ocean); }
+.ti-fit-mittel { color: var(--terracotta); }
+.ti-fit-nein   { color: var(--stone); }
+
+.ti-fit-result-sub {
+  font-size: 0.95rem;
+  color: var(--stone);
+  max-width: 340px;
+  line-height: 1.6;
+}
+
+.ti-fit-result-score {
+  font-size: 0.75rem;
+  color: var(--softline);
+}
+
+.ti-fit-cta { margin-top: 0.5rem; }
+
+.ti-fit-neustart {
+  font-size: 0.8rem;
+  color: var(--stone);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ti-fit-neustart:hover { color: var(--ink); }
+
 /* Responsive */
 @media (max-width: 600px) {
   .ti-content { padding: 1rem; }
