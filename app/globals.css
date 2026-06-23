@@ -16,9 +16,9 @@
   --stone:    #6F7478;
   --softline: #D8D4CE;
   --terracotta: #C5694A;
-  --ocean-dark:      var(--ocean-dark);
-  --terracotta-dark: var(--terracotta-dark);
-  --charcoal-dark:   var(--charcoal-dark);
+  --ocean-dark:      #0e2c3c;
+  --terracotta-dark: #b15a3d;
+  --charcoal-dark:   #1e2124;
   --font-headline: 'Satoshi', 'Inter', sans-serif;
   --font-body:     'Inter', sans-serif;
   --radius: 6px;
