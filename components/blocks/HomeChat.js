@@ -93,19 +93,36 @@ function CheckWidget({ widget }) {
   );
 }
 
+function TeamWidget({ widget }) {
+  return (
+    <Link href="/team" className="hcw-check">
+      <div className="hcw-check-inner">
+        <div>
+          <p className="hcw-check-label">{widget.label || 'Das Team kennenlernen'}</p>
+          {widget.description && (
+            <p className="hcw-check-desc">{widget.description}</p>
+          )}
+        </div>
+        <span className="hcw-contact-arrow">→</span>
+      </div>
+    </Link>
+  );
+}
+
 function Widget({ widget }) {
   if (widget.type === 'article') return <ArticleWidget widget={widget} />;
   if (widget.type === 'service') return <ServiceWidget widget={widget} />;
   if (widget.type === 'contact') return <ContactWidget widget={widget} />;
   if (widget.type === 'person') return <PersonWidget widget={widget} />;
   if (widget.type === 'check') return <CheckWidget widget={widget} />;
+  if (widget.type === 'team') return <TeamWidget widget={widget} />;
   return null;
 }
 
 // ── Ein einzelnes Q&A-Paar ─────────────────────────────────────────
 
 function Exchange({ exchange }) {
-  const FULL_WIDTH_TYPES = ['contact', 'check'];
+  const FULL_WIDTH_TYPES = ['contact', 'check', 'team'];
   const contentWidgets = exchange.widgets.filter((w) => !FULL_WIDTH_TYPES.includes(w.type));
   const fullWidthWidgets = exchange.widgets.filter((w) => FULL_WIDTH_TYPES.includes(w.type));
 

@@ -1,7 +1,7 @@
 import StoryblokClient from 'storyblok-js-client';
+import Link from 'next/link';
 import DynamicBlock from '../../components/DynamicBlock';
 import AboutTeam from '../../components/blocks/AboutTeam';
-import TeamIntro from '../../components/blocks/TeamIntro';
 import Reveal from '../../components/Reveal';
 
 export const revalidate = 60;
@@ -55,9 +55,24 @@ export default async function About() {
         return <DynamicBlock key={blok._uid} blok={blok} />;
       })}
 
-      {/* Team kennenlernen – interaktiver Block */}
+      {/* Teaser → /team */}
       <Reveal>
-        <TeamIntro />
+        <section className="about-team-teaser">
+          <div className="container">
+            <div className="about-team-teaser-inner">
+              <div>
+                <p className="about-team-teaser-label">Das Team</p>
+                <p className="about-team-teaser-text">
+                  Neugierig auf Dirk und Stan? Stell ihnen Fragen, spiel ein Spiel
+                  oder finde heraus, mit wem du mehr gemeinsam hast.
+                </p>
+              </div>
+              <Link href="/team" className="btn btn-primary about-team-teaser-btn">
+                Team kennenlernen →
+              </Link>
+            </div>
+          </div>
+        </section>
       </Reveal>
     </>
   );

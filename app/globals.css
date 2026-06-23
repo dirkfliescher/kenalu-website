@@ -2315,6 +2315,68 @@ p { color: var(--charcoal); }
   100% { transform: scaleX(1); opacity: 0; }
 }
 
+/* ── Team Hero (/team) ──────────────────────────────────────────── */
+.team-hero {
+  padding: 10rem var(--gutter) 5rem;
+  background: var(--charcoal);
+  color: var(--ivory);
+}
+
+.team-hero-headline {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ivory);
+  margin: 0.75rem 0 1.5rem;
+}
+
+.team-hero-sub {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.62);
+  max-width: 540px;
+  line-height: 1.7;
+}
+
+/* ── About → /team Teaser ───────────────────────────────────────── */
+.about-team-teaser {
+  padding: 4rem 0;
+  border-top: 1.5px solid var(--mineral);
+}
+
+.about-team-teaser-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.about-team-teaser-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.5rem;
+}
+
+.about-team-teaser-text {
+  font-size: 1rem;
+  color: var(--stone);
+  line-height: 1.65;
+  max-width: 480px;
+}
+
+.about-team-teaser-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .about-team-teaser-inner { flex-direction: column; align-items: flex-start; }
+}
+
 /* ── Team Intro ─────────────────────────────────────────────────── */
 .ti-section {
   padding: 6rem 0;

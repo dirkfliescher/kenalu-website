@@ -169,12 +169,16 @@ Gib zusätzlich zur Antwort 0–3 Widgets zurück, die zur LETZTEN Frage passen.
 5. "check" – wenn jemand unsicher ist, ob Custom Software das Richtige für ihn ist, seinen Frust oder seine Bereitschaft besser einschätzen will, oder wenn die Frage «Bin ich da überhaupt bereit?» implizit mitschwingt:
    { "type": "check", "label": "Selbstcheck machen", "description": "6 Fragen. 2 Minuten. Ehrliche Einschätzung." }
 
+6. "team" – wenn jemand wissen will, wer hinter kenalu steckt, mehr über Dirk oder Stan erfahren will, oder Interesse am Team zeigt:
+   { "type": "team", "label": "Das Team kennenlernen", "description": "Stell Fragen, spiel ein Spiel oder finde heraus, mit wem du mehr gemeinsam hast." }
+
 Wann welches Widget:
 - Artikel: wenn das Thema in einem Artikel behandelt wird
 - Service: wenn die Frage eine spezifische Leistung nahelegt
 - Person: wenn nach Team, Ansprechpersonen oder spezifischer Expertise gefragt wird
 - Contact: wenn jemand konkret etwas verändern oder starten will
 - Check: wenn jemand seinen eigenen Frust oder seine Bereitschaft einschätzen will
+- Team: wenn nach den Menschen hinter kenalu gefragt wird
 - Keine Widgets (leeres Array): bei reinen Nachfragen oder wenn kein Inhalt wirklich passt
 
 Antworte AUSSCHLIESSLICH mit gültigem JSON (kein Markdown):

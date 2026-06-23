@@ -32,7 +32,7 @@ export default function Nav() {
 
   // Seiten mit dunklem Hero-Hintergrund → Nav startet mit hellem Text
   // Alle anderen Seiten starten mit dunklem Text auf hellem Hintergrund
-  const DARK_HERO_PAGES = ['/services', '/about', '/insights', '/zusammenarbeit'];
+  const DARK_HERO_PAGES = ['/services', '/about', '/insights', '/zusammenarbeit', '/team'];
   const onDark = DARK_HERO_PAGES.some((p) => pathname?.startsWith(p));
 
   return (
@@ -42,7 +42,7 @@ export default function Nav() {
         <ul className={`nav-links${open ? ' open' : ''}`}>
           <li><Link href="/services" className={isActive('/services') ? 'active' : ''}>Services</Link></li>
           <li><Link href="/about" className={isActive('/about') ? 'active' : ''}>About</Link></li>
-          <li><Link href="/lab" className={isActive('/lab') ? 'active' : ''}>Lab</Link></li>
+          <li><Link href="/team" className={isActive('/team') ? 'active' : ''}>Team</Link></li>
           <li><Link href="/insights" className={isActive('/insights') ? 'active' : ''}>Insights</Link></li>
 
           <li>
