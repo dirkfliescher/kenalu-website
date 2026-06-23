@@ -98,6 +98,11 @@ p { color: var(--charcoal); }
 .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: transform var(--transition), opacity var(--transition); }
 
 .nav-links li a.active { color: var(--terracotta); }
+.nav-mobile-only { display: none; }
+
+/* Logo über Overlay heben wenn Menü offen */
+.nav.menu-open { z-index: 202; }
+.nav.menu-open .nav-logo { color: var(--ivory); position: relative; z-index: 202; }
 
 .nav.on-dark:not(.scrolled) .nav-logo { color: var(--ivory); }
 .nav.on-dark:not(.scrolled) .nav-links li a { color: var(--softline); }
@@ -311,6 +316,8 @@ p { color: var(--charcoal); }
   .nav-links li a.active { color: var(--terracotta); }
   /* CTA-Button im Overlay */
   .nav-links li .btn { font-size: 1rem; margin-top: 1rem; }
+  /* Home-Link nur im Hamburger-Menü */
+  .nav-mobile-only { display: block; }
   /* Hamburger anzeigen, über Overlay */
   .nav-toggle { display: flex; position: relative; z-index: 201; }
   /* Wenn Overlay offen: Hamburger-Icon immer hell (weil dunkler Hintergrund) */

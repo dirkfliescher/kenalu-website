@@ -38,6 +38,7 @@ export default function Nav() {
 
   // Hauptnavigation – vollständige, kanonische Liste
   const NAV_LINKS = [
+    { href: '/',          label: 'Home',     mobileOnly: true },
     { href: '/services',  label: 'Services'  },
     { href: '/about',     label: 'About'     },
     { href: '/team',      label: 'Team'      },
@@ -50,9 +51,9 @@ export default function Nav() {
       <div className="nav-inner">
         <Link href="/" className="nav-logo">kenalu</Link>
         <ul className={`nav-links${open ? ' open' : ''}`}>
-          {NAV_LINKS.map(({ href, label }) => (
-            <li key={href}>
-              <Link href={href} className={isActive(href) ? 'active' : ''}>{label}</Link>
+          {NAV_LINKS.map(({ href, label, mobileOnly }) => (
+            <li key={href} className={mobileOnly ? 'nav-mobile-only' : ''}>
+              <Link href={href} className={pathname === href ? 'active' : ''}>{label}</Link>
             </li>
           ))}
           {pathname !== '/contact' && (
