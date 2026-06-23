@@ -1,6 +1,7 @@
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../components/DynamicBlock';
 import AboutTeam from '../../components/blocks/AboutTeam';
+import TeamIntro from '../../components/blocks/TeamIntro';
 import Reveal from '../../components/Reveal';
 
 export const revalidate = 60;
@@ -53,6 +54,11 @@ export default async function About() {
         }
         return <DynamicBlock key={blok._uid} blok={blok} />;
       })}
+
+      {/* Team kennenlernen – interaktiver Block */}
+      <Reveal>
+        <TeamIntro />
+      </Reveal>
     </>
   );
 }
