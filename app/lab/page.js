@@ -12,18 +12,20 @@ export const metadata = {
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 const DEFAULTS = {
-  lp_label:        'Lab',
-  lp_headline:     'Wir reden nicht\nüber Bauen.\nWir bauen.',
-  lp_sub:          'Lab ist der Ort, wo kenalu zeigt, was es kann. Nicht als Case-Study-Hochglanz, sondern als ehrlicher Blick auf echte Projekte.',
-  lp_next_eyebrow: 'Projekt 02',
-  lp_next_text:    'Das nächste Projekt entsteht gerade.\nOder es ist deines.',
-  lp_next_cta:     'Gespräch starten →',
-  lp_next_cta_link: '/contact',
+  lp_label:            'Lab',
+  lp_headline:         'Wir reden nicht\nüber Bauen.\nWir bauen.',
+  lp_sub:              'Lab ist der Ort, wo kenalu zeigt, was es kann. Nicht als Case-Study-Hochglanz, sondern als ehrlicher Blick auf echte Projekte.',
+  lp_builder_headline: 'Beschreib es.\nWir bauen es.',
+  lp_builder_sub:      'Vier Fragen. Dann läuft dein Code direkt im Browser. Kein Setup, kein Framework-Drama.',
+  lp_next_eyebrow:     'Projekt 02',
+  lp_next_text:        'Das nächste Projekt entsteht gerade.\nOder es ist deines.',
+  lp_next_cta:         'Gespräch starten →',
+  lp_next_cta_link:    '/contact',
 };
 
 async function getPageContent() {
   try {
-    const { data } = await Storyblok.get('cdn/stories/lab', {
+    const { data } = await Storyblok.get('cdn/stories/lab/index', {
       version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
     });
     return { ...DEFAULTS, ...data.story.content };
@@ -184,11 +186,12 @@ export default async function Lab() {
         <div className="container">
           <div className="lb-section-header">
             <p className="section-label">Builder</p>
-            <h2 className="lb-section-headline">Beschreib es.<br />Wir bauen es.</h2>
-            <p className="lb-section-sub">
-              Vier Fragen. Dann läuft dein Code direkt im Browser.
-              Kein Setup, kein Framework-Drama.
-            </p>
+            <h2 className="lb-section-headline">
+              {page.lp_builder_headline.split('\n').map((line, i, arr) => (
+                <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+              ))}
+            </h2>
+            <p className="lb-section-sub">{page.lp_builder_sub}</p>
           </div>
           <LabBuilder />
         </div>
