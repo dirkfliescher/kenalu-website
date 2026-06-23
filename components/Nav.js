@@ -32,19 +32,29 @@ export default function Nav() {
 
   // Seiten mit dunklem Hero-Hintergrund → Nav startet mit hellem Text
   // Alle anderen Seiten starten mit dunklem Text auf hellem Hintergrund
+  // Seiten mit dunklem Hero → Nav startet mit hellem Text
   const DARK_HERO_PAGES = ['/services', '/about', '/insights', '/zusammenarbeit', '/team'];
   const onDark = DARK_HERO_PAGES.some((p) => pathname?.startsWith(p));
+
+  // Hauptnavigation – vollständige, kanonische Liste
+  const NAV_LINKS = [
+    { href: '/services',  label: 'Services'  },
+    { href: '/about',     label: 'About'     },
+    { href: '/team',      label: 'Team'      },
+    { href: '/lab',       label: 'Lab'       },
+    { href: '/insights',  label: 'Insights'  },
+  ];
 
   return (
     <nav className={`nav${scrolled ? ' scrolled' : ''}${onDark ? ' on-dark' : ''}${open ? ' menu-open' : ''}`}>
       <div className="nav-inner">
         <Link href="/" className="nav-logo">kenalu</Link>
         <ul className={`nav-links${open ? ' open' : ''}`}>
-          <li><Link href="/services" className={isActive('/services') ? 'active' : ''}>Services</Link></li>
-          <li><Link href="/about" className={isActive('/about') ? 'active' : ''}>About</Link></li>
-          <li><Link href="/team" className={isActive('/team') ? 'active' : ''}>Team</Link></li>
-          <li><Link href="/insights" className={isActive('/insights') ? 'active' : ''}>Insights</Link></li>
-
+          {NAV_LINKS.map(({ href, label }) => (
+            <li key={href}>
+              <Link href={href} className={isActive(href) ? 'active' : ''}>{label}</Link>
+            </li>
+          ))}
           {pathname !== '/contact' && (
             <li>
               <Link href="/contact" className="btn btn-sm btn-primary">Gespräch buchen</Link>

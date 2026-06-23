@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import StoryblokClient from 'storyblok-js-client';
 import LabBuilder from '../../components/blocks/LabBuilder';
 
 export const revalidate = 60;
@@ -8,43 +9,53 @@ export const metadata = {
   description: 'Was kenalu gebaut hat. Nicht beschrieben, sondern gezeigt.',
 };
 
-const CASE = {
-  number: '01',
-  date: 'Jun 2026',
-  slug: 'kenalu-ch',
-  name: 'kenalu.ch',
-  tagline: 'Das Studio als erstes Produkt',
-  tags: ['Laufend', 'AI Product'],
-  situation: 'Ein AI Product Studio, das über sich selbst sagt, es baut intelligente Dinge, aber eine Standardwebsite betreibt. Das passt nicht. kenalu.ch musste selbst ein Proof of Concept sein: gebaut mit den gleichen Methoden, den gleichen Überzeugungen, dem gleichen Anspruch. Headless, React, Next.js. Kein WordPress, kein Page-Builder. Derselbe Stack, auf dem grosse Unternehmen ihre digitalen Plattformen betreiben.\n\nkenalu.ch war der einfachste Auftrag: Wir wussten von Anfang an, was entstehen soll. Bei echten Projekten ist das selten so. Genau da beginnt unsere Arbeit. Verstehen, was wirklich gebraucht wird. Dann bauen.',
-  decisions: [
-    {
-      title: 'KI als primärer Touchpoint',
-      text: 'Statt eines Kontaktformulars: Kai. Ein AI-Assistent, der Unternehmen in Echtzeit hilft zu verstehen, ob und wie kenalu helfen kann. Kein Gimmick. Der erste echte Gesprächspartner, der qualifiziert, einordnet und weiterführt.',
-    },
-    {
-      title: 'Content-Ownership ohne Deployments',
-      text: 'Alle Seiteninhalte laufen über Storyblok. Texte, Sektionen, Artikel: editierbar ohne Code-Änderung. Nach dem ersten Deploy gehört der Content dem Team, nicht dem Entwickler.',
-    },
-    {
-      title: 'Inhalte gebaut mit AI',
-      text: 'Texte, Konzepte, Strukturen. Entstanden im Dialog mit AI, verfeinert durch Urteil. Kein Copy-Paste, kein Massenoutput. Sondern ein Arbeitsmodus, den wir auch für Kundenprojekte einsetzen: schnell zu echtem Inhalt, ohne Qualität zu opfern.',
-    },
-    {
-      title: 'ISR statt statischer Build',
-      text: 'Storyblok-Änderungen erscheinen innerhalb von 60 Sekunden live. Kein Redeploy nötig. Incremental Static Regeneration kombiniert Performance mit Content-Flexibilität.',
-    },
-  ],
-  stack: ['Next.js', 'Storyblok', 'OpenAI GPT-4o-mini', 'Vercel', 'Satoshi'],
-  metrics: [
-    { value: '60s', label: 'Content-Update live' },
-    { value: '1', label: 'Person. Kein Team.' },
-    { value: 'Kai', label: 'AI-Assistent live' },
-    { value: '0', label: 'Agenturen beteiligt' },
-  ],
-  url: 'https://kenalu.ch',
-};
+const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
-export default function Lab() {
+// Storyblok-Inhalt in das CASE-Format umwandeln
+function storyToCase(story) {
+  const c = story.content;
+  return {
+    number:  c.lc_number  || '',
+    date:    c.lc_date    || '',
+    name:    c.lc_name    || story.name,
+    tagline: c.lc_tagline || '',
+    tags:    c.lc_tags    ? c.lc_tags.split(',').map(t => t.trim()) : [],
+    situation: c.lc_situation || '',
+    decisions: [
+      c.lc_d1_title && { title: c.lc_d1_title, text: c.lc_d1_text },
+      c.lc_d2_title && { title: c.lc_d2_title, text: c.lc_d2_text },
+      c.lc_d3_title && { title: c.lc_d3_title, text: c.lc_d3_text },
+      c.lc_d4_title && { title: c.lc_d4_title, text: c.lc_d4_text },
+    ].filter(Boolean),
+    stack: c.lc_stack ? c.lc_stack.split(',').map(s => s.trim()) : [],
+    metrics: [
+      c.lc_m1_value && { value: c.lc_m1_value, label: c.lc_m1_label },
+      c.lc_m2_value && { value: c.lc_m2_value, label: c.lc_m2_label },
+      c.lc_m3_value && { value: c.lc_m3_value, label: c.lc_m3_label },
+      c.lc_m4_value && { value: c.lc_m4_value, label: c.lc_m4_label },
+    ].filter(Boolean),
+    url: c.lc_url || '',
+  };
+}
+
+async function getCases() {
+  try {
+    const { data } = await Storyblok.get('cdn/stories', {
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
+      starts_with: 'lab/',
+      content_type: 'lab_case',
+      sort_by: 'content.lc_order:asc',
+      per_page: 20,
+    });
+    return (data.stories || []).map(storyToCase);
+  } catch {
+    return [];
+  }
+}
+
+export default async function Lab() {
+  const cases = await getCases();
+
   return (
     <main className="lab-page">
 
@@ -61,77 +72,87 @@ export default function Lab() {
         </div>
       </section>
 
-      {/* ── Case ──────────────────────────────────────────────────── */}
-      <section className="lab-cases">
-        <div className="container">
-          <div className="lab-case">
+      {/* ── Cases ─────────────────────────────────────────────────── */}
+      {cases.map((CASE, idx) => (
+        <section key={idx} className="lab-cases">
+          <div className="container">
+            <div className="lab-case">
 
-            {/* Header */}
-            <div className="lab-case-header">
-              <span className="lab-case-number">Projekt {CASE.number}</span>
-              <div className="lab-case-tags">
-                {CASE.tags.map((t) => (
-                  <span key={t} className="lab-case-tag">{t}</span>
-                ))}
-              </div>
-              <span className="lab-case-date">{CASE.date}</span>
-            </div>
-
-            {/* Title */}
-            <div className="lab-case-title-block">
-              <h2 className="lab-case-name">{CASE.name}</h2>
-              <p className="lab-case-tagline">{CASE.tagline}</p>
-            </div>
-
-            {/* Situation */}
-            <div className="lab-case-section">
-              <span className="lab-case-section-label">Ausgangslage</span>
-              <p className="lab-case-text">{CASE.situation}</p>
-            </div>
-
-            {/* Decisions */}
-            <div className="lab-case-section">
-              <span className="lab-case-section-label">Was wir entschieden haben</span>
-              <div className="lab-case-decisions">
-                {CASE.decisions.map((d, i) => (
-                  <div key={i} className="lab-case-decision">
-                    <p className="lab-case-decision-title">{d.title}</p>
-                    <p className="lab-case-decision-text">{d.text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Metrics */}
-            <div className="lab-case-section lab-case-section--metrics">
-              {CASE.metrics.map((m, i) => (
-                <div key={i} className="lab-case-metric">
-                  <span className="lab-case-metric-value">{m.value}</span>
-                  <span className="lab-case-metric-label">{m.label}</span>
+              {/* Header */}
+              <div className="lab-case-header">
+                <span className="lab-case-number">Projekt {CASE.number}</span>
+                <div className="lab-case-tags">
+                  {CASE.tags.map((t) => (
+                    <span key={t} className="lab-case-tag">{t}</span>
+                  ))}
                 </div>
-              ))}
-            </div>
-
-            {/* Stack + Link */}
-            <div className="lab-case-footer">
-              <div className="lab-case-stack">
-                {CASE.stack.map((s) => (
-                  <span key={s} className="lab-stack-chip">{s}</span>
-                ))}
+                <span className="lab-case-date">{CASE.date}</span>
               </div>
-              <a
-                href={CASE.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="lab-case-link"
-              >
-                Live ansehen →
-              </a>
-            </div>
 
+              {/* Title */}
+              <div className="lab-case-title-block">
+                <h2 className="lab-case-name">{CASE.name}</h2>
+                <p className="lab-case-tagline">{CASE.tagline}</p>
+              </div>
+
+              {/* Situation */}
+              {CASE.situation && (
+                <div className="lab-case-section">
+                  <span className="lab-case-section-label">Ausgangslage</span>
+                  <p className="lab-case-text">{CASE.situation}</p>
+                </div>
+              )}
+
+              {/* Decisions */}
+              {CASE.decisions.length > 0 && (
+                <div className="lab-case-section">
+                  <span className="lab-case-section-label">Was wir entschieden haben</span>
+                  <div className="lab-case-decisions">
+                    {CASE.decisions.map((d, i) => (
+                      <div key={i} className="lab-case-decision">
+                        <p className="lab-case-decision-title">{d.title}</p>
+                        <p className="lab-case-decision-text">{d.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Metrics */}
+              {CASE.metrics.length > 0 && (
+                <div className="lab-case-section lab-case-section--metrics">
+                  {CASE.metrics.map((m, i) => (
+                    <div key={i} className="lab-case-metric">
+                      <span className="lab-case-metric-value">{m.value}</span>
+                      <span className="lab-case-metric-label">{m.label}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Stack + Link */}
+              <div className="lab-case-footer">
+                <div className="lab-case-stack">
+                  {CASE.stack.map((s) => (
+                    <span key={s} className="lab-stack-chip">{s}</span>
+                  ))}
+                </div>
+                {CASE.url && (
+                  <a
+                    href={CASE.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="lab-case-link"
+                  >
+                    Live ansehen →
+                  </a>
+                )}
+              </div>
+
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
       {/* ── Builder ───────────────────────────────────────────────── */}
       <section className="lb-section">
