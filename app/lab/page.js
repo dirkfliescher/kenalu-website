@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import LabBuilder from '../../components/blocks/LabBuilder';
 
 export const revalidate = 60;
 
@@ -129,6 +130,21 @@ export default function Lab() {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* ── Builder ───────────────────────────────────────────────── */}
+      <section className="lb-section">
+        <div className="container">
+          <div className="lb-section-header">
+            <p className="section-label">Builder</p>
+            <h2 className="lb-section-headline">Beschreib es.<br />Wir bauen es.</h2>
+            <p className="lb-section-sub">
+              Vier Fragen. Dann läuft dein Code direkt im Browser.
+              Kein Setup, kein Framework-Drama.
+            </p>
+          </div>
+          <LabBuilder />
         </div>
       </section>
 
