@@ -12,7 +12,6 @@ const STATIC_ROUTES = [
   { url: '/team',           priority: 0.8,  changeFrequency: 'monthly' },
   { url: '/lab',            priority: 0.8,  changeFrequency: 'weekly'  },
   { url: '/insights',       priority: 0.7,  changeFrequency: 'weekly'  },
-  { url: '/zusammenarbeit', priority: 0.7,  changeFrequency: 'monthly' },
   { url: '/contact',        priority: 0.6,  changeFrequency: 'monthly' },
 ];
 
@@ -48,11 +47,11 @@ export default async function sitemap() {
     const { data } = await Storyblok.get('cdn/stories', {
       version: 'published',
       per_page: 100,
-      starts_with: 'zusammenarbeit/',
+      starts_with: 'team/',
       content_type: 'team_member',
     });
     const teamEntries = (data.stories || []).map((story) => ({
-      url: `${BASE}/zusammenarbeit/${story.slug}`,
+      url: `${BASE}/team/${story.slug}`,
       lastModified: new Date(story.published_at || story.created_at),
       changeFrequency: 'monthly',
       priority: 0.5,

@@ -7,7 +7,7 @@ export default function TeamMemberTeaser({ member }) {
 
   return (
     <div className="team-card">
-      <Link href={`/zusammenarbeit/${slug}`} className="team-card-link">
+      <Link href={`/team/${slug}`} className="team-card-link">
         <div className="team-card-photo">
           {content.team_member_photo?.filename ? (
             <img

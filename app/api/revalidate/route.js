@@ -8,7 +8,6 @@ const ALL_PATHS = [
   '/team',
   '/lab',
   '/insights',
-  '/zusammenarbeit',
   '/contact',
 ];
 
@@ -41,8 +40,8 @@ export async function POST(req) {
   }
 
   // Dynamische Routen: Team-Profile
-  if (slug.startsWith('zusammenarbeit/')) {
-    revalidatePath(`/zusammenarbeit/${slug.replace('zusammenarbeit/', '')}`);
+  if (slug.startsWith('team/')) {
+    revalidatePath(`/team/${slug.replace('team/', '')}`);
   }
 
   console.log(`[revalidate] Story publiziert: "${slug}" – ${ALL_PATHS.length} Pfade erneuert`);
