@@ -15,11 +15,9 @@ const SCENARIOS = [
 
 const SERVICES = [
   { number: '01', name: 'Klarheit',    anchor: '#service-01' },
-  { number: '02', name: 'Verständnis', anchor: '#service-02' },
-  { number: '03', name: 'Entwurf',     anchor: '#service-03' },
-  { number: '04', name: 'Beweis',      anchor: '#service-04' },
-  { number: '05', name: 'Produkt',     anchor: '#service-05' },
-  { number: '06', name: 'Urteil',      anchor: '#service-06' },
+  { number: '02', name: 'Rapid Build', anchor: '#service-02' },
+  { number: '03', name: 'Produkt',     anchor: '#service-03' },
+  { number: '04', name: 'Urteil',      anchor: '#service-04' },
 ];
 
 export default function ServicesFinder() {
