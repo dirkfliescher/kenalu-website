@@ -24,18 +24,26 @@ export default function Reveal({ children, className = '', delay = 0 }) {
       return;
     }
 
+    // Fallback: iOS Safari kann den IntersectionObserver manchmal nicht feuern.
+    // Nach 1.5s wird das Element in jedem Fall sichtbar gemacht.
+    const fallback = setTimeout(() => setVisible(true), 1500);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
+          clearTimeout(fallback);
           observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(fallback);
+      observer.disconnect();
+    };
   }, []);
 
   return (
