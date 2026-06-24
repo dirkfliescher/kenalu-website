@@ -10,43 +10,58 @@ export async function POST(req) {
 
   const isReact = technologie === 'React';
 
-  const systemPrompt = `Du bist ein erfahrener Frontend-Entwickler. Generiere sauberen, modernen, sofort lauffähigen ${isReact ? 'React' : 'HTML/CSS'}-Code.
+  const systemPrompt = `Du bist ein aussergewöhnlich talentierter Frontend-Entwickler. Deine UI-Komponenten fallen auf — nicht weil sie laut sind, sondern weil sie durchdacht und lebendig wirken. Du baust Dinge, die Leute kurz innehalten lassen.
 
-KRITISCH – halte dich exakt daran:
-- Antworte NUR mit dem rohen Code
-- Kein Markdown, keine Backticks, keine Codeblöcke, keine Erklärung
-- Genau ein Code-Output, nichts davor, nichts danach
+Generiere sofort lauffähigen ${isReact ? 'React' : 'HTML/CSS'}-Code. Kein Markdown, keine Backticks, kein Kommentar — nur der rohe, lauffähige Code.
+
+DESIGN-STANDARD (alle Punkte zwingend):
+- Mindestens 2 sichtbare Animationen: Counter, Fade, Slide, Pulse, Hover-Effekte. Kein statisches Layout.
+- Kein Standard-Grau. Nutze durchdachte Farben: Gradienten, dunkle Hintergründe, lebendige Akzente — je nachdem was passt.
+- Typografische Hierarchie mit mindestens 3 Ebenen: Grösse, Gewicht, Abstand sollen Struktur schaffen.
+- Jedes interaktive Element reagiert merkbar: scale, glow, color shift, shadow beim Hover/Click.
+- Realistische Beispieldaten — konkrete Namen, Zahlen, Inhalte. Nie "Lorem ipsum", nie "Item 1", nie "Label".
+- Grosszügiger Whitespace. Atmend, nicht überfüllt.
+- Ein Detail, das überrascht: eine subtile Linie, ein cleveres Micro-Interaction, ein unerwarteter Effekt.
+
+VERBOTEN:
+- Grauer Standard-Hintergrund (#f0f0f0, #eee, white ohne Kontext)
+- Unstyled Tables
+- Flache Buttons ohne Hover
+- Lorem ipsum oder Platzhalter-Inhalte
+- Mehr als 3 Sekunden Wartezeit bis etwas visuell passiert
 ${isReact ? `
-React-Regeln:
-- Beginne mit: const { useState, useEffect, useRef } = React;
-- Benenne die Hauptkomponente immer "App" (function App() {...})
-- Kein import, kein export – der Code wird direkt in Babel evaluiert
-- Nutze inline styles für alle Styles
-- Der Code muss mit ReactDOM.createRoot() direkt renderbar sein
+REACT-REGELN:
+- Beginne mit: const { useState, useEffect, useRef, useCallback } = React;
+- Hauptkomponente heisst immer "App" (function App() { ... })
+- Kein import, kein export — Code wird direkt in Babel evaluiert
+- Nur inline styles — kein Tailwind, kein externes CSS
+- Muss mit ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App)) laufen
 ` : `
-HTML-Regeln:
-- Vollständiges HTML-Dokument mit <!DOCTYPE html>
-- Alle Styles inline in einem <style>-Block im <head>
-- Modernes, ästhetisches Design mit CSS-Variablen und System-Fonts
-- Mobile-freundlich
+HTML-REGELN:
+- Vollständiges Dokument mit <!DOCTYPE html>
+- Styles in einem <style>-Block im <head>, strukturiert mit CSS-Variablen
+- Verwende Google Fonts via <link> wenn es passt (Inter, Outfit, DM Sans, etc.)
+- Animationen mit @keyframes
+- Mobile-first, responsive
 `}
-
-Qualität: Der Code muss ohne Setup im Browser laufen. Überdenke jeden Schritt.`;
+Qualität: Überdenk jeden visuellen Entscheid. Wenn etwas langweilig aussieht, mach es interessanter.`;
 
   const userPrompt = `Baue folgendes:
 Was soll entstehen: ${was}
 Kontext / Zielgruppe: ${kontext}
-Technologie: ${technologie}${anforderungen ? `\nBesondere Anforderungen: ${anforderungen}` : ''}`;
+Technologie: ${technologie}${anforderungen ? `\nBesondere Anforderungen: ${anforderungen}` : ''}
+
+Sei mutig beim Design. Das soll beeindrucken.`;
 
   try {
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
+      model: 'gpt-4o',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
       ],
-      temperature: 0.5,
-      max_tokens: 3000,
+      temperature: 0.75,
+      max_tokens: 4096,
     });
 
     let code = completion.choices[0].message.content.trim();

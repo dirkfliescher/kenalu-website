@@ -2099,6 +2099,80 @@ p { color: var(--charcoal); }
 
 .lb-neustart:hover { color: rgba(255,255,255,0.8); }
 
+/* ── Lab Builder: Einstieg + Inspirationen ───────────────────── */
+.lb-start {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.lb-inspirationen-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.875rem;
+}
+
+.lb-inspirationen-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.lb-inspiration-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: var(--radius);
+  padding: 1rem 1.125rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.lb-inspiration-card:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(197,105,74,0.4);
+  transform: translateY(-1px);
+}
+
+.lb-inspiration-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  font-family: var(--font-headline);
+}
+
+.lb-inspiration-preview {
+  font-size: 0.775rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+}
+
+.lb-start-divider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: rgba(255,255,255,0.25);
+  font-size: 0.8rem;
+}
+.lb-start-divider::before,
+.lb-start-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+
+@media (max-width: 600px) {
+  .lb-inspirationen-grid { grid-template-columns: 1fr; }
+}
+
 /* Desktop: Preview + Code nebeneinander */
 @media (min-width: 900px) {
   .lb-tabs { display: none; }

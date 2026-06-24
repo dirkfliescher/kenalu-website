@@ -2,6 +2,52 @@
 
 import { useState } from 'react';
 
+// ── Inspiration Quickstarts ───────────────────────────────────────
+const INSPIRATIONEN = [
+  {
+    label: 'Live Dashboard',
+    was: 'Ein animiertes Analytics-Dashboard mit Echtzeit-Metriken: Besucherzahlen, Conversion-Rate, Revenue. Mit Counter-Animationen beim Laden und Sparkline-Charts.',
+    kontext: 'SaaS-Produkt, intern für ein Marketing-Team',
+    technologie: 'React',
+    anforderungen: 'Dunkles Theme, lebendige Farbakzente, alle Zahlen animiert beim Einstieg',
+  },
+  {
+    label: 'Pricing Cards',
+    was: 'Drei Pricing-Karten (Free, Pro, Enterprise) mit Hover-Tilt-Effekt, Highlight für den mittleren Plan und einem Toggle zwischen monatlicher / jährlicher Abrechnung.',
+    kontext: 'SaaS-Produkt Landing Page, B2B',
+    technologie: 'HTML / CSS',
+    anforderungen: 'Glassmorphism-Stil, subtile Gradient-Hintergründe, fliessende Toggle-Animation',
+  },
+  {
+    label: 'Interaktiver Rechner',
+    was: 'Ein Hypothekenrechner mit Slider für Betrag, Laufzeit und Zinssatz. Ergebnis (Monatsrate, Gesamtzins) aktualisiert sich in Echtzeit mit animierten Zahlen.',
+    kontext: 'Finanzdienstleister Website, Endkunden',
+    technologie: 'React',
+    anforderungen: 'Sauber, vertrauenswürdig, klare Zahlen-Hierarchie',
+  },
+  {
+    label: 'Kanban Board',
+    was: 'Ein Kanban-Board mit drei Spalten (Backlog, In Progress, Done) und Task-Karten, die man per Klick zwischen Spalten verschieben kann.',
+    kontext: 'Projektmanagement-Tool, kleine Teams',
+    technologie: 'React',
+    anforderungen: 'Lebendige Zustandsänderungen, Status-Badges mit Farben, smooth transitions',
+  },
+  {
+    label: 'Animated Hero',
+    was: 'Eine Hero-Section mit grosser Headline, animiertem Subtitle (Typewriter-Effekt mit wechselnden Begriffen), CTA-Button und einem abstrakten animierten Hintergrund.',
+    kontext: 'Tech-Startup Landing Page',
+    technologie: 'HTML / CSS',
+    anforderungen: 'Dunkel, atmosphärisch, Gradient-Mesh oder Particle-ähnlicher Effekt im Hintergrund',
+  },
+  {
+    label: 'Chat Interface',
+    was: 'Ein Chat-UI mit Nachrichten-Bubbles, Typing-Indicator, Avatar und einem Eingabefeld. Mit ein paar vorgefüllten Beispielnachrichten.',
+    kontext: 'AI-Assistent in einem B2B-Tool',
+    technologie: 'React',
+    anforderungen: 'Modernes Design, smooth message-in Animation, deutliche Unterscheidung User vs. AI',
+  },
+];
+
 // ── Schritte ──────────────────────────────────────────────────────
 const SCHRITTE = [
   {
@@ -72,6 +118,7 @@ export default function LabBuilder() {
   const [fehler, setFehler]         = useState(false);
   const [copied, setCopied]         = useState(false);
   const [activeTab, setActiveTab]   = useState('preview');
+  const [gestartet, setGestartet]   = useState(false);
 
   const aktuellerSchritt  = SCHRITTE[schritt];
   const istLetzterSchritt = schritt === SCHRITTE.length - 1;
@@ -101,16 +148,35 @@ export default function LabBuilder() {
     setFehler(false);
     setCopied(false);
     setActiveTab('preview');
+    setGestartet(false);
   }
 
-  async function bauen() {
+  function inspiration(ins) {
+    setAntworten({
+      was:         ins.was,
+      kontext:     ins.kontext,
+      technologie: ins.technologie,
+      anforderungen: ins.anforderungen || '',
+    });
+    setGestartet(true);
+    bauen({
+      was:         ins.was,
+      kontext:     ins.kontext,
+      technologie: ins.technologie,
+      anforderungen: ins.anforderungen || '',
+    });
+  }
+
+  async function bauen(overrideAntworten) {
+    const payload = overrideAntworten || antworten;
     setLoading(true);
     setFehler(false);
+    setGestartet(true);
     try {
       const res = await fetch('/api/lab-builder', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(antworten),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('API-Fehler');
       const data = await res.json();
@@ -205,6 +271,40 @@ export default function LabBuilder() {
 
         <button className="lb-neustart" onClick={neustart}>
           ← Neu bauen
+        </button>
+      </div>
+    );
+  }
+
+  // ── Einstieg mit Inspirationen ────────────────────────────────
+  if (!gestartet) {
+    return (
+      <div className="lb-start">
+        <div className="lb-inspirationen">
+          <p className="lb-inspirationen-label">Inspiration</p>
+          <div className="lb-inspirationen-grid">
+            {INSPIRATIONEN.map((ins, i) => (
+              <button
+                key={i}
+                className="lb-inspiration-card"
+                onClick={() => inspiration(ins)}
+                type="button"
+              >
+                <span className="lb-inspiration-label">{ins.label}</span>
+                <span className="lb-inspiration-preview">{ins.was.slice(0, 80)}…</span>
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="lb-start-divider">
+          <span>oder selbst beschreiben</span>
+        </div>
+        <button
+          className="lb-btn-weiter aktiv"
+          onClick={() => setGestartet(true)}
+          type="button"
+        >
+          Eigene Idee eingeben →
         </button>
       </div>
     );
