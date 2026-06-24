@@ -610,7 +610,11 @@ p { color: var(--charcoal); }
 
 /* Zusammenarbeit page */
 .zusammenarbeit-partners { padding: 7rem var(--gutter); }
+.partners-grouped { display: flex; flex-direction: column; gap: 4rem; margin-top: 3rem; }
+.partners-group { }
+.partners-group-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--mineral); }
 .partners-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.partners-group .partners-grid { margin-top: 0; }
 .partner-card { display: flex; flex-direction: column; border: 1.5px solid var(--mineral); border-radius: var(--radius); overflow: hidden; transition: border-color var(--transition), transform var(--transition); }
 .partner-card[href]:hover { border-color: var(--terracotta); transform: translateY(-3px); }
 .partner-card[href]:hover .partner-card-header h3 { color: var(--terracotta); }
