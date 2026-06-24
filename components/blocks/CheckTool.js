@@ -1,138 +1,161 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const QUESTIONS = [
   {
-    axis: 'frustration',
-    question: 'Wie oft passt du Prozesse an deine Software an, statt umgekehrt?',
+    axis: 'clarity',
+    question: 'Wie klar ist dir, wo AI in deinem Kontext wirklich Hebel erzeugt?',
     options: [
-      { label: 'Selten. Die Tools passen gut zu uns.', value: 1 },
-      { label: 'Manchmal. Wir kommen zurecht.', value: 2 },
-      { label: 'Ständig. Wir bauen unsere Arbeit um die Software herum.', value: 3 },
+      { label: 'Sehr klar. Wir wissen genau, wo wir anfangen.', value: 1 },
+      { label: 'Eher unklar. Wir haben Ideen, aber keine Priorisierung.', value: 2 },
+      { label: 'Nicht klar. Wir wissen, dass wir etwas tun sollten — aber nicht was.', value: 3 },
     ],
   },
   {
-    axis: 'frustration',
-    question: 'Wie viele manuelle Umwege nutzt du wöchentlich? Excel, Copy-Paste, E-Mail statt System?',
+    axis: 'clarity',
+    question: 'Hast du bereits eine Entscheidungsgrundlage dafür, welche AI-Vorhaben sich lohnen?',
     options: [
-      { label: 'Kaum. Unsere Prozesse laufen digital durch.', value: 1 },
-      { label: 'Ein paar. Nichts Dramatisches.', value: 2 },
-      { label: 'Zu viele. Es kostet uns täglich wertvolle Zeit.', value: 3 },
+      { label: 'Ja. Wir haben klare Kriterien und Szenarien.', value: 1 },
+      { label: 'Teilweise. Einzelne Bereiche sind klar, andere nicht.', value: 2 },
+      { label: 'Nein. Wir entscheiden noch intuitiv oder nach Druck von aussen.', value: 3 },
     ],
   },
   {
-    axis: 'frustration',
-    question: 'Wie oft denkst du: «Das müsste eigentlich automatisch gehen»?',
+    axis: 'urgency',
+    question: 'Wie dringend ist das Thema AI für dein Unternehmen?',
     options: [
-      { label: 'Selten. Ich bin zufrieden.', value: 1 },
-      { label: 'Manchmal. Einzelne Dinge nerven.', value: 2 },
-      { label: 'Fast täglich', value: 3 },
+      { label: 'Wir beobachten aktiv, aber kein unmittelbarer Druck.', value: 1 },
+      { label: 'Es wird dringender. Erste Wettbewerber ziehen vorbei.', value: 2 },
+      { label: 'Sehr dringend. Wir müssen jetzt handeln.', value: 3 },
     ],
   },
   {
-    axis: 'fear',
-    question: 'Was ist deine grösste Sorge bei einer individuellen Softwarelösung?',
+    axis: 'urgency',
+    question: 'Was blockiert euch am stärksten beim Thema AI?',
     options: [
-      { label: 'Keine grossen Bedenken', value: 1 },
-      { label: 'Kosten und Dauer des Projekts', value: 2 },
-      { label: 'Abhängigkeit. Wer pflegt das danach?', value: 3 },
+      { label: 'Nichts Konkretes. Wir sind auf einem guten Weg.', value: 1 },
+      { label: 'Fehlende Klarheit: wir wissen nicht wo anfangen.', value: 2 },
+      { label: 'Fehlende Umsetzung: wir haben Ideen, aber keinen Weg dorthin.', value: 3 },
     ],
   },
   {
-    axis: 'fear',
-    question: 'Wie hoch schätzt du das Risiko eines Custom-Softwareprojekts ein?',
+    axis: 'maturity',
+    question: 'Habt ihr bereits AI-Lösungen im Einsatz oder in Entwicklung?',
     options: [
-      { label: 'Überschaubar. Mit dem richtigen Partner.', value: 1 },
-      { label: 'Mittel. Ich wäre vorsichtig.', value: 2 },
-      { label: 'Hoch. Wir hatten schon schlechte Erfahrungen.', value: 3 },
+      { label: 'Ja, mehrere. Wir wollen unsere bestehende Lösung verbessern.', value: 1 },
+      { label: 'Einen Prototyp oder Pilot. Aber es ist noch nichts Robustes.', value: 2 },
+      { label: 'Noch nichts. Wir stehen am Anfang.', value: 3 },
     ],
   },
   {
-    axis: 'fear',
-    question: 'Was blockiert dich am meisten, wenn du an eine eigene Lösung denkst?',
+    axis: 'maturity',
+    question: 'Was ist dein konkreter nächster Schritt?',
     options: [
-      { label: 'Nichts Konkretes. Ich bin offen.', value: 1 },
-      { label: 'Budget und interne Überzeugungsarbeit', value: 2 },
-      { label: 'Ich weiss nicht, ob wir dafür bereit sind', value: 3 },
+      { label: 'Bestehendes reviewen oder verbessern lassen.', value: 1 },
+      { label: 'Etwas Greifbares schnell bauen und testen.', value: 2 },
+      { label: 'Erst verstehen, was überhaupt Sinn macht.', value: 3 },
     ],
   },
 ];
 
+// Jedes Profil empfiehlt eine kenalu-Leistung
 const PROFILES = {
-  gefangene: {
-    name: 'Der Gefangene',
-    tagline: 'Du weisst, dass es besser gehen muss. Aber der nächste Schritt fühlt sich riskant an.',
-    description: 'Genau hier entsteht der grösste stille Schaden: der Frust wächst, aber die Angst vor Veränderung lähmt. Du brauchst keinen grossen Sprung. Sondern einen ersten, sicheren Schritt mit dem richtigen Partner.',
-    action: 'Lass uns gemeinsam schauen, was möglich ist.',
-    image: '/check/gefangene.png',
+  klarheit: {
+    name: 'Du brauchst Klarheit zuerst.',
+    service: '01 Klarheit',
+    tagline: 'Bevor Budget fliesst, sollte die Frage beantwortet sein: Wo lohnt AI wirklich?',
+    description:
+      'Du hast Interesse an AI — aber noch keine klare Grundlage für Entscheidungen. ' +
+      'Welche Use Cases sind relevant? Was ist technisch machbar, regulatorisch vertretbar, wirtschaftlich sinnvoll? ' +
+      'Genau das liefert kenalu Klarheit: eine ehrliche Einschätzung, bevor etwas gebaut wird.',
+    href: '/services#service-01',
   },
-  bereite: {
-    name: 'Der Bereite',
-    tagline: 'Du bist überzeugt. Du wartest auf den richtigen Partner.',
-    description: 'Der Schmerz mit Standardsoftware ist real, die Bereitschaft für etwas Eigenes ist da. Was fehlt, ist Vertrauen in die Umsetzung und Klarheit darüber, wo man anfängt. Genau das ist kenalus Terrain.',
-    action: 'Jetzt konkret werden.',
-    image: '/check/bereite.png',
+  rapidbuild: {
+    name: 'Du brauchst etwas Greifbares — schnell.',
+    service: '02 Rapid Build',
+    tagline: 'Die Richtung stimmt. Jetzt braucht es einen Beweis.',
+    description:
+      'Du weisst ungefähr, was gebaut werden soll — aber es fehlt etwas zum Anfassen, Testen, Zeigen. ' +
+      'Ein Prototyp oder funktionales MVP, das intern überzeugt und externe Entscheidungen vorbereitet. ' +
+      'kenalu Rapid Build liefert das in Tagen, nicht Wochen.',
+    href: '/services#service-02',
   },
-  vorsichtige: {
-    name: 'Der Vorsichtige',
-    tagline: 'Der Frust hält sich in Grenzen. Die Angst nicht.',
-    description: 'Aktuell ist der Leidensdruck noch nicht hoch genug. Aber wenn dein Unternehmen wächst, wächst der Druck mit. Es lohnt sich zu verstehen, wo deine Tools an Grenzen stossen. Bevor es dich überrascht.',
-    action: 'Früh verstehen, was sich ändert.',
-    image: '/check/vorsichtige.png',
+  produkt: {
+    name: 'Du bist bereit für das vollständige Produkt.',
+    service: '03 Produkt',
+    tagline: 'Klarheit ist da. Jetzt geht es ums Bauen — vollständig, ohne Übergaben.',
+    description:
+      'Du weisst, was du willst. Du hast Budget und Commitment. ' +
+      'Was jetzt zählt: ein Partner, der Discovery, Konzept, UX und Engineering nicht als separate Phasen behandelt — ' +
+      'sondern als einen integrierten Prozess, von der ersten Research bis zum fertigen Produkt.',
+    href: '/services#service-03',
   },
-  zufriedene: {
-    name: 'Der Zufriedene',
-    tagline: 'Du hast deine Tools im Griff. Das ist gut.',
-    description: 'Aktuell besteht kein dringender Handlungsbedarf. Aber die Welt ändert sich schnell. Besonders durch KI. Wenn du wissen willst, wo neue Möglichkeiten entstehen, ist kenalu ein guter Gesprächspartner.',
-    action: 'Zukunft besprechen.',
-    image: '/check/zufriedene.png',
+  urteil: {
+    name: 'Du brauchst ein unabhängiges Urteil.',
+    service: '04 Urteil',
+    tagline: 'Etwas ist gebaut. Die Frage ist: hält es wirklich, was es verspricht?',
+    description:
+      'Du hast eine AI-Lösung — intern oder extern entwickelt. ' +
+      'Jetzt willst du wissen, ob der Ansatz solide ist, ob das Ergebnis für echte Nutzer funktioniert ' +
+      'und welche Risiken unerkannt bleiben. kenalu Urteil gibt dir eine klare Einschätzung aus Bauerfahrung.',
+    href: '/services#service-04',
   },
 };
 
 function getProfile(answers) {
-  const frustration = [0, 1, 2].reduce((sum, i) => sum + (answers[i] || 0), 0);
-  const fear = [3, 4, 5].reduce((sum, i) => sum + (answers[i] || 0), 0);
+  // answers[0..1] → clarity (1=klar, 3=unklar)
+  // answers[2..3] → urgency (1=gering, 3=hoch)
+  // answers[4..5] → maturity (1=fortgeschritten, 3=anfang)
 
-  const highFrustration = frustration >= 6;
-  const highFear = fear >= 6;
+  const clarity  = answers[0] + answers[1];   // 2–6
+  const urgency  = answers[2] + answers[3];   // 2–6
+  const maturity = answers[4] + answers[5];   // 2–6
 
-  if (highFrustration && highFear) return PROFILES.gefangene;
-  if (highFrustration && !highFear) return PROFILES.bereite;
-  if (!highFrustration && highFear) return PROFILES.vorsichtige;
-  return PROFILES.zufriedene;
+  // Bestehendes reviewen → Urteil
+  if (answers[5] === 1) return PROFILES.urteil;
+
+  // Schnell was bauen → Rapid Build
+  if (answers[5] === 2 && clarity <= 4) return PROFILES.rapidbuild;
+
+  // Keine Klarheit → Klarheit
+  if (clarity >= 5) return PROFILES.klarheit;
+
+  // Urgency hoch + Maturity niedrig → Klarheit
+  if (urgency >= 5 && maturity >= 5) return PROFILES.klarheit;
+
+  // Bereit, Klarheit da → Produkt
+  if (clarity <= 3 && urgency >= 4) return PROFILES.produkt;
+
+  // Rapid Build als guter Default für "irgendwo in der Mitte"
+  return PROFILES.rapidbuild;
 }
 
 export default function CheckTool() {
-  const [phase, setPhase] = useState('intro');
+  const [phase, setPhase]   = useState('intro');
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [selected, setSelected] = useState(null);
   const [profile, setProfile] = useState(null);
-  const [email, setEmail] = useState('');
+  const [email, setEmail]   = useState('');
   const [emailSending, setEmailSending] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
 
-  const total = QUESTIONS.length;
-  const q = QUESTIONS[current];
+  const total    = QUESTIONS.length;
+  const q        = QUESTIONS[current];
   const progress = (current / total) * 100;
 
-  function start() {
-    setPhase('quiz');
-    setCurrent(0);
-    setAnswers([]);
-    setSelected(null);
-  }
+  const AXIS_LABELS = {
+    clarity:  'Orientierung',
+    urgency:  'Dringlichkeit',
+    maturity: 'Stand heute',
+  };
 
-  function selectOption(value) {
-    setSelected(value);
-  }
+  function start() { setPhase('quiz'); setCurrent(0); setAnswers([]); setSelected(null); }
 
   function next() {
     if (selected === null) return;
     const newAnswers = [...answers, selected];
-
     if (current + 1 >= total) {
       setAnswers(newAnswers);
       setProfile(getProfile(newAnswers));
@@ -145,14 +168,9 @@ export default function CheckTool() {
   }
 
   function restart() {
-    setPhase('intro');
-    setCurrent(0);
-    setAnswers([]);
-    setSelected(null);
-    setProfile(null);
-    setEmail('');
-    setEmailSent(false);
-    setEmailSending(false);
+    setPhase('intro'); setCurrent(0); setAnswers([]);
+    setSelected(null); setProfile(null);
+    setEmail(''); setEmailSent(false); setEmailSending(false);
   }
 
   async function submitEmail() {
@@ -165,13 +183,9 @@ export default function CheckTool() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: val, profile: profile?.name }),
       });
-      setEmailSent(true);
-    } catch {
-      // Stille Fehlerbehandlung – Success trotzdem zeigen
-      setEmailSent(true);
-    } finally {
-      setEmailSending(false);
-    }
+    } catch { /* stille Fehlerbehandlung */ }
+    setEmailSent(true);
+    setEmailSending(false);
   }
 
   /* ── Intro ──────────────────────────────────────────────── */
@@ -180,15 +194,17 @@ export default function CheckTool() {
       <main className="check-page">
         <section className="check-intro">
           <div className="check-intro-inner">
+            <p className="section-label">AI Readiness · 6 Fragen · 2 Minuten</p>
             <h1 className="check-intro-headline">
-              Wie hoch ist dein<br />Veränderungsdruck?
+              Wo stehst du<br />mit AI?
             </h1>
             <div className="check-intro-foot">
               <p className="check-intro-sub">
-                6 Fragen. 2 Minuten. Eine ehrliche Einschätzung: Wo stehst du zwischen dem Frust mit Standardsoftware und der Angst vor dem Schritt in etwas Eigenes?
+                Nicht jedes Unternehmen braucht dasselbe. Sechs Fragen — und du siehst,
+                welche kenalu-Leistung zu deiner Situation passt.
               </p>
               <button className="btn btn-primary check-start-btn" onClick={start}>
-                Jetzt einschätzen →
+                Einschätzung starten →
               </button>
             </div>
           </div>
@@ -208,10 +224,7 @@ export default function CheckTool() {
             </div>
             <p className="check-progress-label">{current + 1} / {total}</p>
 
-            <p className="check-axis-label">
-              {q.axis === 'frustration' ? 'Frust mit Standardsoftware' : 'Angst vor Custom Software'}
-            </p>
-
+            <p className="check-axis-label">{AXIS_LABELS[q.axis]}</p>
             <h2 className="check-question">{q.question}</h2>
 
             <div className="check-options">
@@ -219,7 +232,7 @@ export default function CheckTool() {
                 <button
                   key={opt.value}
                   className={`check-option${selected === opt.value ? ' selected' : ''}`}
-                  onClick={() => selectOption(opt.value)}
+                  onClick={() => setSelected(opt.value)}
                 >
                   {opt.label}
                 </button>
@@ -245,30 +258,25 @@ export default function CheckTool() {
       <main className="check-page">
         <section className="check-result">
           <div className="container">
-            <p className="section-label">Dein Profil</p>
+            <p className="section-label">Deine Einschätzung</p>
+
             <div className="check-profile-card">
-              {profile.image && (
-                <div className="check-profile-image">
-                  <Image
-                    src={profile.image}
-                    alt={profile.name}
-                    width={200}
-                    height={200}
-                    className="check-profile-img"
-                  />
-                </div>
-              )}
               <div className="check-profile-content">
                 <p className="check-profile-name">{profile.name}</p>
                 <p className="check-profile-tagline">{profile.tagline}</p>
                 <p className="check-profile-description">{profile.description}</p>
-                <p className="check-profile-action">{profile.action}</p>
+                <div className="check-service-badge">
+                  Passende Leistung: <strong>{profile.service}</strong>
+                </div>
               </div>
             </div>
 
             <div className="check-result-actions">
-              <Link href="/contact" className="btn btn-primary">
-                Gespräch starten →
+              <Link href={profile.href} className="btn btn-primary">
+                Leistung ansehen →
+              </Link>
+              <Link href="/contact" className="btn btn-secondary">
+                Direkt anfragen →
               </Link>
               <button className="check-restart-btn" onClick={restart}>
                 Nochmals machen
@@ -297,10 +305,10 @@ export default function CheckTool() {
                       {emailSending ? '…' : 'Senden →'}
                     </button>
                   </div>
-                  <p className="check-email-note">Kein Newsletter. Einmalige Mail mit deinem Profil.</p>
+                  <p className="check-email-note">Kein Newsletter. Einmalige Mail mit deiner Einschätzung.</p>
                 </>
               ) : (
-                <p className="check-email-sent">Danke. Du erhältst dein Profil in Kürze.</p>
+                <p className="check-email-sent">Danke. Du erhältst deine Einschätzung in Kürze.</p>
               )}
             </div>
           </div>

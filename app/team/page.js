@@ -1,7 +1,6 @@
 import StoryblokClient from 'storyblok-js-client';
 import TeamMemberTeaser from '../../components/blocks/TeamMemberTeaser';
 import TeamIntro from '../../components/blocks/TeamIntro';
-import FitTest from '../../components/blocks/FitTest';
 import Reveal from '../../components/Reveal';
 import Link from 'next/link';
 
@@ -9,7 +8,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: 'Team – kenalu',
-  description: 'Lerne Dirk und Stan kennen — die Menschen hinter kenalu. Stell Fragen, spiel ein Spiel, oder finde heraus, ob du zu uns passt.',
+  description: 'Lerne Dirk und Stan kennen — die Menschen hinter kenalu. Stell Fragen oder meld dich, wenn du dazugehören willst.',
 };
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
@@ -66,9 +65,28 @@ export default async function TeamPage() {
         <TeamIntro />
       </Reveal>
 
-      {/* Fit-Test */}
+      {/* Gesucht */}
       <Reveal>
-        <FitTest />
+        <section className="zusammenarbeit-open">
+          <div className="container zusammenarbeit-open-inner">
+            <p className="section-label">Gesucht</p>
+            <h2>Aussergewöhnlich gut in dem, was du tust?</h2>
+            <p>
+              kenalu wächst nicht durch Stellenausschreibungen. Es wächst durch Menschen,
+              die wirklich herausragen — auf ihrem Gebiet, mit Haltung, mit Anspruch.
+              {'\n\n'}
+              Wir suchen keine Generalisten und keine Verfügbaren. Wir suchen Menschen,
+              bei denen wir keine Sekunde zögern würden, sie einem Kunden vorzustellen.
+              Als UX-Experte, AI-Engineer, Branchenkenner oder strategischer Kopf —
+              ob projektbasiert, dauerhaft oder irgendwas dazwischen: Das entscheiden wir gemeinsam.
+              {'\n\n'}
+              Wenn du dich darin erkennst: meld dich. Formlos.
+            </p>
+            <a href="/contact" className="btn btn-light">
+              Meld dich <span className="arrow">→</span>
+            </a>
+          </div>
+        </section>
       </Reveal>
 
       {/* CTA */}

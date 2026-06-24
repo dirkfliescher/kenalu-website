@@ -267,7 +267,7 @@ p { color: var(--charcoal); }
 .footer-built a { color: var(--stone); text-decoration: none; transition: color var(--transition); }
 .footer-built a:hover { color: var(--ivory); }
 .experience-wall { padding: 6rem var(--gutter); background: var(--mineral); }
-.experience-wall-note { font-size: 0.85rem; color: var(--stone); line-height: 1.6; max-width: 640px; margin-bottom: 3rem; }
+.experience-wall-note { font-size: 0.9rem; color: var(--stone); line-height: 1.7; max-width: 640px; margin-bottom: 3rem; padding: 1rem 1.25rem; background: var(--ivory); border-left: 3px solid var(--sage); border-radius: 0 var(--radius) var(--radius) 0; }
 .experience-wall-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-top: 2.5rem; }
 .experience-logo-item { display: flex; align-items: center; justify-content: center; width: 160px; height: 72px; padding: 1rem 1.5rem; background: var(--ivory); border-radius: var(--radius); border: 1.5px solid var(--softline); overflow: hidden; transition: border-color var(--transition); flex-shrink: 0; }
 .experience-logo-item:hover { border-color: var(--sage); }
@@ -2408,6 +2408,22 @@ p { color: var(--charcoal); }
   font-size: 0.9rem;
   font-weight: 600;
   color: white;
+}
+
+.check-service-badge {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(203, 101, 76, 0.15);
+  border: 1px solid rgba(203, 101, 76, 0.4);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.check-service-badge strong {
+  color: white;
+  font-weight: 700;
 }
 
 .check-result-actions {
