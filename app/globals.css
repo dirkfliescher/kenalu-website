@@ -667,6 +667,7 @@ p { color: var(--charcoal); }
 }
 @media (max-width: 640px) {
   .partners-grid, .team-grid { grid-template-columns: 1fr; }
+  .about-team .team-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Contact ────────────────────────────────────────────────────── */
