@@ -2,7 +2,7 @@
 
 // Fallback-Daten falls noch kein Storyblok-Content vorhanden
 const FALLBACK = [
-  { number: '01', headline: 'Software, die passt', body: 'Kein Kompromiss mehr. Kein Anpassen an ein System, das nicht für euch gebaut wurde. Sondern genau das, was gebraucht wird.', area: 'Fit' },
+  { number: '01', headline: 'Software, die passt', body: 'Kein Kompromiss mehr. Kein Anpassen an ein System, das nicht für dich gebaut wurde. Sondern genau das, was gebraucht wird.', area: 'Fit' },
   { number: '02', headline: 'Teams, die entlastet sind', body: 'Intelligente Workflows, die repetitive Aufgaben übernehmen. Mehr Zeit für das, was Menschen wirklich gut können.', area: 'Intern' },
   { number: '03', headline: 'Kunden, die besser geführt werden', body: 'Experiences, die verstehen und führen. Nicht Oberflächen, die einfach vorhanden sind. Das ist der Unterschied.', area: 'Kunde' },
   { number: '04', headline: 'Lösungen, die wachsen', body: 'Enterprise-ready von Tag 1. Skalierbar, integrierbar, wartbar. Gebaut für echte Anforderungen, nicht für den Demo-Tag.', area: 'Scale' },
