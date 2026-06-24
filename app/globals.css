@@ -2631,21 +2631,22 @@ p { color: var(--charcoal); }
   padding: 6rem 0;
   position: relative;
   overflow: hidden;
+  /* Stacking context nötig damit overflow:hidden abs. Kinder wirklich clippt */
+  isolation: isolate;
 }
 
 /* Profilnamen als Hintergrundrauschen */
 .check-teaser-ambient {
   position: absolute;
-  top: 50%;
-  left: -2rem;
-  right: -2rem;
-  transform: translateY(-50%);
+  inset: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
   font-family: var(--font-headline);
   font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   white-space: nowrap;
-  overflow: hidden;
   color: rgba(255, 255, 255, 0.04);
   pointer-events: none;
   user-select: none;

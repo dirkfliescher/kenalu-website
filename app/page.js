@@ -1,3 +1,4 @@
+import React from 'react';
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../components/DynamicBlock';
 import Reveal from '../components/Reveal';
@@ -42,27 +43,28 @@ export default async function Home() {
   const body = content?.body || [];
   const latestArticles = await getLatestArticles();
 
-  // Hero (erstes Block) vom Rest trennen, damit HomeChat direkt danach erscheint
-  const [heroBlock, ...restBlocks] = body;
+  // Kai erscheint nach dem "Das Problem"-Block (provocation), nicht direkt nach Hero
+  const provocationIdx = body.findIndex((b) => b.component === 'provocation');
+  const insertAfter = provocationIdx !== -1 ? provocationIdx : 0;
 
   return (
     <>
-      {/* Hero */}
-      {heroBlock && <DynamicBlock key={heroBlock._uid} blok={heroBlock} />}
+      {/* Alle Storyblok-Blöcke — Kai wird nach provocation eingeschoben */}
+      {body.map((blok, idx) => {
+        const block = blok.component === 'thinking_section' ? (
+          <Reveal key={blok._uid}>
+            <ThinkingSection blok={blok} articles={latestArticles} />
+          </Reveal>
+        ) : (
+          <DynamicBlock key={blok._uid} blok={blok} />
+        );
 
-      {/* Intelligenter Einstieg – direkt unter dem Hero */}
-      <HomeChat />
-
-      {/* Alle weiteren Storyblok-Blöcke (inkl. outcomes_section) */}
-      {restBlocks.map((blok) => {
-        if (blok.component === 'thinking_section') {
-          return (
-            <Reveal key={blok._uid}>
-              <ThinkingSection blok={blok} articles={latestArticles} />
-            </Reveal>
-          );
-        }
-        return <DynamicBlock key={blok._uid} blok={blok} />;
+        return (
+          <React.Fragment key={blok._uid}>
+            {block}
+            {idx === insertAfter && <HomeChat />}
+          </React.Fragment>
+        );
       })}
 
       {/* Selbstcheck-Teaser */}
