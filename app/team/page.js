@@ -1,6 +1,7 @@
 import StoryblokClient from 'storyblok-js-client';
 import TeamMemberTeaser from '../../components/blocks/TeamMemberTeaser';
 import TeamIntro from '../../components/blocks/TeamIntro';
+import FitTest from '../../components/blocks/FitTest';
 import Reveal from '../../components/Reveal';
 import Link from 'next/link';
 
@@ -87,6 +88,11 @@ export default async function TeamPage() {
             </a>
           </div>
         </section>
+      </Reveal>
+
+      {/* Fit-Test */}
+      <Reveal>
+        <FitTest />
       </Reveal>
 
       {/* CTA */}
