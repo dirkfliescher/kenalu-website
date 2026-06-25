@@ -9,6 +9,8 @@ const ALL_PATHS = [
   '/lab',
   '/insights',
   '/contact',
+  '/impressum',
+  '/datenschutz',
 ];
 
 export async function POST(req) {
