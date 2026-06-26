@@ -323,6 +323,10 @@ export default function HomeChat() {
             ↺ Gespräch zurücksetzen
           </button>
         )}
+
+        <p className="hc-disclaimer">
+          Keine vertraulichen Informationen eingeben. Kai läuft über OpenAI.
+        </p>
       </div>
     </section>
   );
