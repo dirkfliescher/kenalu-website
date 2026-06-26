@@ -3839,6 +3839,7 @@ p { color: var(--charcoal); }
   background: var(--surface);
   text-decoration: none;
   color: var(--text);
+  text-align: left;
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 
@@ -3917,6 +3918,7 @@ p { color: var(--charcoal); }
   padding-top: 0.75rem;
   border-top: 1px solid var(--border);
   line-height: 1.4;
+  text-align: left;
 }
 
 .svc-compare-not span {

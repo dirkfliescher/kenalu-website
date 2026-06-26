@@ -19,6 +19,7 @@ import ZusammenarbeitOpen from './blocks/ZusammenarbeitOpen';
 import ExperienceWall from './blocks/ExperienceWall';
 import ContactSection from './blocks/ContactSection';
 import OutcomesSection from './blocks/OutcomesSection';
+import ServicesCompare from './blocks/ServicesCompare';
 
 const Components = {
   hero: Hero,
@@ -41,6 +42,7 @@ const Components = {
   experience_wall: ExperienceWall,
   contact_section: ContactSection,
   outcomes_section: OutcomesSection,
+  services_compare: ServicesCompare,
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist

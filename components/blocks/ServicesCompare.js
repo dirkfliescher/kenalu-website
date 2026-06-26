@@ -11,7 +11,6 @@ const SERVICES = [
       'Du willst vor einer Investition die richtige Richtung kennen',
       'Du brauchst eine fundierte Entscheidungsgrundlage',
     ],
-    not: 'Wenn du bereits eine klare Idee hast und etwas bauen willst',
   },
   {
     number: '02',
@@ -23,7 +22,6 @@ const SERVICES = [
       'Du willst intern zeigen, was möglich ist — bevor du gross investierst',
       'Du brauchst ein MVP, das funktioniert — nicht poliert, aber echt',
     ],
-    not: 'Wenn das Ziel direkt ein produktionsreifes System ist',
   },
   {
     number: '03',
@@ -35,7 +33,6 @@ const SERVICES = [
       'Du hast Klarheit über Ziel und Zielgruppe',
       'Du bist bereit, in mehreren Iterationen zu denken',
     ],
-    not: 'Wenn das Ziel noch unklar ist — dann zuerst Klarheit',
   },
   {
     number: '04',
@@ -47,7 +44,6 @@ const SERVICES = [
       'Du vertraust dem Lieferanten nicht blind und willst eine zweite Stimme',
       'Du brauchst jemanden, der klar sagt, was er sieht',
     ],
-    not: 'Wenn du Umsetzungsunterstützung brauchst — dann eher Klarheit oder Produkt',
   },
 ];
 
@@ -72,9 +68,6 @@ export default function ServicesCompare() {
                   ))}
                 </ul>
               </div>
-              <p className="svc-compare-not">
-                <span>Eher nicht wenn:</span> {svc.not}
-              </p>
               <span className="svc-compare-link">Mehr erfahren →</span>
             </Link>
           ))}

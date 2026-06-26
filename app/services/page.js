@@ -1,7 +1,6 @@
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../components/DynamicBlock';
 import ServicesFinder from '../../components/blocks/ServicesFinder';
-import ServicesCompare from '../../components/blocks/ServicesCompare';
 import Reveal from '../../components/Reveal';
 
 export const revalidate = 60;
@@ -33,11 +32,6 @@ export default async function Services() {
       {/* Kai – Leistungsfinder */}
       <Reveal>
         <ServicesFinder />
-      </Reveal>
-
-      {/* Übersichtstabelle: Wann welche Leistung? */}
-      <Reveal>
-        <ServicesCompare />
       </Reveal>
 
       {restBlocks.map((blok) => (
