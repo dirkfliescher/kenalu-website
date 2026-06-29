@@ -20,6 +20,9 @@ import ExperienceWall from './blocks/ExperienceWall';
 import ContactSection from './blocks/ContactSection';
 import OutcomesSection from './blocks/OutcomesSection';
 import ServicesCompare from './blocks/ServicesCompare';
+import ServiceEntryGrid from './blocks/ServiceEntryGrid';
+import AssistantCallout from './blocks/AssistantCallout';
+import WorkingPrinciples from './blocks/WorkingPrinciples';
 
 const Components = {
   hero: Hero,
@@ -43,6 +46,9 @@ const Components = {
   contact_section: ContactSection,
   outcomes_section: OutcomesSection,
   services_compare: ServicesCompare,
+  service_entry_grid: ServiceEntryGrid,
+  assistant_callout: AssistantCallout,
+  working_principles: WorkingPrinciples,
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist

@@ -4080,3 +4080,354 @@ p { color: var(--charcoal); }
     gap: 1.5rem;
   }
 }
+
+/* ── Service Entry Grid (seg-*) ─────────────────────────────────── */
+.seg-section {
+  padding: 8rem var(--gutter);
+  background: var(--charcoal);
+}
+
+.seg-header {
+  margin-bottom: 3.5rem;
+}
+
+.seg-section .section-label {
+  color: var(--sage);
+}
+
+.seg-headline {
+  color: var(--ivory);
+  margin-top: 0.5rem;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.seg-intro {
+  color: var(--softline);
+  font-size: 1.05rem;
+  margin-top: 1rem;
+  line-height: 1.65;
+  max-width: 560px;
+}
+
+.seg-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.seg-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 2rem 2.25rem 2rem;
+  text-decoration: none;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  min-height: 280px;
+}
+
+.seg-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--terracotta);
+  transform: translateY(-3px);
+}
+
+.seg-card:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
+}
+
+.seg-card-top {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.seg-card-num {
+  font-family: var(--font-headline);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--terracotta);
+  letter-spacing: 0.08em;
+}
+
+.seg-card-label {
+  font-family: var(--font-headline);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.seg-card-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--ivory);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.9rem;
+}
+
+.seg-card-text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.seg-card-cta {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--sage);
+  letter-spacing: 0.02em;
+  transition: color var(--transition);
+  margin-top: auto;
+}
+
+.seg-card:hover .seg-card-cta {
+  color: var(--terracotta);
+}
+
+@media (max-width: 768px) {
+  .seg-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .seg-section { padding-top: 5rem; padding-bottom: 5rem; }
+  .seg-card { min-height: auto; padding: 1.5rem 1.75rem; }
+}
+
+/* ── Assistant Callout (ac-*) ───────────────────────────────────── */
+.ac-section {
+  padding: 5rem var(--gutter);
+  background: var(--mineral);
+}
+
+.ac-card {
+  max-width: 640px;
+}
+
+.ac-eyebrow {
+  color: var(--stone);
+}
+
+.ac-headline {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--charcoal);
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ac-text {
+  font-size: 1rem;
+  color: var(--stone);
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
+  max-width: 480px;
+}
+
+.ac-btn {
+  font-size: 0.95rem;
+}
+
+.ac-notice {
+  margin-top: 1.25rem;
+  font-size: 0.78rem;
+  color: var(--stone);
+  line-height: 1.5;
+  max-width: 420px;
+}
+
+@media (max-width: 640px) {
+  .ac-section { padding-top: 4rem; padding-bottom: 4rem; }
+}
+
+/* ── Working Principles (wp-*) ──────────────────────────────────── */
+.wp-section {
+  padding: 8rem var(--gutter);
+  background: var(--ivory);
+}
+
+.wp-header {
+  max-width: 700px;
+  margin-bottom: 3.5rem;
+}
+
+.wp-headline {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--charcoal);
+  margin-top: 0.5rem;
+}
+
+.wp-intro {
+  font-size: 1rem;
+  color: var(--stone);
+  line-height: 1.7;
+  margin-top: 1.25rem;
+}
+
+.wp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.wp-card {
+  padding: 2rem;
+  background: var(--mineral);
+  border-radius: 12px;
+}
+
+.wp-card-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--charcoal);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.wp-card-text {
+  font-size: 0.9rem;
+  color: var(--stone);
+  line-height: 1.7;
+}
+
+.wp-link {
+  margin-top: 3rem;
+}
+
+.wp-link .link-arrow {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ocean);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.wp-link .link-arrow:hover {
+  color: var(--terracotta);
+}
+
+@media (max-width: 900px) {
+  .wp-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .wp-section { padding-top: 5rem; padding-bottom: 5rem; }
+  .wp-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .wp-card { padding: 1.5rem; }
+}
+
+/* ── Service Detail Page (sdp-*) ────────────────────────────────── */
+.sdp-hero {
+  padding: 9rem var(--gutter) 5rem;
+  background: var(--charcoal);
+  color: var(--ivory);
+}
+
+.sdp-hero .section-label {
+  color: var(--sage);
+  margin-bottom: 1.25rem;
+}
+
+.sdp-hero h1 {
+  color: var(--ivory);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  max-width: 800px;
+  margin-bottom: 1.75rem;
+}
+
+.sdp-hero-intro {
+  font-size: clamp(1rem, 1.8vw, 1.1rem);
+  color: var(--softline);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* Fit + Outcome sections */
+.sdp-section {
+  padding: 6rem var(--gutter);
+}
+
+.sdp-section:nth-child(even) {
+  background: var(--mineral);
+}
+
+.sdp-section:nth-child(odd) {
+  background: var(--ivory);
+}
+
+.sdp-section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 2rem;
+}
+
+.sdp-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 640px;
+}
+
+.sdp-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1rem;
+  color: var(--charcoal);
+  line-height: 1.65;
+}
+
+.sdp-point::before {
+  content: '→';
+  color: var(--terracotta);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.05em;
+}
+
+/* Approach section */
+.sdp-approach {
+  padding: 6rem var(--gutter);
+  background: var(--charcoal);
+  color: var(--ivory);
+}
+
+.sdp-approach .sdp-section-title {
+  color: var(--sage);
+}
+
+.sdp-approach-text {
+  font-size: 1rem;
+  color: var(--softline);
+  line-height: 1.75;
+  max-width: 620px;
+}
+
+@media (max-width: 640px) {
+  .sdp-hero { padding-top: 6rem; padding-bottom: 3.5rem; }
+  .sdp-section { padding-top: 4rem; padding-bottom: 4rem; }
+  .sdp-approach { padding-top: 4rem; padding-bottom: 4rem; }
+}
