@@ -38,7 +38,6 @@ export default async function UrteilPage() {
   if (!c) return null;
   return (
     <ServiceDetailPage
-      eyebrow={c.eyebrow}
       headline={c.headline}
       intro={c.intro}
       fitPoints={c.fit_points?.map(p => p.text) || []}
@@ -46,8 +45,11 @@ export default async function UrteilPage() {
       outcomePoints={c.outcome_points?.map(p => p.text) || []}
       ctaLabel={c.cta_label}
       serviceName="Urteil"
+      serviceKicker="Einschätzung"
+      processMeta="1–2 Wochen"
+      serviceIndex={4}
       servicePrompts={[
-        'Wie unabhängig ist das Urteil wirklich?',
+        'Was genau analysiert ihr — und was nicht?',
         'Wir haben ein laufendes Projekt, das wir einschätzen lassen wollen.',
         'Was passiert, wenn das Urteil negativ ausfällt?',
       ]}

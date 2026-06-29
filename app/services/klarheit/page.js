@@ -38,7 +38,6 @@ export default async function KlarheitPage() {
   if (!c) return null;
   return (
     <ServiceDetailPage
-      eyebrow={c.eyebrow}
       headline={c.headline}
       intro={c.intro}
       fitPoints={c.fit_points?.map(p => p.text) || []}
@@ -46,10 +45,13 @@ export default async function KlarheitPage() {
       outcomePoints={c.outcome_points?.map(p => p.text) || []}
       ctaLabel={c.cta_label}
       serviceName="Klarheit"
+      serviceKicker="Discovery"
+      processMeta="4–8 Tage"
+      serviceIndex={1}
       servicePrompts={[
-        'Wie läuft so ein Klarheits-Prozess ab?',
+        'Was entsteht am Ende des Prozesses konkret?',
         'Wir stehen vor einer Richtungsentscheidung und kommen nicht weiter.',
-        'Wie lange dauert das ungefähr?',
+        'Ab wann macht Klarheit Sinn — haben wir zu früh oder zu spät gefragt?',
       ]}
     />
   );

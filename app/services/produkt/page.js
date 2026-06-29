@@ -38,7 +38,6 @@ export default async function ProduktPage() {
   if (!c) return null;
   return (
     <ServiceDetailPage
-      eyebrow={c.eyebrow}
       headline={c.headline}
       intro={c.intro}
       fitPoints={c.fit_points?.map(p => p.text) || []}
@@ -46,10 +45,13 @@ export default async function ProduktPage() {
       outcomePoints={c.outcome_points?.map(p => p.text) || []}
       ctaLabel={c.cta_label}
       serviceName="AI-Produkt"
+      serviceKicker="Produktentwicklung"
+      processMeta="Individuell"
+      serviceIndex={3}
       servicePrompts={[
-        'Ab wann lohnt sich ein eigenes AI-Produkt?',
-        'Was unterscheidet das von Standardsoftware oder SaaS-Lösungen?',
-        'Wie geht ihr mit bestehenden Systemen und Schnittstellen um?',
+        'Ab wann lohnt sich ein eigenes AI-Produkt gegenüber einer Standardlösung?',
+        'Wir haben eine Idee — wie schnell könnten wir etwas in Händen halten?',
+        'Wie geht ihr mit bestehenden Systemen und Daten um?',
       ]}
     />
   );

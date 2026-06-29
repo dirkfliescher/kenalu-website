@@ -2,20 +2,21 @@ import Link from 'next/link';
 import ServiceChat from './ServiceChat';
 
 /**
- * Shared template for all 4 service detail pages.
+ * Service Detail Page — v3
  * Props:
- *   eyebrow        – small label above H1, e.g. "Leistung 01"
- *   headline       – H1
- *   intro          – lead paragraph
- *   fitPoints      – Array<string>   "Passt für euch, wenn…"
- *   storyText      – String          Narrative Fliesstext (Absätze mit \n\n)
- *   outcomePoints  – Array<string>   "Was ihr bekommt"
- *   ctaLabel       – Button label
- *   serviceName    – String for ServiceChat context (e.g. "Klarheit")
- *   servicePrompts – Array<string> starter prompts for ServiceChat
+ *   headline       – H1, aus Storyblok
+ *   intro          – Lead-Text, aus Storyblok
+ *   fitPoints      – Array<string>, aus Storyblok
+ *   storyText      – String, Situationsvignette (Absätze mit \n\n), aus Storyblok
+ *   outcomePoints  – Array<string>, aus Storyblok
+ *   ctaLabel       – Button-Label, aus Storyblok
+ *   serviceName    – Kontext für Kai, hardcoded in page.js
+ *   servicePrompts – Starter-Prompts für Kai, hardcoded in page.js
+ *   serviceKicker  – Kurzes Kategorie-Label (ersetzt "Leistung 01"), hardcoded in page.js
+ *   processMeta    – Zeitrahmen z.B. "2 Wochen", hardcoded in page.js
+ *   serviceIndex   – Ziffer für dekoratives Hintergrund-Element (1–4), hardcoded in page.js
  */
 export default function ServiceDetailPage({
-  eyebrow,
   headline,
   intro,
   fitPoints = [],
@@ -24,94 +25,81 @@ export default function ServiceDetailPage({
   ctaLabel = 'Gespräch anfragen',
   serviceName = '',
   servicePrompts = [],
+  serviceKicker = '',
+  processMeta = '',
+  serviceIndex = '',
 }) {
   const storyParagraphs = storyText
-    ? storyText.split('\n\n').map((p) => p.trim()).filter(Boolean)
+    ? storyText.split('\n\n').map(p => p.trim()).filter(Boolean)
     : [];
 
-  // Grosse Zahl aus Eyebrow extrahieren (z.B. "Leistung 01" → "01")
-  const heroNumber = eyebrow ? eyebrow.replace(/[^0-9]/g, '') : '';
+  const numDisplay = serviceIndex ? String(serviceIndex).padStart(2, '0') : '';
 
   return (
     <div>
       {/* ── Hero ────────────────────────────────────────────────────── */}
       <section className="sdp-hero">
-        {heroNumber && (
-          <span className="sdp-hero-number" aria-hidden="true">{heroNumber}</span>
+        {numDisplay && (
+          <span className="sdp-hero-num" aria-hidden="true">{numDisplay}</span>
         )}
-        <div className="container sdp-hero-content">
-          <div className="sdp-hero-grid">
-            <div className="sdp-hero-main">
-              {eyebrow && <p className="section-label sdp-hero-eyebrow">{eyebrow}</p>}
-              <h1>{headline}</h1>
+        <div className="container sdp-hero-inner">
+          {serviceKicker && <p className="sdp-kicker">{serviceKicker}</p>}
+          <h1 className="sdp-headline">{headline}</h1>
+          {(intro || processMeta) && (
+            <div className="sdp-hero-foot">
+              {intro && <p className="sdp-intro">{intro}</p>}
+              {processMeta && (
+                <div className="sdp-process-meta">
+                  <span className="sdp-process-meta-label">Rahmen</span>
+                  <span className="sdp-process-meta-value">{processMeta}</span>
+                </div>
+              )}
             </div>
-            {intro && (
-              <div className="sdp-hero-aside">
-                <p className="sdp-hero-intro">{intro}</p>
-              </div>
-            )}
-          </div>
+          )}
         </div>
       </section>
 
-      {/* ── Fit ─────────────────────────────────────────────────────── */}
-      {fitPoints.length > 0 && (
-        <section className="sdp-fit">
-          <div className="container">
-            <div className="sdp-fit-layout">
-              <div className="sdp-fit-sidebar">
-                <p className="sdp-section-label">Passt für euch, wenn…</p>
+      {/* ── Substance: Was entsteht + Passt für euch ────────────────── */}
+      {(outcomePoints.length > 0 || fitPoints.length > 0) && (
+        <section className="sdp-substance">
+          <div className="container sdp-substance-grid">
+            {outcomePoints.length > 0 && (
+              <div className="sdp-col">
+                <p className="sdp-col-label">Was entsteht</p>
+                <ul className="sdp-outcomes">
+                  {outcomePoints.map((point, i) => (
+                    <li key={i} className="sdp-outcome">{point}</li>
+                  ))}
+                </ul>
               </div>
-              <div className="sdp-fit-list">
-                {fitPoints.map((point, i) => (
-                  <div key={i} className="sdp-fit-item">
-                    <p className="sdp-fit-text">{point}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ── Story ───────────────────────────────────────────────────── */}
-      {storyParagraphs.length > 0 && (
-        <section className="sdp-story">
-          <div className="container">
-            <p className="sdp-story-pullquote">{storyParagraphs[0]}</p>
-          </div>
-          {storyParagraphs.length > 1 && (
-            <div className="container">
-              <div className="sdp-story-body-grid">
-                <div className="sdp-story-label-col">
-                  <p className="sdp-section-label sdp-section-label--light">So könnte es aussehen</p>
-                </div>
-                <div className="sdp-story-text-col">
-                  {storyParagraphs.slice(1).map((para, i) => (
-                    <p key={i}>{para}</p>
+            )}
+            {fitPoints.length > 0 && (
+              <div className={`sdp-col${outcomePoints.length > 0 ? ' sdp-col--divided' : ''}`}>
+                <p className="sdp-col-label">Passt für euch, wenn…</p>
+                <div className="sdp-fit">
+                  {fitPoints.map((point, i) => (
+                    <p key={i} className="sdp-fit-item">{point}</p>
                   ))}
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </section>
       )}
 
-      {/* ── Outcomes ────────────────────────────────────────────────── */}
-      {outcomePoints.length > 0 && (
-        <section className="sdp-outcomes">
+      {/* ── Situation ───────────────────────────────────────────────── */}
+      {storyParagraphs.length > 0 && (
+        <section className="sdp-story">
           <div className="container">
-            <p className="sdp-section-label">Was ihr bekommt</p>
-            <div className="sdp-outcome-grid">
-              {outcomePoints.map((point, i) => (
-                <div key={i} className="sdp-outcome-card">
-                  <span className="sdp-outcome-num">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <p className="sdp-outcome-text">{point}</p>
-                </div>
-              ))}
-            </div>
+            <p className="sdp-col-label sdp-col-label--light">Eine Situation</p>
+            <p className="sdp-story-lead">{storyParagraphs[0]}</p>
+            {storyParagraphs.length > 1 && (
+              <div className="sdp-story-rest">
+                {storyParagraphs.slice(1).map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       )}

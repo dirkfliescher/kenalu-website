@@ -38,7 +38,6 @@ export default async function RapidBuildPage() {
   if (!c) return null;
   return (
     <ServiceDetailPage
-      eyebrow={c.eyebrow}
       headline={c.headline}
       intro={c.intro}
       fitPoints={c.fit_points?.map(p => p.text) || []}
@@ -46,10 +45,13 @@ export default async function RapidBuildPage() {
       outcomePoints={c.outcome_points?.map(p => p.text) || []}
       ctaLabel={c.cta_label}
       serviceName="Rapid Build"
+      serviceKicker="Prototyping"
+      processMeta="2 Wochen"
+      serviceIndex={2}
       servicePrompts={[
-        'Was genau entsteht in einem Rapid Build?',
+        'Was genau entsteht in 2 Wochen?',
         'Wir haben eine Idee, aber noch keine klaren Anforderungen.',
-        'Was passiert nach dem Prototyp?',
+        'Welche technischen Voraussetzungen braucht ihr von uns?',
       ]}
     />
   );
