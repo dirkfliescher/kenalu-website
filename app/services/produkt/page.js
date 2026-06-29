@@ -45,6 +45,12 @@ export default async function ProduktPage() {
       storyText={c.story_text}
       outcomePoints={c.outcome_points?.map(p => p.text) || []}
       ctaLabel={c.cta_label}
+      serviceName="AI-Produkt"
+      servicePrompts={[
+        'Ab wann lohnt sich ein eigenes AI-Produkt?',
+        'Was unterscheidet das von Standardsoftware oder SaaS-Lösungen?',
+        'Wie geht ihr mit bestehenden Systemen und Schnittstellen um?',
+      ]}
     />
   );
 }

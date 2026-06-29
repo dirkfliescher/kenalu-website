@@ -45,6 +45,12 @@ export default async function KlarheitPage() {
       storyText={c.story_text}
       outcomePoints={c.outcome_points?.map(p => p.text) || []}
       ctaLabel={c.cta_label}
+      serviceName="Klarheit"
+      servicePrompts={[
+        'Wie läuft so ein Klarheits-Prozess ab?',
+        'Wir stehen vor einer Richtungsentscheidung und kommen nicht weiter.',
+        'Wie lange dauert das ungefähr?',
+      ]}
     />
   );
 }

@@ -45,6 +45,12 @@ export default async function RapidBuildPage() {
       storyText={c.story_text}
       outcomePoints={c.outcome_points?.map(p => p.text) || []}
       ctaLabel={c.cta_label}
+      serviceName="Rapid Build"
+      servicePrompts={[
+        'Was genau entsteht in einem Rapid Build?',
+        'Wir haben eine Idee, aber noch keine klaren Anforderungen.',
+        'Was passiert nach dem Prototyp?',
+      ]}
     />
   );
 }

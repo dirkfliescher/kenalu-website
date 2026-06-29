@@ -4333,103 +4333,199 @@ p { color: var(--charcoal); }
 }
 
 /* ── Service Detail Page (sdp-*) ────────────────────────────────── */
+
+/* Hero */
 .sdp-hero {
-  padding: 9rem var(--gutter) 5rem;
+  position: relative;
+  overflow: hidden;
+  padding: 10rem var(--gutter) 6rem;
   background: var(--charcoal);
   color: var(--ivory);
 }
 
-.sdp-hero .section-label {
-  color: var(--sage);
-  margin-bottom: 1.25rem;
+.sdp-hero-number {
+  position: absolute;
+  right: -0.05em;
+  top: 50%;
+  transform: translateY(-55%);
+  font-size: clamp(12rem, 20vw, 20rem);
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.04);
+  letter-spacing: -0.06em;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-headline);
+}
+
+.sdp-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.sdp-hero-eyebrow {
+  color: var(--sage) !important;
+  margin-bottom: 1.5rem;
 }
 
 .sdp-hero h1 {
   color: var(--ivory);
-  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
   font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.08;
-  max-width: 800px;
-  margin-bottom: 1.75rem;
+  letter-spacing: -0.045em;
+  line-height: 1.06;
+  max-width: 820px;
+  margin-bottom: 2rem;
 }
 
 .sdp-hero-intro {
   font-size: clamp(1rem, 1.8vw, 1.1rem);
   color: var(--softline);
   max-width: 560px;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
-/* Fit + Outcome sections */
-.sdp-section {
+/* Shared section label */
+.sdp-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 2.5rem;
+}
+
+.sdp-section-label--light {
+  color: var(--sage);
+}
+
+/* Fit section */
+.sdp-fit {
   padding: 6rem var(--gutter);
-}
-
-.sdp-section:nth-child(even) {
-  background: var(--mineral);
-}
-
-.sdp-section:nth-child(odd) {
   background: var(--ivory);
 }
 
-.sdp-section-title {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--terracotta);
-  margin-bottom: 2rem;
+.sdp-fit-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 660px;
 }
 
-.sdp-points {
-  list-style: none;
+.sdp-fit-item {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.sdp-fit-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.sdp-fit-num {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--terracotta);
+  padding-top: 0.3em;
+}
+
+.sdp-fit-text {
+  font-size: 1.05rem;
+  color: var(--charcoal);
+  line-height: 1.68;
+}
+
+/* Story section */
+.sdp-story {
+  padding: 7rem var(--gutter);
+  background: var(--charcoal);
+}
+
+.sdp-story-inner {
+  max-width: 660px;
+  padding-left: 2rem;
+  border-left: 3px solid var(--terracotta);
+}
+
+.sdp-story-lede {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: var(--ivory);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.sdp-story-body {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  max-width: 640px;
 }
 
-.sdp-point {
+.sdp-story-body p {
+  font-size: 1rem;
+  color: var(--softline);
+  line-height: 1.8;
+}
+
+/* Outcomes section */
+.sdp-outcomes {
+  padding: 6rem var(--gutter);
+  background: var(--mineral);
+}
+
+.sdp-outcome-list {
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+  flex-direction: column;
+  max-width: 660px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sdp-outcome-item {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  align-items: start;
+}
+
+.sdp-outcome-num {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--terracotta);
+  letter-spacing: -0.04em;
+  font-family: var(--font-headline);
+  line-height: 1;
+  padding-top: 0.1em;
+}
+
+.sdp-outcome-text {
   font-size: 1rem;
   color: var(--charcoal);
   line-height: 1.65;
 }
 
-.sdp-point::before {
-  content: '→';
-  color: var(--terracotta);
-  font-weight: 700;
-  flex-shrink: 0;
-  margin-top: 0.05em;
-}
-
-/* Approach section */
-.sdp-approach {
+/* CTA */
+.sdp-cta {
   padding: 6rem var(--gutter);
-  background: var(--charcoal);
-  color: var(--ivory);
-}
-
-.sdp-approach .sdp-section-title {
-  color: var(--sage);
-}
-
-.sdp-approach-text {
-  font-size: 1rem;
-  color: var(--softline);
-  line-height: 1.75;
-  max-width: 620px;
+  background: var(--ivory);
 }
 
 @media (max-width: 640px) {
-  .sdp-hero { padding-top: 6rem; padding-bottom: 3.5rem; }
-  .sdp-section { padding-top: 4rem; padding-bottom: 4rem; }
-  .sdp-approach { padding-top: 4rem; padding-bottom: 4rem; }
+  .sdp-hero { padding-top: 7rem; padding-bottom: 4rem; }
+  .sdp-hero-number { font-size: 10rem; opacity: 0.6; }
+  .sdp-fit { padding-top: 4rem; padding-bottom: 4rem; }
+  .sdp-story { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+  .sdp-story-inner { padding-left: 1.25rem; }
+  .sdp-outcomes { padding-top: 4rem; padding-bottom: 4rem; }
+  .sdp-cta { padding-top: 4rem; padding-bottom: 4rem; }
+  .sdp-fit-item { grid-template-columns: 2.5rem 1fr; }
+  .sdp-outcome-item { grid-template-columns: 2.5rem 1fr; }
 }
 
 /* ── Situation Teaser (st-*) ────────────────────────────────────── */
@@ -4503,40 +4599,240 @@ p { color: var(--charcoal); }
   .st-section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 }
 
-/* ── Service Detail Page — Story-Sektion (sdp-story, sdp-cta) ───── */
-.sdp-story {
+/* ── Service Chat (sc-*) ─────────────────────────────────────────── */
+.sc-section {
+  position: relative;
   padding: 6rem var(--gutter);
-  background: var(--charcoal);
+  background: #1a1f1e;
+  overflow: hidden;
 }
 
-.sdp-story .sdp-section-title {
+.sc-bg-mark {
+  position: absolute;
+  top: -0.4em;
+  right: 0.05em;
+  font-size: clamp(10rem, 18vw, 18rem);
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-headline);
+}
+
+.sc-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--sage);
+  margin-bottom: 1.5rem;
 }
 
-.sdp-story-text {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  max-width: 640px;
+.sc-headline {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  color: var(--ivory);
+  margin-bottom: 1rem;
 }
 
-.sdp-story-text p {
+.sc-sub {
   font-size: 1rem;
   color: var(--softline);
-  line-height: 1.8;
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 2.5rem;
 }
 
-.sdp-story-text p:first-child {
-  font-size: 1.05rem;
+.sc-exchange {
+  margin-bottom: 2rem;
+}
+
+.sc-question {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+}
+
+.sc-answer-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+}
+
+.sc-answer-card--loading .sc-typing {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.sc-answer-card--loading .sc-typing span {
+  font-size: 1.4rem;
+  color: var(--sage);
+  animation: sc-pulse 1.2s ease-in-out infinite;
+}
+
+.sc-answer-card--loading .sc-typing span:nth-child(2) { animation-delay: 0.2s; }
+.sc-answer-card--loading .sc-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes sc-pulse {
+  0%, 80%, 100% { opacity: 0.2; }
+  40% { opacity: 1; }
+}
+
+.sc-answer-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 0.6rem;
+}
+
+.sc-answer-text {
+  font-size: 1rem;
   color: var(--ivory);
+  line-height: 1.72;
 }
 
-.sdp-cta {
-  padding: 6rem var(--gutter);
-  background: var(--mineral);
+.sc-contact-wrap {
+  margin-top: 1rem;
+}
+
+.sc-contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  color: var(--ivory);
+  text-decoration: none;
+  transition: background var(--transition);
+}
+
+.sc-contact-link:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.sc-contact-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ivory);
+  margin-bottom: 0.2rem;
+}
+
+.sc-contact-sub {
+  font-size: 0.82rem;
+  color: var(--softline);
+}
+
+.sc-contact-arrow {
+  font-size: 1.1rem;
+  color: var(--terracotta);
+}
+
+.sc-input-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+.sc-input {
+  flex: 1;
+  padding: 0.85rem 1.1rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--ivory);
+  outline: none;
+  font-family: inherit;
+  transition: border-color var(--transition);
+}
+
+.sc-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.sc-input:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.sc-send {
+  padding: 0.85rem 1.25rem;
+  background: var(--terracotta);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+.sc-send:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.sc-send:not(:disabled):hover {
+  opacity: 0.85;
+}
+
+.sc-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.sc-pill {
+  color: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  background: rgba(255, 255, 255, 0.07);
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--transition), color var(--transition);
+}
+
+.sc-pill:hover {
+  background: rgba(255, 255, 255, 0.13);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.sc-reset {
+  display: block;
+  margin-top: 0.75rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color var(--transition);
+}
+
+.sc-reset:hover {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.sc-disclaimer {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.22);
+  margin-top: 1.5rem;
+  line-height: 1.6;
 }
 
 @media (max-width: 640px) {
-  .sdp-story { padding-top: 4rem; padding-bottom: 4rem; }
-  .sdp-cta   { padding-top: 4rem; padding-bottom: 4rem; }
+  .sc-section { padding-top: 4rem; padding-bottom: 4rem; }
 }

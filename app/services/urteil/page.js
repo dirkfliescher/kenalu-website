@@ -45,6 +45,12 @@ export default async function UrteilPage() {
       storyText={c.story_text}
       outcomePoints={c.outcome_points?.map(p => p.text) || []}
       ctaLabel={c.cta_label}
+      serviceName="Urteil"
+      servicePrompts={[
+        'Wie unabhängig ist das Urteil wirklich?',
+        'Wir haben ein laufendes Projekt, das wir einschätzen lassen wollen.',
+        'Was passiert, wenn das Urteil negativ ausfällt?',
+      ]}
     />
   );
 }
