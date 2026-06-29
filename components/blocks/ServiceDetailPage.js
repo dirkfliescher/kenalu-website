@@ -1,21 +1,37 @@
 import Link from 'next/link';
 import ServiceChat from './ServiceChat';
 
-/**
- * Service Detail Page — v3
- * Props:
- *   headline       – H1, aus Storyblok
- *   intro          – Lead-Text, aus Storyblok
- *   fitPoints      – Array<string>, aus Storyblok
- *   storyText      – String, Situationsvignette (Absätze mit \n\n), aus Storyblok
- *   outcomePoints  – Array<string>, aus Storyblok
- *   ctaLabel       – Button-Label, aus Storyblok
- *   serviceName    – Kontext für Kai, hardcoded in page.js
- *   servicePrompts – Starter-Prompts für Kai, hardcoded in page.js
- *   serviceKicker  – Kurzes Kategorie-Label (ersetzt "Leistung 01"), hardcoded in page.js
- *   processMeta    – Zeitrahmen z.B. "2 Wochen", hardcoded in page.js
- *   serviceIndex   – Ziffer für dekoratives Hintergrund-Element (1–4), hardcoded in page.js
- */
+const ALL_SERVICES = [
+  {
+    name: 'Klarheit',
+    kicker: 'Discovery',
+    meta: '4–8 Tage',
+    href: '/services/klarheit',
+    desc: 'Das richtige AI-Produkt definieren — bevor ihr investiert.',
+  },
+  {
+    name: 'Rapid Build',
+    kicker: 'Prototyping',
+    meta: '2 Wochen',
+    href: '/services/rapid-build',
+    desc: 'Von der Idee zum lauffähigen Prototyp.',
+  },
+  {
+    name: 'AI-Produkt',
+    kicker: 'Produktentwicklung',
+    meta: 'Individuell',
+    href: '/services/produkt',
+    desc: 'Euer AI-Produkt — von der Idee bis zum Deployment.',
+  },
+  {
+    name: 'Urteil',
+    kicker: 'Einschätzung',
+    meta: '1–2 Wochen',
+    href: '/services/urteil',
+    desc: 'Unabhängige Einschätzung vor einer AI-Investition.',
+  },
+];
+
 export default function ServiceDetailPage({
   headline,
   intro,
@@ -34,10 +50,11 @@ export default function ServiceDetailPage({
     : [];
 
   const numDisplay = serviceIndex ? String(serviceIndex).padStart(2, '0') : '';
+  const relatedServices = ALL_SERVICES.filter(s => s.name !== serviceName);
 
   return (
     <div>
-      {/* ── Hero ────────────────────────────────────────────────────── */}
+      {/* ── Hero ── */}
       <section className="sdp-hero">
         {numDisplay && (
           <span className="sdp-hero-num" aria-hidden="true">{numDisplay}</span>
@@ -59,35 +76,38 @@ export default function ServiceDetailPage({
         </div>
       </section>
 
-      {/* ── Substance: Was entsteht + Passt für euch ────────────────── */}
-      {(outcomePoints.length > 0 || fitPoints.length > 0) && (
-        <section className="sdp-substance">
-          <div className="container sdp-substance-grid">
-            {outcomePoints.length > 0 && (
-              <div className="sdp-col">
-                <p className="sdp-col-label">Was entsteht</p>
-                <ul className="sdp-outcomes">
-                  {outcomePoints.map((point, i) => (
-                    <li key={i} className="sdp-outcome">{point}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {fitPoints.length > 0 && (
-              <div className={`sdp-col${outcomePoints.length > 0 ? ' sdp-col--divided' : ''}`}>
-                <p className="sdp-col-label">Passt für euch, wenn…</p>
-                <div className="sdp-fit">
-                  {fitPoints.map((point, i) => (
-                    <p key={i} className="sdp-fit-item">{point}</p>
-                  ))}
+      {/* ── Was entsteht — herausgestrichen ── */}
+      {outcomePoints.length > 0 && (
+        <section className="sdp-outcomes-section">
+          <div className="container">
+            <p className="sdp-col-label">Was entsteht</p>
+            <div className="sdp-outcomes-grid">
+              {outcomePoints.map((point, i) => (
+                <div key={i} className="sdp-outcome-card">
+                  <span className="sdp-outcome-n">{String(i + 1).padStart(2, '0')}</span>
+                  <p className="sdp-outcome-t">{point}</p>
                 </div>
-              </div>
-            )}
+              ))}
+            </div>
           </div>
         </section>
       )}
 
-      {/* ── Situation ───────────────────────────────────────────────── */}
+      {/* ── Passt für euch — als Textblock ── */}
+      {fitPoints.length > 0 && (
+        <section className="sdp-fit-section">
+          <div className="container container--narrow">
+            <p className="sdp-col-label">Passt für euch, wenn…</p>
+            <div className="sdp-fit-prose">
+              {fitPoints.map((point, i) => (
+                <p key={i}>{point}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Situation ── */}
       {storyParagraphs.length > 0 && (
         <section className="sdp-story">
           <div className="container">
@@ -104,10 +124,29 @@ export default function ServiceDetailPage({
         </section>
       )}
 
-      {/* ── Kai – Service-spezifischer Chat ─────────────────────────── */}
+      {/* ── Kai Chat ── */}
       <ServiceChat serviceName={serviceName} servicePrompts={servicePrompts} />
 
-      {/* ── CTA ─────────────────────────────────────────────────────── */}
+      {/* ── Weitere Leistungen ── */}
+      {relatedServices.length > 0 && (
+        <section className="sdp-related">
+          <div className="container">
+            <p className="sdp-col-label">Weitere Leistungen</p>
+            <div className="sdp-related-grid">
+              {relatedServices.map(s => (
+                <Link key={s.href} href={s.href} className="sdp-related-card">
+                  <span className="sdp-related-kicker">{s.kicker}</span>
+                  <p className="sdp-related-name">{s.name}</p>
+                  <p className="sdp-related-desc">{s.desc}</p>
+                  <span className="sdp-related-meta">{s.meta} →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── CTA ── */}
       <section className="sdp-cta">
         <div className="container container--narrow">
           <Link href="/contact" className="btn btn-primary">
