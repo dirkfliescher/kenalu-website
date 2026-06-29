@@ -39,24 +39,36 @@ export default function ServiceDetailPage({
         {heroNumber && (
           <span className="sdp-hero-number" aria-hidden="true">{heroNumber}</span>
         )}
-        <div className="container container--narrow sdp-hero-content">
-          {eyebrow && <p className="section-label sdp-hero-eyebrow">{eyebrow}</p>}
-          <h1>{headline}</h1>
-          {intro && <p className="sdp-hero-intro">{intro}</p>}
+        <div className="container sdp-hero-content">
+          <div className="sdp-hero-grid">
+            <div className="sdp-hero-main">
+              {eyebrow && <p className="section-label sdp-hero-eyebrow">{eyebrow}</p>}
+              <h1>{headline}</h1>
+            </div>
+            {intro && (
+              <div className="sdp-hero-aside">
+                <p className="sdp-hero-intro">{intro}</p>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
       {/* ── Fit ─────────────────────────────────────────────────────── */}
       {fitPoints.length > 0 && (
         <section className="sdp-fit">
-          <div className="container container--narrow">
-            <p className="sdp-section-label">Passt für euch, wenn…</p>
-            <div className="sdp-fit-list">
-              {fitPoints.map((point, i) => (
-                <div key={i} className="sdp-fit-item">
-                  <p className="sdp-fit-text">{point}</p>
-                </div>
-              ))}
+          <div className="container">
+            <div className="sdp-fit-layout">
+              <div className="sdp-fit-sidebar">
+                <p className="sdp-section-label">Passt für euch, wenn…</p>
+              </div>
+              <div className="sdp-fit-list">
+                {fitPoints.map((point, i) => (
+                  <div key={i} className="sdp-fit-item">
+                    <p className="sdp-fit-text">{point}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -65,19 +77,23 @@ export default function ServiceDetailPage({
       {/* ── Story ───────────────────────────────────────────────────── */}
       {storyParagraphs.length > 0 && (
         <section className="sdp-story">
-          <div className="container container--narrow">
-            <p className="sdp-section-label sdp-section-label--light">So könnte es aussehen</p>
-            <div className="sdp-story-inner">
-              <p className="sdp-story-lede">{storyParagraphs[0]}</p>
-              {storyParagraphs.length > 1 && (
-                <div className="sdp-story-body">
+          <div className="container">
+            <p className="sdp-story-pullquote">{storyParagraphs[0]}</p>
+          </div>
+          {storyParagraphs.length > 1 && (
+            <div className="container">
+              <div className="sdp-story-body-grid">
+                <div className="sdp-story-label-col">
+                  <p className="sdp-section-label sdp-section-label--light">So könnte es aussehen</p>
+                </div>
+                <div className="sdp-story-text-col">
                   {storyParagraphs.slice(1).map((para, i) => (
                     <p key={i}>{para}</p>
                   ))}
                 </div>
-              )}
+              </div>
             </div>
-          </div>
+          )}
         </section>
       )}
 
