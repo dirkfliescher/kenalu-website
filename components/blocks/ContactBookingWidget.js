@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 
 const INITIAL_MESSAGE = {
   role: 'assistant',
-  text: 'Hallo! Was bringt dich zu kenalu? Beschreib kurz deine Situation. Das hilft, das Gespräch optimal vorzubereiten.',
+  text: 'Hallo! Was bringt euch zu kenalu? Beschreibt kurz eure Situation. Das hilft, das Gespräch optimal vorzubereiten.',
 };
 
 export default function ContactBookingWidget({
@@ -65,7 +65,7 @@ export default function ContactBookingWidget({
         ...updated,
         {
           role: 'assistant',
-          text: 'Entschuldige, da ist etwas schiefgelaufen. Du kannst auch direkt einen Termin buchen.',
+          text: 'Entschuldige, da ist etwas schiefgelaufen. Ihr könnt auch direkt einen Termin buchen.',
         },
       ]);
     } finally {
@@ -93,7 +93,7 @@ export default function ContactBookingWidget({
           <div className="qualifier-icon">k</div>
           <div className="qualifier-header-text">
             <strong>kenalu Assistent</strong>
-            <span>Hilft dir, das Gespräch optimal vorzubereiten</span>
+            <span>Hilft euch, das Gespräch optimal vorzubereiten</span>
           </div>
         </div>
 
@@ -116,7 +116,7 @@ export default function ContactBookingWidget({
             <input
               type="text"
               className="qualifier-input"
-              placeholder="Deine Situation beschreiben…"
+              placeholder="Eure Situation beschreiben…"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKey}
@@ -133,12 +133,12 @@ export default function ContactBookingWidget({
           </div>
         )}
 
-        <p className="qualifier-note">Deine Antwort wird an Dirk weitergeleitet.</p>
+        <p className="qualifier-note">Eure Antwort wird an Dirk weitergeleitet.</p>
       </div>
 
       {/* Calendly-Button */}
       <div className="calendly-cta">
-        <p>Wähle einen Termin für dein 30-minütiges Erstgespräch.</p>
+        <p>Wählt einen Termin für euer 30-minütiges Erstgespräch.</p>
         <a
           href={bookingUrl}
           target="_blank"

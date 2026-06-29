@@ -115,8 +115,8 @@ export default async function InsightArticle({ params }) {
 
           <div className="insight-check-cta">
             <p className="insight-check-cta-label">AI Readiness Check</p>
-            <p className="insight-check-cta-text">Wo steht dein Unternehmen mit AI?</p>
-            <p className="insight-check-cta-sub">6 Fragen. 2 Minuten. Die passende kenalu-Leistung für deine Situation.</p>
+            <p className="insight-check-cta-text">Wo steht euer Unternehmen mit AI?</p>
+            <p className="insight-check-cta-sub">6 Fragen. 2 Minuten. Die passende kenalu-Leistung für eure Situation.</p>
             <Link href="/check" className="insight-check-cta-link">
               Einschätzung starten →
             </Link>

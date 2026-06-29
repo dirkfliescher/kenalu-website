@@ -7,7 +7,7 @@ const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN
 
 export const metadata = {
   title: 'Gespräch buchen – kenalu',
-  description: 'Buch ein Erstgespräch mit Dirk Fliescher von kenalu. Kein Pitch. Ein echtes Gespräch über deine Herausforderung.',
+  description: 'Bucht ein Erstgespräch mit Dirk Fliescher von kenalu. Kein Pitch. Ein echtes Gespräch über eure Herausforderung.',
 };
 
 async function getContent() {

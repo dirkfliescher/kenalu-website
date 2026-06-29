@@ -5,7 +5,7 @@ import Link from 'next/link';
 const QUESTIONS = [
   {
     axis: 'clarity',
-    question: 'Wie klar ist dir, wo AI in deinem Kontext wirklich Hebel erzeugt?',
+    question: 'Wie klar ist euch, wo AI in eurem Kontext wirklich Hebel erzeugt?',
     options: [
       { label: 'Sehr klar. Wir wissen genau, wo wir anfangen.', value: 1 },
       { label: 'Eher unklar. Wir haben Ideen, aber keine Priorisierung.', value: 2 },
@@ -14,7 +14,7 @@ const QUESTIONS = [
   },
   {
     axis: 'clarity',
-    question: 'Hast du bereits eine Entscheidungsgrundlage dafür, welche AI-Vorhaben sich lohnen?',
+    question: 'Habt ihr bereits eine Entscheidungsgrundlage dafür, welche AI-Vorhaben sich lohnen?',
     options: [
       { label: 'Ja. Wir haben klare Kriterien und Szenarien.', value: 1 },
       { label: 'Teilweise. Einzelne Bereiche sind klar, andere nicht.', value: 2 },
@@ -23,7 +23,7 @@ const QUESTIONS = [
   },
   {
     axis: 'urgency',
-    question: 'Wie dringend ist das Thema AI für dein Unternehmen?',
+    question: 'Wie dringend ist das Thema AI für euer Unternehmen?',
     options: [
       { label: 'Wir beobachten aktiv, aber kein unmittelbarer Druck.', value: 1 },
       { label: 'Es wird dringender. Erste Wettbewerber ziehen vorbei.', value: 2 },
@@ -50,7 +50,7 @@ const QUESTIONS = [
   },
   {
     axis: 'maturity',
-    question: 'Was ist dein konkreter nächster Schritt?',
+    question: 'Was ist euer konkreter nächster Schritt?',
     options: [
       { label: 'Bestehendes reviewen oder verbessern lassen.', value: 1 },
       { label: 'Etwas Greifbares schnell bauen und testen.', value: 2 },
@@ -62,43 +62,43 @@ const QUESTIONS = [
 // Jedes Profil empfiehlt eine kenalu-Leistung
 const PROFILES = {
   klarheit: {
-    name: 'Du brauchst Klarheit zuerst.',
+    name: 'Ihr braucht Klarheit zuerst.',
     service: '01 Klarheit',
     tagline: 'Bevor Budget fliesst, sollte die Frage beantwortet sein: Wo lohnt AI wirklich?',
     description:
-      'Du hast Interesse an AI — aber noch keine klare Grundlage für Entscheidungen. ' +
+      'Ihr habt Interesse an AI — aber noch keine klare Grundlage für Entscheidungen. ' +
       'Welche Use Cases sind relevant? Was ist technisch machbar, regulatorisch vertretbar, wirtschaftlich sinnvoll? ' +
       'Genau das liefert kenalu Klarheit: eine ehrliche Einschätzung, bevor etwas gebaut wird.',
     href: '/services#service-01',
   },
   rapidbuild: {
-    name: 'Du brauchst etwas Greifbares — schnell.',
+    name: 'Ihr braucht etwas Greifbares — schnell.',
     service: '02 Rapid Build',
     tagline: 'Die Richtung stimmt. Jetzt braucht es einen Beweis.',
     description:
-      'Du weisst ungefähr, was gebaut werden soll — aber es fehlt etwas zum Anfassen, Testen, Zeigen. ' +
+      'Ihr wisst ungefähr, was gebaut werden soll — aber es fehlt etwas zum Anfassen, Testen, Zeigen. ' +
       'Ein Prototyp oder funktionales MVP, das intern überzeugt und externe Entscheidungen vorbereitet. ' +
       'kenalu Rapid Build liefert das in Tagen, nicht Wochen.',
     href: '/services#service-02',
   },
   produkt: {
-    name: 'Du bist bereit für das vollständige Produkt.',
+    name: 'Ihr seid bereit für das vollständige Produkt.',
     service: '03 Produkt',
     tagline: 'Klarheit ist da. Jetzt geht es ums Bauen — vollständig, ohne Übergaben.',
     description:
-      'Du weisst, was du willst. Du hast Budget und Commitment. ' +
+      'Ihr wisst, was ihr wollt. Ihr habt Budget und Commitment. ' +
       'Was jetzt zählt: ein Partner, der Discovery, Konzept, UX und Engineering nicht als separate Phasen behandelt — ' +
       'sondern als einen integrierten Prozess, von der ersten Research bis zum fertigen Produkt.',
     href: '/services#service-03',
   },
   urteil: {
-    name: 'Du brauchst ein unabhängiges Urteil.',
+    name: 'Ihr braucht ein unabhängiges Urteil.',
     service: '04 Urteil',
     tagline: 'Etwas ist gebaut. Die Frage ist: hält es wirklich, was es verspricht?',
     description:
-      'Du hast eine AI-Lösung — intern oder extern entwickelt. ' +
-      'Jetzt willst du wissen, ob der Ansatz solide ist, ob das Ergebnis für echte Nutzer funktioniert ' +
-      'und welche Risiken unerkannt bleiben. kenalu Urteil gibt dir eine klare Einschätzung aus Bauerfahrung.',
+      'Ihr habt eine AI-Lösung — intern oder extern entwickelt. ' +
+      'Jetzt wollt ihr wissen, ob der Ansatz solide ist, ob das Ergebnis für echte Nutzer funktioniert ' +
+      'und welche Risiken unerkannt bleiben. kenalu Urteil gibt euch eine klare Einschätzung aus Bauerfahrung.',
     href: '/services#service-04',
   },
 };
@@ -196,12 +196,12 @@ export default function CheckTool() {
           <div className="check-intro-inner">
             <p className="section-label">AI Readiness · 6 Fragen · 2 Minuten</p>
             <h1 className="check-intro-headline">
-              Wo stehst du<br />mit AI?
+              Wo steht ihr<br />mit AI?
             </h1>
             <div className="check-intro-foot">
               <p className="check-intro-sub">
-                Nicht jedes Unternehmen braucht dasselbe. Sechs Fragen — und du siehst,
-                welche kenalu-Leistung zu deiner Situation passt.
+                Nicht jedes Unternehmen braucht dasselbe. Sechs Fragen — und ihr seht,
+                welche kenalu-Leistung zu eurer Situation passt.
               </p>
               <button className="btn btn-primary check-start-btn" onClick={start}>
                 Einschätzung starten →
@@ -258,7 +258,7 @@ export default function CheckTool() {
       <main className="check-page">
         <section className="check-result">
           <div className="container">
-            <p className="section-label">Deine Einschätzung</p>
+            <p className="section-label">Eure Einschätzung</p>
 
             <div className="check-profile-card">
               <div className="check-profile-content">
@@ -305,10 +305,10 @@ export default function CheckTool() {
                       {emailSending ? '…' : 'Senden →'}
                     </button>
                   </div>
-                  <p className="check-email-note">Kein Newsletter. Einmalige Mail mit deiner Einschätzung.</p>
+                  <p className="check-email-note">Kein Newsletter. Einmalige Mail mit eurer Einschätzung.</p>
                 </>
               ) : (
-                <p className="check-email-sent">Danke. Du erhältst deine Einschätzung in Kürze.</p>
+                <p className="check-email-sent">Danke. Ihr erhaltet eure Einschätzung in Kürze.</p>
               )}
             </div>
           </div>

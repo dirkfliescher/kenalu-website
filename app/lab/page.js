@@ -16,9 +16,9 @@ const DEFAULTS = {
   lp_headline:         'Wir reden nicht\nüber Bauen.\nWir bauen.',
   lp_sub:              'Lab ist der Ort, wo kenalu zeigt, was es kann. Nicht als Case-Study-Hochglanz, sondern als ehrlicher Blick auf echte Projekte.',
   lp_builder_headline: 'Beschreib es.\nWir bauen es.',
-  lp_builder_sub:      'Vier Fragen. Dann läuft dein Code direkt im Browser. Kein Setup, kein Framework-Drama.',
+  lp_builder_sub:      'Vier Fragen. Dann läuft euer Code direkt im Browser. Kein Setup, kein Framework-Drama.',
   lp_next_eyebrow:     'Projekt 02',
-  lp_next_text:        'Das nächste Projekt entsteht gerade.\nOder es ist deines.',
+  lp_next_text:        'Das nächste Projekt entsteht gerade.\nOder es ist eures.',
   lp_next_cta:         'Gespräch starten →',
   lp_next_cta_link:    '/contact',
 };

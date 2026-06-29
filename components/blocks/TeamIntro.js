@@ -155,7 +155,7 @@ function ModeChat({ person }) {
       {messages.length === 0 && (
         <div className="ti-chat-empty">
           <p className="ti-chat-empty-text">
-            Stell {name} eine Frage — über seinen Hintergrund, seine Arbeitsweise oder einfach was du wissen willst.
+            Stellt {name} eine Frage — über seinen Hintergrund, seine Arbeitsweise oder einfach was ihr wissen wollt.
           </p>
           <div className="ti-chat-suggestions">
             {[
@@ -411,7 +411,7 @@ export default function TeamIntro() {
           <p className="section-label">Lerne uns kennen</p>
           <h2 className="ti-headline">Wer steckt hinter kenalu?</h2>
           <p className="ti-sub">
-            Stell Fragen, spiel ein Spiel oder finde heraus, mit wem du mehr gemeinsam hast.
+            Stellt Fragen, spielt ein Spiel oder findet heraus, mit wem ihr mehr gemeinsam habt.
           </p>
         </div>
 

@@ -74,8 +74,8 @@ export default function ServicesFinder() {
         {!isActive && (
           <>
             <span className="section-label">Kai · AI Assistant</span>
-            <h2 className="sf-headline">Was ist deine Situation?</h2>
-            <p className="sf-sub">Wähle eine Situation oder beschreibe kurz, womit du kämpfst. Kai zeigt, wo kenalu helfen kann.</p>
+            <h2 className="sf-headline">Was ist eure Situation?</h2>
+            <p className="sf-sub">Wählt eine Situation oder beschreibt kurz, womit ihr kämpft. Kai zeigt, wo kenalu helfen kann.</p>
           </>
         )}
 

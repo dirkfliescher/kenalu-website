@@ -63,8 +63,8 @@ export default async function About() {
               <div>
                 <p className="about-team-teaser-label">Das Team</p>
                 <p className="about-team-teaser-text">
-                  Neugierig auf Dirk und Stan? Stell ihnen Fragen, spiel ein Spiel
-                  oder finde heraus, mit wem du mehr gemeinsam hast.
+                  Neugierig auf Dirk und Stan? Stellt ihnen Fragen, spielt ein Spiel
+                  oder findet heraus, mit wem ihr mehr gemeinsam habt.
                 </p>
               </div>
               <Link href="/team" className="btn btn-primary about-team-teaser-btn">

@@ -96,7 +96,7 @@ export default function InsightsChat() {
           {messages.map((msg, i) => (
             msg.role === 'user' ? (
               <div key={i} className="ic-question">
-                <span className="ic-label ic-label--user">Du</span>
+                <span className="ic-label ic-label--user">Ihr</span>
                 <p className="ic-question-text">{msg.content}</p>
               </div>
             ) : (

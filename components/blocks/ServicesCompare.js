@@ -7,9 +7,9 @@ const SERVICES = [
     anchor: '#service-01',
     tagline: 'Verstehen, was wirklich zählt',
     when: [
-      'Du weisst noch nicht, wo AI konkret helfen würde',
-      'Du willst vor einer Investition die richtige Richtung kennen',
-      'Du brauchst eine fundierte Entscheidungsgrundlage',
+      'Ihr wisst noch nicht, wo AI konkret helfen würde',
+      'Ihr wollt vor einer Investition die richtige Richtung kennen',
+      'Ihr braucht eine fundierte Entscheidungsgrundlage',
     ],
   },
   {
@@ -18,9 +18,9 @@ const SERVICES = [
     anchor: '#service-02',
     tagline: 'In Tagen zu einem greifbaren Prototyp',
     when: [
-      'Du hast eine klare Idee und willst sie schnell testbar machen',
-      'Du willst intern zeigen, was möglich ist — bevor du gross investierst',
-      'Du brauchst ein MVP, das funktioniert — nicht poliert, aber echt',
+      'Ihr habt eine klare Idee und wollt sie schnell testbar machen',
+      'Ihr wollt intern zeigen, was möglich ist — bevor ihr gross investiert',
+      'Ihr braucht ein MVP, das funktioniert — nicht poliert, aber echt',
     ],
   },
   {
@@ -29,9 +29,9 @@ const SERVICES = [
     anchor: '#service-03',
     tagline: 'AI als Kern des Produkts',
     when: [
-      'Du willst kein Feature, sondern ein Produkt rund um AI bauen',
-      'Du hast Klarheit über Ziel und Zielgruppe',
-      'Du bist bereit, in mehreren Iterationen zu denken',
+      'Ihr wollt kein Feature, sondern ein Produkt rund um AI bauen',
+      'Ihr habt Klarheit über Ziel und Zielgruppe',
+      'Ihr seid bereit, in mehreren Iterationen zu denken',
     ],
   },
   {
@@ -40,9 +40,9 @@ const SERVICES = [
     anchor: '#service-04',
     tagline: 'Unabhängige Einschätzung, klare Aussage',
     when: [
-      'Du hast ein Angebot, eine Strategie oder einen Plan — und willst eine ehrliche Meinung',
-      'Du vertraust dem Lieferanten nicht blind und willst eine zweite Stimme',
-      'Du brauchst jemanden, der klar sagt, was er sieht',
+      'Ihr habt ein Angebot, eine Strategie oder einen Plan — und wollt eine ehrliche Meinung',
+      'Ihr vertraut dem Lieferanten nicht blind und wollt eine zweite Stimme',
+      'Ihr braucht jemanden, der klar sagt, was er sieht',
     ],
   },
 ];
@@ -51,7 +51,7 @@ export default function ServicesCompare() {
   return (
     <section className="svc-compare">
       <div className="container container--wide">
-        <p className="section-label">Was passt zu dir?</p>
+        <p className="section-label">Was passt zu euch?</p>
         <div className="svc-compare-grid">
           {SERVICES.map((svc) => (
             <Link key={svc.number} href={`/services${svc.anchor}`} className="svc-compare-card">
