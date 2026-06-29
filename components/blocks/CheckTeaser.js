@@ -14,11 +14,11 @@ export default function CheckTeaser() {
         <div className="check-teaser-inner">
           <p className="check-teaser-label">AI Readiness · 6 Fragen · 2 Minuten</p>
           <h2 className="check-teaser-headline">
-            Wo stehst du<br />
-            mit AI?
+            Wo steht euer<br />
+            Unternehmen mit AI?
           </h2>
           <p className="check-teaser-sub">
-            Nicht jedes Unternehmen braucht dasselbe. Sechs Fragen zeigen, welche kenalu-Leistung zu deiner Situation passt.
+            Nicht jedes Unternehmen braucht dasselbe. Sechs Fragen zeigen, welche kenalu-Leistung zu eurer Situation passt.
           </p>
           <Link href="/check" className="btn btn-primary check-teaser-btn">
             Einschätzung starten →

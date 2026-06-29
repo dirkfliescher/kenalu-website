@@ -244,7 +244,7 @@ export default function HomeChat() {
           <>
             <h2 className="hc-headline">Was ist eure Situation?</h2>
             <p className="hc-sub">
-              Kai ist kenalus AI. Beschreibt eure Situation und er zeigt, wo kenalu helfen kann.
+              Kai ist kenalus AI-Assistent. Beschreibt eure Situation – er hilft euch bei einer ersten Einordnung und zeigt, welcher nächste Schritt passen könnte.
             </p>
           </>
         )}
@@ -275,7 +275,7 @@ export default function HomeChat() {
             ref={inputRef}
             type="text"
             className="hc-input"
-            placeholder={isActive ? 'Weiterfragen …' : 'Deine Situation oder Frage …'}
+            placeholder={isActive ? 'Weiterfragen …' : 'Eure Situation oder Frage …'}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKey}
@@ -325,7 +325,7 @@ export default function HomeChat() {
         )}
 
         <p className="hc-disclaimer">
-          Keine vertraulichen Informationen eingeben. Kai läuft über OpenAI.
+          Bitte keine vertraulichen Projekt-, Kunden- oder Personendaten eingeben. Kai nutzt OpenAI und hilft bei einer ersten Einordnung.
         </p>
       </div>
     </section>
