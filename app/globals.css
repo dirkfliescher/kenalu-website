@@ -4431,3 +4431,74 @@ p { color: var(--charcoal); }
   .sdp-section { padding-top: 4rem; padding-bottom: 4rem; }
   .sdp-approach { padding-top: 4rem; padding-bottom: 4rem; }
 }
+
+/* ── Situation Teaser (st-*) ────────────────────────────────────── */
+.st-section {
+  padding: 5rem var(--gutter);
+  background: var(--ivory);
+  border-bottom: 1px solid var(--softline);
+}
+
+.st-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.st-item {
+  padding: 0 2.5rem;
+  border-left: 1px solid var(--softline);
+}
+
+.st-item:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.st-item:last-child {
+  padding-right: 0;
+}
+
+.st-text {
+  font-family: var(--font-headline);
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  font-weight: 800;
+  color: var(--charcoal);
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.9rem;
+}
+
+.st-link {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--terracotta);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: opacity var(--transition);
+}
+
+.st-link:hover {
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  .st-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .st-item {
+    padding: 0;
+    border-left: none;
+    border-top: 1px solid var(--softline);
+    padding-top: 2rem;
+  }
+  .st-item:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .st-section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+}
