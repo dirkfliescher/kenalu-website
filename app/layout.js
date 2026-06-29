@@ -53,9 +53,12 @@ export default function RootLayout({ children }) {
         <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
       </head>
       <body>
+        <a href="#main-content" className="skip-link">Zum Inhalt springen</a>
         <SpacebarNav />
         <Nav />
-        {children}
+        <main id="main-content">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

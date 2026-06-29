@@ -13,7 +13,7 @@
   --ocean:    #12384B;
   --sage:     #A7B5A6;
   --mineral:  #E6E3DE;
-  --stone:    #6F7478;
+  --stone:    #686E72;
   --softline: #D8D4CE;
   --terracotta: #C5694A;
   --ocean-dark:      #0e2c3c;
@@ -29,6 +29,46 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+
+/* ── Accessibility ──────────────────────────────────────────────── */
+
+/* Skip Link: unsichtbar bis Tab-Fokus, dann sichtbar */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--charcoal);
+  color: var(--ivory);
+  padding: 0.6rem 1.25rem;
+  border-radius: 0 0 8px 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  z-index: 9999;
+  text-decoration: none;
+  transition: top 0.1s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Focus-visible: sichtbarer Ring für Keyboard-Navigation */
+*:focus-visible {
+  outline: 2px solid var(--ocean);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Inputs haben eigene visuelle Focus-Styles (Border-Farbe) → kein doppelter Ring */
+.ic-input:focus-visible,
+.hc-input:focus-visible,
+.sf-input:focus-visible,
+.ti-chat-input:focus-visible,
+.qualifier-input:focus-visible,
+.lb-textarea:focus-visible,
+.check-email-input:focus-visible,
+.insights-search-input:focus-visible {
+  outline: none;
+}
 
 /* Scroll-Reveal: sanftes Einblenden von Sections beim Scrollen */
 .reveal {
@@ -3983,4 +4023,60 @@ p { color: var(--charcoal); }
   }
   .svc-compare { padding: 4rem 0; }
   .svc-compare-number { font-size: 2.5rem; }
+}
+
+/* ── Globale Mobile Overrides ────────────────────────────────────── */
+/* Gutter + Section-Padding kompakter auf kleinen Screens */
+@media (max-width: 640px) {
+  :root {
+    --gutter: 1.25rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding-top: 7rem;
+    padding-bottom: 4rem;
+    min-height: auto;
+  }
+
+  /* Alle grossen Sections von 10rem → 5rem */
+  .services,
+  .help-section,
+  .thinking-section,
+  .why,
+  .outcomes-section,
+  .hc-section,
+  .cta-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  /* Provocation */
+  .provocation {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    min-height: auto;
+  }
+
+  /* Process Section */
+  .process-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  /* Section Header */
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  /* HomeChat Input Row: Arrow-Button nicht zu breit */
+  .hc-input-row {
+    gap: 0.5rem;
+  }
+
+  /* Provocation Values: 2 Spalten → 1 Spalte schon früher */
+  .provocation-values {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }

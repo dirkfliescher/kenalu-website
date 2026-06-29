@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -7,6 +7,7 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const navRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -28,6 +29,34 @@ export default function Nav() {
     setOpen(false);
   }, [pathname]);
 
+  // Focus Trap + Escape-Key wenn Mobile-Menü offen
+  useEffect(() => {
+    if (!open) return;
+    const nav = navRef.current;
+    if (!nav) return;
+
+    const focusable = nav.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    function onKeyDown(e) {
+      if (e.key === 'Escape') {
+        setOpen(false);
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown);
+    first?.focus();
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [open]);
+
   const isActive = (path) => pathname?.startsWith(path);
 
   // Seiten mit dunklem Hero-Hintergrund → Nav startet mit hellem Text
@@ -47,7 +76,7 @@ export default function Nav() {
   ];
 
   return (
-    <nav className={`nav${scrolled ? ' scrolled' : ''}${onDark ? ' on-dark' : ''}${open ? ' menu-open' : ''}`}>
+    <nav ref={navRef} className={`nav${scrolled ? ' scrolled' : ''}${onDark ? ' on-dark' : ''}${open ? ' menu-open' : ''}`}>
       <div className="nav-inner">
         <Link href="/" className="nav-logo">kenalu</Link>
         <ul className={`nav-links${open ? ' open' : ''}`}>
