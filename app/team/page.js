@@ -2,8 +2,8 @@ import StoryblokClient from 'storyblok-js-client';
 import TeamMemberTeaser from '../../components/blocks/TeamMemberTeaser';
 import TeamIntro from '../../components/blocks/TeamIntro';
 import FitTest from '../../components/blocks/FitTest';
+import DynamicBlock from '../../components/DynamicBlock';
 import Reveal from '../../components/Reveal';
-import Link from 'next/link';
 
 export const revalidate = 60;
 
@@ -13,6 +13,17 @@ export const metadata = {
 };
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
+
+async function getPageBlocks() {
+  try {
+    const { data } = await Storyblok.get('cdn/stories/team-page', {
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
+    });
+    return data.story.content.body || [];
+  } catch {
+    return [];
+  }
+}
 
 async function getTeamMembers() {
   try {
@@ -30,7 +41,7 @@ async function getTeamMembers() {
 }
 
 export default async function TeamPage() {
-  const members = await getTeamMembers();
+  const [members, pageBlocks] = await Promise.all([getTeamMembers(), getPageBlocks()]);
 
   return (
     <main>
@@ -66,51 +77,16 @@ export default async function TeamPage() {
         <TeamIntro />
       </Reveal>
 
-      {/* Gesucht */}
-      <Reveal>
-        <section className="zusammenarbeit-open">
-          <div className="container zusammenarbeit-open-inner">
-            <p className="section-label">Gesucht</p>
-            <h2>Aussergewöhnlich gut in dem, was du tust?</h2>
-            <p>
-              kenalu wächst nicht durch Stellenausschreibungen. Es wächst durch Menschen,
-              die wirklich herausragen — auf ihrem Gebiet, mit Haltung, mit Anspruch.
-              {'\n\n'}
-              Wir suchen keine Generalisten und keine Verfügbaren. Wir suchen Menschen,
-              bei denen wir keine Sekunde zögern würden, sie einem Kunden vorzustellen.
-              Als UX-Experte, AI-Engineer, Branchenkenner oder strategischer Kopf —
-              ob projektbasiert, dauerhaft oder irgendwas dazwischen: Das entscheiden wir gemeinsam.
-              {'\n\n'}
-              Wenn du dich darin erkennst: meld dich. Formlos.
-            </p>
-            <a href="/contact" className="btn btn-light">
-              Meld dich <span className="arrow">→</span>
-            </a>
-          </div>
-        </section>
-      </Reveal>
+      {/* Gesucht + CTA aus Storyblok */}
+      {pageBlocks.map((blok) => (
+        <Reveal key={blok._uid}>
+          <DynamicBlock blok={blok} />
+        </Reveal>
+      ))}
 
       {/* Fit-Test */}
       <Reveal>
         <FitTest />
-      </Reveal>
-
-      {/* CTA */}
-      <Reveal>
-        <section className="team-cta-section">
-          <div className="container">
-            <div className="team-cta-inner">
-              <h2 className="team-cta-headline">Bereit für ein Gespräch?</h2>
-              <p className="team-cta-sub">
-                Kein Pitch, kein Sales-Funnel. Nur ein offenes Gespräch darüber,
-                was du brauchst — und ob wir die Richtigen dafür sind.
-              </p>
-              <Link href="/contact" className="btn btn-primary">
-                Gespräch anfragen →
-              </Link>
-            </div>
-          </div>
-        </section>
       </Reveal>
     </main>
   );
