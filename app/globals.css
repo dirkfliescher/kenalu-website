@@ -4486,24 +4486,43 @@ p { color: var(--charcoal); }
   line-height: 1.5;
 }
 
-/* ── Passt für euch — als Textblock ── */
-.sdp-fit-section {
+/* ── Erkenntnis — "Klingt das bekannt?" ── */
+.sdp-recognition {
   background: var(--ivory);
   padding: 5.5rem var(--gutter);
-  border-top: 1px solid var(--mineral);
+  border-top: 4px solid var(--terracotta);
 }
 
-.sdp-fit-prose {
+.sdp-recognition-lead {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 2.5rem;
+}
+
+.sdp-recognition-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
-.sdp-fit-prose p {
-  font-size: clamp(1.1rem, 2vw, 1.3rem);
+.sdp-recognition-item {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
   font-weight: 500;
   color: var(--charcoal);
   line-height: 1.55;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.sdp-recognition-item::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--terracotta);
+  font-weight: 400;
 }
 
 /* ── Weitere Leistungen — Teaser ── */
@@ -4622,7 +4641,7 @@ p { color: var(--charcoal); }
   .sdp-hero { padding: 6rem var(--gutter) 4rem; }
   .sdp-outcomes-section { padding: 4rem var(--gutter); }
   .sdp-outcomes-grid { grid-template-columns: 1fr; }
-  .sdp-fit-section { padding: 4rem var(--gutter); }
+  .sdp-recognition { padding: 4rem var(--gutter); }
   .sdp-story { padding: 4.5rem var(--gutter); }
   .sdp-story-lead { padding-left: 1.25rem; }
   .sdp-story-rest { margin-left: 0; padding-left: 1.25rem; }

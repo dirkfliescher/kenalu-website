@@ -54,7 +54,7 @@ export default function ServiceDetailPage({
 
   return (
     <div>
-      {/* ── Hero ── */}
+      {/* ── Akt 1: Die Welt des Kunden ── */}
       <section className="sdp-hero">
         {numDisplay && (
           <span className="sdp-hero-num" aria-hidden="true">{numDisplay}</span>
@@ -76,38 +76,21 @@ export default function ServiceDetailPage({
         </div>
       </section>
 
-      {/* ── Was entsteht — herausgestrichen ── */}
-      {outcomePoints.length > 0 && (
-        <section className="sdp-outcomes-section">
-          <div className="container">
-            <p className="sdp-col-label">Was entsteht</p>
-            <div className="sdp-outcomes-grid">
-              {outcomePoints.map((point, i) => (
-                <div key={i} className="sdp-outcome-card">
-                  <span className="sdp-outcome-n">{String(i + 1).padStart(2, '0')}</span>
-                  <p className="sdp-outcome-t">{point}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ── Passt für euch — als Textblock ── */}
+      {/* ── Akt 2: Erkenntnis — "Klingt das bekannt?" ── */}
       {fitPoints.length > 0 && (
-        <section className="sdp-fit-section">
+        <section className="sdp-recognition">
           <div className="container container--narrow">
-            <p className="sdp-col-label">Passt für euch, wenn…</p>
-            <div className="sdp-fit-prose">
+            <p className="sdp-recognition-lead">Klingt das bekannt?</p>
+            <div className="sdp-recognition-list">
               {fitPoints.map((point, i) => (
-                <p key={i}>{point}</p>
+                <p key={i} className="sdp-recognition-item">{point}</p>
               ))}
             </div>
           </div>
         </section>
       )}
 
-      {/* ── Situation ── */}
+      {/* ── Akt 3: Die Story — Problem, Wendepunkt, Lösung ── */}
       {storyParagraphs.length > 0 && (
         <section className="sdp-story">
           <div className="container">
@@ -120,6 +103,23 @@ export default function ServiceDetailPage({
                 ))}
               </div>
             )}
+          </div>
+        </section>
+      )}
+
+      {/* ── Akt 4: Was am Ende steht ── */}
+      {outcomePoints.length > 0 && (
+        <section className="sdp-outcomes-section">
+          <div className="container">
+            <p className="sdp-col-label">Was am Ende steht</p>
+            <div className="sdp-outcomes-grid">
+              {outcomePoints.map((point, i) => (
+                <div key={i} className="sdp-outcome-card">
+                  <span className="sdp-outcome-n">{String(i + 1).padStart(2, '0')}</span>
+                  <p className="sdp-outcome-t">{point}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
