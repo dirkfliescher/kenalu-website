@@ -53,10 +53,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .container--narrow { max-width: 860px; }
 .container--wide { max-width: 1320px; }
 
-h1, h2, h3, h4 { font-family: var(--font-headline); font-weight: 800; line-height: 1.0; letter-spacing: -0.04em; }
-h1 { font-size: clamp(3.5rem, 10vw, 9rem); }
-h2 { font-size: clamp(2rem, 5.5vw, 4.5rem); line-height: 1.05; }
-h3 { font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
+h1, h2, h3, h4 { font-family: var(--font-headline); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; }
+h1 { font-size: clamp(2.8rem, 5.5vw, 5rem); }
+h2 { font-size: clamp(1.8rem, 3.5vw, 3.25rem); line-height: 1.1; }
+h3 { font-size: 1.4rem; font-weight: 700; line-height: 1.2; }
 h4 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); }
 p { color: var(--charcoal); }
 
@@ -111,7 +111,6 @@ p { color: var(--charcoal); }
 .nav.on-dark:not(.scrolled) .nav-toggle span { background: var(--ivory); }
 
 .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 8rem var(--gutter) 6rem; }
-.hero::before { content: '~'; position: absolute; top: -8%; right: -1%; font-family: var(--font-headline); font-size: clamp(22rem, 42vw, 52rem); font-weight: 700; line-height: 1; color: var(--terracotta); opacity: 0.05; pointer-events: none; z-index: 1; user-select: none; letter-spacing: -0.05em; }
 .hero-content { max-width: 860px; position: relative; z-index: 2; }
 .hero-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.75rem; }
 .hero-headline { margin-bottom: 2rem; color: var(--charcoal); font-weight: 800; }
