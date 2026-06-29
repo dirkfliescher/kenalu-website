@@ -4502,3 +4502,41 @@ p { color: var(--charcoal); }
 @media (max-width: 640px) {
   .st-section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 }
+
+/* ── Service Detail Page — Story-Sektion (sdp-story, sdp-cta) ───── */
+.sdp-story {
+  padding: 6rem var(--gutter);
+  background: var(--charcoal);
+}
+
+.sdp-story .sdp-section-title {
+  color: var(--sage);
+}
+
+.sdp-story-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 640px;
+}
+
+.sdp-story-text p {
+  font-size: 1rem;
+  color: var(--softline);
+  line-height: 1.8;
+}
+
+.sdp-story-text p:first-child {
+  font-size: 1.05rem;
+  color: var(--ivory);
+}
+
+.sdp-cta {
+  padding: 6rem var(--gutter);
+  background: var(--mineral);
+}
+
+@media (max-width: 640px) {
+  .sdp-story { padding-top: 4rem; padding-bottom: 4rem; }
+  .sdp-cta   { padding-top: 4rem; padding-bottom: 4rem; }
+}

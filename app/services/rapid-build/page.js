@@ -1,39 +1,50 @@
+import StoryblokClient from 'storyblok-js-client';
 import ServiceDetailPage from '../../../components/blocks/ServiceDetailPage';
 
-export const metadata = {
-  title: 'Rapid Build – kenalu',
-  description:
-    'Von der Idee zum funktionierenden Prototyp in Tagen, nicht Monaten. kenalu baut schnell, was ihr braucht, um zu entscheiden, zu testen und zu zeigen.',
-  alternates: { canonical: 'https://kenalu.ch/services/rapid-build' },
-  openGraph: {
-    title: 'Rapid Build – kenalu',
-    description:
-      'Von der Idee zum funktionierenden Prototyp in Tagen, nicht Monaten. kenalu baut schnell, was ihr braucht, um zu entscheiden, zu testen und zu zeigen.',
-    url: 'https://kenalu.ch/services/rapid-build',
-    siteName: 'kenalu',
-    locale: 'de_CH',
-    type: 'website',
-  },
-};
+export const revalidate = 60;
 
-export default function RapidBuildPage() {
+const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
+
+async function getContent() {
+  try {
+    const { data } = await Storyblok.get('cdn/stories/service-detail/rapid-build', {
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
+    });
+    return data.story.content;
+  } catch (e) {
+    return null;
+  }
+}
+
+export async function generateMetadata() {
+  const c = await getContent();
+  return {
+    title: c?.seo_title || 'Rapid Build – kenalu',
+    description: c?.seo_description || '',
+    alternates: { canonical: 'https://kenalu.ch/services/rapid-build' },
+    openGraph: {
+      title: c?.seo_title || 'Rapid Build – kenalu',
+      description: c?.seo_description || '',
+      url: 'https://kenalu.ch/services/rapid-build',
+      siteName: 'kenalu',
+      locale: 'de_CH',
+      type: 'website',
+    },
+  };
+}
+
+export default async function RapidBuildPage() {
+  const c = await getContent();
+  if (!c) return null;
   return (
     <ServiceDetailPage
-      eyebrow="Leistung 02"
-      headline="Rapid Build — sichtbar statt beschrieben."
-      intro="Ideen brauchen keine Präsentationen. Sie brauchen etwas Greifbares. Wir bauen in kurzer Zeit etwas, das ihr anfassen, testen und zeigen könnt — damit Entscheide nicht auf Vermutungen basieren, sondern auf echtem Erleben."
-      fitPoints={[
-        'ihr eine Idee habt, die ihr schnell validieren oder intern zeigen wollt',
-        'ihr Investoren, Stakeholder oder ein Team überzeugen müsst — mit etwas Konkretem',
-        'eine Ausschreibung oder ein MVP-Start bevorsteht und Geschwindigkeit entscheidet',
-      ]}
-      outcomePoints={[
-        'Ein funktionierender Prototyp oder ein klickbares Konzept — in Tagen',
-        'Echtes Feedback aus Tests mit Nutzern oder Stakeholdern',
-        'Eine validierte Grundlage für die nächste Investitionsentscheidung',
-      ]}
-      approachText="Wir arbeiten in einem engen, fokussierten Sprint. Scope wird am Anfang scharf definiert — und dann bauen wir. Mit AI entstehen Prototypen heute in einem Bruchteil der Zeit, die früher nötig war. Das Ergebnis ist kein Wegwerfprodukt: es ist ein Artefakt mit echter Qualität, das als Grundlage für die Umsetzung dienen kann."
-      ctaLabel="Gespräch anfragen"
+      eyebrow={c.eyebrow}
+      headline={c.headline}
+      intro={c.intro}
+      fitPoints={c.fit_points?.map(p => p.text) || []}
+      storyText={c.story_text}
+      outcomePoints={c.outcome_points?.map(p => p.text) || []}
+      ctaLabel={c.cta_label}
     />
   );
 }

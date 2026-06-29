@@ -3,12 +3,12 @@ import Link from 'next/link';
 /**
  * Shared template for all 4 service detail pages.
  * Props:
- *   eyebrow        – small label above the H1
+ *   eyebrow        – small label above H1
  *   headline       – H1
  *   intro          – lead paragraph
- *   fitPoints      – Array<string> (3 items)  "Passt für euch, wenn…"
- *   outcomePoints  – Array<string> (3 items)  "Was ihr bekommt"
- *   approachText   – Paragraph(s) about how kenalu works on this
+ *   fitPoints      – Array<string>   "Passt für euch, wenn…"
+ *   storyText      – String          Narrative Fliesstext (Absätze mit \n\n)
+ *   outcomePoints  – Array<string>   "Was ihr bekommt"
  *   ctaLabel       – Button label
  */
 export default function ServiceDetailPage({
@@ -16,10 +16,14 @@ export default function ServiceDetailPage({
   headline,
   intro,
   fitPoints = [],
+  storyText,
   outcomePoints = [],
-  approachText,
   ctaLabel = 'Gespräch anfragen',
 }) {
+  const storyParagraphs = storyText
+    ? storyText.split('\n\n').map(p => p.trim()).filter(Boolean)
+    : [];
+
   return (
     <div>
       {/* Hero */}
@@ -32,41 +36,49 @@ export default function ServiceDetailPage({
       </section>
 
       {/* Fit */}
-      <section className="sdp-section">
-        <div className="container container--narrow">
-          <p className="sdp-section-title">Passt für euch, wenn…</p>
-          <ul className="sdp-points">
-            {fitPoints.map((point, i) => (
-              <li key={i} className="sdp-point">{point}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      {fitPoints.length > 0 && (
+        <section className="sdp-section">
+          <div className="container container--narrow">
+            <p className="sdp-section-title">Passt für euch, wenn…</p>
+            <ul className="sdp-points">
+              {fitPoints.map((point, i) => (
+                <li key={i} className="sdp-point">{point}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {/* Projekt-Story */}
+      {storyParagraphs.length > 0 && (
+        <section className="sdp-story">
+          <div className="container container--narrow">
+            <p className="sdp-section-title">So könnte es aussehen</p>
+            <div className="sdp-story-text">
+              {storyParagraphs.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Outcomes */}
-      <section className="sdp-section">
-        <div className="container container--narrow">
-          <p className="sdp-section-title">Was ihr bekommt</p>
-          <ul className="sdp-points">
-            {outcomePoints.map((point, i) => (
-              <li key={i} className="sdp-point">{point}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Approach */}
-      {approachText && (
-        <section className="sdp-approach">
+      {outcomePoints.length > 0 && (
+        <section className="sdp-section">
           <div className="container container--narrow">
-            <p className="sdp-section-title">Wie wir vorgehen</p>
-            <p className="sdp-approach-text">{approachText}</p>
+            <p className="sdp-section-title">Was ihr bekommt</p>
+            <ul className="sdp-points">
+              {outcomePoints.map((point, i) => (
+                <li key={i} className="sdp-point">{point}</li>
+              ))}
+            </ul>
           </div>
         </section>
       )}
 
       {/* CTA */}
-      <section className="sdp-section" style={{ textAlign: 'center' }}>
+      <section className="sdp-cta">
         <div className="container container--narrow">
           <Link href="/contact" className="btn btn-primary">
             {ctaLabel}

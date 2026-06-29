@@ -1,5 +1,7 @@
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../components/DynamicBlock';
+import ServicesFinder from '../../components/blocks/ServicesFinder';
+import Reveal from '../../components/Reveal';
 
 export const revalidate = 60;
 
@@ -19,10 +21,17 @@ async function getContent() {
 export default async function Services() {
   const content = await getContent();
   const body = content?.body || [];
+  const [heroBlock, ...restBlocks] = body;
 
   return (
     <>
-      {body.map((blok) => (
+      {heroBlock && <DynamicBlock key={heroBlock._uid} blok={heroBlock} />}
+
+      <Reveal>
+        <ServicesFinder />
+      </Reveal>
+
+      {restBlocks.map((blok) => (
         <DynamicBlock key={blok._uid} blok={blok} />
       ))}
     </>
