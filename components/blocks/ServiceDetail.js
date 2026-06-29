@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function ServiceDetail({ blok }) {
   const items = (blok.service_detail_list || '')
     .split('\n')
@@ -28,6 +30,13 @@ export default function ServiceDetail({ blok }) {
               <li key={i}>{item}</li>
             ))}
           </ul>
+        </div>
+      )}
+      {blok.service_detail_link && (
+        <div className="sdi-link">
+          <Link href={blok.service_detail_link} className="link-arrow">
+            {blok.service_detail_link_label || 'Zur Leistung →'}
+          </Link>
         </div>
       )}
     </div>
