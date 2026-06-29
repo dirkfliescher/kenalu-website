@@ -1,32 +1,29 @@
 export default function AboutIntro({ blok }) {
+  const hasImage = !!blok.about_intro_image?.filename;
+
   return (
     <section className="about-intro">
-      <div className="container container--wide about-intro-grid">
-        <div>
-          <div className="about-intro-image">
-            {blok.about_intro_image?.filename ? (
+      <div className={`container ${hasImage ? 'container--wide about-intro-grid' : 'container--narrow about-intro-solo'}`}>
+        {hasImage && (
+          <div>
+            <div className="about-intro-image">
               <img src={blok.about_intro_image.filename} alt={blok.about_intro_image_alt || blok.about_intro_image.alt || ''} />
-            ) : (
-              <svg viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" fill="none" style={{ width: '60%' }}>
-                <circle cx="60" cy="55" r="30" fill="#D8D4CE" />
-                <path d="M 10 150 Q 60 100 110 150" fill="#D8D4CE" />
-              </svg>
+            </div>
+            {blok.about_intro_caption && (
+              <p className="about-intro-caption">{blok.about_intro_caption}</p>
             )}
           </div>
-          {blok.about_intro_caption && (
-            <p className="about-intro-caption">{blok.about_intro_caption}</p>
-          )}
-        </div>
+        )}
         <div className="about-intro-content">
           {blok.about_intro_label && <p className="section-label">{blok.about_intro_label}</p>}
-          {blok.about_intro_headline && <h1>{blok.about_intro_headline}</h1>}
+          {blok.about_intro_headline && <h2 className="about-intro-headline">{blok.about_intro_headline}</h2>}
           {blok.about_intro_text_1 && <p>{blok.about_intro_text_1}</p>}
           {blok.about_intro_text_2 && <p>{blok.about_intro_text_2}</p>}
           {blok.about_intro_text_3 && <p>{blok.about_intro_text_3}</p>}
           {blok.about_intro_text_4 && (
             <>
               <div className="about-intro-divider" />
-              <p>{blok.about_intro_text_4}</p>
+              <p className="about-intro-footnote">{blok.about_intro_text_4}</p>
             </>
           )}
           {blok.about_intro_link_text && (

@@ -51,12 +51,10 @@ export default function ServiceDetailPage({
         <section className="sdp-fit">
           <div className="container container--narrow">
             <p className="sdp-section-label">Passt für euch, wenn…</p>
-            <div className="sdp-fit-grid">
+            <div className="sdp-fit-list">
               {fitPoints.map((point, i) => (
                 <div key={i} className="sdp-fit-item">
-                  <span className="sdp-fit-num">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
+                  <span className="sdp-fit-mark">→</span>
                   <p className="sdp-fit-text">{point}</p>
                 </div>
               ))}

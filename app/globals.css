@@ -614,13 +614,27 @@ p { color: var(--charcoal); }
 
 /* About page */
 .about-intro { padding: 7rem var(--gutter); }
+
+/* Mit Bild: Zwei Spalten */
 .about-intro-grid { display: grid; grid-template-columns: 340px 1fr; gap: 6rem; align-items: end; }
 .about-intro-image { width: 100%; aspect-ratio: 3/4; background: var(--mineral); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .about-intro-image img { width: 100%; height: 100%; object-fit: cover; }
 .about-intro-caption { margin-top: 1.25rem; font-size: 0.875rem; color: var(--stone); }
-.about-intro-content { max-width: 640px; }
-.about-intro-content h1 { margin-bottom: 2rem; }
-.about-intro-content p { color: var(--stone); line-height: 1.8; margin-bottom: 1.25rem; font-size: 1.2rem; }
+
+/* Ohne Bild: Volle Breite */
+.about-intro-solo { /* container--narrow übernimmt die Breite */ }
+
+.about-intro-content { }
+.about-intro-headline {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+  color: var(--charcoal);
+  margin-bottom: 2rem;
+}
+.about-intro-content p { color: var(--stone); line-height: 1.8; margin-bottom: 1.25rem; font-size: 1.15rem; }
+.about-intro-footnote { font-size: 0.9rem !important; color: var(--softline) !important; margin-bottom: 0 !important; }
 .about-intro-divider { width: 40px; height: 2px; background: var(--sage); margin: 2.5rem 0; }
 
 .about-beliefs { background: var(--mineral); padding: 7rem var(--gutter); }
@@ -4399,45 +4413,43 @@ p { color: var(--charcoal); }
   color: var(--sage);
 }
 
-/* Fit section */
+/* Fit section — leicht, kompakt, qualifizierend */
 .sdp-fit {
-  padding: 6rem var(--gutter);
+  padding: 5rem var(--gutter);
   background: var(--ivory);
 }
 
-.sdp-fit-grid {
+.sdp-fit-list {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
-  max-width: 660px;
+  gap: 0;
+  max-width: 680px;
 }
 
 .sdp-fit-item {
-  display: grid;
-  grid-template-columns: 3.5rem 1fr;
-  gap: 1.25rem;
-  align-items: start;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 }
 
-.sdp-fit-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.sdp-fit-item:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
 }
 
-.sdp-fit-num {
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
+.sdp-fit-mark {
+  flex-shrink: 0;
+  width: 1.25rem;
   color: var(--terracotta);
-  padding-top: 0.3em;
+  font-weight: 700;
+  font-size: 0.9rem;
 }
 
 .sdp-fit-text {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--charcoal);
-  line-height: 1.68;
+  line-height: 1.6;
 }
 
 /* Story section */
@@ -4472,60 +4484,68 @@ p { color: var(--charcoal); }
   line-height: 1.8;
 }
 
-/* Outcomes section */
+/* Outcomes section — dunkel, dramatisch, die Payoff-Sektion */
 .sdp-outcomes {
   padding: 6rem var(--gutter);
-  background: var(--mineral);
+  background: var(--charcoal);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sdp-outcomes .sdp-section-label {
+  color: var(--sage);
 }
 
 .sdp-outcome-list {
   display: flex;
   flex-direction: column;
-  max-width: 660px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  max-width: 680px;
 }
 
 .sdp-outcome-item {
   display: grid;
-  grid-template-columns: 3.5rem 1fr;
-  gap: 1.5rem;
-  padding: 2rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  align-items: start;
+  grid-template-columns: 4rem 1fr;
+  gap: 1.75rem;
+  padding: 2.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  align-items: center;
+}
+
+.sdp-outcome-item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .sdp-outcome-num {
-  font-size: 1.35rem;
+  font-size: 2rem;
   font-weight: 900;
   color: var(--terracotta);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
   font-family: var(--font-headline);
   line-height: 1;
-  padding-top: 0.1em;
+  opacity: 0.7;
 }
 
 .sdp-outcome-text {
-  font-size: 1rem;
-  color: var(--charcoal);
-  line-height: 1.65;
+  font-size: 1.05rem;
+  color: var(--ivory);
+  line-height: 1.6;
 }
 
 /* CTA */
 .sdp-cta {
   padding: 6rem var(--gutter);
-  background: var(--ivory);
+  background: var(--mineral);
 }
 
 @media (max-width: 640px) {
   .sdp-hero { padding-top: 7rem; padding-bottom: 4rem; }
   .sdp-hero-number { font-size: 10rem; opacity: 0.6; }
-  .sdp-fit { padding-top: 4rem; padding-bottom: 4rem; }
+  .sdp-fit { padding-top: 3.5rem; padding-bottom: 3.5rem; }
   .sdp-story { padding-top: 4.5rem; padding-bottom: 4.5rem; }
   .sdp-story-inner { padding-left: 1.25rem; }
   .sdp-outcomes { padding-top: 4rem; padding-bottom: 4rem; }
+  .sdp-outcome-item { grid-template-columns: 3rem 1fr; gap: 1.25rem; }
+  .sdp-outcome-num { font-size: 1.5rem; }
   .sdp-cta { padding-top: 4rem; padding-bottom: 4rem; }
-  .sdp-fit-item { grid-template-columns: 2.5rem 1fr; }
-  .sdp-outcome-item { grid-template-columns: 2.5rem 1fr; }
 }
 
 /* ── Situation Teaser (st-*) ────────────────────────────────────── */
