@@ -133,8 +133,9 @@ p { color: var(--charcoal); }
 .provocation p { color: var(--ivory); }
 .provocation .lead { color: var(--ivory); font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.03em; }
 .provocation .body-text { color: var(--softline); margin-top: 2rem; font-size: 1rem; line-height: 1.75; max-width: 480px; }
-.provocation-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 5rem; align-items: start; width: 100%; }
-.provocation-values { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.provocation-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; width: 100%; }
+.provocation-intro { max-width: 620px; }
+.provocation-values { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 5rem; }
 .value-item { display: flex; align-items: flex-start; gap: 1.5rem; font-family: var(--font-body); font-weight: 400; font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.7; }
 .value-icon { font-family: var(--font-headline); font-size: 1rem; font-weight: 700; color: var(--terracotta); line-height: 1.9; min-width: 2rem; flex-shrink: 0; letter-spacing: 0.05em; }
 
