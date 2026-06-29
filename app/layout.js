@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import SpacebarNav from '../components/SpacebarNav';
 
 export const revalidate = 60;
 
@@ -52,6 +53,7 @@ export default function RootLayout({ children }) {
         <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
       </head>
       <body>
+        <SpacebarNav />
         <Nav />
         {children}
         <Footer />
