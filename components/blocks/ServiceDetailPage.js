@@ -54,7 +54,6 @@ export default function ServiceDetailPage({
             <div className="sdp-fit-list">
               {fitPoints.map((point, i) => (
                 <div key={i} className="sdp-fit-item">
-                  <span className="sdp-fit-mark">→</span>
                   <p className="sdp-fit-text">{point}</p>
                 </div>
               ))}
@@ -85,11 +84,11 @@ export default function ServiceDetailPage({
       {/* ── Outcomes ────────────────────────────────────────────────── */}
       {outcomePoints.length > 0 && (
         <section className="sdp-outcomes">
-          <div className="container container--narrow">
+          <div className="container">
             <p className="sdp-section-label">Was ihr bekommt</p>
-            <div className="sdp-outcome-list">
+            <div className="sdp-outcome-grid">
               {outcomePoints.map((point, i) => (
-                <div key={i} className="sdp-outcome-item">
+                <div key={i} className="sdp-outcome-card">
                   <span className="sdp-outcome-num">
                     {String(i + 1).padStart(2, '0')}
                   </span>

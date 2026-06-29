@@ -50,11 +50,11 @@ export default async function TeamPage() {
         <div className="container">
           <p className="section-label">Das Team</p>
           <h1 className="team-hero-headline">
-            Zwei Menschen.<br />Eine Überzeugung.
+            Wer hinter kenalu steckt.
           </h1>
           <p className="team-hero-sub">
-            kenalu ist Dirk und Stan. Wir bauen keine Produkte von der Stange
-            — und wir sind auch keine Berater von der Stange.
+            kenalu wächst nicht durch Stellen — sondern durch Menschen, die auf ihrem Gebiet
+            wirklich herausragen. Mit Haltung, Können und dem Anspruch, keine Abstriche zu machen.
           </p>
         </div>
       </section>
