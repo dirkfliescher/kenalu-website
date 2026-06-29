@@ -173,7 +173,7 @@ Gib zusätzlich zur Antwort 0–3 Widgets zurück, die zur LETZTEN Frage passen.
    { "type": "team", "label": "Das Team kennenlernen", "description": "Stell Fragen, spiel ein Spiel oder finde heraus, mit wem du mehr gemeinsam hast." }
 
 Wann welches Widget:
-- Artikel: wenn das Thema in einem Artikel behandelt wird
+- Artikel: IMMER wenn das Thema inhaltlich zu einem Artikel passt — bei Fragen zu AI, Strategie, Discovery, Prototyping, Commerce, Banking, Standardsoftware, Enterprise, Erfahrungen, Haltung, Prozessen. Zeige 1–2 konkrete Artikel aus der Liste. Verwende EXAKT den Slug und Titel aus der Liste oben, niemals erfundene Werte.
 - Service: wenn die Frage eine spezifische Leistung nahelegt
 - Person: wenn nach Team, Ansprechpersonen oder spezifischer Expertise gefragt wird
 - Contact: wenn jemand konkret etwas verändern oder starten will
@@ -213,9 +213,15 @@ Antworte AUSSCHLIESSLICH mit gültigem JSON (kein Markdown):
     // Widgets gegen echte Daten validieren
     const validatedWidgets = (parsed.widgets || []).map((w) => {
       if (w.type === 'article') {
-        const real = articles.find((a) => a.slug === w.slug);
+        // Normalisieren: GPT fügt manchmal 'insights/' als Prefix hinzu
+        const normalizedSlug = (w.slug || '').replace(/^insights\//, '');
+        // Erst Slug-Match, dann Titel-Fallback (GPT halluziniert manchmal Slugs)
+        const real = articles.find((a) => {
+          const aSlug = (a.slug || '').replace(/^insights\//, '');
+          return aSlug === normalizedSlug;
+        }) || articles.find((a) => a.title === w.title);
         if (!real) return null;
-        return { ...w, title: real.title, tag: real.tag, excerpt: real.excerpt };
+        return { ...w, slug: real.slug, title: real.title, tag: real.tag, excerpt: real.excerpt };
       }
       if (w.type === 'service') {
         const validService = KENALU_SERVICES.find((s) => s.name === w.name);
