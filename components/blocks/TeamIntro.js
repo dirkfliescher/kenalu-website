@@ -408,10 +408,10 @@ export default function TeamIntro() {
     <section className="ti-section">
       <div className="container">
         <div className="ti-header">
-          <p className="section-label">Lerne uns kennen</p>
-          <h2 className="ti-headline">Wer steckt hinter kenalu?</h2>
+          <p className="section-label">Interaktiv</p>
+          <h2 className="ti-headline">Direkt fragen. Spielen. Vergleichen.</h2>
           <p className="ti-sub">
-            Stellt Fragen, spielt ein Spiel oder findet heraus, mit wem ihr mehr gemeinsam habt.
+            Stellt Dirk oder Stan eine Frage, findet die Lüge — oder seht, mit wem ihr mehr gemeinsam habt.
           </p>
         </div>
 
