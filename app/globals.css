@@ -3878,7 +3878,7 @@ p { color: var(--charcoal); }
 
 .svc-compare-tagline {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.55);
   margin: 0;
   line-height: 1.5;
   padding-bottom: 1rem;
@@ -3909,7 +3909,7 @@ p { color: var(--charcoal); }
 
 .svc-compare-when li {
   font-size: 0.875rem;
-  color: var(--text);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.5;
   padding-left: 1.1rem;
   position: relative;
