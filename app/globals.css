@@ -5450,3 +5450,218 @@ p { color: var(--charcoal); }
   .kai-prompt-chip { font-size: 0.75rem; }
   .kai-dialogue-contact-hint { flex-direction: column; align-items: flex-start; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   ECOSYSTEM PARTNERS
+   ══════════════════════════════════════════════════════════════ */
+
+.ep-section {
+  padding: 5rem 0;
+  background: var(--ivory);
+}
+
+/* ── Section Header ── */
+.ep-header {
+  max-width: 640px;
+  margin-bottom: 3.5rem;
+}
+
+.ep-headline {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--charcoal);
+  margin: 0.4rem 0 1rem;
+}
+
+.ep-intro {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--graphite, #374151);
+  margin: 0;
+}
+
+/* ── Partner-Gruppe ── */
+.ep-group {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--softline, #e5e7eb);
+}
+
+.ep-group:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.ep-group-meta {
+  margin-bottom: 1.75rem;
+}
+
+.ep-group-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mineral, #6b7280);
+  margin: 0 0 0.5rem;
+}
+
+.ep-group-intro {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--graphite, #374151);
+  margin: 0;
+  max-width: 52ch;
+}
+
+/* ── Karten-Grid ── */
+.ep-cards {
+  display: grid;
+  gap: 1rem;
+}
+
+.ep-cards--2col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.ep-cards--3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ── Einzelne Karte ── */
+.ep-card,
+.ep-card--link {
+  background: #fff;
+  border: 1px solid var(--softline, #e5e7eb);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s;
+}
+
+.ep-card--link:hover {
+  border-color: var(--charcoal);
+}
+
+.ep-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ── Logo / Textlabel ── */
+.ep-card-logo-area {
+  margin-bottom: 0.25rem;
+}
+
+.ep-card-logo {
+  max-height: 24px;
+  max-width: 100px;
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.ep-card-name-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--charcoal);
+  text-transform: uppercase;
+}
+
+.ep-card-name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin: 0;
+}
+
+.ep-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--graphite, #374151);
+  margin: 0;
+}
+
+.ep-card-note {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--mineral, #6b7280);
+  font-style: italic;
+  margin: 0;
+}
+
+/* ── Werkzeuge ── */
+.ep-tools {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--softline, #e5e7eb);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ep-tools-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 52ch;
+}
+
+.ep-tools-headline {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mineral, #6b7280);
+  margin: 0;
+}
+
+.ep-tools-text {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--graphite, #374151);
+  margin: 0;
+}
+
+.ep-tool-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ep-tool-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  background: transparent;
+  border: 1px solid var(--softline, #d1d5db);
+  border-radius: 4px;
+  padding: 0.25rem 0.6rem;
+  letter-spacing: 0.01em;
+}
+
+/* ── Abschlusshinweis ── */
+.ep-closing {
+  margin-top: 2.5rem;
+  font-size: 0.9rem;
+  color: var(--mineral, #6b7280);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .ep-cards--3col { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .ep-section { padding: 3.5rem 0; }
+  .ep-cards--2col,
+  .ep-cards--3col { grid-template-columns: 1fr; }
+  .ep-tools { margin-top: 2rem; padding-top: 2rem; }
+}

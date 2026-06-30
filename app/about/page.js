@@ -15,7 +15,9 @@ export const metadata = {
 
 async function getContent() {
   try {
-    const { data } = await Storyblok.get('cdn/stories/about', { version: process.env.NODE_ENV === 'development' ? 'draft' : 'published' });
+    const { data } = await Storyblok.get('cdn/stories/about', {
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
+    });
     return data.story.content;
   } catch (e) {
     return null;
@@ -37,25 +39,34 @@ async function getTeamMembers() {
   }
 }
 
+function renderBlok(blok, members) {
+  if (blok.component === 'about_team') {
+    return (
+      <Reveal key={blok._uid}>
+        <AboutTeam blok={blok} members={members} />
+      </Reveal>
+    );
+  }
+  return <DynamicBlock key={blok._uid} blok={blok} />;
+}
+
 export default async function About() {
   const [content, members] = await Promise.all([getContent(), getTeamMembers()]);
   const body = content?.body || [];
 
+  // Blöcke an der about_team-Grenze aufteilen:
+  // Alles bis und mit about_team → vor dem Team-Teaser
+  // Alles danach (ecosystem_partners, Erfahrungshintergrund, CTA) → nach dem Team-Teaser
+  const aboutTeamIdx = body.findIndex((b) => b.component === 'about_team');
+  const topBlocks = aboutTeamIdx >= 0 ? body.slice(0, aboutTeamIdx + 1) : body;
+  const bottomBlocks = aboutTeamIdx >= 0 ? body.slice(aboutTeamIdx + 1) : [];
+
   return (
     <>
-      {body.map((blok) => {
-        // about_team bekommt zusätzlich die members-Daten aus dem team/-Ordner
-        if (blok.component === 'about_team') {
-          return (
-            <Reveal key={blok._uid}>
-              <AboutTeam blok={blok} members={members} />
-            </Reveal>
-          );
-        }
-        return <DynamicBlock key={blok._uid} blok={blok} />;
-      })}
+      {/* ── Blöcke bis Kernteam (Hero, Arbeitsprinzipien, Team) ── */}
+      {topBlocks.map((blok) => renderBlok(blok, members))}
 
-      {/* Teaser → /team */}
+      {/* ── Kernteam-Teaser → /team ── */}
       <Reveal>
         <section className="about-team-teaser">
           <div className="container">
@@ -74,6 +85,9 @@ export default async function About() {
           </div>
         </section>
       </Reveal>
+
+      {/* ── Blöcke nach Kernteam (Ökosystem, Erfahrung, CTA) ── */}
+      {bottomBlocks.map((blok) => renderBlok(blok, members))}
     </>
   );
 }

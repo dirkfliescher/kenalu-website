@@ -26,6 +26,7 @@ import WorkingPrinciples from './blocks/WorkingPrinciples';
 import SituationTeaser from './blocks/SituationTeaser';
 import ProcessJourney from './blocks/ProcessJourney';
 import KaiDialogue from './blocks/KaiDialogue';
+import EcosystemPartners from './blocks/EcosystemPartners';
 
 const Components = {
   hero: Hero,
@@ -55,6 +56,7 @@ const Components = {
   situation_teaser: SituationTeaser,
   process_journey: ProcessJourney,
   kai_dialogue: KaiDialogue,
+  ecosystem_partners: EcosystemPartners,
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist

@@ -293,3 +293,84 @@ git push origin main
 ```
 
 Vercel deployt automatisch nach `git push`.
+
+---
+
+## 15. Ökosystem: Partner und Werkzeuge
+
+### Frühere Partner-Komponente
+
+`ZusammenarbeitPartners.js` und `PartnerCard.js` existieren noch im Repository. Die zugehörigen Storyblok-Blöcke (`zusammenarbeit_partners`, `partner_card`) wurden in Commit `d80b035` ("zusammenarbeit entfernt") aus Storyblok gelöscht. Das Schema ist in `docs/storyblok-partner-blocks.md` dokumentiert. Die alten Inhalte sind nicht wiederherstellbar.
+
+Entscheidung: Keine Wiederverwendung der alten Struktur. Die neue Komponente `EcosystemPartners` hat ein anderes inhaltliches Konzept und stärkere redaktionelle Leitplanken.
+
+### Platzierung nur auf /about
+
+Der Block gehört ausschliesslich auf `/about`. Begründung:
+- `/about` erklärt, wie kenalu arbeitet — Partner ergänzen dieses Bild sinnvoll
+- Homepage, Leistungsseiten und Kontakt fokussieren auf den konkreten Nutzen oder die nächste Handlung — Partner würden dort ablenken
+- Die Platzierung direkt nach dem Kernteam-Teaser macht deutlich: kenalu führt, Partner ergänzen gezielt
+
+### Zwei getrennte Gruppen
+
+Solution Partner und Service Partner werden getrennt dargestellt, weil sie grundlegend unterschiedliche Rollen spielen:
+- **Solution Partner** bringen Plattform-Know-how (Emporix, Storyblok) — sie sind die technologische Grundlage
+- **Service Partner** bringen spezialisierte Umsetzungskompetenz (Beebase, Skyquest, Soulcode) — sie ergänzen situativ
+
+### Partner pro Kategorie
+
+| Kategorie | Partner |
+|-----------|---------|
+| Solution Partner | Emporix, Storyblok |
+| Service Partner | Beebase, Skyquest, Soulcode |
+
+### Claude und OpenAI als Werkzeuge
+
+Claude und OpenAI erscheinen ausschliesslich im Werkzeugbereich, nicht in den Partner-Gruppen. Begründung:
+- Sie sind Arbeitswerkzeuge, keine Kooperationspartner
+- Eine Partnerbezeichnung wäre faktisch nicht korrekt
+- Sie werden als kleine Textlabels ohne Links, Logos oder Partneraussagen dargestellt
+
+### Logos und URLs
+
+- **Keine Logos eingebunden:** Für keinen der fünf Partner lagen gesicherte Logo-Assets oder Nutzungsrechte vor. Alle Partner werden als Textlabels dargestellt. Sobald Logos mit gesichertem Nutzungsrecht vorliegen, können sie in Storyblok (Feld `logo`) hochgeladen werden.
+- **Keine URLs:** Es wurden keine Partner-URLs hinterlegt, da keine freigegebenen oder bestätigten Partnerseiten vorlagen. URLs können jederzeit in Storyblok nachgepflegt werden.
+- **Keine Relationship Notes:** Da kein offizieller Partnerstatus belegt ist, wurden alle `relationship_note`-Felder leer gelassen.
+
+### Neue Storyblok-Komponenten
+
+| Komponente | Typ | Zweck |
+|------------|-----|-------|
+| `ecosystem_partners` | Nestable Block | Container mit allen Gruppen und Werkzeug-Bereich |
+| `ecosystem_partner_item` | Nestable Block | Einzelner Partner (Name, Logo, Beschreibung, URL, Note) |
+
+Das Feld `tools` ist eine Textarea (zeilengetrennte Liste), kein Bloks-Feld — bewusst einfach gehalten.
+
+### Geänderte Dateien
+
+- `components/blocks/EcosystemPartners.js` — neue Komponente
+- `components/DynamicBlock.js` — `ecosystem_partners` registriert
+- `app/globals.css` — `ep-*` Klassen ergänzt
+- `app/about/page.js` — Body in top/bottom aufgeteilt, Team-Teaser korrekt positioniert
+- `scripts/setup-ecosystem-storyblok.mjs` — Setup-Script (einmalig ausführen)
+
+### Offene Punkte
+
+- Logos: sobald Nutzungsrechte geklärt, in Storyblok (`logo`-Feld) hochladen
+- URLs: Partnerseiten hinterlegen, wenn freigegeben
+- Relationship Notes: nur ausfüllen, wenn Partnerstatus faktisch belegbar
+- `ZusammenarbeitPartners.js` und `PartnerCard.js` können aus dem Repository entfernt werden, wenn die neue Infrastruktur stabil ist
+
+### Terminal-Befehle: Ecosystem deployen
+
+```bash
+cd /Users/dirkfliescher/Documents/kenalu-website
+
+# 1. Storyblok-Setup (einmalig)
+node scripts/setup-ecosystem-storyblok.mjs
+
+# 2. Git-Commit und Push
+git add -A
+git commit -m "feat: Ökosystem-Block auf /about (EcosystemPartners, Solution/Service Partner, Werkzeuge)"
+git push origin main
+```
