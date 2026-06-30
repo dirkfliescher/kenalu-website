@@ -99,6 +99,31 @@ export default async function Lab() {
         </div>
       </section>
 
+      {/* ── Featured: kenalu-Website-Artikel ──────────────────────── */}
+      <section className="lab-featured">
+        <div className="container">
+          <div className="lab-featured-inner">
+            <div>
+              <div className="lab-featured-meta">
+                <span className="lab-featured-badge">Eigene Arbeitsprobe</span>
+                <span className="lab-featured-label">Artikel</span>
+              </div>
+              <p className="lab-featured-name">
+                Wie eine Website vom Schaufenster zum Gespräch wird.
+              </p>
+              <p className="lab-featured-text">
+                kenalu.ch wurde nicht als Broschüre gebaut, sondern als Produkt: mit
+                Orientierung, Dialog und einer Grundlage, die sich weiterentwickeln kann.
+                Alle Entscheidungen, offen dokumentiert.
+              </p>
+            </div>
+            <Link href="/lab/kenalu-website" className="btn btn-secondary lab-featured-cta">
+              Artikel lesen →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── Cases ─────────────────────────────────────────────────── */}
       {cases.map((CASE, idx) => (
         <section key={idx} className="lab-cases">

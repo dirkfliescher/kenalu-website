@@ -464,3 +464,86 @@ git push origin main
 - Keine technischen offenen Punkte
 - Storyblok-Setup nicht erforderlich (reine React-Komponenten)
 - Logos der Partner können jederzeit in Storyblok (`ecosystem_partner_item` → `logo`-Feld) hochgeladen werden
+
+---
+
+## Kapitel 17: Lab-Artikel „kenalu.ch" (2026-06-30)
+
+### Hintergrund
+
+Der bestehende Lab-Bereich (`/lab`) zeigt Projekte als inline-Karten. Für die eigene Website wollten wir mehr: einen eigenständigen, strukturierten Artikel, der offen zeigt, welche Produktentscheidungen hinter kenalu.ch stecken.
+
+### Neue Route
+
+`app/lab/kenalu-website/page.js` — vollständig statisch (kein Datenfetching im Render). Nur `generateMetadata()` ist async und lädt SEO-Felder aus Storyblok.
+
+### Artikelstruktur (8 Sektionen)
+
+| Nr. | Eyebrow | Inhalt |
+|-----|---------|--------|
+| 1 | Eigene Arbeitsprobe | Hero mit Titel, Intro, Meta |
+| 2 | Ausgangslage | 3 Absätze über die Ausgangsfrage |
+| 3 | Die Entscheidung | 3 lca-cards: Orientierung, Dialog, Weiterentwicklung |
+| 4 | Highlight 01 | Comparison Canvas: Klassische Leistungslogik vs. Entscheidungslogik |
+| 5 | Highlight 02 | Dialogue Example: 4 Nachrichten (2 × Besucher, 2 × Kai) |
+| 6 | Highlight 03 | Foundation Layers: 4 Schichten (Inhalt/Storyblok, Produktlogik/Next.js, Dialog/Kai, Weiterentwicklung) |
+| 7 | Übertragbar | 3-Punkte-Liste + Abschlusstext |
+| 8 | Transparenz + CTA | Hinweis zur Arbeitsprobe, CTA → /contact |
+
+### Neue Dateien
+
+| Datei | Beschreibung |
+|-------|-------------|
+| `app/lab/kenalu-website/page.js` | Artikelseite, Inhalt hardcoded, SEO aus Storyblok |
+| `scripts/setup-lab-kenalu.mjs` | Storyblok-Setup: Komponentenschema `lab_article` + Story `lab/kenalu-website` |
+
+### Geänderte Dateien
+
+| Datei | Änderung |
+|-------|----------|
+| `app/lab/page.js` | Featured-Teaser-Sektion vor den Cases eingefügt |
+| `app/globals.css` | `lca-*` CSS-Klassen (ca. 270 Zeilen) + `.lab-featured*` Klassen ergänzt |
+
+### CSS-Prefix
+
+Alle Klassen für die Artikelseite verwenden `lca-*` (Lab Case Article). Der Featured Teaser auf der Übersichtsseite verwendet `lab-featured*`.
+
+### Storyblok-Komponente: `lab_article`
+
+Schema (SEO-only):
+
+| Feld | Typ | Verwendung |
+|------|-----|-----------|
+| `seo_title` | text | `<title>` |
+| `seo_description` | textarea | `<meta name="description">` |
+| `og_title` | text | OpenGraph-Titel |
+| `og_description` | textarea | OpenGraph-Beschreibung |
+
+### Ansprache im Artikel
+
+- Besucher/Kunden: `ihr/euch/euer` (konsistent mit dem Rest der Website)
+- Ausnahme: FitTest und Mitwirken-Sektion bleiben in `du/dir`
+
+### Storyblok-Setup ausführen
+
+```bash
+cd /Users/dirkfliescher/Documents/kenalu-website
+node scripts/setup-lab-kenalu.mjs
+```
+
+### Alle Änderungen deployen
+
+```bash
+cd /Users/dirkfliescher/Documents/kenalu-website
+
+# Ecosystem + Kai (falls noch ausstehend):
+# node scripts/setup-ecosystem-storyblok.mjs
+# node scripts/setup-kai-storyblok.mjs
+
+# Lab-Artikel:
+node scripts/setup-lab-kenalu.mjs
+
+git add -A
+git commit -m "feat: Lab-Artikel /lab/kenalu-website, Featured-Teaser, lca-CSS"
+git push origin main
+```
