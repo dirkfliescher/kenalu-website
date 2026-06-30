@@ -374,3 +374,93 @@ git add -A
 git commit -m "feat: Ökosystem-Block auf /about (EcosystemPartners, Solution/Service Partner, Werkzeuge)"
 git push origin main
 ```
+
+---
+
+## 16. Mitwirken-Komponente auf Arbeitsweise (/about)
+
+### Ausgangslage
+
+Die Komponente „Passt du zu uns?" (`FitTest.js`) war ursprünglich auf `/team` eingebettet. Seit die Seite `/team` aus der Hauptnavigation entfernt wurde, war die Komponente für die meisten Besuchenden kaum noch erreichbar. Damit ging ein wertvolles, interaktives Element der kenalu-Positionierung verloren.
+
+### Entscheidung und Begründung
+
+Die Komponente wurde von `/team` auf `/about` (Arbeitsweise) verschoben. Begründung:
+
+- Auf `/about` erklärt kenalu, wie gearbeitet wird — die Komponente passt inhaltlich direkt in diesen Kontext
+- Die Komponente signalisiert: kenalu arbeitet bewusst mit Menschen, die fachlich tief gehen, Verantwortung übernehmen und Denken und Machen verbinden
+- Das ist keine Recruiting-Sektion im klassischen Sinne, sondern ein sichtbarer Teil der Arbeitsweise
+- `/team` bleibt bestehen, wird aber auf Kernteam, Profile und einen kleinen Mitwirkenden-Teaser reduziert
+
+### Neue Reihenfolge auf /about
+
+1. Hero: Arbeitsweise
+2. Drei Arbeitsprinzipien
+3. Kernteam (`about_team` → Team-Teaser → `/team`)
+4. Ökosystem (`ecosystem_partners`)
+5. **Mitwirken** (Einleitung + FitTest + Closing-CTA) — neu, mit Sprungmarke `id="mitwirken"`
+6. Erfahrungshintergrund
+7. Abschluss-CTA
+8. Footer
+
+### Geänderte Inhalte und Komponenten
+
+**FitTest.js** (angepasst):
+- `section-label`: „Passt du zu uns?" → „Passt du zu der Art, wie wir arbeiten?"
+- `fit-headline`: „6 Fragen.\nEine ehrliche Antwort." → „6 Fragen.\nEine ehrliche Einschätzung."
+- `fit-sub`: „Kein Bullshit-Bingo..." entfernt. Ersetzt durch: „Wir arbeiten gerne mit Menschen zusammen, die fachlich tief gehen, Verantwortung übernehmen und nicht zwischen Denken und Machen unterscheiden. Sechs Fragen helfen dir einzuschätzen, ob das passt."
+- Fragen, Optionen und Ergebnis-Logik: unverändert
+- Ansprache bleibt konsequent `du/dir` — dies ist im Mitwirken-Bereich bewusst so, richtet sich an einzelne Personen
+
+**CollaborationIntro.js** (neu erstellt):
+- Schlanke Einleitungskomponente ohne Storyblok-Abhängigkeit
+- Felder: eyebrow, headline, text, ctaLabel, ctaLink (alle mit Defaults)
+- Inhalte (verbatim): eyebrow „Mitwirken", H2 „Passt du zu der Art, wie wir arbeiten?", Text gemäss Spec, CTA „Kontakt aufnehmen →" → `/contact`
+
+**app/about/page.js** (angepasst):
+- Import von `CollaborationIntro` und `FitTest` hinzugefügt
+- `bottomBlocks` wird an `ecosystem_partners` aufgeteilt
+- Zwischen Ökosystem und restlichen Blöcken eingefügt: `<section id="mitwirken">` mit CollaborationIntro, FitTest, Closing-CTA
+
+**app/team/page.js** (angepasst):
+- `FitTest`-Import und -Rendering entfernt
+- Mitwirkenden-Teaser hinzugefügt: eyebrow „Mitwirken", H2 „Mehr als zwei Perspektiven, wenn es sinnvoll ist.", Text gemäss Spec, CTA „So arbeiten wir →" → `/about#mitwirken`
+
+**app/globals.css** (ergänzt):
+- `.collab-intro`, `.collab-intro-headline`, `.collab-intro-text`, `.collab-intro-cta`
+- `.collab-closing`, `.collab-closing-text`
+- `.team-mitwirken-teaser`, `.team-mitwirken-inner`, `.team-mitwirken-headline`, `.team-mitwirken-text`, `.team-mitwirken-btn`
+
+### Storyblok
+
+Kein Storyblok-Script notwendig. `FitTest.js` ist eine reine React-Komponente ohne Storyblok-Abhängigkeit. Die Einleitung (`CollaborationIntro.js`) ist ebenfalls hartcodiert mit Defaults aus der Spec.
+
+### Ansprache auf /about
+
+| Bereich | Ansprache |
+|---------|-----------|
+| Hero, Prinzipien, Ökosystem, CTA | ihr/euch/euer (Kunden) |
+| Kernteam-Teaser | ihr/euch (Kunden) |
+| Mitwirken-Einleitung (CollaborationIntro) | du/dir (einzelne Personen) |
+| FitTest-Komponente | du/dir (bleibt unverändert) |
+| Closing-CTA | du (einzelne Personen) |
+
+### Sprungmarke
+
+`id="mitwirken"` ist auf dem `<section>`-Element gesetzt, das CollaborationIntro, FitTest und Closing-CTA umschliesst. Der Link `/about#mitwirken` vom `/team`-Teaser führt direkt dorthin.
+
+### Terminal-Befehle: Mitwirken deployen
+
+```bash
+cd /Users/dirkfliescher/Documents/kenalu-website
+
+git add -A
+git commit -m "feat: FitTest auf /about verschoben, Mitwirken-Sektion (CollaborationIntro, Sprungmarke, Closing-CTA), /team angepasst"
+git push origin main
+```
+
+### Offene Punkte
+
+- Keine technischen offenen Punkte
+- Storyblok-Setup nicht erforderlich (reine React-Komponenten)
+- Logos der Partner können jederzeit in Storyblok (`ecosystem_partner_item` → `logo`-Feld) hochgeladen werden

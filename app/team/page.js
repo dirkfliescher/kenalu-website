@@ -1,7 +1,7 @@
 import StoryblokClient from 'storyblok-js-client';
+import Link from 'next/link';
 import TeamMemberTeaser from '../../components/blocks/TeamMemberTeaser';
 import TeamIntro from '../../components/blocks/TeamIntro';
-import FitTest from '../../components/blocks/FitTest';
 import DynamicBlock from '../../components/DynamicBlock';
 import Reveal from '../../components/Reveal';
 
@@ -77,16 +77,35 @@ export default async function TeamPage() {
         <TeamIntro />
       </Reveal>
 
-      {/* Gesucht + CTA aus Storyblok */}
+      {/* Storyblok-Blöcke (Abschluss-CTA etc.) */}
       {pageBlocks.map((blok) => (
         <Reveal key={blok._uid}>
           <DynamicBlock blok={blok} />
         </Reveal>
       ))}
 
-      {/* Fit-Test */}
+      {/* Mitwirken-Teaser */}
       <Reveal>
-        <FitTest />
+        <section className="team-mitwirken-teaser">
+          <div className="container">
+            <div className="team-mitwirken-inner">
+              <div>
+                <p className="section-label">Mitwirken</p>
+                <h2 className="team-mitwirken-headline">
+                  Mehr als zwei Perspektiven, wenn es sinnvoll ist.
+                </h2>
+                <p className="team-mitwirken-text">
+                  Je nach Vorhaben ergänzt kenalu das Kernteam mit ausgewählten
+                  Spezialistinnen und Spezialisten. Entscheidend sind fachliche Tiefe,
+                  Verantwortung und eine Zusammenarbeit auf Augenhöhe.
+                </p>
+              </div>
+              <Link href="/about#mitwirken" className="btn btn-secondary team-mitwirken-btn">
+                So arbeiten wir →
+              </Link>
+            </div>
+          </div>
+        </section>
       </Reveal>
     </main>
   );

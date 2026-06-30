@@ -118,12 +118,12 @@ export default function FitTest() {
 
           {/* Linke Seite: Text */}
           <div className="fit-intro">
-            <p className="section-label">Passt du zu uns?</p>
-            <h2 className="fit-headline">6 Fragen.<br />Eine ehrliche Antwort.</h2>
+            <p className="section-label">Passt du zu der Art, wie wir arbeiten?</p>
+            <h2 className="fit-headline">6 Fragen.<br />Eine ehrliche Einschätzung.</h2>
             <p className="fit-sub">
-              Kein Bullshit-Bingo. Kein «Alle sind willkommen».<br />
-              Wir arbeiten gerne mit Menschen, die ähnlich denken wie wir.
-              Ob du dazugehörst, findest du hier heraus.
+              Wir arbeiten gerne mit Menschen zusammen, die fachlich tief gehen, Verantwortung
+              übernehmen und nicht zwischen Denken und Machen unterscheiden.<br />
+              Sechs Fragen helfen dir einzuschätzen, ob das passt.
             </p>
           </div>
 

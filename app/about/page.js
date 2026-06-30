@@ -2,6 +2,8 @@ import StoryblokClient from 'storyblok-js-client';
 import Link from 'next/link';
 import DynamicBlock from '../../components/DynamicBlock';
 import AboutTeam from '../../components/blocks/AboutTeam';
+import CollaborationIntro from '../../components/blocks/CollaborationIntro';
+import FitTest from '../../components/blocks/FitTest';
 import Reveal from '../../components/Reveal';
 
 export const revalidate = 60;
@@ -56,10 +58,15 @@ export default async function About() {
 
   // Blöcke an der about_team-Grenze aufteilen:
   // Alles bis und mit about_team → vor dem Team-Teaser
-  // Alles danach (ecosystem_partners, Erfahrungshintergrund, CTA) → nach dem Team-Teaser
+  // Alles danach → nach dem Team-Teaser
   const aboutTeamIdx = body.findIndex((b) => b.component === 'about_team');
   const topBlocks = aboutTeamIdx >= 0 ? body.slice(0, aboutTeamIdx + 1) : body;
   const bottomBlocks = aboutTeamIdx >= 0 ? body.slice(aboutTeamIdx + 1) : [];
+
+  // bottomBlocks aufteilen: ecosystem_partners | Mitwirken-Sektion | Rest
+  const ecosystemIdx = bottomBlocks.findIndex((b) => b.component === 'ecosystem_partners');
+  const beforeMitwirken = ecosystemIdx >= 0 ? bottomBlocks.slice(0, ecosystemIdx + 1) : bottomBlocks;
+  const afterMitwirken  = ecosystemIdx >= 0 ? bottomBlocks.slice(ecosystemIdx + 1)    : [];
 
   return (
     <>
@@ -86,8 +93,33 @@ export default async function About() {
         </section>
       </Reveal>
 
-      {/* ── Blöcke nach Kernteam (Ökosystem, Erfahrung, CTA) ── */}
-      {bottomBlocks.map((blok) => renderBlok(blok, members))}
+      {/* ── Ökosystem ── */}
+      {beforeMitwirken.map((blok) => renderBlok(blok, members))}
+
+      {/* ── Mitwirken-Sektion ── */}
+      <section id="mitwirken">
+        <Reveal>
+          <CollaborationIntro />
+        </Reveal>
+        <Reveal>
+          <FitTest />
+        </Reveal>
+        <Reveal>
+          <div className="collab-closing">
+            <div className="container container--narrow">
+              <p className="collab-closing-text">
+                Erkennst du dich darin wieder? Dann lass uns ein erstes Gespräch führen.
+              </p>
+              <Link href="/contact" className="btn btn-secondary">
+                Kontakt aufnehmen →
+              </Link>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── Erfahrungshintergrund + Abschluss-CTA ── */}
+      {afterMitwirken.map((blok) => renderBlok(blok, members))}
     </>
   );
 }

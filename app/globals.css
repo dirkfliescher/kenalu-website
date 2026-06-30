@@ -5665,3 +5665,100 @@ p { color: var(--charcoal); }
   .ep-cards--3col { grid-template-columns: 1fr; }
   .ep-tools { margin-top: 2rem; padding-top: 2rem; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   MITWIRKEN – CollaborationIntro + Closing + Team-Teaser
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── CollaborationIntro (Einleitung vor FitTest auf /about) ── */
+.collab-intro {
+  padding: 5rem 0 2.5rem;
+  border-top: 1.5px solid var(--mineral);
+}
+
+.collab-intro-headline {
+  font-family: var(--font-headline);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--charcoal);
+  line-height: 1.25;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.collab-intro-text {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--stone);
+  max-width: 58ch;
+  margin-bottom: 1.75rem;
+}
+
+.collab-intro-cta {
+  display: inline-block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--charcoal);
+  padding-bottom: 0.125rem;
+  transition: opacity var(--transition);
+}
+.collab-intro-cta:hover { opacity: 0.6; }
+
+/* ── Closing-CTA unterhalb FitTest ── */
+.collab-closing {
+  padding: 3rem 0 4rem;
+  border-top: 1.5px solid var(--mineral);
+}
+
+.collab-closing-text {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--stone);
+  margin-bottom: 1.5rem;
+  max-width: 52ch;
+}
+
+/* ── Mitwirken-Teaser auf /team ── */
+.team-mitwirken-teaser {
+  padding: 4rem 0;
+  border-top: 1.5px solid var(--mineral);
+}
+
+.team-mitwirken-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.team-mitwirken-headline {
+  font-family: var(--font-headline);
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  color: var(--charcoal);
+  line-height: 1.3;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.team-mitwirken-text {
+  font-size: 1rem;
+  color: var(--stone);
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+.team-mitwirken-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+@media (max-width: 640px) {
+  .collab-intro { padding: 3.5rem 0 2rem; }
+  .collab-closing { padding: 2rem 0 3rem; }
+  .team-mitwirken-teaser { padding: 3rem 0; }
+  .team-mitwirken-inner { flex-direction: column; align-items: flex-start; }
+  .team-mitwirken-btn { align-self: flex-start; }
+}
