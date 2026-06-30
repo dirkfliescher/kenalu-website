@@ -131,7 +131,24 @@ export default function LabPage() {
             Nicht alles im Lab ist fertig. Entscheidend ist, dass ein Gedanke bereits konkret
             genug ist, um ihn anzuschauen, auszuprobieren oder weiterzudenken.
           </p>
-          {/* Noch keine weiteren veröffentlichten Einträge — direkt zum nächsten Block */}
+
+          {/* Produktmoment-Karte */}
+          <div className="lpv2-more-cards">
+            <div className="lpv2-lab-card">
+              <p className="lpv2-lab-card-label">Prototyp</p>
+              <h3 className="lpv2-lab-card-title">
+                Aus einer offenen Idee wird ein erster Produktmoment.
+              </h3>
+              <p className="lpv2-lab-card-teaser">
+                Ein kleiner Prototyp, der hilft, aus einer diffusen Idee einen konkreten,
+                besprechbaren Produktausschnitt zu machen.
+              </p>
+              <p className="lpv2-lab-card-status">Veröffentlicht</p>
+              <Link href="/lab/produktmoment" className="btn btn-secondary lpv2-lab-card-cta">
+                Prototyp ausprobieren →
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

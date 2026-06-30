@@ -15,7 +15,7 @@
  *   STORYBLOK_PAT=sb_pat_... node scripts/setup-lab-kenalu.mjs
  */
 
-import fetch from 'node-fetch';
+// Node.js 18+ hat fetch nativ eingebaut – kein node-fetch nötig
 
 const PAT      = process.env.STORYBLOK_PAT || 'sb_pat_mYxxSxpmsSJe1k7UEAJ39mH4006srhlIoypsU2rtf4I';
 const SPACE_ID = '293099469334951';
@@ -92,7 +92,7 @@ async function ensureComponent() {
   if (existing) {
     console.log(`  ✓ Existiert bereits (ID: ${existing.id}) – Schema wird aktualisiert.`);
     await request('PUT', `/components/${existing.id}`, {
-      component: { name: 'lab_article', schema, component_group_uuid },
+      component: { name: 'lab_article', schema, is_root: true, is_nestable: false, component_group_uuid },
     });
     await sleep(250);
     return existing.id;
@@ -102,7 +102,7 @@ async function ensureComponent() {
     component: {
       name: 'lab_article',
       schema,
-      is_root: false,
+      is_root: true,       // Content Type → kann als Story-Root verwendet werden
       is_nestable: false,
       component_group_uuid,
     },
