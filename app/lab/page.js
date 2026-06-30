@@ -1,238 +1,164 @@
 import Link from 'next/link';
-import StoryblokClient from 'storyblok-js-client';
-import LabBuilder from '../../components/blocks/LabBuilder';
 
 export const revalidate = 60;
 
 export const metadata = {
-  title: 'Arbeitsproben – kenalu',
-  description: 'Was kenalu gebaut hat. Keine Hochglanz-Cases, sondern ehrliche Einblicke in echte Projekte.',
+  title: 'Lab | Arbeitsproben und Prototypen von kenalu',
+  description:
+    'Im Kenalu Lab werden Arbeitsproben, Prototypen und konkrete Produktentscheidungen sichtbar – als nachvollziehbare Ergänzung zu Strategie, Experience und Engineering.',
+  alternates: { canonical: 'https://kenalu.ch/lab' },
+  openGraph: {
+    title: 'Lab | Arbeitsproben und Prototypen von kenalu',
+    description:
+      'Im Kenalu Lab werden Arbeitsproben, Prototypen und konkrete Produktentscheidungen sichtbar – als nachvollziehbare Ergänzung zu Strategie, Experience und Engineering.',
+    url: 'https://kenalu.ch/lab',
+    siteName: 'kenalu',
+    locale: 'de_CH',
+    type: 'website',
+  },
 };
 
-const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
+// ── Visuelle Struktur für Featured Work Sample ────────────────────────────────
+// Drei verbundene Bereiche: Orientierung / Dialog / Weiterentwicklung
 
-const DEFAULTS = {
-  lp_label:            'Arbeitsproben',
-  lp_headline:         'Was wir gebaut haben.\nNicht beschrieben.\nGezeigt.',
-  lp_sub:              'Keine Hochglanz-Cases, sondern ehrliche Einblicke in echte Projekte – Entscheidungen, Ergebnisse und was dabei gelernt wurde.',
-  lp_builder_headline: 'Beschreib es.\nWir bauen es.',
-  lp_builder_sub:      'Vier Fragen. Dann läuft euer Code direkt im Browser. Kein Setup, kein Framework-Drama.',
-  lp_next_eyebrow:     'Projekt 02',
-  lp_next_text:        'Das nächste Projekt entsteht gerade.\nOder es ist eures.',
-  lp_next_cta:         'Gespräch starten →',
-  lp_next_cta_link:    '/contact',
-};
-
-async function getPageContent() {
-  try {
-    const { data } = await Storyblok.get('cdn/stories/lab/index', {
-      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
-    });
-    return { ...DEFAULTS, ...data.story.content };
-  } catch {
-    return DEFAULTS;
-  }
-}
-
-// Storyblok-Inhalt in das CASE-Format umwandeln
-function storyToCase(story) {
-  const c = story.content;
-  return {
-    number:  c.lc_number  || '',
-    date:    c.lc_date    || '',
-    name:    c.lc_name    || story.name,
-    tagline: c.lc_tagline || '',
-    tags:    c.lc_tags    ? c.lc_tags.split(',').map(t => t.trim()) : [],
-    situation: c.lc_situation || '',
-    decisions: [
-      c.lc_d1_title && { title: c.lc_d1_title, text: c.lc_d1_text },
-      c.lc_d2_title && { title: c.lc_d2_title, text: c.lc_d2_text },
-      c.lc_d3_title && { title: c.lc_d3_title, text: c.lc_d3_text },
-      c.lc_d4_title && { title: c.lc_d4_title, text: c.lc_d4_text },
-    ].filter(Boolean),
-    stack: c.lc_stack ? c.lc_stack.split(',').map(s => s.trim()) : [],
-    metrics: [
-      c.lc_m1_value && { value: c.lc_m1_value, label: c.lc_m1_label },
-      c.lc_m2_value && { value: c.lc_m2_value, label: c.lc_m2_label },
-      c.lc_m3_value && { value: c.lc_m3_value, label: c.lc_m3_label },
-      c.lc_m4_value && { value: c.lc_m4_value, label: c.lc_m4_label },
-    ].filter(Boolean),
-    url: c.lc_url || '',
-  };
-}
-
-async function getCases() {
-  try {
-    const { data } = await Storyblok.get('cdn/stories', {
-      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
-      starts_with: 'lab/',
-      content_type: 'lab_case',
-      sort_by: 'content.lc_order:asc',
-      per_page: 20,
-    });
-    return (data.stories || []).map(storyToCase);
-  } catch {
-    return [];
-  }
-}
-
-export default async function Lab() {
-  const [cases, page] = await Promise.all([getCases(), getPageContent()]);
-
-  // Headline: Zeilenumbrüche aus Storyblok (\n) in <br /> umwandeln
-  const headlineLines = page.lp_headline.split('\n');
-  const nextTextLines = page.lp_next_text.split('\n');
-
+function FeaturedVisual() {
   return (
-    <main className="lab-page">
+    <div
+      className="lfw-visual"
+      role="img"
+      aria-label="Drei verbundene Produktbereiche von kenalu.ch: Orientierung, Dialog und Weiterentwicklung"
+    >
+      <div className="lfw-visual-node lfw-visual-node--orientation">
+        <span className="lfw-visual-node-label">Orientierung</span>
+        <p className="lfw-visual-node-desc">Situationen und Entscheidungen statt Leistungslisten</p>
+      </div>
+      <div className="lfw-visual-connector" aria-hidden="true">→</div>
+      <div className="lfw-visual-node lfw-visual-node--dialog">
+        <span className="lfw-visual-node-label">Dialog</span>
+        <p className="lfw-visual-node-desc">Kai dort, wo Lesen allein nicht reicht</p>
+      </div>
+      <div className="lfw-visual-connector" aria-hidden="true">→</div>
+      <div className="lfw-visual-node lfw-visual-node--foundation">
+        <span className="lfw-visual-node-label">Weiterentwicklung</span>
+        <p className="lfw-visual-node-desc">Grundlage, die mitwächst ohne Neustart</p>
+      </div>
+    </div>
+  );
+}
 
-      {/* ── Intro ─────────────────────────────────────────────────── */}
-      <section className="lab-intro">
+// ── Seite ─────────────────────────────────────────────────────────────────────
+
+export default function LabPage() {
+  return (
+    <main className="lab-page-v2">
+
+      {/* ── 1. Hero ─────────────────────────────────────────────── */}
+      <section className="lpv2-hero">
         <div className="container">
-          <p className="section-label">{page.lp_label}</p>
-          <h1 className="lab-intro-headline">
-            {headlineLines.map((line, i) => (
-              <span key={i}>{line}{i < headlineLines.length - 1 && <br />}</span>
-            ))}
+          <p className="section-label">Lab</p>
+          <h1 className="lpv2-hero-headline">
+            Arbeitsproben, Prototypen und Gedanken, die man ausprobieren kann.
           </h1>
-          <p className="lab-intro-sub">{page.lp_sub}</p>
-        </div>
-      </section>
-
-      {/* ── Featured: kenalu-Website-Artikel ──────────────────────── */}
-      <section className="lab-featured">
-        <div className="container">
-          <div className="lab-featured-inner">
-            <div>
-              <div className="lab-featured-meta">
-                <span className="lab-featured-badge">Eigene Arbeitsprobe</span>
-                <span className="lab-featured-label">Artikel</span>
-              </div>
-              <p className="lab-featured-name">
-                Wie eine Website vom Schaufenster zum Gespräch wird.
-              </p>
-              <p className="lab-featured-text">
-                kenalu.ch wurde nicht als Broschüre gebaut, sondern als Produkt: mit
-                Orientierung, Dialog und einer Grundlage, die sich weiterentwickeln kann.
-                Alle Entscheidungen, offen dokumentiert.
-              </p>
-            </div>
-            <Link href="/lab/kenalu-website" className="btn btn-secondary lab-featured-cta">
-              Artikel lesen →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Cases ─────────────────────────────────────────────────── */}
-      {cases.map((CASE, idx) => (
-        <section key={idx} className="lab-cases">
-          <div className="container">
-            <div className="lab-case">
-
-              {/* Header */}
-              <div className="lab-case-header">
-                <span className="lab-case-number">Projekt {CASE.number}</span>
-                <div className="lab-case-tags">
-                  {CASE.tags.map((t) => (
-                    <span key={t} className="lab-case-tag">{t}</span>
-                  ))}
-                </div>
-                <span className="lab-case-date">{CASE.date}</span>
-              </div>
-
-              {/* Title */}
-              <div className="lab-case-title-block">
-                <h2 className="lab-case-name">{CASE.name}</h2>
-                <p className="lab-case-tagline">{CASE.tagline}</p>
-              </div>
-
-              {/* Situation */}
-              {CASE.situation && (
-                <div className="lab-case-section">
-                  <span className="lab-case-section-label">Ausgangslage</span>
-                  <p className="lab-case-text">{CASE.situation}</p>
-                </div>
-              )}
-
-              {/* Decisions */}
-              {CASE.decisions.length > 0 && (
-                <div className="lab-case-section">
-                  <span className="lab-case-section-label">Was wir entschieden haben</span>
-                  <div className="lab-case-decisions">
-                    {CASE.decisions.map((d, i) => (
-                      <div key={i} className="lab-case-decision">
-                        <p className="lab-case-decision-title">{d.title}</p>
-                        <p className="lab-case-decision-text">{d.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Metrics */}
-              {CASE.metrics.length > 0 && (
-                <div className="lab-case-section lab-case-section--metrics">
-                  {CASE.metrics.map((m, i) => (
-                    <div key={i} className="lab-case-metric">
-                      <span className="lab-case-metric-value">{m.value}</span>
-                      <span className="lab-case-metric-label">{m.label}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Stack + Link */}
-              <div className="lab-case-footer">
-                <div className="lab-case-stack">
-                  {CASE.stack.map((s) => (
-                    <span key={s} className="lab-stack-chip">{s}</span>
-                  ))}
-                </div>
-                {CASE.url && (
-                  <a
-                    href={CASE.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="lab-case-link"
-                  >
-                    Live ansehen →
-                  </a>
-                )}
-              </div>
-
-            </div>
-          </div>
-        </section>
-      ))}
-
-      {/* ── Builder ───────────────────────────────────────────────── */}
-      <section className="lb-section">
-        <div className="container">
-          <div className="lb-section-header">
-            <p className="section-label">Builder</p>
-            <h2 className="lb-section-headline">
-              {page.lp_builder_headline.split('\n').map((line, i, arr) => (
-                <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
-              ))}
-            </h2>
-            <p className="lb-section-sub">{page.lp_builder_sub}</p>
-          </div>
-          <LabBuilder />
-        </div>
-      </section>
-
-      {/* ── Next ──────────────────────────────────────────────────── */}
-      <section className="lab-next">
-        <div className="container">
-          <p className="lab-next-eyebrow">{page.lp_next_eyebrow}</p>
-          <p className="lab-next-text">
-            {nextTextLines.map((line, i) => (
-              <span key={i}>{line}{i < nextTextLines.length - 1 && <br />}</span>
-            ))}
+          <p className="lpv2-hero-text">
+            Im Lab zeigt Kenalu eigene Produkte, konkrete Arbeitsweisen und ausgewählte
+            Experimente. Nicht als Kundenreferenzen, sondern als nachvollziehbare Beispiele
+            dafür, wie aus Fragen, Ideen und Technik etwas Greifbares wird.
           </p>
-          <Link href={page.lp_next_cta_link} className="btn btn-primary">
-            {page.lp_next_cta}
+        </div>
+      </section>
+
+      {/* ── 2. Featured Work Sample: kenalu.ch ──────────────────── */}
+      <section className="lpv2-featured">
+        <div className="container">
+          <p className="section-label">Eigene Arbeitsprobe</p>
+          <div className="lfw-inner">
+
+            {/* Inhalt links */}
+            <div className="lfw-content">
+              <h2 className="lfw-title">
+                Wie eine Website vom Schaufenster zum Gespräch wird.
+              </h2>
+              <p className="lfw-teaser">
+                kenalu.ch ist nicht dazu da, Kenalu möglichst schön zu erklären. Die Website
+                soll Menschen helfen, ihre eigene Situation besser zu verstehen und ein
+                sinnvolles Gespräch zu beginnen.
+              </p>
+
+              {/* Drei Highlights */}
+              <div className="lfw-highlights">
+                <div className="lfw-highlight">
+                  <p className="lfw-highlight-title">Orientierung statt Leistungswand</p>
+                  <p className="lfw-highlight-text">
+                    Die Website beginnt mit Situationen und Entscheidungen, nicht mit einer
+                    internen Liste von Leistungen.
+                  </p>
+                </div>
+                <div className="lfw-highlight">
+                  <p className="lfw-highlight-title">Dialog mit Kai</p>
+                  <p className="lfw-highlight-text">
+                    Kai eröffnet dort ein Gespräch, wo Lesen allein nicht reicht.
+                  </p>
+                </div>
+                <div className="lfw-highlight">
+                  <p className="lfw-highlight-title">Weiterentwickelbare Grundlage</p>
+                  <p className="lfw-highlight-text">
+                    Inhalte, Komponenten und neue Produktmomente können sich verändern, ohne
+                    dass die Website jedes Mal neu gebaut werden muss.
+                  </p>
+                </div>
+              </div>
+
+              <Link href="/lab/kenalu-website" className="btn btn-primary lfw-cta">
+                Arbeitsprobe ansehen →
+              </Link>
+            </div>
+
+            {/* Visuelle Arbeitsprobe rechts */}
+            <div className="lfw-visual-wrap">
+              <FeaturedVisual />
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── 3. Weitere im Lab ───────────────────────────────────── */}
+      <section className="lpv2-more">
+        <div className="container">
+          <p className="section-label">Weitere im Lab</p>
+          <h2 className="lpv2-more-headline">Dinge, die noch wachsen dürfen.</h2>
+          <p className="lpv2-more-text">
+            Nicht alles im Lab ist fertig. Entscheidend ist, dass ein Gedanke bereits konkret
+            genug ist, um ihn anzuschauen, auszuprobieren oder weiterzudenken.
+          </p>
+          {/* Noch keine weiteren veröffentlichten Einträge — direkt zum nächsten Block */}
+        </div>
+      </section>
+
+      {/* ── 4. In Vorbereitung ──────────────────────────────────── */}
+      <section className="lpv2-preparing">
+        <div className="container container--narrow">
+          <p className="section-label">In Vorbereitung</p>
+          <h2 className="lpv2-preparing-headline">Weitere Arbeitsproben folgen.</h2>
+          <p className="lpv2-preparing-text">
+            Sobald ein Beispiel genügend Substanz bietet, wird es hier dokumentiert.
+          </p>
+        </div>
+      </section>
+
+      {/* ── 5. Abschluss-CTA ────────────────────────────────────── */}
+      <section className="lpv2-cta">
+        <div className="container container--narrow">
+          <p className="section-label">Nächster Schritt</p>
+          <h2 className="lpv2-cta-headline">
+            Habt ihr eine Frage, die nicht länger abstrakt bleiben soll?
+          </h2>
+          <p className="lpv2-cta-text">
+            Wenn aus einer offenen Idee ein konkreter Moment werden soll, lasst uns
+            anschauen, welche Annahme zuerst sichtbar werden muss.
+          </p>
+          <Link href="/contact" className="btn btn-primary">
+            Gespräch starten →
           </Link>
         </div>
       </section>

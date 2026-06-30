@@ -67,6 +67,7 @@ export default function Nav() {
   const NAV_LINKS = [
     { href: '/services',  label: 'Leistungen'     },
     { href: '/about',     label: 'Arbeitsweise'   },
+    { href: '/lab',       label: 'Lab'            },
     { href: '/insights',  label: 'Insights'       },
   ];
 

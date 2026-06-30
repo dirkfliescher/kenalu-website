@@ -120,6 +120,24 @@ export default async function About() {
 
       {/* ── Erfahrungshintergrund + Abschluss-CTA ── */}
       {afterMitwirken.map((blok) => renderBlok(blok, members))}
+
+      {/* ── Lab-Verweis ── */}
+      <section className="lab-ref-strip">
+        <div className="container">
+          <div className="lab-ref-strip-inner">
+            <div className="lab-ref-strip-text">
+              <p className="lab-ref-strip-eyebrow">Lab</p>
+              <p className="lab-ref-strip-body">
+                Wie wir arbeiten, zeigen wir nicht nur in Beschreibungen. Im Lab sind
+                konkrete Arbeitsproben und Prototypen dokumentiert.
+              </p>
+            </div>
+            <Link href="/lab" className="btn btn-secondary lab-ref-strip-cta">
+              Lab ansehen →
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../components/DynamicBlock';
 import InsightsFeatured from '../../components/blocks/InsightsFeatured';
@@ -123,6 +124,25 @@ export default async function Insights() {
       {bottomBlocks.map((blok) => (
         <DynamicBlock key={blok._uid} blok={blok} />
       ))}
+
+      {/* ── Lab-Verweis ── */}
+      <section className="lab-ref-strip">
+        <div className="container">
+          <div className="lab-ref-strip-inner">
+            <div className="lab-ref-strip-text">
+              <p className="lab-ref-strip-eyebrow">Lab</p>
+              <p className="lab-ref-strip-body">
+                Neben Texten und Perspektiven dokumentiert Kenalu im Lab auch konkrete
+                Arbeitsproben und Prototypen — als nachvollziehbare Ergänzung zu diesen
+                Beiträgen.
+              </p>
+            </div>
+            <Link href="/lab" className="btn btn-secondary lab-ref-strip-cta">
+              Lab ansehen →
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
