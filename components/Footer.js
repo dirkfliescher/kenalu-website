@@ -17,7 +17,7 @@ async function getFooterContent() {
 export default async function Footer() {
   const f = await getFooterContent();
 
-  const tagline   = f?.footer_tagline   || 'AI Products. Gebaut, nicht konfiguriert.';
+  const tagline   = f?.footer_tagline   || 'Strategie, Experience und Engineering für digitale Produkte, die tragen.';
   const email     = f?.footer_email     || 'dirk@fliescher.ch';
   const address   = f?.footer_address   || 'Zürich, Schweiz';
   const copyright = f?.footer_copyright || `© ${new Date().getFullYear()} kenalu – dirk fliescher consulting gmbh`;
@@ -33,10 +33,11 @@ export default async function Footer() {
           <div className="footer-nav">
             <h4>Navigation</h4>
             <ul>
-              <li><Link href="/services">Services</Link></li>
-              <li><Link href="/about">About</Link></li>
+              <li><Link href="/services">Leistungen</Link></li>
+              <li><Link href="/about">Arbeitsweise</Link></li>
+              <li><Link href="/team">Team</Link></li>
               <li><Link href="/insights">Insights</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
+              <li><Link href="/contact">Kontakt</Link></li>
             </ul>
           </div>
           <div className="footer-contact">

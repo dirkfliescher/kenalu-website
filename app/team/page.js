@@ -9,7 +9,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: 'Team – kenalu',
-  description: 'Lerne Dirk und Stan kennen — die Menschen hinter kenalu. Stell Fragen oder meld dich, wenn du dazugehören willst.',
+  description: 'Die Menschen hinter kenalu. Spezialistinnen und Spezialisten, die auf ihrem Gebiet wirklich herausragen.',
 };
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
@@ -48,13 +48,13 @@ export default async function TeamPage() {
       {/* Hero */}
       <section className="team-hero">
         <div className="container">
-          <p className="section-label">Das Team</p>
+          <p className="section-label">Team</p>
           <h1 className="team-hero-headline">
-            Wer hinter kenalu steckt.
+            Die Menschen hinter kenalu.
           </h1>
           <p className="team-hero-sub">
-            kenalu wächst nicht durch Stellen — sondern durch Menschen, die auf ihrem Gebiet
-            wirklich herausragen. Mit Haltung, Können und dem Anspruch, keine Abstriche zu machen.
+            kenalu wächst nicht durch Stellen, sondern durch Menschen, die auf ihrem Gebiet
+            wirklich herausragen. Qualität, Haltung und Verlässlichkeit sind entscheidender als Breite.
           </p>
         </div>
       </section>

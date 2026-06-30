@@ -75,6 +75,18 @@ export default async function Insights() {
 
   return (
     <>
+      {/* Hero */}
+      <section className="insights-hero">
+        <div className="container">
+          <p className="section-label">Insights</p>
+          <h1 className="insights-hero-headline">Perspektiven auf digitale Produkte und AI.</h1>
+          <p className="insights-hero-sub">
+            Einblicke aus der Praxis — zu Strategie, Experience und dem, was bei der Umsetzung
+            tatsächlich zählt.
+          </p>
+        </div>
+      </section>
+
       {topBlocks.map((blok) => (
         <DynamicBlock key={blok._uid} blok={blok} />
       ))}

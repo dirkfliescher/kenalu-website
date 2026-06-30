@@ -5,16 +5,16 @@ import LabBuilder from '../../components/blocks/LabBuilder';
 export const revalidate = 60;
 
 export const metadata = {
-  title: 'Lab – kenalu',
-  description: 'Was kenalu gebaut hat. Nicht beschrieben, sondern gezeigt.',
+  title: 'Arbeitsproben – kenalu',
+  description: 'Was kenalu gebaut hat. Keine Hochglanz-Cases, sondern ehrliche Einblicke in echte Projekte.',
 };
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 const DEFAULTS = {
-  lp_label:            'Lab',
-  lp_headline:         'Wir reden nicht\nüber Bauen.\nWir bauen.',
-  lp_sub:              'Lab ist der Ort, wo kenalu zeigt, was es kann. Nicht als Case-Study-Hochglanz, sondern als ehrlicher Blick auf echte Projekte.',
+  lp_label:            'Arbeitsproben',
+  lp_headline:         'Was wir gebaut haben.\nNicht beschrieben.\nGezeigt.',
+  lp_sub:              'Keine Hochglanz-Cases, sondern ehrliche Einblicke in echte Projekte – Entscheidungen, Ergebnisse und was dabei gelernt wurde.',
   lp_builder_headline: 'Beschreib es.\nWir bauen es.',
   lp_builder_sub:      'Vier Fragen. Dann läuft euer Code direkt im Browser. Kein Setup, kein Framework-Drama.',
   lp_next_eyebrow:     'Projekt 02',

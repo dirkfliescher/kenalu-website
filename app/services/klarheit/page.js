@@ -19,11 +19,11 @@ async function getContent() {
 export async function generateMetadata() {
   const c = await getContent();
   return {
-    title: c?.seo_title || 'Klarheit – kenalu',
+    title: c?.seo_title || 'Klarheit für AI- und Produktentscheidungen | kenalu',
     description: c?.seo_description || '',
     alternates: { canonical: 'https://kenalu.ch/services/klarheit' },
     openGraph: {
-      title: c?.seo_title || 'Klarheit – kenalu',
+      title: c?.seo_title || 'Klarheit für AI- und Produktentscheidungen | kenalu',
       description: c?.seo_description || '',
       url: 'https://kenalu.ch/services/klarheit',
       siteName: 'kenalu',
@@ -41,18 +41,13 @@ export default async function KlarheitPage() {
       headline={c.headline}
       intro={c.intro}
       fitPoints={c.fit_points?.map(p => p.text) || []}
-      storyText={c.story_text}
       outcomePoints={c.outcome_points?.map(p => p.text) || []}
-      ctaLabel={c.cta_label}
+      approachText={c.approach_text}
+      ctaLabel={c.cta_label || 'Gespräch starten →'}
       serviceName="Klarheit"
-      serviceKicker="Discovery"
-      processMeta="4–8 Tage"
+      serviceKicker="01 · Klarheit"
+      processMeta="4–8 Arbeitstage"
       serviceIndex={1}
-      servicePrompts={[
-        'Was entsteht am Ende des Prozesses konkret?',
-        'Wir stehen vor einer Richtungsentscheidung und kommen nicht weiter.',
-        'Ab wann macht Klarheit Sinn — haben wir zu früh oder zu spät gefragt?',
-      ]}
     />
   );
 }

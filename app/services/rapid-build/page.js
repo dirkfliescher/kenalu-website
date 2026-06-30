@@ -19,11 +19,11 @@ async function getContent() {
 export async function generateMetadata() {
   const c = await getContent();
   return {
-    title: c?.seo_title || 'Rapid Build – kenalu',
+    title: c?.seo_title || 'Rapid Build: Ideen als Prototyp oder MVP testen | kenalu',
     description: c?.seo_description || '',
     alternates: { canonical: 'https://kenalu.ch/services/rapid-build' },
     openGraph: {
-      title: c?.seo_title || 'Rapid Build – kenalu',
+      title: c?.seo_title || 'Rapid Build: Ideen als Prototyp oder MVP testen | kenalu',
       description: c?.seo_description || '',
       url: 'https://kenalu.ch/services/rapid-build',
       siteName: 'kenalu',
@@ -41,18 +41,13 @@ export default async function RapidBuildPage() {
       headline={c.headline}
       intro={c.intro}
       fitPoints={c.fit_points?.map(p => p.text) || []}
-      storyText={c.story_text}
       outcomePoints={c.outcome_points?.map(p => p.text) || []}
-      ctaLabel={c.cta_label}
+      approachText={c.approach_text}
+      ctaLabel={c.cta_label || 'Gespräch starten →'}
       serviceName="Rapid Build"
-      serviceKicker="Prototyping"
-      processMeta="2 Wochen"
+      serviceKicker="02 · Rapid Build"
+      processMeta="Rund zwei Wochen"
       serviceIndex={2}
-      servicePrompts={[
-        'Was genau entsteht in 2 Wochen?',
-        'Wir haben eine Idee, aber noch keine klaren Anforderungen.',
-        'Welche technischen Voraussetzungen braucht ihr von uns?',
-      ]}
     />
   );
 }

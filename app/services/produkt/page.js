@@ -19,11 +19,11 @@ async function getContent() {
 export async function generateMetadata() {
   const c = await getContent();
   return {
-    title: c?.seo_title || 'Produkt – kenalu',
+    title: c?.seo_title || 'Digitale Produkte mit AI entwickeln | kenalu',
     description: c?.seo_description || '',
     alternates: { canonical: 'https://kenalu.ch/services/produkt' },
     openGraph: {
-      title: c?.seo_title || 'Produkt – kenalu',
+      title: c?.seo_title || 'Digitale Produkte mit AI entwickeln | kenalu',
       description: c?.seo_description || '',
       url: 'https://kenalu.ch/services/produkt',
       siteName: 'kenalu',
@@ -41,18 +41,13 @@ export default async function ProduktPage() {
       headline={c.headline}
       intro={c.intro}
       fitPoints={c.fit_points?.map(p => p.text) || []}
-      storyText={c.story_text}
       outcomePoints={c.outcome_points?.map(p => p.text) || []}
-      ctaLabel={c.cta_label}
-      serviceName="AI-Produkt"
-      serviceKicker="Produktentwicklung"
+      approachText={c.approach_text}
+      ctaLabel={c.cta_label || 'Gespräch starten →'}
+      serviceName="Produkt"
+      serviceKicker="03 · Produkt"
       processMeta="Individuell"
       serviceIndex={3}
-      servicePrompts={[
-        'Ab wann lohnt sich ein eigenes AI-Produkt gegenüber einer Standardlösung?',
-        'Wir haben eine Idee — wie schnell könnten wir etwas in Händen halten?',
-        'Wie geht ihr mit bestehenden Systemen und Daten um?',
-      ]}
     />
   );
 }

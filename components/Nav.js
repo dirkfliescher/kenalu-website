@@ -60,19 +60,14 @@ export default function Nav() {
   const isActive = (path) => pathname?.startsWith(path);
 
   // Seiten mit dunklem Hero-Hintergrund → Nav startet mit hellem Text
-  // Alle anderen Seiten starten mit dunklem Text auf hellem Hintergrund
-  // Seiten mit dunklem Hero → Nav startet mit hellem Text
-  const DARK_HERO_PAGES = ['/services', '/about', '/insights', '/zusammenarbeit', '/team'];
+  const DARK_HERO_PAGES = ['/services', '/about', '/insights'];
   const onDark = DARK_HERO_PAGES.some((p) => pathname?.startsWith(p));
 
-  // Hauptnavigation – vollständige, kanonische Liste
+  // Hauptnavigation
   const NAV_LINKS = [
-    { href: '/',          label: 'Home',     mobileOnly: true },
-    { href: '/services',  label: 'Services'  },
-    { href: '/about',     label: 'About'     },
-    { href: '/team',      label: 'Team'      },
-    { href: '/lab',       label: 'Lab'       },
-    { href: '/insights',  label: 'Insights'  },
+    { href: '/services',  label: 'Leistungen'     },
+    { href: '/about',     label: 'Arbeitsweise'   },
+    { href: '/insights',  label: 'Insights'       },
   ];
 
   return (

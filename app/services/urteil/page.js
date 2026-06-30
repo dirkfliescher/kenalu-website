@@ -19,11 +19,11 @@ async function getContent() {
 export async function generateMetadata() {
   const c = await getContent();
   return {
-    title: c?.seo_title || 'Urteil – kenalu',
+    title: c?.seo_title || 'Unabhängige Einschätzung für AI- und Produktvorhaben | kenalu',
     description: c?.seo_description || '',
     alternates: { canonical: 'https://kenalu.ch/services/urteil' },
     openGraph: {
-      title: c?.seo_title || 'Urteil – kenalu',
+      title: c?.seo_title || 'Unabhängige Einschätzung für AI- und Produktvorhaben | kenalu',
       description: c?.seo_description || '',
       url: 'https://kenalu.ch/services/urteil',
       siteName: 'kenalu',
@@ -41,18 +41,13 @@ export default async function UrteilPage() {
       headline={c.headline}
       intro={c.intro}
       fitPoints={c.fit_points?.map(p => p.text) || []}
-      storyText={c.story_text}
       outcomePoints={c.outcome_points?.map(p => p.text) || []}
-      ctaLabel={c.cta_label}
+      approachText={c.approach_text}
+      ctaLabel={c.cta_label || 'Gespräch starten →'}
       serviceName="Urteil"
-      serviceKicker="Einschätzung"
+      serviceKicker="04 · Urteil"
       processMeta="1–2 Wochen"
       serviceIndex={4}
-      servicePrompts={[
-        'Was genau analysiert ihr — und was nicht?',
-        'Wir haben ein laufendes Projekt, das wir einschätzen lassen wollen.',
-        'Was passiert, wenn das Urteil negativ ausfällt?',
-      ]}
     />
   );
 }
