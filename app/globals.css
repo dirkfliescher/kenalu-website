@@ -5018,3 +5018,176 @@ p { color: var(--charcoal); }
 @media (max-width: 640px) {
   .sc-section { padding-top: 4rem; padding-bottom: 4rem; }
 }
+
+/* ── Process Journey (pj-*) ─────────────────────────────────────── */
+.pj-section {
+  padding: 6rem var(--gutter);
+  background: var(--ivory);
+  border-top: 1px solid var(--softline);
+}
+
+.pj-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--graphite);
+  opacity: 0.5;
+  margin-bottom: 2rem;
+}
+
+.pj-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.pj-step {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 1.1rem 1rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid var(--softline);
+  background: white;
+  text-align: left;
+}
+
+.pj-step:hover:not(.pj-step--active) {
+  border-color: var(--mineral);
+  transform: translateY(-2px);
+}
+
+.pj-step--active {
+  background: var(--charcoal);
+  border-color: var(--charcoal);
+}
+
+.pj-step-n {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.pj-step:not(.pj-step--active) .pj-step-n { color: var(--graphite); opacity: 0.4; }
+.pj-step--active .pj-step-n { color: rgba(255, 255, 255, 0.35); }
+
+.pj-step-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.9rem;
+}
+
+.pj-step:not(.pj-step--active) .pj-step-name { color: var(--charcoal); }
+.pj-step--active .pj-step-name { color: #fff; }
+
+.pj-step-bar {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  margin-top: auto;
+}
+
+.pj-step:not(.pj-step--active) .pj-step-bar { background: var(--softline); }
+.pj-step--active .pj-step-bar { background: #3b8c7a; }
+
+/* Panel */
+.pj-panel {
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--softline);
+  background: white;
+  padding: 2rem 2.25rem;
+  animation: pj-fade 0.2s ease;
+}
+
+@keyframes pj-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.pj-panel-meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--graphite);
+  opacity: 0.5;
+  margin-bottom: 0.75rem;
+}
+
+.pj-panel-headline {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--charcoal);
+  margin: 0 0 0.75rem;
+}
+
+.pj-panel-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--graphite);
+  max-width: 580px;
+  margin-bottom: 1.5rem;
+}
+
+.pj-fits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.pj-fit {
+  font-size: 0.9rem;
+  color: var(--graphite);
+  padding-left: 1.1rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.pj-fit::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #3b8c7a;
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+}
+
+.pj-panel-footer {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--softline);
+}
+
+.pj-link {
+  font-size: 0.85rem;
+  color: var(--graphite);
+  text-decoration: none;
+  border-bottom: 1px solid var(--softline);
+  padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.pj-link:hover {
+  color: var(--charcoal);
+  border-color: var(--mineral);
+}
+
+@media (max-width: 768px) {
+  .pj-steps { grid-template-columns: repeat(2, 1fr); }
+  .pj-panel { padding: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .pj-steps { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pj-step { padding: 0.9rem 0.8rem 0.8rem; }
+}

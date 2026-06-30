@@ -24,6 +24,7 @@ import ServiceEntryGrid from './blocks/ServiceEntryGrid';
 import AssistantCallout from './blocks/AssistantCallout';
 import WorkingPrinciples from './blocks/WorkingPrinciples';
 import SituationTeaser from './blocks/SituationTeaser';
+import ProcessJourney from './blocks/ProcessJourney';
 
 const Components = {
   hero: Hero,
@@ -51,6 +52,7 @@ const Components = {
   assistant_callout: AssistantCallout,
   working_principles: WorkingPrinciples,
   situation_teaser: SituationTeaser,
+  process_journey: ProcessJourney,
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist
