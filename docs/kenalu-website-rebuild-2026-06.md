@@ -198,25 +198,97 @@ Alle Blöcke sind registriert. Relevante neue Einträge:
 
 - `zusammenarbeit_partners`-Block: Schema in Storyblok vorhanden (`partner_card`, `partner_card_category` als Filter), aber noch kein Ort auf der Website bestimmt (Team, About oder eigene Seite)
 - Pre-existing Lint-Fehler in `app/error.js` und `InsightsFilter.js` (setState in useEffect) — nicht durch diesen Rebuild verursacht
-- `ServiceChat.js` und API-Route `/api/service-chat` verbleiben im Code, werden aber nicht mehr auf Service-Detailseiten genutzt (können später entfernt werden)
+- `ServiceChat.js` und API-Route `/api/service-chat` verbleiben im Code (Legacy, kann später entfernt werden)
 
 ---
 
-## 12. Deployment
+## 13. Kai als direkt eingebetteter Gesprächspartner
+
+**Entscheidung:** Kai wird nicht mehr als Link oder passiver Callout genutzt, sondern als direkt eingebetteter Gesprächspartner auf allen relevanten Seiten.
+
+### Prinzip
+
+- Immer sichtbare Gesprächsfläche (kein Click-to-Open)
+- Erste Kai-Nachricht ist sofort sichtbar
+- Kontextsensitiv: jede Platzierung hat eigenen `context_key`
+- Ansprache: ihr/euch/eure — konsequent, keine Ausnahmen
+- Datenschutzhinweis immer sichtbar
+- Kein Verkaufsdruck: Kai hilft beim Einordnen, nicht beim Überzeugen
+
+### Neue Dateien
+
+| Datei | Zweck |
+|-------|-------|
+| `app/api/kai/route.js` | Neue Kai-API mit context_key und neuem Kai-Persona |
+| `components/blocks/KaiDialogue.js` | Wiederverwendbare React-Komponente |
+| `scripts/setup-kai-storyblok.mjs` | Storyblok-Setup-Script (einmalig ausführen) |
+
+### Neue Storyblok-Komponente: `kai_dialogue`
+
+Felder: `eyebrow`, `headline`, `intro`, `context_key`, `initial_message`, `input_placeholder`, `suggested_prompts` (Textarea, zeilengetrennt), `privacy_notice`, `show_contact_cta`, `contact_cta_label`, `contact_cta_link`
+
+### Einbettungen
+
+| Seite | Platzierung | context_key | Methode |
+|-------|------------|-------------|---------|
+| Homepage | Nach service_entry_grid, vor working_principles | `homepage` | Storyblok-Block |
+| /services | Vor cta_section | `services` | Storyblok-Block |
+| /services/klarheit | Nach Approach-Abschnitt | `service_klarheit` | Code (ServiceDetailPage.js) |
+| /services/rapid-build | Nach Approach-Abschnitt | `service_rapid_build` | Code (ServiceDetailPage.js) |
+| /services/produkt | Nach Approach-Abschnitt | `service_produkt` | Code (ServiceDetailPage.js) |
+| /services/urteil | Nach Approach-Abschnitt | `service_urteil` | Code (ServiceDetailPage.js) |
+| /contact | Vor contact_section | `contact` | Storyblok-Block |
+| /insights | Zwischen Featured und Browse-Liste | `insights` | Code (insights/page.js) |
+
+### Nicht auf diesen Seiten
+
+`/about`, `/team`, `/lab`, Impressum, Datenschutz
+
+### Kai-Persona (neue API `/api/kai`)
+
+- Ruhig, klar, neugierig — keine Verkaufssprache
+- Schweizer Schriftsprache (ss statt ß)
+- Gesprächslogik: spiegeln → rückfragen → einordnen → verweisen → Gespräch vorschlagen
+- `showContact: true` nur bei konkreter Projektsituation / Preis-/Ablauf-Fragen
+
+### Geänderte Dateien
+
+- `components/blocks/ServiceDetailPage.js` — `sdp-kai-hint` durch `<KaiDialogue>` ersetzt, `KAI_CONFIG` pro Service
+- `app/insights/page.js` — `InsightsChat` durch `<KaiDialogue contextKey="insights">` ersetzt
+- `components/DynamicBlock.js` — `kai_dialogue` registriert
+- `app/globals.css` — vollständige `kai-dialogue`-CSS-Sektion ergänzt
+
+### Storyblok-Setup
+
+Einmalig ausführen:
+```bash
+cd /Users/dirkfliescher/Documents/kenalu-website
+node scripts/setup-kai-storyblok.mjs
+```
+
+Das Script erstellt die `kai_dialogue`-Komponente und befüllt Homepage, /services und /contact.
+
+---
+
+## 14. Deployment
 
 Hosting: Vercel (auto-deploy aus `main` Branch)
 
-### Terminal-Befehle für Deployment
+### Terminal-Befehle: Kai-Redesign deployen
+
 ```bash
 cd /Users/dirkfliescher/Documents/kenalu-website
 
-# Lokaler Check
+# 1. Storyblok-Setup (einmalig — Komponente + Stories)
+node scripts/setup-kai-storyblok.mjs
+
+# 2. Optionaler lokaler Build-Check
 npm run build
 
-# Git-Commit
+# 3. Git-Commit und Push
 git add -A
 git status
-git commit -m "rebuild: navigation, homepage, service detail pages, about/lab/insights/team/contact update"
+git commit -m "feat: Kai als direkt eingebetteter Gesprächspartner (KaiDialogue, /api/kai, alle Seiten)"
 git push origin main
 ```
 

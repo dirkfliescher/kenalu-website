@@ -5191,3 +5191,262 @@ p { color: var(--charcoal); }
   .pj-steps { grid-template-columns: 1fr 1fr; gap: 8px; }
   .pj-step { padding: 0.9rem 0.8rem 0.8rem; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   KAI DIALOGUE
+   ══════════════════════════════════════════════════════════════ */
+
+.kai-dialogue {
+  padding: 5rem 0;
+  background: var(--ivory);
+}
+
+.kai-dialogue-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Header ── */
+.kai-dialogue-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.kai-dialogue-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mineral, #6b7280);
+  margin: 0;
+}
+
+.kai-dialogue-headline {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--charcoal);
+  margin: 0;
+}
+
+.kai-dialogue-intro {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--graphite, #374151);
+  margin: 0;
+  max-width: 44ch;
+}
+
+/* ── Chat-Bereich ── */
+.kai-dialogue-chat {
+  background: #fff;
+  border: 1px solid var(--softline, #e5e7eb);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Nachrichten ── */
+.kai-dialogue-messages {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 120px;
+  max-height: 320px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.kai-msg {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.kai-msg--user {
+  flex-direction: row-reverse;
+}
+
+.kai-msg-avatar {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--charcoal);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.kai-msg-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--charcoal);
+  background: var(--ivory, #f9fafb);
+  border-radius: 8px;
+  padding: 0.6rem 0.875rem;
+  max-width: 80%;
+}
+
+.kai-msg--user .kai-msg-text {
+  background: var(--charcoal);
+  color: #fff;
+  border-radius: 8px 8px 2px 8px;
+}
+
+.kai-msg--assistant .kai-msg-text {
+  border-radius: 2px 8px 8px 8px;
+}
+
+/* ── Typing-Indikator ── */
+.kai-msg-typing {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 0.6rem 0.875rem;
+  background: var(--ivory, #f9fafb);
+  border-radius: 2px 8px 8px 8px;
+}
+
+.kai-msg-typing span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mineral, #9ca3af);
+  animation: kai-dot-bounce 1.4s ease-in-out infinite;
+}
+
+.kai-msg-typing span:nth-child(2) { animation-delay: 0.2s; }
+.kai-msg-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes kai-dot-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ── Suggested Prompts ── */
+.kai-dialogue-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0 1.5rem 1rem;
+}
+
+.kai-prompt-chip {
+  font-size: 0.8125rem;
+  font-family: inherit;
+  line-height: 1.4;
+  color: var(--charcoal);
+  background: var(--ivory, #f3f4f6);
+  border: 1px solid var(--softline, #e5e7eb);
+  border-radius: 20px;
+  padding: 0.4rem 0.875rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  text-align: left;
+}
+
+.kai-prompt-chip:hover {
+  background: #ebe9e5;
+  border-color: #d1cfc9;
+}
+
+/* ── Eingabe ── */
+.kai-dialogue-input-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--softline, #e5e7eb);
+  background: #fafafa;
+}
+
+.kai-dialogue-input {
+  flex: 1;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--charcoal);
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 0.3rem 0;
+  min-height: 26px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.kai-dialogue-input::placeholder {
+  color: var(--mineral, #9ca3af);
+}
+
+.kai-dialogue-send {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--charcoal);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s;
+}
+
+.kai-dialogue-send:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.kai-dialogue-send:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+/* ── Datenschutz ── */
+.kai-dialogue-privacy {
+  font-size: 0.75rem;
+  color: var(--mineral, #9ca3af);
+  padding: 0.5rem 1rem 0.75rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Kontakt-CTA ── */
+.kai-dialogue-contact-hint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--softline, #e5e7eb);
+  background: var(--ivory, #f9fafb);
+  flex-wrap: wrap;
+}
+
+.kai-dialogue-contact-text {
+  font-size: 0.9rem;
+  color: var(--charcoal);
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .kai-dialogue { padding: 3.5rem 0; }
+  .kai-dialogue-messages { max-height: 260px; }
+  .kai-dialogue-prompts { gap: 0.4rem; }
+  .kai-prompt-chip { font-size: 0.75rem; }
+  .kai-dialogue-contact-hint { flex-direction: column; align-items: flex-start; }
+}

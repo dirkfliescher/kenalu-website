@@ -1,7 +1,7 @@
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../components/DynamicBlock';
 import InsightsFeatured from '../../components/blocks/InsightsFeatured';
-import InsightsChat from '../../components/blocks/InsightsChat';
+import KaiDialogue from '../../components/blocks/KaiDialogue';
 import InsightsFilter from '../../components/blocks/InsightsFilter';
 
 export const revalidate = 60;
@@ -95,13 +95,20 @@ export default async function Insights() {
 
       {rest.length > 0 && (
         <>
-          {/* KI-Chat */}
-          <section className="insights-list">
-            <div className="container container--wide">
-              <p className="section-label">Frag die Insights</p>
-              <InsightsChat />
-            </div>
-          </section>
+          {/* Kai-Dialog */}
+          <KaiDialogue
+            contextKey="insights"
+            eyebrow="Kai"
+            headline="Fragen zu den Beiträgen?"
+            intro="Kai beantwortet Fragen zu Strategie, Experience und AI — und hilft euch einordnen, was relevant ist."
+            initialMessage="Habt ihr Fragen zu den Beiträgen oder einem der Themen? Ich helfe euch weiter."
+            inputPlaceholder="Was interessiert euch?"
+            suggestedPrompts={[
+              'Was bedeutet das für unser Unternehmen?',
+              'Wie fangen wir damit an?',
+              'Was sollten wir als nächstes lesen?',
+            ]}
+          />
 
           {/* Normaler Filter + Grid */}
           <section className="insights-list insights-list--browse">

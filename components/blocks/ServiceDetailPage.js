@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import KaiDialogue from './KaiDialogue';
 
 const ALL_SERVICES = [
   {
@@ -31,6 +32,62 @@ const ALL_SERVICES = [
   },
 ];
 
+// Kai-Inhalte pro Service
+const KAI_CONFIG = {
+  Klarheit: {
+    contextKey: 'service_klarheit',
+    headline: 'Passt Klarheit zu eurer Situation?',
+    intro: 'Stellt eine Frage — Kai hilft euch einordnen.',
+    initialMessage:
+      'Was steht bei euch zur Entscheidung? Ich kann euch sagen, ob und wie eine externe Einschätzung helfen würde.',
+    inputPlaceholder: 'Was steht zur Entscheidung?',
+    suggestedPrompts: [
+      'Wir wissen nicht, welche Richtung wir einschlagen sollen.',
+      'Wir brauchen eine ehrliche Ausseneinschätzung.',
+      'Wir wollen sicher sein, bevor wir investieren.',
+    ],
+  },
+  'Rapid Build': {
+    contextKey: 'service_rapid_build',
+    headline: 'Ist Rapid Build der richtige nächste Schritt?',
+    intro: 'Erzählt von eurer Idee — Kai hilft beim Einordnen.',
+    initialMessage:
+      'Erzählt mir von eurer Idee. Was soll der Prototyp zeigen oder beweisen?',
+    inputPlaceholder: 'Was wollt ihr testen?',
+    suggestedPrompts: [
+      'Wir haben eine Idee, wissen aber nicht, wie wir sie testen sollen.',
+      'Wir brauchen etwas Vorzeigbares für Investoren.',
+      'Wir wollen schnell sehen, ob das funktioniert.',
+    ],
+  },
+  Produkt: {
+    contextKey: 'service_produkt',
+    headline: 'Ist ein massgeschneidertes AI-Produkt der richtige Weg?',
+    intro: 'Beschreibt, was Standardsoftware bei euch nicht löst.',
+    initialMessage:
+      'Was macht Standardsoftware bei euch zum Problem? Ich helfe euch einordnen, ob ein massgeschneidertes Produkt Sinn ergibt.',
+    inputPlaceholder: 'Wo stösst Standardsoftware an Grenzen?',
+    suggestedPrompts: [
+      'Wir haben Anforderungen, die kein Tool erfüllt.',
+      'Wir wollen uns von Vendor-Lock-in lösen.',
+      'Wir suchen eine skalierbare Eigenentwicklung.',
+    ],
+  },
+  Urteil: {
+    contextKey: 'service_urteil',
+    headline: 'Braucht ihr eine externe Einschätzung?',
+    intro: 'Beschreibt, worum es geht — Kai hilft beim Einordnen.',
+    initialMessage:
+      'Um was geht es bei eurem Projekt? Ich helfe euch einordnen, ob und wie eine externe Einschätzung helfen würde.',
+    inputPlaceholder: 'Was soll beurteilt werden?',
+    suggestedPrompts: [
+      'Wir sind unsicher, ob wir auf dem richtigen Weg sind.',
+      'Wir wollen ein laufendes Projekt von aussen einschätzen lassen.',
+      'Wir brauchen eine zweite Meinung, bevor wir weitermachen.',
+    ],
+  },
+};
+
 export default function ServiceDetailPage({
   headline,
   intro,
@@ -42,6 +99,7 @@ export default function ServiceDetailPage({
   serviceKicker = '',
   processMeta = '',
   serviceIndex = '',
+  kaiBlok = null,   // Optionaler Storyblok-Block (kai_block[0])
 }) {
   const numDisplay = serviceIndex ? String(serviceIndex).padStart(2, '0') : '';
   const relatedServices = ALL_SERVICES.filter(s => s.name !== serviceName);
@@ -109,17 +167,22 @@ export default function ServiceDetailPage({
         </section>
       )}
 
-      {/* ── Kai-Hinweis ── */}
-      <div className="sdp-kai-hint">
-        <div className="container container--narrow">
-          <p>
-            Noch nicht sicher, ob das passt?{' '}
-            <Link href="/#einstiege" className="sdp-kai-link">
-              Kai hilft beim Einordnen →
-            </Link>
-          </p>
-        </div>
-      </div>
+      {/* ── Kai-Dialog ── */}
+      {(() => {
+        const kai = KAI_CONFIG[serviceName] || KAI_CONFIG['Klarheit'];
+        return (
+          <KaiDialogue
+            blok={kaiBlok || {}}
+            contextKey={kai.contextKey}
+            eyebrow="Kai"
+            headline={kai.headline}
+            intro={kai.intro}
+            initialMessage={kai.initialMessage}
+            inputPlaceholder={kai.inputPlaceholder}
+            suggestedPrompts={kai.suggestedPrompts}
+          />
+        );
+      })()}
 
       {/* ── Weitere Leistungen ── */}
       {relatedServices.length > 0 && (

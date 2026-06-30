@@ -25,6 +25,7 @@ import AssistantCallout from './blocks/AssistantCallout';
 import WorkingPrinciples from './blocks/WorkingPrinciples';
 import SituationTeaser from './blocks/SituationTeaser';
 import ProcessJourney from './blocks/ProcessJourney';
+import KaiDialogue from './blocks/KaiDialogue';
 
 const Components = {
   hero: Hero,
@@ -53,6 +54,7 @@ const Components = {
   working_principles: WorkingPrinciples,
   situation_teaser: SituationTeaser,
   process_journey: ProcessJourney,
+  kai_dialogue: KaiDialogue,
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist
