@@ -15,20 +15,35 @@ const BASE = `https://mapi.storyblok.com/v1/spaces/${SPACE_ID}`;
 
 // ── Hilfsfunktionen ──────────────────────────────────────────────────────────
 
-async function mapi(method, path, body) {
-  const res = await fetch(`${BASE}${path}`, {
-    method,
-    headers: {
-      Authorization: MGMT_TOKEN,
-      'Content-Type': 'application/json',
-    },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`${method} ${path} → ${res.status}: ${text}`);
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function mapi(method, path, body, retries = 3) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const res = await fetch(`${BASE}${path}`, {
+      method,
+      headers: {
+        Authorization: MGMT_TOKEN,
+        'Content-Type': 'application/json',
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+
+    if (res.status === 429) {
+      const wait = attempt * 2000;
+      console.log(`   ⏳ Rate limit, warte ${wait / 1000}s...`);
+      await sleep(wait);
+      continue;
+    }
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`${method} ${path} → ${res.status}: ${text}`);
+    }
+
+    await sleep(250); // Vorsichtige Pause nach jedem Request
+    return res.json();
   }
-  return res.json();
+  throw new Error(`${method} ${path} → Rate limit nach ${retries} Versuchen`);
 }
 
 async function cdn(slug) {
@@ -190,6 +205,37 @@ async function ensureKaiComponent() {
 
   console.log(`   ✓ Erstellt (ID: ${component.id})`);
   return component.id;
+}
+
+// ── 1b. kai_dialogue in alle body-Whitelists eintragen ──────────────────────
+
+async function addToWhitelists() {
+  console.log('\n🔓 Whitelists aktualisieren...');
+
+  const { components } = await mapi('GET', '/components/');
+
+  for (const comp of components) {
+    const schema = comp.schema || {};
+    let changed = false;
+
+    for (const [fieldKey, field] of Object.entries(schema)) {
+      if (field.type === 'bloks' && Array.isArray(field.component_whitelist)) {
+        if (!field.component_whitelist.includes('kai_dialogue')) {
+          field.component_whitelist.push('kai_dialogue');
+          changed = true;
+        }
+      }
+    }
+
+    if (changed) {
+      await mapi('PUT', `/components/${comp.id}`, {
+        component: { ...comp, schema },
+      });
+      console.log(`   ✓ Whitelist erweitert: ${comp.name}`);
+    }
+  }
+
+  console.log('   ✓ Whitelists fertig');
 }
 
 // ── 2. Homepage: assistant_callout → kai_dialogue ────────────────────────────
@@ -373,6 +419,7 @@ async function main() {
 
   try {
     await ensureKaiComponent();
+    await addToWhitelists();
     await updateHomepage();
     await updateServices();
     await updateContact();
