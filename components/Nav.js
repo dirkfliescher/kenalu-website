@@ -60,15 +60,16 @@ export default function Nav() {
   const isActive = (path) => pathname?.startsWith(path);
 
   // Seiten mit dunklem Hero-Hintergrund → Nav startet mit hellem Text
-  const DARK_HERO_PAGES = ['/services', '/about', '/insights'];
+  const DARK_HERO_PAGES = ['/services', '/about', '/insights', '/team'];
   const onDark = DARK_HERO_PAGES.some((p) => pathname?.startsWith(p));
 
   // Hauptnavigation
   const NAV_LINKS = [
-    { href: '/services',  label: 'Leistungen'     },
-    { href: '/about',     label: 'Arbeitsweise'   },
-    { href: '/lab',       label: 'Lab'            },
-    { href: '/insights',  label: 'Insights'       },
+    { href: '/services',  label: 'Leistungen'    },
+    { href: '/about',     label: 'Arbeitsweise'  },
+    { href: '/insights',  label: 'Insights'      },
+    { href: '/team',      label: 'Über kenalu'   },
+    { href: '/contact',   label: 'Kontakt'       },
   ];
 
   return (
@@ -78,12 +79,12 @@ export default function Nav() {
         <ul className={`nav-links${open ? ' open' : ''}`}>
           {NAV_LINKS.map(({ href, label, mobileOnly }) => (
             <li key={href} className={mobileOnly ? 'nav-mobile-only' : ''}>
-              <Link href={href} className={pathname === href ? 'active' : ''}>{label}</Link>
+              <Link href={href} className={isActive(href) ? 'active' : ''}>{label}</Link>
             </li>
           ))}
           {pathname !== '/contact' && (
             <li>
-              <Link href="/contact" className="btn btn-sm btn-primary">Gespräch buchen</Link>
+              <Link href="/contact" className="btn btn-sm btn-primary">Gespräch starten</Link>
             </li>
           )}
         </ul>

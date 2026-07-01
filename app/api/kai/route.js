@@ -1,13 +1,27 @@
 import { NextResponse } from 'next/server';
 
 // ── Kontext pro Seite / Platzierung ────────────────────────────────────────
+// Hinweis: Service-Pages senden contextKey mit "-story"-Suffix (z. B. "klarheit-story").
+// Storyblok-Blöcke senden die kurzen Keys (z. B. "services", "contact"). Beide Varianten
+// sind hier gepflegt, damit kein Fallback auf homepage entsteht.
 const CONTEXT_CONFIG = {
   homepage: `Der Besucher ist auf der Homepage. Er kennt kenalu noch nicht oder erst oberflächlich. Er sucht Orientierung, welcher Ansatz zu seiner Situation passt.`,
-  services: `Der Besucher schaut sich die Leistungsübersicht an. Er wägt ab, welcher Service zu seiner aktuellen Situation passt.`,
+
+  services: `Der Besucher schaut sich die Leistungsübersicht an. Er wägt ab, welche Leistung zu seiner aktuellen Situation passt.`,
+  'services-story': `Der Besucher schaut sich die Leistungsübersicht an. Er wägt ab, welche Leistung zu seiner aktuellen Situation passt.`,
+
   service_klarheit: `Der Besucher interessiert sich für «Klarheit» — eine strategische Einschätzung vor dem nächsten Schritt. Typisch: grosse Entscheidungen, Richtungsfragen, fehlende Ausseneinschätzung. Dauer: 4–8 Arbeitstage. Ergebnis: klares Dokument mit Lageeinschätzung, Optionen und konkreter Empfehlung.`,
+  'klarheit-story': `Der Besucher interessiert sich für «Klarheit» — eine strategische Einschätzung vor dem nächsten Schritt. Typisch: grosse Entscheidungen, Richtungsfragen, fehlende Ausseneinschätzung. Dauer: 4–8 Arbeitstage. Ergebnis: klares Dokument mit Lageeinschätzung, Optionen und konkreter Empfehlung.`,
+
   service_rapid_build: `Der Besucher interessiert sich für «Rapid Build» — einen funktionierenden Prototyp in wenigen Wochen. Kein Klickdummy, sondern echte Software. Ziel: früh validieren, bevor grosse Ressourcen investiert werden.`,
-  service_produkt: `Der Besucher interessiert sich für «Produkt» — eine massgeschneiderte AI-Applikation statt Standardsoftware-Kompromiss. Custom-Entwicklung auf modernen Fundamenten, kein Vendor-Lock-in, keine Feature-Kompromisse.`,
+  'rapid-build-story': `Der Besucher interessiert sich für «Rapid Build» — einen funktionierenden Prototyp in wenigen Wochen. Kein Klickdummy, sondern echte Software. Ziel: früh validieren, bevor grosse Ressourcen investiert werden.`,
+
+  service_produkt: `Der Besucher interessiert sich für «Produkt» — eine digitale Lösung, die für Nutzer wirklich funktioniert und langfristig weiterentwickelt werden kann. Strategie, Experience Design und Engineering werden gemeinsam gedacht, nicht nacheinander übergeben.`,
+  'produkt-story': `Der Besucher interessiert sich für «Produkt» — eine digitale Lösung, die für Nutzer wirklich funktioniert und langfristig weiterentwickelt werden kann. Strategie, Experience Design und Engineering werden gemeinsam gedacht, nicht nacheinander übergeben.`,
+
   service_urteil: `Der Besucher interessiert sich für «Urteil» — eine unabhängige Einschätzung eines laufenden oder geplanten Projekts. Ehrliche Sicht von aussen, keine diplomatischen Beschönigungen. Ergebnis: schriftliches Urteil mit Stärken, Risiken und Empfehlungen.`,
+  'urteil-story': `Der Besucher interessiert sich für «Urteil» — eine unabhängige Einschätzung eines laufenden oder geplanten Projekts. Ehrliche Sicht von aussen, keine diplomatischen Beschönigungen. Ergebnis: schriftliches Urteil mit Stärken, Risiken und Empfehlungen.`,
+
   contact: `Der Besucher ist auf der Kontaktseite und denkt konkret über ein Gespräch nach. Er ist nah an einer Entscheidung.`,
   insights: `Der Besucher liest Insights-Beiträge von kenalu zu Strategie, Experience und AI. Er ist intellektuell neugierig und sucht Perspektiven.`,
 
@@ -29,16 +43,17 @@ Setze showContact nur auf true, wenn die Person explizit fragt, wie sie mit kena
 
 // ── kenalu-Kontext ─────────────────────────────────────────────────────────
 const KENALU_BASE = `
-kenalu ist ein Beratungs- und Experience-Studio aus Zürich, gegründet von Dirk Fliescher.
-kenalu hilft Unternehmen, digitale Erlebnisse zu gestalten, die wirklich tragen — durch die Verbindung von Strategie, Nutzerverständnis, Technologie und Umsetzung. kenalu nennt das: Intelligent Experiences.
+kenalu ist ein Beratungs- und Umsetzungsstudio aus Zürich, gegründet von Dirk Fliescher.
+kenalu verbindet strategische Klarheit, Experience Design und Engineering — für AI-Produkte und digitale Lösungen, die für Nutzer funktionieren und langfristig tragen.
 
 Die vier Leistungen:
 - Klarheit: Strategische Einschätzung vor dem nächsten Schritt (4–8 Arbeitstage)
 - Rapid Build: Funktionierender Prototyp in Wochen, nicht Monaten
-- Produkt: Massgeschneiderte AI-Applikation statt Standardsoftware-Kompromiss
+- Produkt: Eine durchdachte digitale Lösung, die im Alltag trägt und weiterentwickelt werden kann
 - Urteil: Unabhängige Einschätzung eines laufenden oder geplanten Projekts
 
-kenalu begleitet bis und mit Prototyp direkt; für die Umsetzung mit ausgewählten Spezialisten.
+kenalu begleitet bis und mit Prototyp direkt; für die technische Umsetzung mit ausgewählten Spezialisten.
+Bestehende Plattformen und Systeme werden genutzt, wo sie sinnvoll sind. Eigenständig entwickelt wird dort, wo Nutzererlebnis, Differenzierung oder Zukunftsfähigkeit es verlangen.
 `.trim();
 
 // ── System-Prompt für Kai ─────────────────────────────────────────────────
@@ -74,7 +89,7 @@ Gesprächslogik (in dieser Reihenfolge):
 
 Datenschutz: Falls jemand vertrauliche Projekt-, Kunden- oder Personendaten einzugeben scheint, weise kurz darauf hin, dass Kai kein sicherer Kanal dafür ist.
 
-Du hilfst NIEMALS mit Themen ausserhalb von kenalu, Intelligent Experiences, Strategie, digitalen Produkten oder AI.
+Du hilfst NIEMALS mit Themen ausserhalb von kenalu, Strategie, digitalen Produkten, Experience Design oder AI.
 
 Antworte AUSSCHLIESSLICH mit gültigem JSON (kein Markdown, keine Codeblöcke):
 {

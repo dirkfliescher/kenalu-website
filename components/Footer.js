@@ -17,10 +17,10 @@ async function getFooterContent() {
 export default async function Footer() {
   const f = await getFooterContent();
 
-  const tagline   = f?.footer_tagline   || 'Strategie, Experience und Engineering für digitale Produkte, die tragen.';
+  const tagline   = f?.footer_tagline   || 'Strategie, Experience Design und Engineering für digitale Produkte und AI-Lösungen, die tragen.';
   const email     = f?.footer_email     || 'dirk@fliescher.ch';
   const address   = f?.footer_address   || 'Zürich, Schweiz';
-  const copyright = f?.footer_copyright || `© ${new Date().getFullYear()} kenalu – dirk fliescher consulting gmbh`;
+  const copyright = f?.footer_copyright || `© ${new Date().getFullYear()} kenalu. Dirk Fliescher Consulting GmbH`;
 
   return (
     <footer className="footer">
@@ -35,9 +35,8 @@ export default async function Footer() {
             <ul>
               <li><Link href="/services">Leistungen</Link></li>
               <li><Link href="/about">Arbeitsweise</Link></li>
-              <li><Link href="/team">Team</Link></li>
-              <li><Link href="/lab">Lab</Link></li>
               <li><Link href="/insights">Insights</Link></li>
+              <li><Link href="/team">Über kenalu</Link></li>
               <li><Link href="/contact">Kontakt</Link></li>
             </ul>
           </div>

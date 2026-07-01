@@ -11,8 +11,8 @@ export const revalidate = 60;
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 export const metadata = {
-  title: 'About – kenalu',
-  description: 'kenalu baut AI-Produkte für Unternehmen, die aufgehört haben, Softwarekompromisse zu akzeptieren. Gegründet von Dirk Fliescher.',
+  title: 'Arbeitsweise – kenalu',
+  description: 'Kenalu verbindet strategische Klarheit, Experience Design und Engineering. Für digitale Produkte und AI-Lösungen, die für Nutzer funktionieren und langfristig tragen.',
 };
 
 async function getContent() {
