@@ -61,6 +61,24 @@ const KENALU_TEAM = [
   { name: 'Dirk Fliescher', role: 'Gründer von kenalu', href: '/team' },
 ];
 
+// ── kenalu Lab-Inhalte ─────────────────────────────────────────────────────
+const KENALU_LAB = [
+  {
+    slug: 'kenalu-website',
+    title: 'Die kenalu-Website — ein Arbeitsbericht',
+    tag: 'Lab',
+    excerpt: 'Wie die kenalu-Website in wenigen Wochen neu aufgebaut wurde — mit Next.js, Storyblok und einer eigenen KI-Integration.',
+    href: '/lab/kenalu-website',
+  },
+  {
+    slug: 'produktmoment',
+    title: 'Produktmoment-Prototyp',
+    tag: 'Lab',
+    excerpt: 'Ein interaktives Tool, das hilft, aus einer offenen Idee einen ersten konkreten, besprechbaren Produktausschnitt zu formulieren.',
+    href: '/lab/produktmoment',
+  },
+];
+
 // ── Kontext pro Seite / Platzierung ───────────────────────────────────────
 const CONTEXT_CONFIG = {
   homepage: `Der Besucher ist auf der Homepage. Er kennt kenalu noch nicht oder erst oberflächlich. Er sucht Orientierung, welcher Ansatz zu seiner Situation passt.`,
@@ -79,6 +97,10 @@ const CONTEXT_CONFIG = {
 
   service_urteil: `Der Besucher interessiert sich für «Urteil» — eine unabhängige Einschätzung eines laufenden oder geplanten Projekts. Ehrliche Sicht von aussen, keine diplomatischen Beschönigungen. Ergebnis: schriftliches Urteil mit Stärken, Risiken und Empfehlungen.`,
   'urteil-story': `Der Besucher interessiert sich für «Urteil» — eine unabhängige Einschätzung eines laufenden oder geplanten Projekts. Ehrliche Sicht von aussen, keine diplomatischen Beschönigungen. Ergebnis: schriftliches Urteil mit Stärken, Risiken und Empfehlungen.`,
+
+  about: `Der Besucher ist auf der Arbeitsweise-Seite. Er versteht gerade, wie kenalu arbeitet — strategische Klarheit, Experience Design und Engineering zusammengedacht. Er fragt sich, ob dieser Ansatz zu seinem Vorhaben passt und was eine Zusammenarbeit konkret bedeuten würde.`,
+
+  team: `Der Besucher ist auf der Team-Seite. Er sieht, wer hinter kenalu steckt — Dirk Fliescher als Gründer, ergänzt durch ausgewählte Spezialistinnen und Spezialisten je nach Vorhaben. Er denkt vielleicht über eine Zusammenarbeit nach.`,
 
   contact: `Der Besucher ist auf der Kontaktseite und denkt konkret über ein Gespräch nach. Er ist nah an einer Entscheidung.`,
   insights: `Der Besucher liest Insights-Beiträge von kenalu zu Strategie, Experience und AI. Er ist intellektuell neugierig und sucht Perspektiven.`,
@@ -146,6 +168,10 @@ function buildSystemPrompt(contextKey, articles) {
     .map((t) => `- ${t.name}, ${t.role} (href: ${t.href})`)
     .join('\n');
 
+  const labList = KENALU_LAB
+    .map((l) => `- Titel: "${l.title}" | Slug: ${l.slug} | Excerpt: "${l.excerpt}" (href: ${l.href})`)
+    .join('\n');
+
   return `Du bist Kai — der KI-Gesprächspartner von kenalu.
 
 Kai steht für Welle auf Hawaiianisch, passend zum kenalu-Markennamen (kenalu = die Welle).
@@ -193,11 +219,14 @@ ${serviceList}
 kenalu-Team:
 ${teamList}
 
+kenalu Lab (Arbeitsproben und Prototypen):
+${labList}
+
 Widget-Typen und wann sie einsetzen:
 
-1. "article" — wenn ein konkreter Artikel zum Thema existiert:
+1. "article" — wenn ein konkreter Insights-Artikel zum Thema existiert:
    { "type": "article", "slug": "EXAKTER-SLUG-AUS-DER-LISTE", "title": "...", "tag": "...", "excerpt": "..." }
-   → Nur Slugs verwenden, die EXAKT in der Artikel-Liste stehen. Kein erfundener Slug.
+   → Nur Slugs verwenden, die EXAKT in der Insights-Artikel-Liste stehen. Kein erfundener Slug.
 
 2. "service" — wenn eine spezifische Leistung zur Situation passt:
    { "type": "service", "name": "Klarheit|Rapid Build|Produkt|Urteil", "description": "...", "href": "..." }
@@ -207,10 +236,14 @@ Widget-Typen und wann sie einsetzen:
    { "type": "team", "name": "Dirk Fliescher", "role": "Gründer von kenalu", "href": "/team" }
    → Nur Namen aus der Team-Liste verwenden.
 
-4. "contact" — wenn ein Gespräch der natürliche nächste Schritt ist:
+4. "lab_article" — wenn ein Lab-Beitrag zum Thema passt (Arbeitsprobe, Prototyp):
+   { "type": "lab_article", "slug": "EXAKTER-SLUG-AUS-DER-LAB-LISTE", "title": "...", "tag": "Lab", "excerpt": "...", "href": "..." }
+   → Nur Slugs verwenden, die EXAKT in der Lab-Liste stehen.
+
+5. "contact" — wenn ein Gespräch der natürliche nächste Schritt ist:
    { "type": "contact", "label": "Gespräch starten", "description": "30 Minuten, unverbindlich." }
 
-Reihenfolge in widgets[]: Artikel/Services zuerst, contact immer zuletzt.
+Reihenfolge in widgets[]: Artikel/Lab/Services zuerst, contact immer zuletzt.
 ──────────────────────────────────────────────────────
 
 Antworte AUSSCHLIESSLICH mit gültigem JSON (kein Markdown, keine Codeblöcke):
@@ -293,6 +326,12 @@ export async function POST(request) {
           const real = KENALU_TEAM.find((t) => t.name === w.name);
           if (!real) return null;
           return { type: 'team', name: real.name, role: real.role, href: real.href };
+        }
+
+        if (w.type === 'lab_article') {
+          const real = KENALU_LAB.find((l) => l.slug === w.slug);
+          if (!real) return null;
+          return { type: 'lab_article', slug: real.slug, title: real.title, tag: real.tag, excerpt: real.excerpt, href: real.href };
         }
 
         if (w.type === 'contact') {

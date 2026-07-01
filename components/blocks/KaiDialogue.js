@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 
 // ── Widget-Komponenten ─────────────────────────────────────────────────────
@@ -12,6 +12,17 @@ function ArticleWidget({ w }) {
       <p className="kw-title">{w.title}</p>
       {w.excerpt && <p className="kw-excerpt">{w.excerpt}</p>}
       <span className="kw-cta">Lesen →</span>
+    </Link>
+  );
+}
+
+function LabArticleWidget({ w }) {
+  return (
+    <Link href={w.href || `/lab/${w.slug}`} className="kw-card kw-lab-article">
+      {w.tag && <span className="kw-tag kw-tag--lab">{w.tag}</span>}
+      <p className="kw-title">{w.title}</p>
+      {w.excerpt && <p className="kw-excerpt">{w.excerpt}</p>}
+      <span className="kw-cta">Ansehen →</span>
     </Link>
   );
 }
@@ -53,10 +64,11 @@ function ContactWidget({ w }) {
 }
 
 function KaiWidget({ widget }) {
-  if (widget.type === 'article') return <ArticleWidget w={widget} />;
-  if (widget.type === 'service') return <ServiceWidget w={widget} />;
-  if (widget.type === 'team')    return <TeamWidget w={widget} />;
-  if (widget.type === 'contact') return <ContactWidget w={widget} />;
+  if (widget.type === 'article')     return <ArticleWidget w={widget} />;
+  if (widget.type === 'lab_article') return <LabArticleWidget w={widget} />;
+  if (widget.type === 'service')     return <ServiceWidget w={widget} />;
+  if (widget.type === 'team')        return <TeamWidget w={widget} />;
+  if (widget.type === 'contact')     return <ContactWidget w={widget} />;
   return null;
 }
 
@@ -104,7 +116,7 @@ export default function KaiDialogue({
     _suggestedPrompts = suggestedPrompts.slice(0, 3);
   }
 
-  // Nachrichtenformat: { role, content, widgets? }
+  // Nachrichtenformat: { role, content, widgets?, typing? }
   const [messages, setMessages] = useState([
     { role: 'assistant', content: _initialMessage, widgets: [] },
   ]);
@@ -113,8 +125,9 @@ export default function KaiDialogue({
   const [showContact, setShowContact]   = useState(false);
   const [promptsVisible, setPromptsVisible] = useState(true);
 
-  const bottomRef = useRef(null);
-  const inputRef  = useRef(null);
+  const bottomRef    = useRef(null);
+  const inputRef     = useRef(null);
+  const typewriterRef = useRef(null); // Cleanup-Ref für laufende Animations
 
   // Nur scrollen wenn echte Konversation läuft (> 1 Nachricht)
   useEffect(() => {
@@ -123,9 +136,58 @@ export default function KaiDialogue({
     }
   }, [messages]);
 
+  // Cleanup laufender Typewriter bei Unmount
+  useEffect(() => {
+    return () => { if (typewriterRef.current) clearTimeout(typewriterRef.current); };
+  }, []);
+
+  // ── Typewriter-Effekt ────────────────────────────────────────────────────
+  const typewrite = useCallback((fullText, finalWidgets, showContactFlag) => {
+    const len = fullText.length;
+    if (len === 0) {
+      setMessages((prev) => {
+        const msgs = [...prev];
+        msgs[msgs.length - 1] = { role: 'assistant', content: '', widgets: finalWidgets };
+        return msgs;
+      });
+      if (showContactFlag) setShowContact(true);
+      return;
+    }
+
+    // Ziel: max 700ms Gesamtdauer, min 8ms pro Schritt
+    const totalMs = Math.min(len * 18, 700);
+    const interval = Math.max(totalMs / len, 8);
+    // Bei langen Texten: mehrere Zeichen pro Tick
+    const charsPerTick = interval <= 8 ? Math.ceil(len / (700 / 8)) : 1;
+
+    let pos = 0;
+    const tick = () => {
+      pos = Math.min(pos + charsPerTick, len);
+      const done = pos >= len;
+      setMessages((prev) => {
+        const msgs = [...prev];
+        msgs[msgs.length - 1] = {
+          role: 'assistant',
+          content: fullText.slice(0, pos),
+          widgets: done ? finalWidgets : [],
+        };
+        return msgs;
+      });
+      if (!done) {
+        typewriterRef.current = setTimeout(tick, interval);
+      } else {
+        if (showContactFlag) setShowContact(true);
+      }
+    };
+    typewriterRef.current = setTimeout(tick, 0);
+  }, []);
+
   async function send(text) {
     const question = (text ?? input).trim();
     if (!question || loading) return;
+
+    // Laufenden Typewriter abbrechen
+    if (typewriterRef.current) clearTimeout(typewriterRef.current);
 
     setInput('');
     setPromptsVisible(false);
@@ -152,16 +214,16 @@ export default function KaiDialogue({
       const data = await res.json();
       if (data.error) throw new Error(data.error);
 
+      const finalWidgets = Array.isArray(data.widgets) ? data.widgets : [];
+
+      // Leere Nachricht vorab einfügen, dann Typewriter starten
       setMessages((prev) => [
         ...prev,
-        {
-          role: 'assistant',
-          content: data.answer,
-          widgets: Array.isArray(data.widgets) ? data.widgets : [],
-        },
+        { role: 'assistant', content: '', widgets: [] },
       ]);
 
-      if (data.showContact) setShowContact(true);
+      setLoading(false);
+      typewrite(data.answer || '', finalWidgets, data.showContact === true);
     } catch {
       setMessages((prev) => [
         ...prev,
@@ -171,10 +233,10 @@ export default function KaiDialogue({
           widgets: [],
         },
       ]);
-    } finally {
       setLoading(false);
-      inputRef.current?.focus();
     }
+
+    inputRef.current?.focus();
   }
 
   function handleKey(e) {
@@ -220,13 +282,19 @@ export default function KaiDialogue({
                     {msg.role === 'assistant' && (
                       <span className="kai-msg-avatar" aria-hidden="true">K</span>
                     )}
-                    <p className="kai-msg-text">{msg.content}</p>
+                    <p className="kai-msg-text">
+                      {msg.content}
+                      {/* Blinkender Cursor während Typewriter läuft */}
+                      {msg.role === 'assistant' && msg.content && i === messages.length - 1 && !loading && (
+                        <span className="kai-cursor" aria-hidden="true" />
+                      )}
+                    </p>
                   </div>
 
                   {/* Widgets nach Kai-Antworten */}
                   {msg.role === 'assistant' && msg.widgets && msg.widgets.length > 0 && (
                     <div className="kai-widgets">
-                      {/* Artikel, Service, Team in Grid */}
+                      {/* Artikel, Lab, Service, Team in Grid */}
                       {msg.widgets.filter((w) => w.type !== 'contact').length > 0 && (
                         <div className={`kw-grid kw-grid--${Math.min(msg.widgets.filter((w) => w.type !== 'contact').length, 2)}`}>
                           {msg.widgets
@@ -247,7 +315,7 @@ export default function KaiDialogue({
                 </div>
               ))}
 
-              {/* Loading-Indikator */}
+              {/* Loading-Indikator (nur während API-Wartezeit) */}
               {loading && (
                 <div className="kai-msg kai-msg--assistant">
                   <span className="kai-msg-avatar" aria-hidden="true">K</span>

@@ -2,6 +2,7 @@ import StoryblokClient from 'storyblok-js-client';
 import Link from 'next/link';
 import TeamMemberTeaser from '../../components/blocks/TeamMemberTeaser';
 import TeamIntro from '../../components/blocks/TeamIntro';
+import KaiDialogue from '../../components/blocks/KaiDialogue';
 import DynamicBlock from '../../components/DynamicBlock';
 import Reveal from '../../components/Reveal';
 
@@ -83,6 +84,23 @@ export default async function TeamPage() {
           <DynamicBlock blok={blok} />
         </Reveal>
       ))}
+
+      {/* Kai */}
+      <Reveal>
+        <KaiDialogue
+          contextKey="team"
+          eyebrow="Kai"
+          headline="Fragen zum Team oder zur Zusammenarbeit?"
+          intro="Kai beantwortet Fragen dazu, wie kenalu arbeitet, wer dabei ist und was eine Zusammenarbeit konkret bedeuten könnte."
+          initialMessage="Hallo. Ich bin Kai. Was wollt ihr über kenalu oder eine mögliche Zusammenarbeit wissen?"
+          inputPlaceholder="Was interessiert euch?"
+          suggestedPrompts={[
+            'Wie arbeitet kenalu typischerweise?',
+            'Wer steckt hinter kenalu?',
+            'Was würde eine Zusammenarbeit konkret bedeuten?',
+          ]}
+        />
+      </Reveal>
 
       {/* Mitwirken-Teaser */}
       <Reveal>

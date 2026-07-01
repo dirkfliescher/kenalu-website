@@ -4,6 +4,7 @@ import DynamicBlock from '../../components/DynamicBlock';
 import AboutTeam from '../../components/blocks/AboutTeam';
 import CollaborationIntro from '../../components/blocks/CollaborationIntro';
 import FitTest from '../../components/blocks/FitTest';
+import KaiDialogue from '../../components/blocks/KaiDialogue';
 import Reveal from '../../components/Reveal';
 
 export const revalidate = 60;
@@ -120,6 +121,21 @@ export default async function About() {
 
       {/* ── Erfahrungshintergrund + Abschluss-CTA ── */}
       {afterMitwirken.map((blok) => renderBlok(blok, members))}
+
+      {/* ── Kai ── */}
+      <KaiDialogue
+        contextKey="about"
+        eyebrow="Kai"
+        headline="Passt dieser Ansatz zu eurem Vorhaben?"
+        intro="Beschreibt, was ihr aufbauen oder entscheiden müsst. Kai hilft euch einzuordnen, ob und wie kenalu dabei sinnvoll ist."
+        initialMessage="Hallo. Ich bin Kai. Was habt ihr gerade vor — und was fehlt euch dabei?"
+        inputPlaceholder="Was bewegt euch gerade?"
+        suggestedPrompts={[
+          'Wir brauchen eine klare Entscheidungsgrundlage.',
+          'Wir wollen eine Idee früh sichtbar machen.',
+          'Wir suchen eine externe Einschätzung für unser Projekt.',
+        ]}
+      />
 
       {/* ── Lab-Verweis ── */}
       <section className="lab-ref-strip">

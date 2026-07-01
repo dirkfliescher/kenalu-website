@@ -5295,8 +5295,8 @@ p { color: var(--charcoal); }
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  min-height: 120px;
-  max-height: 320px;
+  min-height: 160px;
+  max-height: 520px;
   overflow-y: auto;
   scroll-behavior: smooth;
 }
@@ -5485,7 +5485,7 @@ p { color: var(--charcoal); }
 /* ── Responsive ── */
 @media (max-width: 640px) {
   .kai-dialogue { padding: 3.5rem 0; }
-  .kai-dialogue-messages { max-height: 260px; }
+  .kai-dialogue-messages { max-height: 380px; }
   .kai-dialogue-prompts { gap: 0.4rem; }
   .kai-prompt-chip { font-size: 0.75rem; }
   .kai-dialogue-contact-hint { flex-direction: column; align-items: flex-start; }
@@ -5554,7 +5554,44 @@ p { color: var(--charcoal); }
   opacity: 0.6;
 }
 
-/* Service-Karte */
+/* ── Artikel-Karte (Insights) ── */
+.kw-article {
+  border-top: 2px solid var(--charcoal, #1a1f2e);
+}
+.kw-article .kw-tag {
+  color: var(--charcoal, #1a1f2e);
+}
+.kw-article .kw-cta {
+  opacity: 1;
+  color: var(--charcoal, #1a1f2e);
+}
+
+/* ── Lab-Artikel-Karte ── */
+.kw-lab-article {
+  background: #f4f4f0;
+  border-color: transparent;
+}
+.kw-lab-article:hover {
+  background: #ebebе6;
+  border-color: transparent;
+}
+.kw-tag--lab {
+  color: #4a7c6f;
+}
+.kw-lab-article .kw-title {
+  color: var(--charcoal, #1a1f2e);
+}
+.kw-lab-article .kw-cta {
+  color: #4a7c6f;
+  opacity: 1;
+  font-size: 0.7rem;
+}
+
+/* ── Service-Karte ── */
+.kw-service {
+  border-left: 3px solid var(--charcoal, #1a1f2e);
+  border-radius: 0 8px 8px 0;
+}
 .kw-service-label {
   font-size: 0.65rem;
   font-weight: 700;
@@ -5563,8 +5600,12 @@ p { color: var(--charcoal); }
   color: var(--stone);
   margin: 0 0 0.25rem;
 }
+.kw-service .kw-cta {
+  opacity: 1;
+  font-weight: 700;
+}
 
-/* Team-Karte */
+/* ── Team-Karte ── */
 .kw-team {
   display: flex;
   align-items: center;
@@ -5625,6 +5666,22 @@ p { color: var(--charcoal); }
   font-size: 1rem;
   color: rgba(255,255,255,0.7);
   flex-shrink: 0;
+}
+
+/* ── Typewriter-Cursor ── */
+.kai-cursor {
+  display: inline-block;
+  width: 1px;
+  height: 0.85em;
+  background: currentColor;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  opacity: 0.6;
+  animation: kai-blink 0.7s steps(1) infinite;
+}
+@keyframes kai-blink {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0; }
 }
 
 @media (max-width: 640px) {
