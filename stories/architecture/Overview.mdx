@@ -1,0 +1,108 @@
+{/* stories/architecture/Overview.mdx */}
+
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Architektur / Projektübersicht" />
+
+# Projektübersicht
+
+**kenalu-website** – Next.js 16 App Router Website mit Storyblok CMS und KI-Chat.
+
+---
+
+## Verzeichnisstruktur
+
+```
+kenalu-website/
+├── app/                        # Next.js App Router
+│   ├── layout.js               # Root Layout (Nav, Footer, Fonts, Scroll-Reveal)
+│   ├── globals.css             # Design Tokens, globale Styles
+│   ├── page.js                 # Homepage (Storyblok-gesteuert)
+│   ├── about/page.js           # Arbeitsweise
+│   ├── contact/page.js         # Gespräch starten
+│   ├── insights/               # Insights-Übersicht + Artikel
+│   │   ├── page.js
+│   │   └── [slug]/page.js
+│   ├── services/               # Leistungsübersicht + Detailseiten
+│   │   ├── page.js
+│   │   ├── klarheit/page.js
+│   │   ├── rapid-build/page.js
+│   │   ├── produkt/page.js
+│   │   └── urteil/page.js
+│   ├── team/page.js            # Über kenalu
+│   ├── lab/                    # Lab (statisch, kein Storyblok-Content)
+│   │   ├── page.js
+│   │   └── [slug]/page.js
+│   ├── impressum/page.js       # Statisch (Storyblok)
+│   ├── datenschutz/page.js     # Statisch (Storyblok)
+│   └── api/
+│       ├── kai/route.js        # KI-Chat-API (OpenAI)
+│       └── lab-builder/route.js # Lab Builder API (intern, nicht öffentlich)
+│
+├── components/
+│   ├── Nav.js                  # Hauptnavigation (Client Component)
+│   ├── Footer.js               # Footer (Server Component, Storyblok)
+│   ├── DynamicBlock.js         # Storyblok Block-Registry
+│   └── blocks/                 # 50+ Storyblok-Block-Komponenten
+│       ├── KaiDialogue.js
+│       ├── ProductMomentBuilder.js
+│       ├── Hero.js
+│       ├── CtaSection.js
+│       └── ...
+│
+├── scripts/                    # Einmalige CMS-Skripte (node, nicht deploybar)
+│   ├── cleanup-storyblok-2026-07.mjs
+│   └── cleanup-storyblok-2026-07b.mjs
+│
+├── docs/                       # Projektdokumentation
+│   ├── kenalu-cleanup-2026-07.md
+│   └── storyblok-partner-blocks.md
+│
+├── stories/                    # Dieses Storybook
+├── .storybook/
+├── public/
+└── CLAUDE.md                   # Projektanweisungen für Claude
+```
+
+---
+
+## Routing und Datenfetch
+
+### Storyblok-Seiten
+Die meisten Seiten fetchen ihren Content aus Storyblok:
+
+```js
+// Standard-Pattern: app/about/page.js
+export const revalidate = 60; // ISR: neu laden nach 60s
+
+const { data } = await Storyblok.get('cdn/stories/about', {
+  version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
+});
+
+const body = data.story.content.body || [];
+return body.map((blok) => <DynamicBlock key={blok._uid} blok={blok} />);
+```
+
+### Statische Seiten
+Service-Detailseiten (`/services/klarheit` etc.) fetchen Storyblok **nur für SEO-Metadata**; der gesamte Seiten-Content ist hardcodiertes JSX.
+
+---
+
+## Deployment
+
+- **Hosting:** Vercel (Auto-Deploy bei `git push origin main`)
+- **Branch:** `main` → Production
+- **ISR:** `revalidate = 60` auf allen Storyblok-Seiten (Content-Änderungen live nach max. 60s)
+
+---
+
+## Umgebungsvariablen
+
+| Variable | Zweck |
+|---|---|
+| `STORYBLOK_TOKEN` | Content Delivery API (Preview Token) |
+| `OPENAI_API_KEY` | Kai-Chat (gpt-4o-mini) |
+
+Diese sind in `.env.local` (nicht im Repo) und in Vercel Environment Variables gesetzt.
+
+> ⚠️ Der Storyblok Management API PAT (`STORYBLOK_PAT`) darf **nicht** ins Git-Repo.

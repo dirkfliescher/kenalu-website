@@ -1,0 +1,118 @@
+{/* stories/architecture/APIRoutes.mdx */}
+
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Architektur / API Routes" />
+
+# API Routes
+
+Die kenalu-Website hat zwei API Routes. Beide sind Next.js Route Handlers (`app/api/*/route.js`).
+
+---
+
+## `/api/kai` – KI-Chat
+
+**Datei:** `app/api/kai/route.js`
+
+Der zentrale KI-Assistent von kenalu. Empfängt Nachrichten und gibt eine Antwort von OpenAI zurück.
+
+### Request
+
+```typescript
+POST /api/kai
+Content-Type: application/json
+
+{
+  messages: Array<{ role: 'user' | 'assistant', content: string }>,
+  contextKey: string  // bestimmt den Seitenkontext für den System-Prompt
+}
+```
+
+### Response
+
+```typescript
+{
+  answer: string,        // Kai's Antwort (2–3 Sätze)
+  showContact: boolean   // true = CTA «Gespräch starten» einblenden
+}
+
+// Bei Fehler:
+{
+  error: string
+}
+```
+
+### Context Keys
+
+| contextKey | Verwendung |
+|---|---|
+| `homepage` | Homepage (Fallback) |
+| `services` / `services-story` | Leistungsübersicht |
+| `klarheit-story` | Service-Seite Klarheit |
+| `rapid-build-story` | Service-Seite Rapid Build |
+| `produkt-story` | Service-Seite Produkt |
+| `urteil-story` | Service-Seite Urteil |
+| `contact` | Kontaktseite |
+| `insights` | Insights-Übersicht |
+| `produktmoment` | Lab-Produktmoment-Builder |
+
+> Service-Seiten senden den Story-Slug mit `-story`-Suffix (Storyblok-Konvention). Für alle Context Keys sind Legacy-Varianten (ohne `-story`) als Aliase erhalten.
+
+### Model & Parameter
+
+```js
+model:       'gpt-4o-mini'
+max_tokens:  350
+temperature: 0.65
+response_format: { type: 'json_object' }
+```
+
+### Sicherheit
+
+- Input-Validierung: `messages` muss Array sein, letztes Element muss `content.length >= 2` haben
+- Kai sendet **niemals** vertrauliche Projektdaten weiter (System-Prompt-Restriktion)
+- Keine Datenpersistenz: Jeder Request ist stateless
+
+---
+
+## `/api/lab-builder` – Lab Builder (intern)
+
+**Datei:** `app/api/lab-builder/route.js`
+
+Interner API-Endpunkt für den LabBuilder-Prototypen.
+
+> **Status:** Die Route existiert und ist funktionsfähig, aber **von keiner öffentlichen Seite referenziert**. `LabBuilder.js` und diese Route sind bewusst entkoppelt (Stand Juli 2026 – Lab Recovery). Sie werden erhalten, bis eine Entscheidung über die Zukunft des Builders getroffen wird.
+
+---
+
+## Fehlerbehandlung
+
+Beide Routes verwenden `NextResponse.json()` und fangen alle Fehler:
+
+```js
+try {
+  // ...
+} catch (e) {
+  console.error('[kai] Fehler:', e);
+  return NextResponse.json(
+    { error: 'Kai ist gerade nicht erreichbar. Versucht es nochmal.' },
+    { status: 500 }
+  );
+}
+```
+
+---
+
+## Lokal testen
+
+```bash
+# Dev-Server starten
+npm run dev
+
+# Kai-Route testen (curl)
+curl -X POST http://localhost:3000/api/kai \
+  -H "Content-Type: application/json" \
+  -d '{"messages":[{"role":"user","content":"Was ist kenalu?"}],"contextKey":"homepage"}'
+```
+
+> Voraussetzung: `OPENAI_API_KEY` in `.env.local` gesetzt.

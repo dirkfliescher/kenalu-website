@@ -1,0 +1,115 @@
+{/* stories/architecture/Storyblok.mdx */}
+
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Architektur / Storyblok & Block-Registry" />
+
+# Storyblok & Block-Registry
+
+kenalu.ch verwendet Storyblok als Headless CMS. Inhalte werden in Storyblok als **Stories** (Seiten) mit **Bloks** (Komponenten-Instanzen) aufgebaut.
+
+---
+
+## Space-Konfiguration
+
+| Feld | Wert |
+|---|---|
+| Space-Name | kenalu |
+| Space-ID | 293099469334951 |
+| Content Delivery Token (Preview) | In `.env.local` als `STORYBLOK_TOKEN` |
+| Management API PAT | In `.env.local` als `STORYBLOK_PAT` – **nie committen** |
+
+---
+
+## Storyblok-Client
+
+```js
+// app/lib/storyblok.js (oder direkt in Seiten)
+import StoryblokClient from 'storyblok-js-client';
+
+const Storyblok = new StoryblokClient({
+  accessToken: process.env.STORYBLOK_TOKEN,
+});
+```
+
+---
+
+## DynamicBlock – Block-Registry
+
+`components/DynamicBlock.js` ist die zentrale Registry, die Storyblok-Block-Keys auf React-Komponenten mappt:
+
+```js
+// components/DynamicBlock.js (vereinfacht)
+const COMPONENTS = {
+  'kai_dialogue':            KaiDialogue,
+  'hero':                    Hero,
+  'cta_section':             CtaSection,
+  'zusammenarbeit_partners': ZusammenarbeitPartners,
+  'zusammenarbeit_team':     ZusammenarbeitTeam,
+  'zusammenarbeit_open':     ZusammenarbeitOpen,
+  // ... weitere
+};
+
+export default function DynamicBlock({ blok }) {
+  const Component = COMPONENTS[blok.component];
+  if (!Component) return null;
+  return <Component blok={blok} />;
+}
+```
+
+**Neue Blöcke einrichten:**
+1. Block-Schema in Storyblok anlegen
+2. React-Komponente in `components/blocks/` erstellen
+3. In `DynamicBlock.js` registrieren
+
+---
+
+## Story-Struktur
+
+| Full Slug | Seite | Storyblok-Story |
+|---|---|---|
+| `home` | Homepage | ✓ vollständig |
+| `about` | Arbeitsweise | ✓ vollständig |
+| `contact` | Gespräch starten | ✓ vollständig |
+| `services` | Leistungsübersicht | ✓ vollständig |
+| `insights` | Insights-Übersicht | ✓ vollständig |
+| `insights/*` | Einzelartikel | ✓ vollständig (redaktionell) |
+| `team` | Über kenalu | ✓ vollständig |
+| `config/footer` | Footer-Konfiguration | ✓ (email, copyright, tagline) |
+| `legal/datenschutz` | Datenschutz | ✓ |
+| `legal/impressum` | Impressum | ✓ |
+| `services/klarheit` etc. | Service-Detail | ✗ – hardcoded JSX, Storyblok nur für SEO |
+
+---
+
+## Kai-ContextKey – Wie er gebildet wird
+
+Service-Seiten übergeben den Storyblok-Story-Slug als `contextKey` an `KaiDialogue`:
+
+```js
+// app/services/klarheit/page.js
+const story = await Storyblok.get('cdn/stories/services/klarheit', ...);
+// Story-Name: "klarheit-story" (Storyblok fügt "-story" ans Ende an)
+// contextKey → "klarheit-story"
+```
+
+In `app/api/kai/route.js` sind beide Key-Varianten gepflegt:
+
+```js
+'klarheit-story':    `Besucher interessiert sich für «Klarheit»...`,
+'service_klarheit':  `...` // Legacy-Alias
+```
+
+---
+
+## CMS-Skripte
+
+Einmalige CMS-Operationen werden als `.mjs`-Skripte in `scripts/` abgelegt und lokal ausgeführt – nie committed mit dem PAT, nie automatisiert:
+
+```bash
+# Beispiel: Storyblok-Cleanup Juli 2026
+cd /Users/dirkfliescher/Documents/kenalu-website
+node scripts/cleanup-storyblok-2026-07b.mjs
+```
+
+> ⚠️ **Insights-Artikel** (`insights/*`) dürfen nicht maschinell bereinigt werden – das sind redaktionelle Texte, die manuell geprüft werden müssen.

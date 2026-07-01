@@ -1,0 +1,109 @@
+{/* stories/design-system/CSSConventions.mdx */}
+
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Design System / CSS-Konventionen" />
+
+# CSS-Konventionen
+
+Die kenalu-Website verwendet **kein globales CSS-Framework** für Komponenten-Styles. Stattdessen: BEM-ähnliche Präfix-Klassen, die jeder Komponente/Section ihren eigenen Namespace geben.
+
+---
+
+## Präfix-System
+
+Jede grössere Komponente oder Section bekommt einen eindeutigen 2–4 Zeichen-Präfix. Alle Klassen dieser Komponente beginnen damit.
+
+| Präfix | Komponente / Datei | Beschreibung |
+|---|---|---|
+| `pm-*` | `ProductMomentBuilder.js` | Interaktiver Lab-Builder für Produktmomente |
+| `lpv2-*` | `LabOverview.js` | Lab-Übersichtsseite (Version 2) |
+| `sov-*` | `ServicesOverview.js` | Leistungsübersicht |
+| `sd-*` | `ServiceDetailPage.js` | Service-Detailseiten (Klarheit, Rapid Build etc.) |
+| `lca-*` | `LabArticle.js` | Einzelner Lab-/Insights-Artikel |
+| `lfw-*` | `FeaturedWork.js` | Featured-Work-Section |
+| `lab-ref-strip` | Shared | Referenz-Strip (wird von mehreren Komponenten geteilt) |
+| `kai-*` | `KaiDialogue.js` | Kai-Chat-Interface |
+| `nav-*` | `Nav.js` | Hauptnavigation |
+| `footer-*` | `Footer.js` | Footer |
+
+---
+
+## Beispiel: `kai-*`-Klassen
+
+```css
+.kai-dialogue          /* äussere Section */
+.kai-dialogue-inner    /* innerer Wrapper */
+.kai-dialogue-header   /* Eyebrow + Headline + Intro */
+.kai-dialogue-eyebrow
+.kai-dialogue-headline
+.kai-dialogue-intro
+.kai-dialogue-chat     /* Chat-Container */
+.kai-dialogue-messages /* Scroll-Area mit Nachrichten */
+.kai-msg               /* einzelne Nachricht */
+.kai-msg--assistant    /* Modifier: Kai-Seite */
+.kai-msg--user         /* Modifier: Nutzer-Seite */
+.kai-msg-avatar        /* "K"-Avatar */
+.kai-msg-text          /* Nachrichtentext */
+.kai-msg-typing        /* Tipp-Indikator (drei Punkte) */
+.kai-dialogue-prompts  /* Vorgeschlagene Fragen */
+.kai-prompt-chip       /* Einzelner Chip-Button */
+.kai-dialogue-input-row
+.kai-dialogue-input    /* Textarea */
+.kai-dialogue-send     /* Senden-Button */
+.kai-dialogue-privacy  /* Datenschutzhinweis */
+.kai-dialogue-contact-hint
+```
+
+---
+
+## Buttons (global)
+
+Buttons sind global definiert und haben keine Komponenten-spezifischen Präfixe:
+
+```css
+.btn              /* Basis-Button */
+.btn-primary      /* Primärfarbe (Ocean) */
+.btn-secondary    /* Sekundär (Outline) */
+.btn-sm           /* Kleinere Variante */
+.btn-ghost        /* Nur Text, kein Background */
+```
+
+---
+
+## Container-Pattern
+
+```css
+.container          /* Standard-Breite: 1120px */
+.container--narrow  /* Schmale Variante: 720px */
+.container--wide    /* Breite Variante: 1300px */
+```
+
+---
+
+## Scroll-Reveal
+
+Sections mit dem Klassnamen `.reveal` werden beim Einblenden animiert:
+
+```jsx
+// In page.js: useEffect() beobachtet .reveal-Elemente
+<section className="reveal">...</section>
+```
+
+Der IntersectionObserver sitzt in `app/layout.js` (Client Component).
+
+---
+
+## Namenskonventionen
+
+- Klassen: **kebab-case** (`kai-dialogue-inner`, `footer-grid`)
+- Modifier: **`--modifier`** (`kai-msg--assistant`, `nav--scrolled`)
+- State: **`is-*`** (`is-visible`, `is-active`) oder direkt als Klasse (`open`, `active`, `scrolled`)
+
+---
+
+## Was nicht in globals.css gehört
+
+- Komplexe Komponenten-Styles → in die jeweilige Komponente (inline oder `<style jsx>`)
+- Animation-Keyframes → `globals.css` (shared via `@keyframes`)
+- Design Tokens → `globals.css` (`:root` Custom Properties)

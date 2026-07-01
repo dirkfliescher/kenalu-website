@@ -1,0 +1,113 @@
+{/* stories/design-system/DesignTokens.mdx */}
+
+import { Meta, ColorPalette, ColorItem, Typeset } from '@storybook/blocks';
+
+<Meta title="Design System / Design Tokens" />
+
+# Design Tokens
+
+Alle visuellen Grundwerte der kenalu-Website sind als CSS Custom Properties in `app/globals.css` definiert. Sie sind in allen Komponenten über `var(--name)` verfügbar.
+
+---
+
+## Farben
+
+<ColorPalette>
+  <ColorItem
+    title="Ivory"
+    subtitle="--ivory · Primärer Hintergrund"
+    colors={{ Ivory: '#FAF8F5' }}
+  />
+  <ColorItem
+    title="Charcoal"
+    subtitle="--charcoal · Primäre Textfarbe"
+    colors={{ Charcoal: '#1A1F23', 'Charcoal Dark': '#1e2124' }}
+  />
+  <ColorItem
+    title="Ocean"
+    subtitle="--ocean · Markenfarbe, Links, Akzente"
+    colors={{ Ocean: '#12384B', 'Ocean Dark': '#0e2c3c' }}
+  />
+  <ColorItem
+    title="Terracotta"
+    subtitle="--terracotta · CTA, Highlights"
+    colors={{ Terracotta: '#C5694A', 'Terracotta Dark': '#b15a3d' }}
+  />
+  <ColorItem
+    title="Sage"
+    subtitle="--sage · Subtile Akzente, Tags"
+    colors={{ Sage: '#A7B5A6' }}
+  />
+  <ColorItem
+    title="Mineral"
+    subtitle="--mineral · Helle Borders, Trennlinien"
+    colors={{ Mineral: '#E6E3DE' }}
+  />
+  <ColorItem
+    title="Stone"
+    subtitle="--stone · Sekundärtext, Labels"
+    colors={{ Stone: '#686E72' }}
+  />
+  <ColorItem
+    title="Softline"
+    subtitle="--softline · Sehr subtile Borders"
+    colors={{ Softline: '#D8D4CE' }}
+  />
+</ColorPalette>
+
+---
+
+## Typografie
+
+Fonts werden via `app/layout.js` geladen: **Satoshi** (Fontshare CDN) für Headlines, **Inter** (Google Fonts / Next.js) für Fliesstext.
+
+```css
+--font-headline: 'Satoshi', 'Inter', sans-serif;
+--font-body:     'Inter', sans-serif;
+```
+
+| Token | Wert | Verwendung |
+|---|---|---|
+| `--font-headline` | Satoshi, Inter | `h1`–`h4`, Hero, Eyebrow |
+| `--font-body` | Inter | Fliesstext, Labels, UI |
+
+---
+
+## Spacing & Layout
+
+```css
+--max-width:  1120px   /* maximale Content-Breite */
+--gutter:     2rem     /* seitliche Abstände (mobile: 1.25rem) */
+```
+
+Der Container-Pattern:
+```css
+.container          { max-width: var(--max-width); margin-inline: auto; padding-inline: var(--gutter); }
+.container--narrow  { max-width: 720px; }
+.container--wide    { max-width: 1300px; }
+```
+
+---
+
+## Interaktions-Tokens
+
+```css
+--radius:     6px        /* Standard-Border-Radius */
+--transition: 0.25s ease /* Standard-Transition */
+```
+
+---
+
+## Verwendung in Komponenten
+
+```css
+/* Korrekt: CSS Custom Property */
+background: var(--ivory);
+color: var(--charcoal);
+border-color: var(--mineral);
+
+/* Korrekt: Fallback angeben bei externen Komponenten */
+color: var(--stone, #686E72);
+```
+
+> **Tailwind 4 und Custom Properties:** Tailwind ist konfiguriert, aber Design Tokens werden als CSS Custom Properties gepflegt – nicht als Tailwind-Config-Werte. Klassen wie `bg-ivory` existieren nicht; stattdessen `style={{ background: 'var(--ivory)' }}` oder eine CSS-Klasse mit `background: var(--ivory)`.
