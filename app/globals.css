@@ -323,18 +323,27 @@ p { color: var(--charcoal); }
 .legal-page p { color: var(--stone); line-height: 1.75; margin-bottom: 0.5rem; }
 .legal-page a { color: var(--charcoal); text-decoration: underline; }
 
+/* ── Page Hero (Storyblok: Arbeitsweise, Team) ──
+   Layout: Headline links 55%, Text rechts 45%, unten ausgerichtet */
 .page-hero { padding: 6rem var(--gutter) 5rem; background: var(--charcoal); color: var(--ivory); }
-.page-hero .hero-label { color: rgba(255, 255, 255, 0.42); }
+.page-hero .hero-label { color: rgba(255, 255, 255, 0.42); margin-bottom: 1rem; }
+.page-hero-inner {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: 2rem 5rem;
+  align-items: end;
+  margin-top: 0.75rem;
+}
 .page-hero h1 {
   color: var(--ivory);
-  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  font-size: clamp(2.6rem, 5.5vw, 4.8rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.05;
   letter-spacing: -0.03em;
-  margin: 0.75rem 0 1.5rem;
-  max-width: 22ch;
+  margin: 0;
+  max-width: none;
 }
-.page-hero p { color: rgba(255, 255, 255, 0.62); font-size: 1.05rem; max-width: 54ch; line-height: 1.75; }
+.page-hero p { color: rgba(255, 255, 255, 0.62); font-size: 1.05rem; max-width: 46ch; line-height: 1.75; padding-bottom: 0.2rem; }
 
 @media (max-width: 900px) {
   .hero { padding-top: 7rem; }
@@ -344,6 +353,11 @@ p { color: var(--charcoal); }
   .provocation-grid, .why-grid, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
   .provocation-values { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
   .help-grid { grid-template-columns: 1fr 1fr; }
+  /* Hero-System: Grids auf Tablet einspaltig */
+  .page-hero-inner,
+  .insights-hero-inner,
+  .sov-hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .lpv2-hero-text { margin-left: 0; }
 }
 @media (max-width: 768px) {
   :root { --gutter: 1.25rem; }
@@ -748,7 +762,13 @@ p { color: var(--charcoal); }
   align-items: start;
 }
 .contact-info .section-label { margin-bottom: 0.5rem; }
-.contact-info h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.5rem; line-height: 1.15; }
+.contact-info h1 {
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 1.75rem;
+}
 .contact-intro-text { color: var(--stone); line-height: 1.7; font-size: 1.05rem; margin-bottom: 1.25rem; }
 
 .contact-details { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
@@ -3036,51 +3056,62 @@ p { color: var(--charcoal); }
   100% { transform: scaleX(1); opacity: 0; }
 }
 
-/* ── Insights Hero (/insights) ──────────────────────────────────── */
+/* ── Insights Hero (/insights) ──────────────────────────────────
+   Layout: Headline links 60%, Text rechts 40%, unten ausgerichtet */
 .insights-hero {
-  padding: 6rem var(--gutter) 4rem;
+  padding: 6rem var(--gutter) 5rem;
   background: var(--charcoal);
   color: var(--ivory);
 }
 
+.insights-hero-inner {
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  gap: 2rem 5rem;
+  align-items: end;
+  margin-top: 0.75rem;
+}
+
 .insights-hero-headline {
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-size: clamp(2.6rem, 5.5vw, 4.8rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.05;
   color: var(--ivory);
-  margin: 0.75rem 0 1.5rem;
-  max-width: 22ch;
+  margin: 0;
+  max-width: none;
 }
 
 .insights-hero-sub {
-  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.62);
-  max-width: 540px;
-  line-height: 1.7;
+  max-width: 44ch;
+  line-height: 1.75;
+  padding-bottom: 0.2rem;
 }
 
-/* ── Team Hero (/team) ──────────────────────────────────────────── */
+/* ── Team Hero (/team) ── wird via page-hero CSS gerendert ─────── */
+/* (Klassen noch vorhanden für Rückwärtskompatibilität) */
 .team-hero {
-  padding: 6rem var(--gutter) 4rem;
+  padding: 6rem var(--gutter) 5rem;
   background: var(--charcoal);
   color: var(--ivory);
 }
 
 .team-hero-headline {
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-size: clamp(2.6rem, 5.5vw, 4.8rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.05;
   color: var(--ivory);
-  margin: 0.75rem 0 1.5rem;
+  margin: 0;
 }
 
 .team-hero-sub {
-  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.62);
-  max-width: 540px;
-  line-height: 1.7;
+  max-width: 44ch;
+  line-height: 1.75;
 }
 
 .team-profiles {
@@ -6265,24 +6296,34 @@ p { color: var(--charcoal); }
 }
 
 .sov-hero {
-  padding: 5rem 0 4rem;
+  padding: 6rem 0 5rem;
+}
+
+.sov-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem 5rem;
+  align-items: end;
+  margin-top: 0.75rem;
 }
 
 .sov-hero-headline {
   font-family: var(--font-headline);
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   color: var(--charcoal);
-  margin: 0.75rem 0 1.5rem;
-  max-width: 20ch;
+  margin: 0;
+  max-width: none;
 }
 
 .sov-hero-text {
   font-size: 1.0625rem;
   line-height: 1.75;
   color: var(--stone);
-  max-width: 58ch;
+  max-width: 46ch;
+  padding-bottom: 0.2rem;
 }
 
 /* Four Moments */
@@ -7129,20 +7170,22 @@ p { color: var(--charcoal); }
 
 .lpv2-hero-headline {
   font-family: var(--font-headline);
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.05;
   letter-spacing: -0.03em;
   color: var(--ivory);
-  max-width: 22ch;
-  margin: 0 0 1.5rem;
+  max-width: none;
+  margin: 0.75rem 0 2rem;
 }
 
+/* Lab: Text rechts eingerückt — erzeugt asymmetrische Spannung unter der breiten Headline */
 .lpv2-hero-text {
   font-size: 1.05rem;
   line-height: 1.8;
   color: var(--mineral);
-  max-width: 60ch;
+  max-width: 46ch;
+  margin-left: auto;
 }
 
 /* ── 2. Featured Work Sample ────────────────────────────────── */

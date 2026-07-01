@@ -70,7 +70,6 @@ export default function Nav() {
     { href: '/lab',       label: 'Lab'           },
     { href: '/insights',  label: 'Insights'      },
     { href: '/team',      label: 'Über kenalu'   },
-    { href: '/contact',   label: 'Kontakt'       },
   ];
 
   return (

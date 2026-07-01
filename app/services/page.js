@@ -144,14 +144,16 @@ export default function ServicesPage() {
       <section className="sov-hero">
         <div className="container">
           <p className="section-label">Leistungen</p>
-          <h1 className="sov-hero-headline">
-            Nicht jede gute Idee braucht denselben Anfang.
-          </h1>
-          <p className="sov-hero-text">
-            Manche Vorhaben brauchen zuerst eine Entscheidung. Manche einen sichtbaren Beweis.
-            Manche ein Produkt, das im Alltag trägt. Und manchmal braucht es eine ehrliche
-            zweite Sicht, bevor etwas weiterläuft.
-          </p>
+          <div className="sov-hero-inner">
+            <h1 className="sov-hero-headline">
+              Nicht jede gute Idee braucht denselben Anfang.
+            </h1>
+            <p className="sov-hero-text">
+              Manche Vorhaben brauchen zuerst eine Entscheidung. Manche einen sichtbaren Beweis.
+              Manche ein Produkt, das im Alltag trägt. Und manchmal braucht es eine ehrliche
+              zweite Sicht, bevor etwas weiterläuft.
+            </p>
+          </div>
         </div>
       </section>
 

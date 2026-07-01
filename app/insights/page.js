@@ -81,11 +81,13 @@ export default async function Insights() {
       <section className="insights-hero">
         <div className="container">
           <p className="section-label">Insights</p>
-          <h1 className="insights-hero-headline">Perspektiven auf digitale Produkte und AI.</h1>
-          <p className="insights-hero-sub">
-            Einblicke aus der Praxis — zu Strategie, Experience und dem, was bei der Umsetzung
-            tatsächlich zählt.
-          </p>
+          <div className="insights-hero-inner">
+            <h1 className="insights-hero-headline">Perspektiven auf digitale Produkte und AI.</h1>
+            <p className="insights-hero-sub">
+              Einblicke aus der Praxis — zu Strategie, Experience und dem, was bei der Umsetzung
+              tatsächlich zählt.
+            </p>
+          </div>
         </div>
       </section>
 
