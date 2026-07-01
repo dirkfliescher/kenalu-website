@@ -60,13 +60,14 @@ export default function Nav() {
   const isActive = (path) => pathname?.startsWith(path);
 
   // Seiten mit dunklem Hero-Hintergrund → Nav startet mit hellem Text
-  const DARK_HERO_PAGES = ['/services', '/about', '/insights', '/team'];
+  const DARK_HERO_PAGES = ['/services', '/about', '/insights', '/team', '/lab'];
   const onDark = DARK_HERO_PAGES.some((p) => pathname?.startsWith(p));
 
   // Hauptnavigation
   const NAV_LINKS = [
     { href: '/services',  label: 'Leistungen'    },
     { href: '/about',     label: 'Arbeitsweise'  },
+    { href: '/lab',       label: 'Lab'           },
     { href: '/insights',  label: 'Insights'      },
     { href: '/team',      label: 'Über kenalu'   },
     { href: '/contact',   label: 'Kontakt'       },

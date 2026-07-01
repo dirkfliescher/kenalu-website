@@ -7442,6 +7442,245 @@ p { color: var(--charcoal); }
   margin-top: 0.5rem;
 }
 
+/* ── LAB v2: Neue Sektionen ─────────────────────────────────────── */
+
+/* Hero-Subtext (kleiner Zusatz nach Intro) */
+.lpv2-hero-subtext {
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--stone);
+  max-width: 640px;
+  line-height: 1.65;
+}
+
+/* Status-Badge für kenalu.ch (Live Prototype) */
+.lfw-status-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  background: rgba(18, 56, 75, 0.07);
+  padding: 0.3rem 0.75rem;
+  border-radius: 2px;
+  margin-bottom: 1.25rem;
+}
+
+/* Single-column variant für lfw-inner */
+.lfw-inner--single {
+  display: block;
+  max-width: 700px;
+}
+
+/* Zweiter Teaser-Absatz mit Abstand */
+.lfw-teaser--space {
+  margin-top: 1rem;
+}
+
+/* ── "Was dieses Produkt sichtbar macht" (lpv2-what) ─────────── */
+
+.lpv2-what {
+  padding: 5rem 0;
+  background: var(--charcoal);
+  color: var(--ivory);
+}
+
+.lpv2-what .section-label {
+  color: var(--mineral);
+  margin-bottom: 1.25rem;
+}
+
+.lpv2-what-headline {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--ivory);
+  max-width: 640px;
+  margin-bottom: 3rem;
+}
+
+.lpv2-what-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.lpv2-what-card {
+  padding: 2rem 2rem 2.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.lpv2-what-card-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--sage);
+  margin-bottom: 1rem;
+}
+
+.lpv2-what-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ivory);
+  margin-bottom: 0.75rem;
+}
+
+.lpv2-what-card-text {
+  font-size: 0.95rem;
+  color: rgba(250, 248, 245, 0.65);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Tech Stack (lpv2-stack) ─────────────────────────────────── */
+
+.lpv2-stack {
+  padding: 4rem 0;
+  background: var(--mineral);
+}
+
+.lpv2-stack .section-label {
+  margin-bottom: 0.75rem;
+}
+
+.lpv2-stack-intro {
+  font-size: 1rem;
+  color: var(--stone);
+  max-width: 560px;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.lpv2-stack-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.lpv2-stack-item {
+  padding: 1.25rem 1.5rem;
+  background: var(--ivory);
+  border-radius: var(--radius);
+}
+
+.lpv2-stack-tech {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--ocean);
+  margin-bottom: 0.4rem;
+}
+
+.lpv2-stack-desc {
+  font-size: 0.9rem;
+  color: var(--stone);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ── Prozesslogik (lpv2-process) ─────────────────────────────── */
+
+.lpv2-process {
+  padding: 5rem 0;
+  background: var(--ivory);
+}
+
+.lpv2-process .section-label {
+  margin-bottom: 1.25rem;
+}
+
+.lpv2-process-headline {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--charcoal);
+  max-width: 600px;
+  margin-bottom: 1.25rem;
+}
+
+.lpv2-process-intro {
+  font-size: 1.05rem;
+  color: var(--stone);
+  max-width: 620px;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+.lpv2-process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.lpv2-process-step {
+  border-top: 2px solid var(--mineral);
+  padding-top: 1.5rem;
+}
+
+.lpv2-process-step-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--sage);
+  margin-bottom: 0.75rem;
+}
+
+.lpv2-process-step-title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--charcoal);
+  margin-bottom: 0.65rem;
+}
+
+.lpv2-process-step-text {
+  font-size: 0.9rem;
+  color: var(--stone);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── CTA-Actions (zwei Buttons) ──────────────────────────────── */
+
+.lpv2-cta-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+/* ── Mobile-Anpassungen ──────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .lpv2-what-cards {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+  .lpv2-stack-items {
+    grid-template-columns: 1fr;
+  }
+  .lpv2-process-steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .lpv2-cta-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .lpv2-process-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════════
    PRODUKTMOMENT  (pm-*)
    ═══════════════════════════════════════════════════════════════ */

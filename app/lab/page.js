@@ -1,52 +1,23 @@
 import Link from 'next/link';
+import KaiDialogue from '@/components/blocks/KaiDialogue';
 
 export const revalidate = 60;
 
 export const metadata = {
-  title: 'Lab | Arbeitsproben und Prototypen von kenalu',
+  title: 'Lab | kenalu',
   description:
-    'Im Kenalu Lab werden Arbeitsproben, Prototypen und konkrete Produktentscheidungen sichtbar – als nachvollziehbare Ergänzung zu Strategie, Experience und Engineering.',
+    'Im kenalu Lab entsteht, was Teams sehen, testen und entscheiden können – Arbeitsproben, Prototypen und eigene Produkte.',
   alternates: { canonical: 'https://kenalu.ch/lab' },
   openGraph: {
-    title: 'Lab | Arbeitsproben und Prototypen von kenalu',
+    title: 'Lab | kenalu',
     description:
-      'Im Kenalu Lab werden Arbeitsproben, Prototypen und konkrete Produktentscheidungen sichtbar – als nachvollziehbare Ergänzung zu Strategie, Experience und Engineering.',
+      'Im kenalu Lab entsteht, was Teams sehen, testen und entscheiden können – Arbeitsproben, Prototypen und eigene Produkte.',
     url: 'https://kenalu.ch/lab',
     siteName: 'kenalu',
     locale: 'de_CH',
     type: 'website',
   },
 };
-
-// ── Visuelle Struktur für Featured Work Sample ────────────────────────────────
-// Drei verbundene Bereiche: Orientierung / Dialog / Weiterentwicklung
-
-function FeaturedVisual() {
-  return (
-    <div
-      className="lfw-visual"
-      role="img"
-      aria-label="Drei verbundene Produktbereiche von kenalu.ch: Orientierung, Dialog und Weiterentwicklung"
-    >
-      <div className="lfw-visual-node lfw-visual-node--orientation">
-        <span className="lfw-visual-node-label">Orientierung</span>
-        <p className="lfw-visual-node-desc">Situationen und Entscheidungen statt Leistungslisten</p>
-      </div>
-      <div className="lfw-visual-connector" aria-hidden="true">→</div>
-      <div className="lfw-visual-node lfw-visual-node--dialog">
-        <span className="lfw-visual-node-label">Dialog</span>
-        <p className="lfw-visual-node-desc">Kai dort, wo Lesen allein nicht reicht</p>
-      </div>
-      <div className="lfw-visual-connector" aria-hidden="true">→</div>
-      <div className="lfw-visual-node lfw-visual-node--foundation">
-        <span className="lfw-visual-node-label">Weiterentwicklung</span>
-        <p className="lfw-visual-node-desc">Grundlage, die mitwächst ohne Neustart</p>
-      </div>
-    </div>
-  );
-}
-
-// ── Seite ─────────────────────────────────────────────────────────────────────
 
 export default function LabPage() {
   return (
@@ -55,128 +26,226 @@ export default function LabPage() {
       {/* ── 1. Hero ─────────────────────────────────────────────── */}
       <section className="lpv2-hero">
         <div className="container">
-          <p className="section-label">Lab</p>
+          <p className="section-label">kenalu Lab</p>
           <h1 className="lpv2-hero-headline">
-            Arbeitsproben, Prototypen und Gedanken, die man ausprobieren kann.
+            Aus offenen Fragen wird etwas, das man sehen, testen und entscheiden kann.
           </h1>
           <p className="lpv2-hero-text">
-            Im Lab zeigt Kenalu eigene Produkte, konkrete Arbeitsweisen und ausgewählte
-            Experimente. Nicht als Kundenreferenzen, sondern als nachvollziehbare Beispiele
-            dafür, wie aus Fragen, Ideen und Technik etwas Greifbares wird.
+            Im Lab machen wir sichtbar, wie kenalu arbeitet: strategische Fragen konkretisieren,
+            Experience Design und Engineering zusammenbringen und neue Ansätze früh erlebbar
+            machen. Hier entstehen eigene Produkte, Experimente und – wo Kontext und Zustimmung
+            es erlauben – Prototypen aus konkreter Arbeit.
+          </p>
+          <p className="lpv2-hero-subtext">
+            Nicht alles, was entsteht, wird veröffentlicht. Aber alles hier zeigt etwas davon,
+            wie aus einer Idee eine tragfähige Richtung werden kann.
           </p>
         </div>
       </section>
 
-      {/* ── 2. Featured Work Sample: kenalu.ch ──────────────────── */}
+      {/* ── 2. kenalu.ch als Live Prototype ─────────────────────── */}
       <section className="lpv2-featured">
         <div className="container">
-          <p className="section-label">Eigene Arbeitsprobe</p>
-          <div className="lfw-inner">
-
-            {/* Inhalt links */}
+          <div className="lfw-inner lfw-inner--single">
             <div className="lfw-content">
+              <p className="lfw-status-badge">Live Prototype · wird weiterentwickelt</p>
               <h2 className="lfw-title">
-                Wie eine Website vom Schaufenster zum Gespräch wird.
+                kenalu.ch – ein Prototyp unseres Vorgehens
               </h2>
               <p className="lfw-teaser">
-                kenalu.ch ist nicht dazu da, Kenalu möglichst schön zu erklären. Die Website
-                soll Menschen helfen, ihre eigene Situation besser zu verstehen und ein
-                sinnvolles Gespräch zu beginnen.
+                kenalu.ch ist kein Kunden-Case. Es ist eine eigene Arbeitsprobe: ein sichtbares
+                Beispiel dafür, wie Positionierung, Content, Experience Design, AI und Engineering
+                in einem fokussierten Produkt zusammenfinden.
               </p>
-
-              {/* Drei Highlights */}
-              <div className="lfw-highlights">
-                <div className="lfw-highlight">
-                  <p className="lfw-highlight-title">Orientierung statt Leistungswand</p>
-                  <p className="lfw-highlight-text">
-                    Die Website beginnt mit Situationen und Entscheidungen, nicht mit einer
-                    internen Liste von Leistungen.
-                  </p>
-                </div>
-                <div className="lfw-highlight">
-                  <p className="lfw-highlight-title">Dialog mit Kai</p>
-                  <p className="lfw-highlight-text">
-                    Kai eröffnet dort ein Gespräch, wo Lesen allein nicht reicht.
-                  </p>
-                </div>
-                <div className="lfw-highlight">
-                  <p className="lfw-highlight-title">Weiterentwickelbare Grundlage</p>
-                  <p className="lfw-highlight-text">
-                    Inhalte, Komponenten und neue Produktmomente können sich verändern, ohne
-                    dass die Website jedes Mal neu gebaut werden muss.
-                  </p>
-                </div>
-              </div>
-
+              <p className="lfw-teaser lfw-teaser--space">
+                Die Website wird in den kommenden Wochen weiterentwickelt, getestet und mit neuen
+                Funktionen, Prototypen und Erkenntnissen ergänzt. Sie zeigt nicht nur ein fertiges
+                Ergebnis, sondern auch, wie kenalu an Produkte herangeht: früh konkret, klar im
+                Zweck und offen für Weiterentwicklung.
+              </p>
               <Link href="/lab/kenalu-website" className="btn btn-primary lfw-cta">
                 Arbeitsprobe ansehen →
               </Link>
             </div>
-
-            {/* Visuelle Arbeitsprobe rechts */}
-            <div className="lfw-visual-wrap">
-              <FeaturedVisual />
-            </div>
-
           </div>
         </div>
       </section>
 
-      {/* ── 3. Weitere im Lab ───────────────────────────────────── */}
-      <section className="lpv2-more">
+      {/* ── 3. Was dieses Produkt sichtbar macht ────────────────── */}
+      <section className="lpv2-what">
         <div className="container">
-          <p className="section-label">Weitere im Lab</p>
-          <h2 className="lpv2-more-headline">Dinge, die noch wachsen dürfen.</h2>
-          <p className="lpv2-more-text">
-            Nicht alles im Lab ist fertig. Entscheidend ist, dass ein Gedanke bereits konkret
-            genug ist, um ihn anzuschauen, auszuprobieren oder weiterzudenken.
-          </p>
+          <p className="section-label">Was dieses Produkt sichtbar macht</p>
+          <h2 className="lpv2-what-headline">
+            Nicht nur eine Website. Eine Arbeitsprobe für bessere Produktentscheidungen.
+          </h2>
+          <div className="lpv2-what-cards">
 
-          {/* Produktmoment-Karte */}
-          <div className="lpv2-more-cards">
-            <div className="lpv2-lab-card">
-              <p className="lpv2-lab-card-label">Prototyp</p>
-              <h3 className="lpv2-lab-card-title">
-                Aus einer offenen Idee wird ein erster Produktmoment.
-              </h3>
-              <p className="lpv2-lab-card-teaser">
-                Ein kleiner Prototyp, der hilft, aus einer diffusen Idee einen konkreten,
-                besprechbaren Produktausschnitt zu machen.
+            <div className="lpv2-what-card">
+              <p className="lpv2-what-card-num">01</p>
+              <h3 className="lpv2-what-card-title">Entscheidungen werden früher sichtbar</h3>
+              <p className="lpv2-what-card-text">
+                Statt eine Idee nur zu beschreiben, wird sie in eine Form gebracht, die Teams
+                anschauen, diskutieren und beurteilen können.
               </p>
-              <p className="lpv2-lab-card-status">Veröffentlicht</p>
-              <Link href="/lab/produktmoment" className="btn btn-secondary lpv2-lab-card-cta">
-                Prototyp ausprobieren →
-              </Link>
+            </div>
+
+            <div className="lpv2-what-card">
+              <p className="lpv2-what-card-num">02</p>
+              <h3 className="lpv2-what-card-title">Content bleibt beweglich</h3>
+              <p className="lpv2-what-card-text">
+                Inhalte können sich mit dem Produkt weiterentwickeln, ohne dass jede kleine
+                Änderung zu einem technischen Projekt wird.
+              </p>
+            </div>
+
+            <div className="lpv2-what-card">
+              <p className="lpv2-what-card-num">03</p>
+              <h3 className="lpv2-what-card-title">AI bekommt eine klare Aufgabe</h3>
+              <p className="lpv2-what-card-text">
+                Kai ist kein Chatbot als Dekoration. Er hilft Interessierten, ihre Situation
+                einzuordnen und einen passenden nächsten Schritt zu erkennen.
+              </p>
+            </div>
+
+            <div className="lpv2-what-card">
+              <p className="lpv2-what-card-num">04</p>
+              <h3 className="lpv2-what-card-title">Bestehendes und Eigenes greifen zusammen</h3>
+              <p className="lpv2-what-card-text">
+                Bewährte Plattformen bilden das Fundament. Eigenständig entwickelt wird dort,
+                wo Nutzererlebnis, Differenzierung oder Wirkung es verlangen.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. Wie es aufgebaut ist (Tech Stack – nachrangig) ───── */}
+      <section className="lpv2-stack">
+        <div className="container container--narrow">
+          <p className="section-label">Wie es aufgebaut ist</p>
+          <p className="lpv2-stack-intro">
+            Der Stack unterstützt eine schnelle, flexible und weiterentwickelbare
+            Produktentwicklung.
+          </p>
+          <div className="lpv2-stack-items">
+            <div className="lpv2-stack-item">
+              <p className="lpv2-stack-tech">Next.js</p>
+              <p className="lpv2-stack-desc">
+                Für eine schnelle, moderne und flexibel erweiterbare Produktoberfläche.
+              </p>
+            </div>
+            <div className="lpv2-stack-item">
+              <p className="lpv2-stack-tech">Storyblok</p>
+              <p className="lpv2-stack-desc">
+                Damit Inhalte ohne Code gepflegt und weiterentwickelt werden können.
+              </p>
+            </div>
+            <div className="lpv2-stack-item">
+              <p className="lpv2-stack-tech">OpenAI</p>
+              <p className="lpv2-stack-desc">
+                Für AI-gestützte Interaktionen dort, wo sie wirklich sinnvoll sind.
+              </p>
+            </div>
+            <div className="lpv2-stack-item">
+              <p className="lpv2-stack-tech">Vercel</p>
+              <p className="lpv2-stack-desc">
+                Für eine schlanke, zuverlässige Auslieferung und schnelle Weiterentwicklung.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── 4. In Vorbereitung ──────────────────────────────────── */}
-      <section className="lpv2-preparing">
-        <div className="container container--narrow">
-          <p className="section-label">In Vorbereitung</p>
-          <h2 className="lpv2-preparing-headline">Weitere Arbeitsproben folgen.</h2>
-          <p className="lpv2-preparing-text">
-            Sobald ein Beispiel genügend Substanz bietet, wird es hier dokumentiert.
+      {/* ── 5. Vom Gedanken zur Grundlage (Prozesslogik) ────────── */}
+      <section className="lpv2-process">
+        <div className="container">
+          <p className="section-label">Vom Gedanken zur Grundlage</p>
+          <h2 className="lpv2-process-headline">
+            Ein Prototyp muss nicht gross sein. Er muss eine wichtige Frage beantworten.
+          </h2>
+          <p className="lpv2-process-intro">
+            Nicht jede Idee braucht sofort ein grosses Projekt. Manchmal braucht es zuerst
+            etwas Sichtbares, damit Teams eine offene Frage besser verstehen, intern diskutieren
+            oder mit ersten Nutzern prüfen können.
           </p>
+          <div className="lpv2-process-steps">
+
+            <div className="lpv2-process-step">
+              <p className="lpv2-process-step-num">01</p>
+              <h3 className="lpv2-process-step-title">Die eigentliche Frage finden</h3>
+              <p className="lpv2-process-step-text">
+                Was soll für Kunden, Mitarbeitende oder Prozesse besser werden?
+                Welche Entscheidung ist noch offen?
+              </p>
+            </div>
+
+            <div className="lpv2-process-step">
+              <p className="lpv2-process-step-num">02</p>
+              <h3 className="lpv2-process-step-title">Etwas Greifbares bauen</h3>
+              <p className="lpv2-process-step-text">
+                Eine Idee wird in einen Prototypen, ein MVP oder eine konkrete Produktlogik
+                übersetzt.
+              </p>
+            </div>
+
+            <div className="lpv2-process-step">
+              <p className="lpv2-process-step-num">03</p>
+              <h3 className="lpv2-process-step-title">Sichtbar prüfen</h3>
+              <p className="lpv2-process-step-text">
+                Teams, Stakeholder oder erste Nutzer können sehen, verstehen und Rückmeldung
+                geben.
+              </p>
+            </div>
+
+            <div className="lpv2-process-step">
+              <p className="lpv2-process-step-num">04</p>
+              <h3 className="lpv2-process-step-title">Bewusst entscheiden</h3>
+              <p className="lpv2-process-step-text">
+                Danach ist klarer, ob ihr weiterbaut, anders weiterdenkt oder bewusst nicht
+                investiert.
+              </p>
+            </div>
+
+          </div>
         </div>
       </section>
 
-      {/* ── 5. Abschluss-CTA ────────────────────────────────────── */}
+      {/* ── 6. Kai – einmal, interaktiv ─────────────────────────── */}
+      <KaiDialogue
+        contextKey="lab"
+        eyebrow="Eine Frage konkret machen"
+        headline="Welche Frage soll bei euch sichtbar werden?"
+        intro="Beschreibt nicht zuerst die gewünschte Lösung. Beschreibt, was für Kunden, Mitarbeitende oder Prozesse besser möglich werden soll. Kai hilft euch, die Frage einzuordnen und einen sinnvollen nächsten Schritt zu erkennen."
+        initialMessage="Hallo. Ich bin Kai. Was soll bei euch künftig einfacher, klarer oder besser möglich sein?"
+        suggestedPrompts={[
+          'Wir stehen vor einer wichtigen Produktentscheidung.',
+          'Wir möchten eine Idee früh sichtbar machen.',
+          'Wir wissen nicht, wo AI bei uns wirklich helfen kann.',
+        ]}
+        inputPlaceholder="Was beschäftigt euch?"
+        privacyNotice="Bitte keine vertraulichen Projekt-, Kunden- oder Personendaten eingeben. Kai nutzt OpenAI und dient einer ersten Einordnung."
+        showContactCta={true}
+        contactCtaLabel="Gespräch starten"
+        contactCtaLink="/contact"
+      />
+
+      {/* ── 7. Abschluss-CTA ────────────────────────────────────── */}
       <section className="lpv2-cta">
         <div className="container container--narrow">
           <p className="section-label">Nächster Schritt</p>
           <h2 className="lpv2-cta-headline">
-            Habt ihr eine Frage, die nicht länger abstrakt bleiben soll?
+            Eine offene Frage verdient etwas Besseres als noch eine Präsentation.
           </h2>
           <p className="lpv2-cta-text">
-            Wenn aus einer offenen Idee ein konkreter Moment werden soll, lasst uns
-            anschauen, welche Annahme zuerst sichtbar werden muss.
+            Wenn ihr eine Idee, einen Prozess oder eine Produktfrage konkret machen wollt,
+            schauen wir gemeinsam, welche Form dafür sinnvoll ist: Klarheit, ein Prototyp,
+            ein Rapid Build oder ein tragfähiges Produkt.
           </p>
-          <Link href="/contact" className="btn btn-primary">
-            Gespräch starten →
-          </Link>
+          <div className="lpv2-cta-actions">
+            <Link href="/contact" className="btn btn-primary">Gespräch starten →</Link>
+            <Link href="/services" className="btn btn-outline">Leistungen ansehen</Link>
+          </div>
         </div>
       </section>
 

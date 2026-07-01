@@ -1,4 +1,4 @@
-import '../app/globals.css';
+import './storybook.css';
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
@@ -9,16 +9,6 @@ const preview = {
         date: /Date$/i,
       },
     },
-
-    // Next.js App Router: alle next/navigation-Hooks werden gemockt
-    nextjs: {
-      appDirectory: true,
-      navigation: {
-        pathname: '/',
-      },
-    },
-
-    // Hintergrundfarben passend zu den kenalu Design Tokens
     backgrounds: {
       default: 'ivory',
       values: [

@@ -1,0 +1,86 @@
+/*
+ * .storybook/storybook.css
+ *
+ * Storybook-eigenes CSS für kenalu.
+ * Enthält alle Design Tokens und Grundstile — OHNE @tailwind-Direktiven,
+ * die mit Tailwind v4 in Vite kollidieren.
+ *
+ * globals.css bleibt unverändert für Next.js.
+ */
+
+/* ── Design Tokens ──────────────────────────────────────────── */
+
+:root {
+  --ivory:    #FAF8F5;
+  --charcoal: #1A1F23;
+  --ocean:    #12384B;
+  --sage:     #A7B5A6;
+  --mineral:  #E6E3DE;
+  --stone:    #686E72;
+  --softline: #D8D4CE;
+  --terracotta: #C5694A;
+  --ocean-dark:      #0e2c3c;
+  --terracotta-dark: #b15a3d;
+  --charcoal-dark:   #1e2124;
+  --font-headline: 'Satoshi', 'Inter', sans-serif;
+  --font-body:     'Inter', sans-serif;
+  --radius: 6px;
+  --transition: 0.25s ease;
+  --max-width: 1120px;
+  --gutter: 2rem;
+}
+
+/* ── Grundlegende Resets ────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--ivory);
+  color: var(--charcoal);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ── Typografie ─────────────────────────────────────────────── */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-headline);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+h1 { font-size: clamp(2.8rem, 6.5vw, 6.5rem); }
+h2 { font-size: clamp(1.8rem, 3.5vw, 3.25rem); line-height: 1.1; }
+h3 { font-size: 1.4rem; font-weight: 700; line-height: 1.2; }
+h4 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); }
+p { color: var(--charcoal); }
+
+.lead { font-family: var(--font-headline); font-size: clamp(1.2rem, 2.5vw, 1.75rem); font-weight: 500; line-height: 1.35; letter-spacing: -0.02em; }
+.body-text { font-size: 1.05rem; color: var(--stone); }
+.section-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
+.section-sub { font-size: 1.05rem; color: var(--stone); max-width: 460px; margin-top: 1.25rem; line-height: 1.7; }
+
+/* ── Layout ─────────────────────────────────────────────────── */
+
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--gutter); }
+.container--narrow { max-width: 860px; }
+.container--wide { max-width: 1320px; }
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.6rem; border-radius: var(--radius); font-family: var(--font-headline); font-weight: 600; font-size: 0.95rem; transition: var(--transition); white-space: nowrap; }
+.btn-primary { background: var(--ocean); color: var(--ivory); }
+.btn-primary:hover { background: var(--ocean-dark); transform: translateY(-1px); }
+.btn-light { background: var(--ivory); color: var(--ocean); }
+.btn-light:hover { background: var(--mineral); transform: translateY(-1px); }
+.btn-sm { padding: 0.5rem 1.1rem; font-size: 0.875rem; }
+.btn-outline { border: 1.5px solid var(--charcoal); color: var(--charcoal); padding: 0.75rem 1.5rem; }
+.btn-outline:hover { background: var(--charcoal); color: var(--ivory); }
+.btn-ghost { border: 1.5px solid rgba(20, 57, 78, 0.3); color: var(--ocean); background: transparent; }
+.btn-ghost:hover { border-color: var(--ocean); background: rgba(20, 57, 78, 0.05); }

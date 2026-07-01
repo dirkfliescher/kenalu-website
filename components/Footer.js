@@ -35,6 +35,7 @@ export default async function Footer() {
             <ul>
               <li><Link href="/services">Leistungen</Link></li>
               <li><Link href="/about">Arbeitsweise</Link></li>
+              <li><Link href="/lab">Lab</Link></li>
               <li><Link href="/insights">Insights</Link></li>
               <li><Link href="/team">Über kenalu</Link></li>
               <li><Link href="/contact">Kontakt</Link></li>
