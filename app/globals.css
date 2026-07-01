@@ -102,7 +102,7 @@ p { color: var(--charcoal); }
 
 .lead { font-family: var(--font-headline); font-size: clamp(1.2rem, 2.5vw, 1.75rem); font-weight: 500; line-height: 1.35; letter-spacing: -0.02em; }
 .body-text { font-size: 1.05rem; color: var(--stone); }
-.section-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
+.section-label { font-size: 0.6875rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
 .section-sub { font-size: 1.05rem; color: var(--stone); max-width: 460px; margin-top: 1.25rem; line-height: 1.7; }
 
 .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.6rem; border-radius: var(--radius); font-family: var(--font-headline); font-weight: 600; font-size: 0.95rem; transition: var(--transition); white-space: nowrap; }
@@ -327,7 +327,7 @@ p { color: var(--charcoal); }
 
 /* ── Page Hero (Storyblok: Arbeitsweise, Team) ──
    Layout: Headline links 55%, Text rechts 45%, unten ausgerichtet */
-.page-hero { padding: 11rem var(--gutter) 7rem; background: var(--charcoal); color: var(--ivory); }
+.page-hero { padding: 12rem var(--gutter) 7rem; background: var(--charcoal); color: var(--ivory); }
 .page-hero .hero-label { color: rgba(255, 255, 255, 0.42); margin-bottom: 1.5rem; }
 .page-hero-inner {
   display: grid;
@@ -756,7 +756,7 @@ p { color: var(--charcoal); }
 }
 
 /* ── Contact ────────────────────────────────────────────────────── */
-.contact-page { padding: 11rem var(--gutter) 7rem; min-height: 70vh; }
+.contact-page { padding: 12rem var(--gutter) 7rem; min-height: 70vh; }
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -886,7 +886,7 @@ p { color: var(--charcoal); }
   .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
 }
 @media (max-width: 640px) {
-  .contact-page { padding: 8rem var(--gutter) 4rem; }
+  .contact-page { padding: 9rem var(--gutter) 4rem; }
   .booking-widget { padding: 1.75rem; }
 }
 
@@ -3061,7 +3061,7 @@ p { color: var(--charcoal); }
 /* ── Insights Hero (/insights) ──────────────────────────────────
    Layout: Headline links 60%, Text rechts 40%, unten ausgerichtet */
 .insights-hero {
-  padding: 11rem var(--gutter) 7rem;
+  padding: 12rem var(--gutter) 7rem;
   background: var(--charcoal);
   color: var(--ivory);
 }
@@ -3095,7 +3095,7 @@ p { color: var(--charcoal); }
 /* ── Team Hero (/team) ── wird via page-hero CSS gerendert ─────── */
 /* (Klassen noch vorhanden für Rückwärtskompatibilität) */
 .team-hero {
-  padding: 11rem var(--gutter) 7rem;
+  padding: 12rem var(--gutter) 7rem;
   background: var(--charcoal);
   color: var(--ivory);
 }
@@ -4121,9 +4121,9 @@ p { color: var(--charcoal); }
     min-height: auto;
   }
 
-  .page-hero { padding: 8rem var(--gutter) 5rem; }
-  .insights-hero { padding: 8rem var(--gutter) 5rem; }
-  .team-hero { padding: 8rem var(--gutter) 5rem; }
+  .page-hero { padding: 9rem var(--gutter) 5rem; }
+  .insights-hero { padding: 9rem var(--gutter) 5rem; }
+  .team-hero { padding: 9rem var(--gutter) 5rem; }
   .lpv2-hero { padding: 9rem 0 6rem; }
 
   /* Alle grossen Sections von 10rem → 5rem */
@@ -6551,7 +6551,7 @@ p { color: var(--charcoal); }
 }
 
 .sov-hero {
-  padding: 11rem 0 7rem;
+  padding: 12rem 0 7rem;
 }
 
 .sov-hero .section-label { margin-bottom: 0.5rem; }
@@ -6777,7 +6777,7 @@ p { color: var(--charcoal); }
 /* Hero */
 
 .sd-hero {
-  padding: 11rem 0 7rem;
+  padding: 12rem 0 7rem;
 }
 
 .sd-hero .section-label { margin-bottom: 0.5rem; }
@@ -7324,12 +7324,12 @@ p { color: var(--charcoal); }
 }
 
 @media (max-width: 640px) {
-  .sov-hero { padding: 8rem 0 5rem; }
+  .sov-hero { padding: 9rem 0 5rem; }
   .sov-moments { padding: 3rem 0 4rem; }
   .sov-approach { padding: 3.5rem 0; }
   .sov-closing { padding: 3.5rem 0 5rem; }
 
-  .sd-hero { padding: 8rem 0 5rem; }
+  .sd-hero { padding: 9rem 0 5rem; }
   .sd-scene { padding: 3rem 0; }
   .sd-artifact { padding: 3.5rem 0; }
   .sd-danach { padding: 3rem 0; }
