@@ -3,9 +3,68 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
+// ── Widget-Komponenten ─────────────────────────────────────────────────────
+
+function ArticleWidget({ w }) {
+  return (
+    <Link href={`/insights/${w.slug}`} className="kw-card kw-article">
+      {w.tag && <span className="kw-tag">{w.tag}</span>}
+      <p className="kw-title">{w.title}</p>
+      {w.excerpt && <p className="kw-excerpt">{w.excerpt}</p>}
+      <span className="kw-cta">Lesen →</span>
+    </Link>
+  );
+}
+
+function ServiceWidget({ w }) {
+  return (
+    <Link href={w.href} className="kw-card kw-service">
+      <p className="kw-service-label">Leistung</p>
+      <p className="kw-title">{w.name}</p>
+      <p className="kw-excerpt">{w.description}</p>
+      <span className="kw-cta">Mehr →</span>
+    </Link>
+  );
+}
+
+function TeamWidget({ w }) {
+  return (
+    <Link href={w.href} className="kw-card kw-team">
+      <div className="kw-team-avatar">{w.name.charAt(0)}</div>
+      <div className="kw-team-info">
+        <p className="kw-title">{w.name}</p>
+        <p className="kw-excerpt">{w.role}</p>
+      </div>
+      <span className="kw-team-arrow">→</span>
+    </Link>
+  );
+}
+
+function ContactWidget({ w }) {
+  return (
+    <Link href="/contact" className="kw-card kw-contact">
+      <div className="kw-contact-text">
+        <p className="kw-contact-label">{w.label}</p>
+        {w.description && <p className="kw-contact-desc">{w.description}</p>}
+      </div>
+      <span className="kw-contact-arrow">→</span>
+    </Link>
+  );
+}
+
+function KaiWidget({ widget }) {
+  if (widget.type === 'article') return <ArticleWidget w={widget} />;
+  if (widget.type === 'service') return <ServiceWidget w={widget} />;
+  if (widget.type === 'team')    return <TeamWidget w={widget} />;
+  if (widget.type === 'contact') return <ContactWidget w={widget} />;
+  return null;
+}
+
+// ── Hauptkomponente ────────────────────────────────────────────────────────
+
 export default function KaiDialogue({
   blok = {},
-  // Direkte Props (für ServiceDetailPage.js und Insights-Seite)
+  // Direkte Props (für ServiceDetailPage.js, Lab, Insights, etc.)
   contextKey,
   initialMessage,
   suggestedPrompts,
@@ -19,20 +78,19 @@ export default function KaiDialogue({
   contactCtaLink,
 }) {
   // Storyblok-Felder haben Vorrang, dann direkte Props, dann Defaults
-  const _eyebrow = blok.eyebrow ?? eyebrow ?? 'Kai';
-  const _headline = blok.headline ?? headline ?? '';
-  const _intro = blok.intro ?? intro ?? '';
-  const _contextKey = blok.context_key ?? contextKey ?? 'homepage';
-  const _initialMessage =
-    blok.initial_message ?? initialMessage ?? 'Hallo. Ich bin Kai. Wie kann ich euch helfen?';
+  const _eyebrow          = blok.eyebrow          ?? eyebrow          ?? 'Kai';
+  const _headline         = blok.headline         ?? headline         ?? '';
+  const _intro            = blok.intro            ?? intro            ?? '';
+  const _contextKey       = blok.context_key      ?? contextKey       ?? 'homepage';
+  const _initialMessage   = blok.initial_message  ?? initialMessage   ?? 'Hallo. Ich bin Kai. Wie kann ich euch helfen?';
   const _inputPlaceholder = blok.input_placeholder ?? inputPlaceholder ?? 'Was beschäftigt euch?';
-  const _privacyNotice =
+  const _privacyNotice    =
     blok.privacy_notice ??
     privacyNotice ??
     'Bitte keine vertraulichen Projekt-, Kunden- oder Personendaten eingeben. Kai ist ein KI-Assistent von kenalu.';
-  const _showContactCta = blok.show_contact_cta ?? showContactCta ?? true;
+  const _showContactCta  = blok.show_contact_cta  ?? showContactCta  ?? true;
   const _contactCtaLabel = blok.contact_cta_label ?? contactCtaLabel ?? 'Gespräch buchen';
-  const _contactCtaLink = blok.contact_cta_link ?? contactCtaLink ?? '/contact';
+  const _contactCtaLink  = blok.contact_cta_link  ?? contactCtaLink  ?? '/contact';
 
   // Suggested Prompts: Storyblok-Textarea (zeilengetrennt) oder Array-Prop
   let _suggestedPrompts = [];
@@ -46,16 +104,17 @@ export default function KaiDialogue({
     _suggestedPrompts = suggestedPrompts.slice(0, 3);
   }
 
+  // Nachrichtenformat: { role, content, widgets? }
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: _initialMessage },
+    { role: 'assistant', content: _initialMessage, widgets: [] },
   ]);
-  const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [showContact, setShowContact] = useState(false);
+  const [input, setInput]               = useState('');
+  const [loading, setLoading]           = useState(false);
+  const [showContact, setShowContact]   = useState(false);
   const [promptsVisible, setPromptsVisible] = useState(true);
 
   const bottomRef = useRef(null);
-  const inputRef = useRef(null);
+  const inputRef  = useRef(null);
 
   // Nur scrollen wenn echte Konversation läuft (> 1 Nachricht)
   useEffect(() => {
@@ -72,11 +131,11 @@ export default function KaiDialogue({
     setPromptsVisible(false);
     setLoading(true);
 
-    const nextMessages = [...messages, { role: 'user', content: question }];
+    const nextMessages = [...messages, { role: 'user', content: question, widgets: [] }];
     setMessages(nextMessages);
 
     try {
-      // Ersten Kai-Gruss nicht an die API schicken — nur echte Nutzer-Nachrichten
+      // Ersten Kai-Gruss nicht an die API schicken — nur echte Gesprächsnachrichten
       const forApi = nextMessages.slice(1).map((m) => ({
         role: m.role,
         content: m.content,
@@ -91,12 +150,15 @@ export default function KaiDialogue({
       if (!res.ok) throw new Error('API error');
 
       const data = await res.json();
-
       if (data.error) throw new Error(data.error);
 
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: data.answer },
+        {
+          role: 'assistant',
+          content: data.answer,
+          widgets: Array.isArray(data.widgets) ? data.widgets : [],
+        },
       ]);
 
       if (data.showContact) setShowContact(true);
@@ -105,8 +167,8 @@ export default function KaiDialogue({
         ...prev,
         {
           role: 'assistant',
-          content:
-            'Das hat leider nicht geklappt. Versucht es nochmal — oder schreibt uns direkt.',
+          content: 'Das hat leider nicht geklappt. Versucht es nochmal — oder schreibt uns direkt.',
+          widgets: [],
         },
       ]);
     } finally {
@@ -124,7 +186,6 @@ export default function KaiDialogue({
 
   function handleInput(e) {
     setInput(e.target.value);
-    // Textarea automatisch mitwachsen lassen
     e.target.style.height = 'auto';
     e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
   }
@@ -137,40 +198,61 @@ export default function KaiDialogue({
           {/* ── Header ── */}
           {(_eyebrow || _headline || _intro) && (
             <div className="kai-dialogue-header">
-              {_eyebrow && <p className="kai-dialogue-eyebrow">{_eyebrow}</p>}
+              {_eyebrow  && <p className="kai-dialogue-eyebrow">{_eyebrow}</p>}
               {_headline && <h2 className="kai-dialogue-headline">{_headline}</h2>}
-              {_intro && <p className="kai-dialogue-intro">{_intro}</p>}
+              {_intro    && <p className="kai-dialogue-intro">{_intro}</p>}
             </div>
           )}
 
           {/* ── Chat-Bereich ── */}
           <div className="kai-dialogue-chat">
 
-            {/* Nachrichten */}
+            {/* Nachrichten + Widgets */}
             <div
               className="kai-dialogue-messages"
               aria-live="polite"
               aria-label="Gespräch mit Kai"
             >
               {messages.map((msg, i) => (
-                <div
-                  key={i}
-                  className={`kai-msg kai-msg--${msg.role}`}
-                >
-                  {msg.role === 'assistant' && (
-                    <span className="kai-msg-avatar" aria-hidden="true">K</span>
+                <div key={i}>
+                  {/* Textblase */}
+                  <div className={`kai-msg kai-msg--${msg.role}`}>
+                    {msg.role === 'assistant' && (
+                      <span className="kai-msg-avatar" aria-hidden="true">K</span>
+                    )}
+                    <p className="kai-msg-text">{msg.content}</p>
+                  </div>
+
+                  {/* Widgets nach Kai-Antworten */}
+                  {msg.role === 'assistant' && msg.widgets && msg.widgets.length > 0 && (
+                    <div className="kai-widgets">
+                      {/* Artikel, Service, Team in Grid */}
+                      {msg.widgets.filter((w) => w.type !== 'contact').length > 0 && (
+                        <div className={`kw-grid kw-grid--${Math.min(msg.widgets.filter((w) => w.type !== 'contact').length, 2)}`}>
+                          {msg.widgets
+                            .filter((w) => w.type !== 'contact')
+                            .map((w, j) => (
+                              <KaiWidget key={j} widget={w} />
+                            ))}
+                        </div>
+                      )}
+                      {/* Contact-Widget immer full-width, immer zuletzt */}
+                      {msg.widgets
+                        .filter((w) => w.type === 'contact')
+                        .map((w, j) => (
+                          <KaiWidget key={`c-${j}`} widget={w} />
+                        ))}
+                    </div>
                   )}
-                  <p className="kai-msg-text">{msg.content}</p>
                 </div>
               ))}
 
+              {/* Loading-Indikator */}
               {loading && (
                 <div className="kai-msg kai-msg--assistant">
                   <span className="kai-msg-avatar" aria-hidden="true">K</span>
                   <span className="kai-msg-typing" aria-label="Kai schreibt">
-                    <span />
-                    <span />
-                    <span />
+                    <span /><span /><span />
                   </span>
                 </div>
               )}
@@ -222,7 +304,7 @@ export default function KaiDialogue({
             {/* Datenschutzhinweis */}
             <p className="kai-dialogue-privacy">{_privacyNotice}</p>
 
-            {/* Kontakt-CTA */}
+            {/* Persistenter Kontakt-CTA (erscheint wenn showContact = true und kein Contact-Widget) */}
             {showContact && _showContactCta && (
               <div className="kai-dialogue-contact-hint">
                 <p className="kai-dialogue-contact-text">

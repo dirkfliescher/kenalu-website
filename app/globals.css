@@ -5491,6 +5491,147 @@ p { color: var(--charcoal); }
   .kai-dialogue-contact-hint { flex-direction: column; align-items: flex-start; }
 }
 
+/* ── Kai Widgets (kw-*) ───────────────────────────────────────────
+   Inline-Karten nach Kai-Antworten: Article, Service, Team, Contact */
+
+.kai-widgets {
+  padding: 0.5rem 0 0.25rem 2.5rem; /* linksbündig mit dem Nachrichten-Text */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.kw-grid {
+  display: grid;
+  gap: 0.5rem;
+}
+.kw-grid--1 { grid-template-columns: 1fr; }
+.kw-grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+/* Basis-Karte */
+.kw-card {
+  display: block;
+  border: 1px solid var(--softline, #e5e7eb);
+  border-radius: 8px;
+  padding: 0.75rem 0.875rem;
+  text-decoration: none;
+  color: var(--charcoal);
+  background: #fff;
+  transition: background 0.15s, border-color 0.15s;
+}
+.kw-card:hover {
+  background: var(--ivory, #f9fafb);
+  border-color: rgba(0,0,0,0.15);
+}
+
+/* Gemeinsame Typografie */
+.kw-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--stone, #6b7280);
+  margin-bottom: 0.3rem;
+}
+.kw-title {
+  font-size: 0.8375rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--charcoal);
+  margin: 0 0 0.3rem;
+}
+.kw-excerpt {
+  font-size: 0.775rem;
+  color: var(--stone, #6b7280);
+  line-height: 1.45;
+  margin: 0 0 0.4rem;
+}
+.kw-cta {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  opacity: 0.6;
+}
+
+/* Service-Karte */
+.kw-service-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--stone);
+  margin: 0 0 0.25rem;
+}
+
+/* Team-Karte */
+.kw-team {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.kw-team-avatar {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--charcoal);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kw-team-info {
+  flex: 1;
+  min-width: 0;
+}
+.kw-team-info .kw-title  { margin-bottom: 0.1rem; }
+.kw-team-info .kw-excerpt { margin-bottom: 0; }
+.kw-team-arrow {
+  font-size: 0.875rem;
+  color: var(--stone);
+  flex-shrink: 0;
+}
+
+/* Contact-Karte — volle Breite, dunkler Hintergrund */
+.kw-contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--charcoal);
+  border-color: var(--charcoal);
+  color: #fff;
+}
+.kw-contact:hover {
+  background: #1a2030;
+  border-color: #1a2030;
+}
+.kw-contact-text { flex: 1; min-width: 0; }
+.kw-contact-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.15rem;
+}
+.kw-contact-desc {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.62);
+  margin: 0;
+}
+.kw-contact-arrow {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .kw-grid--2 { grid-template-columns: 1fr; }
+  .kai-widgets { padding-left: 2rem; }
+}
+
 /* ══════════════════════════════════════════════════════════════
    ECOSYSTEM PARTNERS
    ══════════════════════════════════════════════════════════════ */

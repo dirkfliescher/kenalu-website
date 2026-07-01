@@ -1,9 +1,67 @@
 import { NextResponse } from 'next/server';
+import StoryblokClient from 'storyblok-js-client';
 
-// ── Kontext pro Seite / Platzierung ────────────────────────────────────────
-// Hinweis: Service-Pages senden contextKey mit "-story"-Suffix (z. B. "klarheit-story").
-// Storyblok-Blöcke senden die kurzen Keys (z. B. "services", "contact"). Beide Varianten
-// sind hier gepflegt, damit kein Fallback auf homepage entsteht.
+const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
+
+// ── Artikel-Cache (10 Minuten) ─────────────────────────────────────────────
+let articleCache = null;
+let cacheTime = 0;
+
+async function getArticles() {
+  if (articleCache && Date.now() - cacheTime < 1000 * 60 * 10) return articleCache;
+  try {
+    const { data } = await Storyblok.get('cdn/stories', {
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
+      starts_with: 'insights/',
+      excluding_slugs: 'insights/',
+      sort_by: 'content.insight_date:desc',
+      per_page: 20,
+    });
+    articleCache = (data.stories || [])
+      .filter((s) => s.content?.insight_title)
+      .map((s) => ({
+        title: s.content.insight_title,
+        slug: s.slug,
+        tag: s.content.insight_tag || 'Insights',
+        excerpt: (s.content.insight_excerpt || '').slice(0, 110),
+      }));
+    cacheTime = Date.now();
+    return articleCache;
+  } catch {
+    return [];
+  }
+}
+
+// ── kenalu Leistungen ──────────────────────────────────────────────────────
+const KENALU_SERVICES = [
+  {
+    name: 'Klarheit',
+    description: 'Strategische Einschätzung vor dem nächsten Schritt. Für offene Entscheidungen und Richtungsfragen.',
+    href: '/services/klarheit',
+  },
+  {
+    name: 'Rapid Build',
+    description: 'Ein funktionierender Prototyp in Wochen — kein Klickdummy, sondern echte Software.',
+    href: '/services/rapid-build',
+  },
+  {
+    name: 'Produkt',
+    description: 'Eine durchdachte digitale Lösung, die im Alltag trägt und weiterentwickelt werden kann.',
+    href: '/services/produkt',
+  },
+  {
+    name: 'Urteil',
+    description: 'Unabhängige Einschätzung eines laufenden oder geplanten Projekts. Ehrlich, schriftlich, konkret.',
+    href: '/services/urteil',
+  },
+];
+
+// ── kenalu Team ────────────────────────────────────────────────────────────
+const KENALU_TEAM = [
+  { name: 'Dirk Fliescher', role: 'Gründer von kenalu', href: '/team' },
+];
+
+// ── Kontext pro Seite / Platzierung ───────────────────────────────────────
 const CONTEXT_CONFIG = {
   homepage: `Der Besucher ist auf der Homepage. Er kennt kenalu noch nicht oder erst oberflächlich. Er sucht Orientierung, welcher Ansatz zu seiner Situation passt.`,
 
@@ -55,7 +113,7 @@ Sagen darf Kai: Fragen wie «Ich höre zwei verschiedene Probleme heraus. Welche
 Setze showContact nur auf true, wenn die Person explizit fragt, wie sie mit kenalu weiterarbeiten kann.`,
 };
 
-// ── kenalu-Kontext ─────────────────────────────────────────────────────────
+// ── kenalu-Basiskontext ────────────────────────────────────────────────────
 const KENALU_BASE = `
 kenalu ist ein Beratungs- und Umsetzungsstudio aus Zürich, gegründet von Dirk Fliescher.
 kenalu verbindet strategische Klarheit, Experience Design und Engineering — für AI-Produkte und digitale Lösungen, die für Nutzer funktionieren und langfristig tragen.
@@ -67,12 +125,26 @@ Die vier Leistungen:
 - Urteil: Unabhängige Einschätzung eines laufenden oder geplanten Projekts
 
 kenalu begleitet bis und mit Prototyp direkt; für die technische Umsetzung mit ausgewählten Spezialisten.
-Bestehende Plattformen und Systeme werden genutzt, wo sie sinnvoll sind. Eigenständig entwickelt wird dort, wo Nutzererlebnis, Differenzierung oder Zukunftsfähigkeit es verlangen.
 `.trim();
 
-// ── System-Prompt für Kai ─────────────────────────────────────────────────
-function buildSystemPrompt(contextKey) {
+// ── System-Prompt ──────────────────────────────────────────────────────────
+function buildSystemPrompt(contextKey, articles) {
   const contextText = CONTEXT_CONFIG[contextKey] || CONTEXT_CONFIG.homepage;
+
+  const articleList = articles.length > 0
+    ? articles
+        .slice(0, 15)
+        .map((a, i) => `${i + 1}. Titel: "${a.title}" | Tag: ${a.tag} | Slug: ${a.slug} | Excerpt: "${a.excerpt}"`)
+        .join('\n')
+    : '(Noch keine Artikel verfügbar)';
+
+  const serviceList = KENALU_SERVICES
+    .map((s) => `- ${s.name}: ${s.description} (href: ${s.href})`)
+    .join('\n');
+
+  const teamList = KENALU_TEAM
+    .map((t) => `- ${t.name}, ${t.role} (href: ${t.href})`)
+    .join('\n');
 
   return `Du bist Kai — der KI-Gesprächspartner von kenalu.
 
@@ -90,7 +162,7 @@ Dein Gesprächsstil:
 - Keine Superlative, kein Buzzword-Bingo
 - Du fragst nach, wenn etwas unklar ist — ein bis zwei gezielte Fragen, nie mehr
 - Du gibst ehrliche Einschätzungen, auch wenn das heisst: «Das passt vielleicht nicht zu kenalu»
-- Schweizer Schriftsprache: kein ß, immer ss (heissen, strasse, weiss, grösser, ausserdem)
+- Schweizer Schriftsprache: kein ß, immer ss
 - Kurze Antworten: 2–3 Sätze, dann optional eine Rückfrage
 - Du hilfst beim Einordnen — nicht beim Überzeugen
 
@@ -105,10 +177,47 @@ Datenschutz: Falls jemand vertrauliche Projekt-, Kunden- oder Personendaten einz
 
 Du hilfst NIEMALS mit Themen ausserhalb von kenalu, Strategie, digitalen Produkten, Experience Design oder AI.
 
+──────────────────────────────────────────────────────
+WIDGET-SYSTEM
+──────────────────────────────────────────────────────
+
+Zusätzlich zur Textantwort kannst du 0–3 passende Widgets zurückgeben.
+Kein Widget ist besser als ein falsches oder erzwungenes Widget.
+
+Verfügbare Insights-Artikel:
+${articleList}
+
+Verfügbare kenalu-Leistungen:
+${serviceList}
+
+kenalu-Team:
+${teamList}
+
+Widget-Typen und wann sie einsetzen:
+
+1. "article" — wenn ein konkreter Artikel zum Thema existiert:
+   { "type": "article", "slug": "EXAKTER-SLUG-AUS-DER-LISTE", "title": "...", "tag": "...", "excerpt": "..." }
+   → Nur Slugs verwenden, die EXAKT in der Artikel-Liste stehen. Kein erfundener Slug.
+
+2. "service" — wenn eine spezifische Leistung zur Situation passt:
+   { "type": "service", "name": "Klarheit|Rapid Build|Produkt|Urteil", "description": "...", "href": "..." }
+   → Nur die 4 exakten Leistungsnamen verwenden.
+
+3. "team" — wenn nach Personen oder Team gefragt wird:
+   { "type": "team", "name": "Dirk Fliescher", "role": "Gründer von kenalu", "href": "/team" }
+   → Nur Namen aus der Team-Liste verwenden.
+
+4. "contact" — wenn ein Gespräch der natürliche nächste Schritt ist:
+   { "type": "contact", "label": "Gespräch starten", "description": "30 Minuten, unverbindlich." }
+
+Reihenfolge in widgets[]: Artikel/Services zuerst, contact immer zuletzt.
+──────────────────────────────────────────────────────
+
 Antworte AUSSCHLIESSLICH mit gültigem JSON (kein Markdown, keine Codeblöcke):
 {
   "answer": "Deine Antwort in 2–3 Sätzen.",
-  "showContact": false
+  "showContact": false,
+  "widgets": []
 }
 
 Setze showContact auf true, wenn die Person:
@@ -123,15 +232,16 @@ export async function POST(request) {
     const { messages, contextKey } = await request.json();
 
     if (!Array.isArray(messages) || messages.length === 0) {
-      return NextResponse.json({ answer: null, showContact: false });
+      return NextResponse.json({ answer: null, showContact: false, widgets: [] });
     }
 
     const lastUserMessage = messages[messages.length - 1]?.content || '';
     if (lastUserMessage.trim().length < 2) {
-      return NextResponse.json({ answer: null, showContact: false });
+      return NextResponse.json({ answer: null, showContact: false, widgets: [] });
     }
 
-    const systemPrompt = buildSystemPrompt(contextKey || 'homepage');
+    const articles = await getArticles();
+    const systemPrompt = buildSystemPrompt(contextKey || 'homepage', articles);
 
     const res = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -145,7 +255,7 @@ export async function POST(request) {
           { role: 'system', content: systemPrompt },
           ...messages,
         ],
-        max_tokens: 350,
+        max_tokens: 500,
         temperature: 0.65,
         response_format: { type: 'json_object' },
       }),
@@ -160,9 +270,48 @@ export async function POST(request) {
     const data = await res.json();
     const parsed = JSON.parse(data.choices[0].message.content);
 
+    // ── Widget-Validierung ─────────────────────────────────────────
+    const rawWidgets = Array.isArray(parsed.widgets) ? parsed.widgets : [];
+
+    const validatedWidgets = rawWidgets
+      .map((w) => {
+        if (!w?.type) return null;
+
+        if (w.type === 'article') {
+          const real = articles.find((a) => a.slug === w.slug);
+          if (!real) return null; // halluzinierte Slugs verwerfen
+          return { type: 'article', slug: real.slug, title: real.title, tag: real.tag, excerpt: real.excerpt };
+        }
+
+        if (w.type === 'service') {
+          const real = KENALU_SERVICES.find((s) => s.name === w.name);
+          if (!real) return null;
+          return { type: 'service', name: real.name, description: real.description, href: real.href };
+        }
+
+        if (w.type === 'team') {
+          const real = KENALU_TEAM.find((t) => t.name === w.name);
+          if (!real) return null;
+          return { type: 'team', name: real.name, role: real.role, href: real.href };
+        }
+
+        if (w.type === 'contact') {
+          return {
+            type: 'contact',
+            label: (typeof w.label === 'string' && w.label) ? w.label : 'Gespräch starten',
+            description: (typeof w.description === 'string' && w.description) ? w.description : '30 Minuten, unverbindlich.',
+          };
+        }
+
+        return null;
+      })
+      .filter(Boolean)
+      .slice(0, 3);
+
     return NextResponse.json({
       answer: parsed.answer || '',
       showContact: parsed.showContact === true,
+      widgets: validatedWidgets,
     });
   } catch (e) {
     console.error('[kai] Fehler:', e);
