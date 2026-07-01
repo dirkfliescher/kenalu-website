@@ -23,7 +23,6 @@
     "@storybook/addon-essentials": "^8.6.18",
     "@storybook/blocks": "^8.6.18",
     "@storybook/react-vite": "^8.6.18",
-    "@vitejs/plugin-react": "^4.3.4",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
