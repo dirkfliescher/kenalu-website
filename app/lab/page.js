@@ -31,14 +31,9 @@ export default function LabPage() {
             Aus offenen Fragen wird etwas, das man sehen, testen und entscheiden kann.
           </h1>
           <p className="lpv2-hero-text">
-            Im Lab machen wir sichtbar, wie kenalu arbeitet: strategische Fragen konkretisieren,
-            Experience Design und Engineering zusammenbringen und neue Ansätze früh erlebbar
-            machen. Hier entstehen eigene Produkte, Experimente und – wo Kontext und Zustimmung
-            es erlauben – Prototypen aus konkreter Arbeit.
-          </p>
-          <p className="lpv2-hero-subtext">
-            Nicht alles, was entsteht, wird veröffentlicht. Aber alles hier zeigt etwas davon,
-            wie aus einer Idee eine tragfähige Richtung werden kann.
+            Im Lab entstehen eigene Produkte, Experimente und — wo Kontext und Zustimmung es
+            erlauben — Prototypen aus konkreter Arbeit. Alles hier zeigt, wie kenalu aus einer
+            offenen Frage eine tragfähige Richtung macht.
           </p>
         </div>
       </section>

@@ -3029,7 +3029,7 @@ p { color: var(--charcoal); }
 
 /* ── Insights Hero (/insights) ──────────────────────────────────── */
 .insights-hero {
-  padding: 10rem var(--gutter) 4rem;
+  padding: 6rem var(--gutter) 4rem;
   background: var(--charcoal);
   color: var(--ivory);
 }
@@ -3053,7 +3053,7 @@ p { color: var(--charcoal); }
 
 /* ── Team Hero (/team) ──────────────────────────────────────────── */
 .team-hero {
-  padding: 10rem var(--gutter) 5rem;
+  padding: 6rem var(--gutter) 4rem;
   background: var(--charcoal);
   color: var(--ivory);
 }
