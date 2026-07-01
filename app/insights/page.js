@@ -68,7 +68,8 @@ async function getAuthors(articles) {
 export default async function Insights() {
   const content = await getPageContent();
   const body = content?.body || [];
-  const topBlocks = body.filter((blok) => blok.component !== 'cta_section');
+  const SKIP_COMPONENTS = ['cta_section', 'hero', 'page_hero'];
+  const topBlocks = body.filter((blok) => !SKIP_COMPONENTS.includes(blok.component));
   const bottomBlocks = body.filter((blok) => blok.component === 'cta_section');
   const articles = await getArticles();
   const [latest, ...rest] = articles;

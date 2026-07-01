@@ -25,9 +25,16 @@ export default async function Contact() {
   const content = await getContent();
   const body = content?.body || [];
 
+  // contact_section immer zuerst rendern – unabhängig von der Reihenfolge in Storyblok
+  const contactBlocks = body.filter((blok) => blok.component === 'contact_section');
+  const otherBlocks = body.filter((blok) => blok.component !== 'contact_section');
+
   return (
     <main>
-      {body.map((blok) => (
+      {contactBlocks.map((blok) => (
+        <DynamicBlock key={blok._uid} blok={blok} />
+      ))}
+      {otherBlocks.map((blok) => (
         <DynamicBlock key={blok._uid} blok={blok} />
       ))}
     </main>
