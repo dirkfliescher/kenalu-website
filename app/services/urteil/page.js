@@ -106,7 +106,7 @@ export default function UrteilPage() {
       {/* ── 1. Hero ─────────────────────────────────────────────── */}
       <section className="sd-hero sd-hero--editorial">
         <div className="container">
-          <p className="section-label">04 · Urteil</p>
+          <p className="section-label">04 / Urteil</p>
           <h1 className="sd-hero-h1">
             Manchmal braucht ein Vorhaben nicht mehr Energie. Sondern eine ungeschönte Sicht.
           </h1>

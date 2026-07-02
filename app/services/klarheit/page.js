@@ -107,7 +107,7 @@ export default function KlarheitPage() {
       {/* ── 1. Hero ─────────────────────────────────────────────── */}
       <section className="sd-hero">
         <div className="container">
-          <p className="section-label">01 · Klarheit</p>
+          <p className="section-label">01 / Klarheit</p>
           <h1 className="sd-hero-h1">
             Alle sehen Möglichkeiten. Niemand kann sagen, welche jetzt zählt.
           </h1>

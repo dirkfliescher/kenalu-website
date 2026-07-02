@@ -1,165 +1,251 @@
-# kenalu Website – Projektkontext
+# PROJEKT: kenalu-website — Aktueller Stand
 
-## Worum es geht
-
-kenalu ist die Unternehmensberatung von Dirk Fliescher, fokussiert auf **Intelligent Experiences** — digitale, menschliche und wertvolle Erlebnisse, die AI als Kern nutzen. Vier Leistungen: Klarheit, Rapid Build, Produkt, Urteil.
-
-Dieses Repo ist die Live-Website [kenalu.ch](https://kenalu.ch), gebaut mit Next.js 14 App Router und Storyblok als CMS. Deployments gehen via Vercel automatisch bei jedem `git push`.
+> **Für Claude:** Diese Datei vor dem ersten Tool-Call lesen.
+> Sie enthält den kompletten Projektstand, alle Konventionen und offene Punkte.
 
 ---
 
-## Technischer Stack
+## Was ist das?
 
-| Was | Wie |
-|-----|-----|
-| Framework | Next.js 14, App Router, ISR (`revalidate = 60`) |
-| CMS | Storyblok (Space ID: `293099469334951`) |
-| Styling | CSS Custom Properties, keine CSS-Frameworks |
-| Fonts | Satoshi (Headlines), Inter (Body) |
-| Hosting | Vercel (auto-deploy bei Push auf `main`) |
-| Sprache | Deutsch (Schweizer Schriftsprache, kein ß) |
+Next.js (App Router) Website für **kenalu** — Dirk Flieschers Unternehmung für Intelligent Experiences.
+
+- **URL:** https://kenalu.ch
+- **Hosting:** Vercel (auto-deploy via `git push` auf `main`)
+- **CMS:** Storyblok (Space-ID: `293099469334951`)
+- **KI-Chat:** OpenAI `gpt-4o-mini` via `/api/kai`
+- **Repo lokal:** `/Users/dirkfliescher/Documents/kenalu-website`
 
 ---
 
-## Storyblok
+## Sprach- und Tonkonventionen — IMMER EINHALTEN
 
-**Space ID:** `293099469334951`
-**Management API Token:** `sb_pat_xP9AE0S1uMl_VSPVPogYncBHiRrfcPOr8FZaNlYkYrU`
-**Content Delivery Token:** via `process.env.STORYBLOK_TOKEN` (in Vercel hinterlegt)
+- Anrede: **ihr/euch/euer** — NIEMALS du/dich/dein, NIEMALS Sie/Ihnen
+- Sprache: Deutsch, Schweizer Schriftsprache (kein ß → immer ss)
+- Ton: klar, menschlich, eigenständig — nicht nach KI, nicht nach klassischer Beratung
+- Keine Floskeln, kein Buzzword-Bingo, keine Superlative
+
+---
+
+## Storyblok-Zugang
+
+- **Content Delivery Token:** `UjST5D2IbHlQxZqnpC03xQtt` (in `.env.local` als `STORYBLOK_TOKEN`)
+- **Management API Token:** `sb_pat_mYxxSxpmsSJe1k7UEAJ39mH4006srhlIoypsU2rtf4I`
+  ⚠️ Nicht ins Git-Repo pushen. Nur lokal in Scripts verwenden.
+- **Management API Base:** `https://mapi.storyblok.com/v1/spaces/293099469334951`
+  → Aus der Claude-Sandbox nicht erreichbar (Proxy-Block). Scripts immer lokal ausführen: `node scripts/xxx.js`
 
 **Bekannte Story-IDs:**
 - Home: `185993926251643`
 - Services: `186361777859852`
 - About: `186589241977666`
-
-**CMS-Inhalte ändern:** Entweder direkt im Storyblok-Editor oder via Node-Script mit der Management API (`https://mapi.storyblok.com/v1/spaces/293099469334951`).
-
-**Rate Limit:** 6 Requests/Sekunde. Scripts immer mit Retry-Logik + 300ms Sleep vor jedem Request bauen.
+- Rate Limit: 6 Requests/Sekunde → Scripts mit `await sleep(300)` vor jedem Request
 
 ---
 
-## Ordnerstruktur
+## Verzeichnisstruktur (aktueller Stand)
 
 ```
-kenalu-website/
-├── app/
-│   ├── page.js                  # Homepage (HomeChat injiziert nach provocation-Block)
-│   ├── services/page.js         # Services-Seite
-│   ├── about/page.js            # About-Seite
-│   ├── team/
-│   │   ├── page.js              # Team-Übersicht + Gesucht-CTA
-│   │   └── [slug]/page.js       # Team-Mitglied Detailseite
-│   ├── insights/
-│   │   ├── page.js              # Insights-Übersicht mit Filter
-│   │   └── [slug]/page.js       # Artikel-Detailseite
-│   ├── zusammenarbeit/
-│   │   ├── page.js              # Partner-Seite
-│   │   └── [slug]/page.js       # Partner-Detailseite
-│   ├── check/page.js            # AI Readiness Check (6 Fragen → 4 Leistungen)
-│   ├── contact/page.js          # Kontakt + Calendly Booking
-│   ├── lab/page.js              # Lab-Seite
-│   ├── globals.css              # Alle Styles (keine externen CSS-Frameworks)
-│   ├── layout.js                # Root Layout mit Nav + Footer
-│   ├── sitemap.js               # Dynamische Sitemap
-│   └── api/
-│       ├── home-chat/route.js   # Kai – Homepage Chat
-│       ├── services-chat/       # Kai – Services
-│       ├── insights-chat/       # Kai – Insights
-│       ├── team-chat/           # Kai – Team
-│       ├── check-result/        # Check-Ergebnis per Mail
-│       └── revalidate/          # Storyblok Webhook → ISR-Revalidierung
-├── components/
-│   ├── DynamicBlock.js          # Rendert Storyblok-Blöcke dynamisch
-│   ├── Nav.js
-│   ├── Footer.js
-│   ├── Reveal.js                # Scroll-Animation Wrapper
-│   └── blocks/
-│       ├── CheckTool.js         # AI Readiness Check (Client Component)
-│       ├── CheckTeaser.js       # Homepage-Teaser für /check
-│       ├── HomeChat.js          # Kai – Homepage Chat Widget
-│       ├── ServicesFinder.js    # Kai – Services Chat
-│       ├── ServiceDetail.js     # Einzelne Leistung (Anchor-ID service-01..04)
-│       ├── InsightsFilter.js    # Client-seitiger Filter für Artikel
-│       ├── InsightsFeatured.js  # Featured Artikel (erster/neuester)
-│       ├── InsightsChat.js      # Kai – Insights Chat
-│       ├── ZusammenarbeitPartners.js  # Partner in zwei Gruppen (Technologie/Service)
-│       ├── PartnerCard.js
-│       ├── ExperienceWall.js    # Persönliche Karrierestationen (NICHT kenalu-Referenzen)
-│       └── ...weitere Blöcke
+app/
+  page.js                        Homepage (statisch + Storyblok)
+  about/page.js                  Über kenalu / Arbeitsweise
+  services/page.js               Leistungsübersicht
+  services/klarheit/page.js      Service-Detail (statisch)
+  services/rapid-build/page.js   Service-Detail (statisch)
+  services/produkt/page.js       Service-Detail (statisch)
+  services/urteil/page.js        Service-Detail (statisch)
+  insights/page.js               Blog/Insights (Storyblok-dynamisch)
+  insights/[slug]/page.js        Artikel-Detailseite
+  lab/page.js                    Lab-Übersicht
+  lab/kenalu-website/page.js     Lab-Artikel (statisch)
+  lab/produktmoment/page.js      Prototyp: Produktmoment-Builder
+  team/page.js                   Team
+  contact/page.js                Kontakt + Calendly Booking
+  globals.css                    ALLE Styles — eine Datei
+  layout.js                      Root Layout (Nav + Footer)
+  api/
+    kai/route.js                 KI-Chat API (OpenAI) — einheitliche Route für alle Seiten
+
+components/
+  blocks/
+    KaiDialogue.js               Universeller KI-Chat-Block (alle Seiten)
+    Hero.js                      Homepage-Hero
+    ContactSection.js            Kontaktseite
+    ContactBookingWidget.js      Calendly-Integration
+    EcosystemPartners.js         Partner-Sektion (About)
+    CollaborationIntro.js        Zusammenarbeit-Intro
+    ProductMomentBuilder.js      Lab: Produktmoment-Builder
+    FitTest.js                   Fit-Test
+    ...weitere Storyblok-Blöcke
+  DynamicBlock.js                Registry aller Storyblok-Block-Komponenten
+  Nav.js, Footer.js, WaveBackground.js
+
+scripts/
+  update-hero-labels.js          Storyblok: hero_label + contact_label leeren
+
+docs/                            Projektdokumentation (Markdown)
 ```
 
 ---
 
-## Deploy
+## Hero-System (vollständig implementiert)
 
-```bash
-git add -A && git commit -m "beschreibung" && git push
-```
+**Grundregel:** Nav ist `position: fixed`, ~72px Höhe. Alle Heroes brauchen genug `padding-top`, damit Content klar unterhalb der Nav beginnt (Desktop: ≥96px Luft, Mobile: ≥72px).
 
-Vercel baut automatisch nach jedem Push auf `main`. ISR revalidiert alle 60 Sekunden.
+### Desktop-Paddings (aktuell in globals.css)
 
----
+Alle Heroes haben `min-height: 100svh`, `display: flex; flex-direction: column; justify-content: center` und `position: relative` (für Scroll-Indikator).
 
-## Design-System (CSS Custom Properties)
+| Seite | CSS-Klasse | Padding |
+|-------|-----------|---------|
+| Homepage | `.hero` | `12rem var(--gutter) 8rem` |
+| About | `.page-hero` | `12rem var(--gutter) 7rem` |
+| Insights | `.insights-hero` | `12rem var(--gutter) 7rem` |
+| Team | `.team-hero` | `12rem var(--gutter) 7rem` |
+| Services-Übersicht | `.sov-hero` | `12rem 0 7rem` |
+| Service-Detail | `.sd-hero` | `12rem 0 7rem` |
+| Lab | `.lpv2-hero` | `12rem 0 8rem` + `background: var(--charcoal)` |
+| Contact | `.contact-page` | `12rem var(--gutter) 7rem` |
+
+### Scroll-Indikator
+
+Alle Full-Viewport-Heroes (ausser Homepage) zeigen unten mittig einen animierten Chevron via `::after`-Pseudo-Element. Farbe: `currentColor` (ivory auf dark, charcoal auf light). Animation: `hero-scroll-hint` (bouncing, 2.4s). Versteckt bei `prefers-reduced-motion: reduce`.
+
+### Mobile (max-width: 640px)
+
+| Klasse | Padding |
+|--------|---------|
+| `.hero` | `9rem var(--gutter) 4rem` |
+| `.page-hero`, `.insights-hero`, `.team-hero` | `8rem var(--gutter) 5rem` |
+| `.lpv2-hero` | `9rem 0 6rem` |
+| `.sov-hero`, `.sd-hero` | `8rem 0 5rem` |
+| `.contact-page` | `8rem var(--gutter) 4rem` |
+
+### Section-Labels
 
 ```css
---charcoal:       #1e2124   /* Primärer Dunkel-Hintergrund */
---charcoal-dark:  #17191b
---ocean:          #2d6a9f   /* Primär-Akzent (Blau) */
---terracotta:     #cb654c   /* Sekundär-Akzent (Labels, CTAs) */
---sage:           #6b8f71   /* Tertiär-Akzent (Grün) */
---stone:          #8a8a8a   /* Gedämpfter Text */
---mineral:        #3a3d40   /* Borders */
---ivory:          #f5f0e8   /* Heller Hintergrund */
---sand:           #e8e0d0
+.section-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 0.5rem;
+}
 ```
 
-Fonts: `'Satoshi'` für Headlines, `'Inter'` für Body. Beide über `next/font/local` geladen.
+- **Homepage:** hero_label per CSS ausgeblendet → `.hero .hero-label { display: none; }`
+- **Service-Details:** `01 / KLARHEIT`, `02 / RAPID BUILD`, `03 / PRODUKT`, `04 / URTEIL`
+- **Lab:** `KENALU LAB`
+- **Contact:** kein Label — `"Gespräch starten."` direkt als erste dominante Überschrift
 
 ---
 
-## Wichtige Konventionen
+## Kai-System (KI-Chat)
 
-- **Storyblok-Blöcke** werden in `DynamicBlock.js` registriert. Neuer Block = neue Komponente in `blocks/` + Eintrag in DynamicBlock.
-- **ISR**: Alle Seiten haben `export const revalidate = 60`. Kein `force-static`, kein `no-store`.
-- **Client Components** nur wenn zwingend nötig (`'use client'`). Default ist Server Component.
-- **CSS**: Klassen nach Komponente benannt (`.check-*`, `.service-*`, `.insights-*` etc.). Keine Inline-Styles.
-- **Sprache**: Alle Texte Deutsch, Schweizer Schriftsprache (kein ß → ss). Tonalität: klar, direkt, menschlich — nicht nach KI, nicht nach klassischer Beratung.
+### API-Route: `app/api/kai/route.js`
+
+Einheitliche Route für alle Seiten. Kontext wird über `contextKey` gesteuert.
+
+- **Modell:** `gpt-4o-mini`
+- **Response-Format:** `{ answer: string, showContact: boolean, widgets: Widget[] }`
+- **Artikel-Cache:** 10 Minuten (in-memory)
+
+**Context-Keys (alle verfügbar):**
+`homepage`, `services`, `services-story`, `klarheit-story`, `rapid-build-story`, `produkt-story`, `urteil-story`, `about`, `team`, `contact`, `insights`, `lab`, `produktmoment`
+
+### Widget-System (5 Typen — visuell komplett verschieden)
+
+**Pflichtregeln — Kai MUSS Widgets ausgeben:**
+- Leistung namentlich erwähnt → **IMMER** `service`-Widget
+- Insights-Artikel passend → **IMMER** `article`-Widget
+- Lab-Beitrag relevant → **IMMER** `lab_article`-Widget
+- Nach Team/Personen gefragt → **IMMER** `team`-Widget
+- Gespräch wäre nächster Schritt → `contact`-Widget
+- Kein Widget NUR bei kurzer Begrüssung ohne Inhalt
+
+**CSS-Klassen der 5 Typen (in globals.css):**
+
+| Typ | Klasse | Visuelles Profil |
+|-----|--------|-----------------|
+| Insights-Artikel | `.kw-article` | Weiss, grüne Linie links (`border-left: 3px solid #6b8f7a`) |
+| Lab-Artikel | `.kw-lab-article` | Dunkel (`var(--charcoal)`), ivory Text, teal Akzente (`#6fbfa8`) |
+| Service | `.kw-service` | Helles Sagegreen BG (`#eef5f1`), sage Top-Border, fette Überschrift |
+| Team | `.kw-team` | Horizontal-Flex, 42px Avatar-Circle (charcoal BG) |
+| Contact | `.kw-contact` | Dunkel, volle Breite, klarer CTA |
+
+### KaiDialogue.js (Komponente)
+
+- Typewriter-Effekt für alle Antworten
+- Widgets erscheinen erst nach Ende des Typewriters
+- Props: `eyebrow`, `headline`, `intro`, `contextKey`, `initialMessage`, `inputPlaceholder`, `suggestedPrompts`, `privacyNotice`, `showContactCta`
 
 ---
 
-## Inhaltsstruktur in Storyblok
+## Design-System (CSS-Variablen)
 
-**Insights-Artikel** (`insight_article`):
-- `insight_title`, `insight_excerpt`, `insight_body` (Rich Text)
-- `insight_tag`: `Commerce` | `Finance` | `Industrie` | weitere
-- `insight_date`: ISO-Datum (`YYYY-MM-DD`)
-- `insight_author`: UUID des Team-Mitglieds
+```css
+var(--charcoal)    /* Dunkel: #1a1f2e — Primärfarbe */
+var(--sage)        /* Grün: #6b8f7a — Akzent */
+var(--mineral)     /* Mittleres Grau */
+var(--ivory)       /* Hell: #f8f5ef */
+var(--stone)       /* Textgrau: #6b7280 */
+var(--gutter)      /* Seitenabstand */
+var(--softline)    /* Trennlinien: #e5e7eb */
+```
 
-**Partner** (`zusammenarbeit_partners` Block):
-- `partner_card_category`: `technologie` (emporix, storyblok) oder `service` (Beebase, skyquest, Soulcode)
+### CSS-Namenskonventionen (alle in globals.css)
 
-**Team-Mitglieder** (`team_member`):
-- Slugs: `team/dirk-fliescher`, `team/stanislav-*`
-
-**ServiceDetail** (`service_detail`):
-- `service_detail_number`: `01` bis `04` → generiert Anchor-ID `#service-01` bis `#service-04`
-- CheckTool verlinkt auf `/services#service-01` etc.
+| Präfix | Bereich |
+|--------|---------|
+| `sd-` | Service-Detail-Pages |
+| `sov-` | Services-Übersicht |
+| `lpv2-` | Lab-Seite |
+| `lca-` | Lab-Artikel |
+| `pm-` | Produktmoment-Builder |
+| `kw-` | Kai-Widgets |
+| `page-hero` | About-Hero |
+| `insights-hero` | Insights-Hero |
+| `team-hero` | Team-Hero |
+| `sc-` | Service-Chat (veraltet, ersetzt durch kw-) |
 
 ---
 
-## ExperienceWall – wichtiger Hinweis
+## Offene Punkte (Stand: Juli 2026)
 
-Die Logos in der ExperienceWall auf der About-Seite sind **persönliche Karrierestationen der Menschen hinter kenalu** — keine kenalu-Referenzen. Explizit so auf der Seite kommuniziert.
+| Punkt | Status | Details |
+|-------|--------|---------|
+| About "Über kenalu"-Dopplung | 🔧 Script bereit | `scripts/update-hero-labels.js` prüft und behebt die Dopplung. Lokal ausführen: `node scripts/update-hero-labels.js`. Scripts-Verzeichnis ist gitignored. |
+| Homepage hero_label in Storyblok | ℹ️ Workaround | Per CSS ausgeblendet. Kann via `scripts/update-hero-labels.js` geleert werden. |
+| DynamicBlock.js vollständig? | ℹ️ Prüfen | Bei neuen Komponenten immer sicherstellen, dass Block-Key registriert ist |
 
 ---
 
-## Storyblok-Scripts (Archiv)
+## Deployment
 
-Im Ordner `~/Documents/Claude/Projects/kenalu/` liegen Einmal-Scripts für Content-Migrationen:
-- `update-home-v2.mjs`, `update-services-v2.mjs`, `update-about-v2.mjs`
-- `update-dirk-profile.mjs`, `update-stanislav-profile.mjs`
-- `update-partners.mjs`
-- `create-insights-commerce.mjs`, `create-insights-finance.mjs`
+```bash
+# Änderungen deployen
+cd /Users/dirkfliescher/Documents/kenalu-website
+git add -A
+git commit -m "kurze beschreibung"
+git push
+# → Vercel deployed automatisch
 
-Diese sind bereits ausgeführt und werden nicht mehr gebraucht.
+# Storyblok-Scripts lokal ausführen
+node scripts/update-hero-labels.js
+```
+
+---
+
+## Was vollständig erledigt ist
+
+- ✅ Vollständige Website (alle Seiten, alle Komponenten)
+- ✅ Storyblok-Integration (CMS, ISR)
+- ✅ Vier Service-Detailseiten (statisch, vollständig getextet und gestaltet)
+- ✅ Lab mit zwei Artikeln + Produktmoment-Prototyp
+- ✅ Einheitlicher Kai-Chat (alle Seiten, eine Route)
+- ✅ Hero-System (alle Heroes: flex-centered, 100svh, Scroll-Indikator)
+- ✅ Widget-System (5 visuell verschiedene Typen, Pflichtregeln im Prompt)
+- ✅ Ihr/euch/euer durchgängig (Code + Storyblok)
+- ✅ Typewriter-Effekt im Kai-Chat
+- ✅ EcosystemPartners, CollaborationIntro, FitTest
+- ✅ Navigation und Footer bereinigt

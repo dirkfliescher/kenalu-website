@@ -111,7 +111,7 @@ export default function ProduktPage() {
       {/* ── 1. Hero ─────────────────────────────────────────────── */}
       <section className="sd-hero sd-hero--foundation">
         <div className="container">
-          <p className="section-label">03 · Produkt</p>
+          <p className="section-label">03 / Produkt</p>
           <h1 className="sd-hero-h1 sd-hero-h1--wide">
             Ein Produkt beginnt nicht mit dem Release. Es beginnt damit, dass jemand seinen
             Alltag anders macht.

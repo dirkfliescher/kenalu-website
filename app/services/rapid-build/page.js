@@ -106,7 +106,7 @@ export default function RapidBuildPage() {
       {/* ── 1. Hero ─────────────────────────────────────────────── */}
       <section className="sd-hero sd-hero--dynamic">
         <div className="container">
-          <p className="section-label">02 · Rapid Build</p>
+          <p className="section-label">02 / Rapid Build</p>
           <h1 className="sd-hero-h1">
             Eine Idee verändert sich, sobald jemand sie benutzen kann.
           </h1>
