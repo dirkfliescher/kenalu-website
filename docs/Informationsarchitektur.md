@@ -6,8 +6,10 @@
 |---|---|
 | Stand | Juli 2026 |
 | Verantwortlich | Dirk Fliescher / kenalu |
-| Letzte technische Prüfung | Juli 2026 (vollständige Codebase-Analyse) |
-| Git-Baseline | `fd9160e8c84f186b3bb1a0d7014b3e8d685626df` |
+| Letzte technische Prüfung | 2026-07-02 (IA-001, vollständige Codebase-Analyse) |
+| Git-Baseline Produktion | `fd9160e8c84f186b3bb1a0d7014b3e8d685626df` (origin/main) |
+| Git-Baseline Lokal | `ac4e7bc4c4e650abb15628c93fe9cc828564e74d` (1 Commit ahead) |
+| Backup-Branch | `archive/ia-prework-2026-07-02` → `ac4e7bc` |
 | Branch | `main` |
 | Storyblok Space-ID | `293099469334951` |
 | Storyblok-Umgebung | Produktion (published) / Development (draft) |
@@ -28,9 +30,42 @@
 
 ---
 
+## Dokumentenstatus und Quellenhierarchie
+
+### Verbindliche aktuelle Dokumente
+- `docs/Informationsarchitektur.md`
+- `docs/Komponenten-Inventar.md`
+- `docs/IA-Aenderungsprotokoll.md`
+
+### Technische Sicherungen
+- `docs/rollback/…`
+
+### Historische Umsetzungsnotizen
+Diese Dokumente beschreiben frühere Entscheidungen oder Zwischenstände.
+Sie sind keine verlässliche Beschreibung des aktuellen Produktionsstands:
+- `docs/kenalu-website-rebuild-2026-06.md`
+- `docs/kenalu-services-storytelling-rebuild-2026-06.md`
+- `docs/kenalu-lab-recovery-2026-06.md`
+- `docs/kenalu-productmoment-prototype-2026-06.md`
+- `docs/kenalu-cleanup-2026-07.md`
+- `docs/kai-audit-2026-07.md`
+- `docs/storybook-setup-2026-07.md`
+- `docs/storyblok-partner-blocks.md`
+- `docs/ia-inventur-2026-07.md`
+
+### Regel
+Bei Widersprüchen gilt:
+1. direkt geprüfter Live- oder Code-Zustand
+2. `Informationsarchitektur.md`
+3. `Komponenten-Inventar.md`
+4. `IA-Aenderungsprotokoll.md`
+5. historische Umsetzungsnotizen
+
+---
+
 ## Zweck der Website
 
-kenalu.ch ist die primäre digitale Präsenz von kenalu — Dirk Flieschers Studio für Intelligent Experiences. Die Website soll:
+kenalu.ch ist die primäre digitale Präsenz von kenalu. kenalu entwickelt AI-Produkte und intelligente digitale Experiences. AI Products beschreibt, was kenalu entwickelt. Intelligent Experiences beschreibt, wie kenalu denkt: kontextorientiert, auf echte Aufgaben ausgerichtet, nutzerzentriert und geschäftlich wirksam. Die Website soll:
 
 - Potenziellen Kunden verständlich machen, womit kenalu helfen kann und wie die Zusammenarbeit aussieht
 - Die vier Leistungsangebote (Klarheit, Rapid Build, Produkt, Urteil) konkret und unterscheidbar darstellen
@@ -130,12 +165,15 @@ Quelle: `components/Nav.js` (hardcoded in JS, nicht via Storyblok steuerbar)
 ### `/about` — Arbeitsweise
 
 - **Navigationstitel:** Arbeitsweise
-- **H1:** "Wie wir arbeiten, ist Teil des Ergebnisses." (aus Storyblok `about`)
+- **H1:** "Wie wir arbeiten, ist Teil des Ergebnisses."
 - **Rolle:** Darstellung der Arbeitsweise — Warum / Wie / Was / Team-Verweis / Partner / CTA
-- **Rendering:** Storyblok → `DynamicBlock` — `app/about/page.js`
-- **Hauptkomponenten (geplant):** `PageHero`, `WorkingWhy`, `WorkingSteps`, `WorkingBenefits`, `WorkingTeamRef`, `WorkingPartners`, `WorkingCta`
-- **KAI:** KaiDialogue via Storyblok-Block, contextKey `about`, `/api/kai`
-- **⚠️ Aktueller Status:** Die neuen Working\*-Komponenten sind im Code fertig und in DynamicBlock registriert. Das Storyblok-Script `scripts/rebuild-about-arbeitsweise.js` wurde noch **nicht** ausgeführt. Die Storyblok-Story `about` zeigt deshalb vermutlich leeren Content oder alte Inhalte. Die entsprechenden Code-Änderungen sind bereits staged (8 Dateien).
+- **Rendering (Produktion):** `Live` — STATISCH. `app/about/page.js` rendert Working\*-Komponenten direkt (kein Storyblok, kein DynamicBlock). Inhalt ist im Code hardcoded.
+- **Rendering (Staged, nicht committed):** `Staged / noch nicht committed` — `app/about/page.js` ist auf Storyblok-First (DynamicBlock) umgestellt. Working\*-Komponenten akzeptieren `blok`-Props.
+- **Hauptkomponenten Produktion:** `WorkingWhy`, `WorkingSteps`, `WorkingBenefits`, `WorkingTeamRef`, `WorkingPartners`, `WorkingCta` — alle mit hardcodiertem Content, kein Storyblok
+- **KAI:** `Zu verifizieren` — KaiDialogue auf `/about` war für Storyblok-Block geplant; in der aktuellen statischen Produktion nicht eingebunden
+- **DynamicBlock:** `Staged / noch nicht committed` — Working\*-Registrierung ist staged, aber noch nicht deployed
+- **Storyblok-Script:** `Geplant / noch nicht umgesetzt` — `scripts/rebuild-about-arbeitsweise.js` wurde **nicht** ausgeführt. Die Storyblok-Story `about` ist nicht auf dem neuen Stand.
+- **Staged-Dateien (8):** `app/about/page.js`, `components/DynamicBlock.js`, `WorkingWhy.js`, `WorkingSteps.js`, `WorkingBenefits.js`, `WorkingTeamRef.js`, `WorkingPartners.js`, `WorkingCta.js`
 
 ---
 
@@ -266,7 +304,7 @@ Quelle: `components/Nav.js` (hardcoded in JS, nicht via Storyblok steuerbar)
 | `/services/rapid-build` | KaiDialogue | `/api/kai` | `rapid-build-story` | ✅ Live | |
 | `/services/produkt` | KaiDialogue | `/api/kai` | `produkt-story` | ✅ Live | |
 | `/services/urteil` | KaiDialogue | `/api/kai` | `urteil-story` | ✅ Live | |
-| `/about` | KaiDialogue (via Storyblok) | `/api/kai` | `about` | ⚠️ Pending Storyblok-Script | |
+| `/about` | KaiDialogue | `/api/kai` | `about` | `Geplant / noch nicht umgesetzt` — nur in staged Version; in Produktion nicht eingebunden | |
 | `/team` | KaiDialogue | `/api/kai` | `team` | ✅ Live | |
 | `/team` (TeamIntro) | TeamIntro Chat-Modus | `/api/team-chat` | — | ⚠️ Live, Legacy | Separate Instanz im interaktiven Block |
 | `/insights` | KaiDialogue | `/api/kai` | `insights` | ✅ Live | |
@@ -285,8 +323,9 @@ Quelle: `components/Nav.js` (hardcoded in JS, nicht via Storyblok steuerbar)
 | HomeChat | Website-Besucher (ihr/euch) | Konversation auf Homepage | ✅ Live (1 Instanz, Legacy) | Homepage |
 | TeamIntro | Neugierige, potenzielle Partner | Fragen stellen, Lüge finden, Vergleichen | ✅ Live | `/team` |
 | ProductMomentBuilder | Teams mit Produktideen | Idee in Produktmoment übersetzen | ✅ Live | `/lab/produktmoment` |
-| CheckTool | Unternehmen (ihr) | AI-Reife einschätzen, Service empfehlen | ✅ Live, versteckt | `/check` (kein Nav-Eintrag) |
-| FitTest | Einzelpersonen (du) | Kultur-/Arbeitsweisen-Fit einschätzen | ⚠️ Vorhanden, nicht eingebunden | Nirgends |
+| CheckTool | Unternehmen (ihr) | AI-Reife einschätzen, Service empfehlen | `Live` (versteckt) | `/check` (kein Nav-Eintrag) |
+| FitTest | Einzelpersonen (du) | Kultur-/Arbeitsweisen-Fit einschätzen | `Vorhanden, nicht eingebunden` | Nirgends — nicht löschen |
+| CollaborationIntro | Einzelpersonen (du) | Mitwirken-Teaser (Datei vorhanden) | `Vorhanden, nicht eingebunden` | Nirgends — kein Import in keiner Seite |
 
 ---
 

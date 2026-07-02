@@ -1,5 +1,10 @@
 # Kenalu Lab Recovery – Juni 2026
 
+> **Status: Historische Umsetzungsnotiz.**
+> Diese Datei beschreibt einen früheren Arbeitsstand oder eine damalige Entscheidung.
+> Sie ist nicht automatisch ein Abbild des aktuellen Live-, Code- oder Storyblok-Zustands.
+> Aktueller Referenzpunkt: `docs/Informationsarchitektur.md`.
+
 ## 1. Ziel
 
 Das Lab war im Lauf der Service-Überarbeitung aus der Navigation gefallen und auf der Lab-Startseite mit einem veralteten Builder-Block belastet worden, der öffentlich sichtbar war. Ziel dieses Eingriffs war:

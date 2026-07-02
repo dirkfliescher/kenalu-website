@@ -1,0 +1,10 @@
+M  app/about/page.js
+M  components/DynamicBlock.js
+M  components/blocks/WorkingBenefits.js
+M  components/blocks/WorkingCta.js
+M  components/blocks/WorkingPartners.js
+M  components/blocks/WorkingSteps.js
+M  components/blocks/WorkingTeamRef.js
+M  components/blocks/WorkingWhy.js
+?? docs/ia-inventur-2026-07.md
+?? docs/rollback/

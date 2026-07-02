@@ -1,5 +1,10 @@
 # Kai – Capability Audit (Juli 2026)
 
+> **Status: Historische Umsetzungsnotiz.**
+> Diese Datei beschreibt einen früheren Arbeitsstand oder eine damalige Entscheidung.
+> Sie ist nicht automatisch ein Abbild des aktuellen Live-, Code- oder Storyblok-Zustands.
+> Aktueller Referenzpunkt: `docs/Informationsarchitektur.md`.
+
 Stand: 2026-07-01. Dokumentiert den aktuellen Zustand, die Architektur und die Möglichkeiten des KI-Assistenten Kai auf kenalu.ch.
 
 ---

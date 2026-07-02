@@ -1,5 +1,10 @@
 # kenalu.ch – Abschlussbereinigung Juli 2026
 
+> **Status: Historische Umsetzungsnotiz.**
+> Diese Datei beschreibt einen früheren Arbeitsstand oder eine damalige Entscheidung.
+> Sie ist nicht automatisch ein Abbild des aktuellen Live-, Code- oder Storyblok-Zustands.
+> Aktueller Referenzpunkt: `docs/Informationsarchitektur.md`.
+
 Datum: 1. Juli 2026  
 Verantwortlich: Claude (Cowork-Modus)  
 Scope: Navigationskonsistenz, Markenbereinigung, Kai-Neutralisierung, CMS-Cleanup

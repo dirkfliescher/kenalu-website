@@ -138,11 +138,12 @@
 |---|---|
 | **Datei** | `components/blocks/ServiceDetailPage.js` |
 | **Kategorie** | Service |
-| **Status** | ✅ Aktiv |
-| **Einsatzort** | `app/services/klarheit/page.js`, `/rapid-build/`, `/produkt/`, `/urteil/` |
+| **Status** | `Vorhanden, nicht eingebunden` — kein Import in keiner Service-Seite (verifiziert) |
+| **Einsatzort** | Nirgends — die vier Service-Detailseiten rendern ihren JSX direkt, ohne ServiceDetailPage |
+| **Frühere Einsätze** | War als Shared-Layout für Service-Seiten konzipiert |
 | **Funktion** | Layout-Komponente für Leistungs-Detailseiten: Nummerierter Sequenz-Hero, Inhalt, CTA |
-| **Abhängigkeiten** | Statisch. Empfängt Content als Props aus jeweiliger Page-Datei |
-| **Rückbau-Hinweis** | Wird in allen vier Service-Detailseiten verwendet |
+| **Abhängigkeiten** | Enthält Import von `KaiDialogue` (aber Datei selbst nicht aktiv genutzt) |
+| **Rückbau-Hinweis** | Nicht löschen. Kein aktiver Einfluss auf Produktion |
 
 ---
 
@@ -274,12 +275,12 @@ _Alle 6 Working-Komponenten sind fertig implementiert und in DynamicBlock.js reg
 |---|---|
 | **Datei** | `components/blocks/CollaborationIntro.js` |
 | **Kategorie** | Working / Mitwirken |
-| **Status** | ✅ Aktiv |
-| **Einsatzort** | `app/about/page.js` (statisch eingebunden, nicht via Storyblok) |
-| **Frühere Einsätze** | — |
-| **Funktion** | Mitwirken-Teaser am Ende der Arbeitsweise-Seite. Ansprache bewusst in du-Form (Einzelperson, nicht Unternehmensansprache) |
+| **Status** | `Vorhanden, nicht eingebunden` |
+| **Einsatzort** | Nirgends — kein Import in keiner Seite (verifiziert per Codebase-Grep) |
+| **Frühere Einsätze** | Für `/about` geplant/erstellt, aber nie in Produktion eingebunden |
+| **Funktion** | Mitwirken-Teaser. Ansprache bewusst in du-Form (Einzelperson, nicht Unternehmensansprache) |
 | **Abhängigkeiten** | Statisch (Default-Props im Code). Kein Storyblok, keine API |
-| **Rückbau-Hinweis** | In `app/about/page.js` direkt eingebunden. Beim Umbau zu vollem Storyblok-Rendering prüfen, ob CollaborationIntro als eigener Block aufgenommen wird |
+| **Rückbau-Hinweis** | Nicht löschen. Kann bei Bedarf in `/about` oder `/team` eingebunden werden |
 
 ---
 
@@ -312,8 +313,7 @@ _Alle 6 Working-Komponenten sind fertig implementiert und in DynamicBlock.js reg
 | **Einsatzort** | `app/team/page.js` |
 | **Funktion** | Interaktiver Block mit 3 Modi: (1) Chat — Fragen an Dirk oder Stan stellen, (2) "3 Aussagen, 1 Lüge" — Quiz-Spiel, (3) "Wer bist du eher?" — Persönlichkeitsvergleich |
 | **Abhängigkeiten** | Chat-Modus: `/api/team-chat` (⚠️ Legacy-API-Route, nicht `/api/kai`). Spiel + Quiz: keine API, vollständig statisch |
-| **Rückbau-Hinweis** | Sonderfall: Chat-Modus ist live mit Legacy-Route. Migrationskandidat für `/api/kai` |
-| **Empfehlung** | Chat-Modus auf `/api/kai` mit contextKey `team` migrieren |
+| **Rückbau-Hinweis** | Sonderfall: Chat-Modus ist live in Produktion mit Legacy-Route. Nicht verändern ohne explizite Freigabe. Migration auf `/api/kai` ist eine offene IA-Entscheidung |
 
 ---
 
@@ -350,13 +350,11 @@ _Alle 6 Working-Komponenten sind fertig implementiert und in DynamicBlock.js reg
 |---|---|
 | **Datei** | `components/blocks/HomeChat.js` |
 | **Kategorie** | KAI / Legacy |
-| **Status** | 🔶 Live, Legacy |
+| **Status** | `Live, Legacy` |
 | **Einsatzort** | Homepage via `AssistantCallout.js` und Storyblok `home`-Story |
 | **Funktion** | KAI-Chat für die Homepage mit eigenem Widget-Design und eigenem Chat-Layout |
 | **Abhängigkeiten** | `/api/home-chat` (Legacy-Route, nicht `/api/kai`) |
-| **Frühere Abhängigkeiten** | — |
-| **Rückbau-Hinweis** | Läuft mit Legacy-API. Migrationskandidat |
-| **Empfehlung** | Auf `/api/kai` mit contextKey `homepage` migrieren und durch KaiDialogue ersetzen |
+| **Rückbau-Hinweis** | Läuft in Produktion. Nicht verändern ohne explizite Freigabe. Migration auf `/api/kai` ist eine offene IA-Entscheidung |
 
 ---
 
@@ -472,15 +470,16 @@ _Vollständige Dokumentation aller API-Routen. Diese sind Teil des Komponenten-I
 
 | Route | Datei | Status | Aufrufende Komponente | Notiz |
 |---|---|---|---|---|
-| `/api/kai` | `app/api/kai/route.js` | ✅ Aktiv — primäre Route | KaiDialogue (10 Instanzen) + ProductMomentBuilder | Unified Route. 13 contextKeys. gpt-4o-mini |
-| `/api/home-chat` | `app/api/home-chat/route.js` | 🔶 Live, Legacy | HomeChat.js | Nur für Homepage. Soll auf `/api/kai` migriert werden |
-| `/api/team-chat` | `app/api/team-chat/route.js` | 🔶 Live, Legacy | TeamIntro.js (Chat-Modus) | Nur für /team Chat. Soll auf `/api/kai` migriert werden |
-| `/api/service-chat` | `app/api/service-chat/route.js` | 🗃️ Deprecated | Früher ServiceChat.js | Technisch ersetzt durch `/api/kai`. Nicht mehr aufgerufen (zu verifizieren) |
-| `/api/services-chat` | `app/api/services-chat/route.js` | 🗃️ Deprecated | — | Nicht mehr aufgerufen (zu verifizieren) |
-| `/api/insights-chat` | `app/api/insights-chat/route.js` | 🗃️ Deprecated | Früher InsightsChat.js | Ersetzt durch `/api/kai`. Nicht mehr aufgerufen (zu verifizieren) |
-| `/api/qualify` | `app/api/qualify/route.js` | 🗃️ Deprecated | — | Zweck unklar, nicht mehr aufgerufen (zu verifizieren) |
-| `/api/lab-builder` | `app/api/lab-builder/route.js` | 🗃️ Deprecated | — | Früher für Lab-Builder. Ersetzt durch `/api/kai` |
-| `/api/check-result` | `app/api/check-result/route.js` | ⚠️ Vorhanden, nicht funktionsfähig | CheckTool.js | Resend nicht konfiguriert. E-Mail wird nicht versendet |
+| `/api/kai` | `app/api/kai/route.js` | `Live` — primäre Route | KaiDialogue (8+ Instanzen) + ProductMomentBuilder | Unified Route. 13 contextKeys. gpt-4o-mini |
+| `/api/home-chat` | `app/api/home-chat/route.js` | `Live, Legacy` | HomeChat.js | Nur für Homepage. Migration auf `/api/kai` ausstehend |
+| `/api/team-chat` | `app/api/team-chat/route.js` | `Live, Legacy` | TeamIntro.js Chat-Modus | Nur für /team Chat. Migration auf `/api/kai` ausstehend |
+| `/api/qualify` | `app/api/qualify/route.js` | `Live` | ContactBookingWidget.js auf `/contact` | Nicht deprecated — aktiv aufgerufen. Vektorsimilarity-Matching für Inhaltssuche |
+| `/api/produktmoment` | `app/api/produktmoment/route.js` | `Live` | ProductMomentBuilder.js | Für Produktmoment-Canvas-Generierung (separat von `/api/kai`) |
+| `/api/check-result` | `app/api/check-result/route.js` | `Vorhanden, nicht funktionsfähig` | CheckTool.js | Resend nicht konfiguriert. E-Mail wird nicht versendet |
+| `/api/service-chat` | `app/api/service-chat/route.js` | `Vorhanden, nicht aufgerufen` | Früher ServiceChat.js | ServiceChat.js nicht importiert. Route idle |
+| `/api/services-chat` | `app/api/services-chat/route.js` | `Vorhanden, nicht aufgerufen` | Früher ServicesFinder.js | ServicesFinder.js nicht importiert. Route idle |
+| `/api/insights-chat` | `app/api/insights-chat/route.js` | `Vorhanden, nicht aufgerufen` | Früher InsightsChat.js | InsightsChat.js nicht importiert. Route idle |
+| `/api/lab-builder` | `app/api/lab-builder/route.js` | `Vorhanden, nicht aufgerufen` | Früher LabBuilder.js | LabBuilder.js nicht importiert. Route idle |
 
 **Hinweis Deprecated-Routen:** Alle als "Deprecated" markierten API-Routen **dürfen nicht gelöscht werden** ohne explizite Freigabe. Erst Nutzung bestätigt leer, dann depublizieren, dann archivieren.
 
@@ -488,20 +487,26 @@ _Vollständige Dokumentation aller API-Routen. Diese sind Teil des Komponenten-I
 
 ## Übersicht: Alle Komponenten nach Status
 
-### ✅ Aktiv (14)
-`Nav.js`, `Footer.js`, `DynamicBlock.js`, `Reveal.js`, `Hero.js`, `PageHero.js`, `ServiceEntryGrid.js`, `ServiceDetailPage.js`, `CollaborationIntro.js`, `TeamIntro.js`, `TeamMemberTeaser.js`, `KaiDialogue.js`, `AssistantCallout.js`, `CheckTool.js`, `ProductMomentBuilder.js`, `InsightsFeatured.js`, `InsightsFilter.js`, `ContactSection.js`, `ContactBookingWidget.js`
+### ✅ Live — in Produktion aktiv
+`Nav.js`, `Footer.js`, `DynamicBlock.js` (committed), `Reveal.js`, `Hero.js`, `PageHero.js`, `ServiceEntryGrid.js`, `TeamIntro.js`, `TeamMemberTeaser.js`, `KaiDialogue.js`, `AssistantCallout.js`, `HomeChat.js`, `CheckTool.js`, `ProductMomentBuilder.js`, `InsightsFeatured.js`, `InsightsFilter.js`, `ContactSection.js`, `ContactBookingWidget.js`
+Working\*-Komponenten (statisch, hardcoded): `WorkingWhy.js`, `WorkingSteps.js`, `WorkingBenefits.js`, `WorkingTeamRef.js`, `WorkingPartners.js`, `WorkingCta.js`
 
-### ⚠️ Ausstehend — Staged, Storyblok-Script fehlt (6)
+### Staged / noch nicht committed (8 Dateien)
+`app/about/page.js` (Storyblok-First-Version), `components/DynamicBlock.js` (Working\*-Registrierung),
+und sechs Working\*-Komponenten in der `blok`-Props-Version:
 `WorkingWhy.js`, `WorkingSteps.js`, `WorkingBenefits.js`, `WorkingTeamRef.js`, `WorkingPartners.js`, `WorkingCta.js`
 
-### 🔶 Live, Legacy — Migration ausstehend (2)
-`HomeChat.js` (→ `/api/kai`), `TeamIntro.js` Chat-Modus (→ `/api/kai`)
+### Vorhanden, nicht eingebunden — nicht löschen
+`FitTest.js`, `CollaborationIntro.js`, `ServiceDetailPage.js`, `CheckTeaser.js`, `EcosystemPartners.js`, `WorkingPrinciples.js`, `ServiceChat.js`, `InsightsChat.js`, `LabBuilder.js`, `ServicesFinder.js`
 
-### 🔷 Technisch vorhanden, nicht eingebunden (4)
-`FitTest.js` ⚠️ nicht löschen, `CheckTeaser.js`, `EcosystemPartners.js`, `WorkingPrinciples.js`
+### API-Routen vorhanden, nicht aktiv aufgerufen — nicht löschen
+`/api/service-chat`, `/api/services-chat`, `/api/insights-chat`, `/api/lab-builder`
 
-### 🗃️ Deprecated — nicht mehr aufgerufen, nicht löschen (3)
-`ServiceChat.js`, `InsightsChat.js`, und API-Routen: `/api/service-chat`, `/api/services-chat`, `/api/insights-chat`, `/api/qualify`, `/api/lab-builder`
+### API-Routen live
+`/api/kai`, `/api/home-chat`, `/api/team-chat`, `/api/qualify`, `/api/produktmoment`
+
+### API-Routen live, aber nicht funktionsfähig
+`/api/check-result` (Resend nicht konfiguriert)
 
 ---
 

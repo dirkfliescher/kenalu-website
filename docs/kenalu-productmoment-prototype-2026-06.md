@@ -1,5 +1,10 @@
 # Kenalu Produktmoment Prototyp – Juni 2026
 
+> **Status: Historische Umsetzungsnotiz.**
+> Diese Datei beschreibt einen früheren Arbeitsstand oder eine damalige Entscheidung.
+> Sie ist nicht automatisch ein Abbild des aktuellen Live-, Code- oder Storyblok-Zustands.
+> Aktueller Referenzpunkt: `docs/Informationsarchitektur.md`.
+
 ## 1. Ziel
 
 Der bisherige LabBuilder war als generischer Prompt-to-Code-Generator angelegt: Inspirationskarten für Dashboards, Pricing Cards, Hypothekenrechner, Kanban Boards und Chat-UIs; vier Schritte; Code-Generierung via OpenAI; Browser-Preview mit Iframe.

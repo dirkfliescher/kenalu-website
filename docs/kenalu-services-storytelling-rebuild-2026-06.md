@@ -1,5 +1,10 @@
 # Kenalu Services Storytelling Rebuild – Juni 2026
 
+> **Status: Historische Umsetzungsnotiz.**
+> Diese Datei beschreibt einen früheren Arbeitsstand oder eine damalige Entscheidung.
+> Sie ist nicht automatisch ein Abbild des aktuellen Live-, Code- oder Storyblok-Zustands.
+> Aktueller Referenzpunkt: `docs/Informationsarchitektur.md`.
+
 ## 1. Ziel
 
 Die fünf Service-Seiten (`/services`, `/services/klarheit`, `/services/rapid-build`, `/services/produkt`, `/services/urteil`) wurden vollständig neu aufgebaut. Das Ziel war, dass jede Seite sich wie ein eigenständiger Moment anfühlt – nicht wie vier Kopien derselben Landingpage mit anderem Titel.

@@ -1,5 +1,10 @@
 # Storyblok: Partner-Blocks – Schema-Dokumentation
 
+> **Status: Historische Umsetzungsnotiz.**
+> Diese Datei beschreibt einen früheren Arbeitsstand oder eine damalige Entscheidung.
+> Sie ist nicht automatisch ein Abbild des aktuellen Live-, Code- oder Storyblok-Zustands.
+> Aktueller Referenzpunkt: `docs/Informationsarchitektur.md`.
+
 Stand: 2026-06-30
 
 ## Übersicht

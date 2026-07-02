@@ -1,0 +1,430 @@
+diff --git a/app/about/page.js b/app/about/page.js
+index a25a655..244ca18 100644
+--- a/app/about/page.js
++++ b/app/about/page.js
+@@ -1,10 +1,9 @@
+-import Reveal from '../../components/Reveal';
+-import WorkingWhy from '../../components/blocks/WorkingWhy';
+-import WorkingSteps from '../../components/blocks/WorkingSteps';
+-import WorkingBenefits from '../../components/blocks/WorkingBenefits';
+-import WorkingTeamRef from '../../components/blocks/WorkingTeamRef';
+-import WorkingPartners from '../../components/blocks/WorkingPartners';
+-import WorkingCta from '../../components/blocks/WorkingCta';
++import StoryblokClient from 'storyblok-js-client';
++import DynamicBlock from '../../components/DynamicBlock';
++
++export const revalidate = 60;
++
++const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
+ 
+ export const metadata = {
+   title: 'Arbeitsweise – kenalu',
+@@ -12,53 +11,26 @@ export const metadata = {
+     'Kenalu verbindet strategisches Denken, Nutzerperspektive und technische Realität – von der ersten Frage bis zum fertigen Produkt.',
+ };
+ 
+-export default function About() {
+-  return (
+-    <>
+-      {/* ── 1. Hero ── */}
+-      <section className="page-hero">
+-        <div className="container">
+-          <div className="hero-label">ARBEITSWEISE</div>
+-          <div className="page-hero-inner">
+-            <h1>Wie wir arbeiten, ist Teil des Ergebnisses.</h1>
+-            <p>
+-              Wir verbinden strategisches Denken, Nutzerperspektive und technische Realität.
+-              Nicht als aufeinanderfolgende Übergaben, sondern als integrierte Arbeit –
+-              von der ersten Frage bis zum fertigen Produkt.
+-            </p>
+-          </div>
+-        </div>
+-      </section>
+-
+-      {/* ── 2. Warum das wichtig ist ── */}
+-      <Reveal>
+-        <WorkingWhy />
+-      </Reveal>
+-
+-      {/* ── 3. Vier Schritte der Arbeitsweise ── */}
+-      <Reveal>
+-        <WorkingSteps />
+-      </Reveal>
+-
+-      {/* ── 4. Was das für euch bedeutet ── */}
+-      <Reveal>
+-        <WorkingBenefits />
+-      </Reveal>
+-
+-      {/* ── 5. Wer daran arbeitet ── */}
+-      <Reveal>
+-        <WorkingTeamRef />
+-      </Reveal>
++async function getContent() {
++  try {
++    const { data } = await Storyblok.get('cdn/stories/about', {
++      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
++    });
++    return data.story.content;
++  } catch (e) {
++    return null;
++  }
++}
+ 
+-      {/* ── 6. Ergänzende Expertise ── */}
+-      <Reveal>
+-        <WorkingPartners />
+-      </Reveal>
++export default async function About() {
++  const content = await getContent();
++  const body = content?.body || [];
+ 
+-      {/* ── 7. Abschluss-CTA ── */}
+-      <Reveal>
+-        <WorkingCta />
+-      </Reveal>
++  return (
++    <>
++      {body.map((blok) => (
++        <DynamicBlock key={blok._uid} blok={blok} />
++      ))}
+     </>
+   );
+ }
+diff --git a/components/DynamicBlock.js b/components/DynamicBlock.js
+index 7abb453..df7cf00 100644
+--- a/components/DynamicBlock.js
++++ b/components/DynamicBlock.js
+@@ -27,6 +27,12 @@ import SituationTeaser from './blocks/SituationTeaser';
+ import ProcessJourney from './blocks/ProcessJourney';
+ import KaiDialogue from './blocks/KaiDialogue';
+ import EcosystemPartners from './blocks/EcosystemPartners';
++import WorkingWhy from './blocks/WorkingWhy';
++import WorkingSteps from './blocks/WorkingSteps';
++import WorkingBenefits from './blocks/WorkingBenefits';
++import WorkingTeamRef from './blocks/WorkingTeamRef';
++import WorkingPartners from './blocks/WorkingPartners';
++import WorkingCta from './blocks/WorkingCta';
+ 
+ const Components = {
+   hero: Hero,
+@@ -57,6 +63,12 @@ const Components = {
+   process_journey: ProcessJourney,
+   kai_dialogue: KaiDialogue,
+   ecosystem_partners: EcosystemPartners,
++  working_why: WorkingWhy,
++  working_steps: WorkingSteps,
++  working_benefits: WorkingBenefits,
++  working_team_ref: WorkingTeamRef,
++  working_partners: WorkingPartners,
++  working_cta: WorkingCta,
+ };
+ 
+ // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist
+diff --git a/components/blocks/WorkingBenefits.js b/components/blocks/WorkingBenefits.js
+index 70dd822..45d3afc 100644
+--- a/components/blocks/WorkingBenefits.js
++++ b/components/blocks/WorkingBenefits.js
+@@ -1,40 +1,28 @@
+-const BENEFITS = [
+-  {
+-    title: 'Direkte Verantwortung',
+-    text: 'Die Menschen, die eure Situation verstehen und die Richtung mitentwickeln, bleiben auch in der Umsetzung nah dran.',
+-  },
+-  {
+-    title: 'Früher etwas Greifbares',
+-    text: 'Zentrale Fragen werden nicht nur diskutiert. Sie werden so konkret, dass Teams sie sehen, testen und fundierter beurteilen können.',
+-  },
+-  {
+-    title: 'Bestehendes sinnvoll nutzen',
+-    text: 'Wir setzen auf Plattformen, Standards und Systeme, wenn sie ein gutes Fundament schaffen. Eigenständig entwickeln wir dort, wo Nutzererlebnis, Differenzierung oder Zukunftsfähigkeit es verlangen.',
+-  },
+-  {
+-    title: 'Keine künstliche Komplexität',
+-    text: 'Nicht jedes Vorhaben braucht ein grosses Programm. Wir arbeiten in einer Form, die zur Frage, zum Kontext und zur tatsächlichen Entscheidung passt.',
+-  },
+-];
++export default function WorkingBenefits({ blok }) {
++  const benefits = [
++    { title: blok.b1_title, text: blok.b1_text },
++    { title: blok.b2_title, text: blok.b2_text },
++    { title: blok.b3_title, text: blok.b3_text },
++    { title: blok.b4_title, text: blok.b4_text },
++  ].filter((b) => b.title);
+ 
+-export default function WorkingBenefits() {
+   return (
+     <section className="aw-benefits">
+       <div className="container">
+         <div className="aw-benefits-header">
+-          <p className="section-label">Was das für euch bedeutet</p>
+-          <h2 className="aw-benefits-headline">
+-            Weniger Reibung. Frühere Klarheit. Bessere Voraussetzungen für das, was folgt.
+-          </h2>
+-        </div>
+-        <div className="aw-benefits-grid">
+-          {BENEFITS.map((b) => (
+-            <div key={b.title} className="aw-benefit">
+-              <h3 className="aw-benefit-title">{b.title}</h3>
+-              <p className="aw-benefit-text">{b.text}</p>
+-            </div>
+-          ))}
++          {blok.eyebrow && <p className="section-label">{blok.eyebrow}</p>}
++          {blok.headline && <h2 className="aw-benefits-headline">{blok.headline}</h2>}
+         </div>
++        {benefits.length > 0 && (
++          <div className="aw-benefits-grid">
++            {benefits.map((b) => (
++              <div key={b.title} className="aw-benefit">
++                <h3 className="aw-benefit-title">{b.title}</h3>
++                {b.text && <p className="aw-benefit-text">{b.text}</p>}
++              </div>
++            ))}
++          </div>
++        )}
+       </div>
+     </section>
+   );
+diff --git a/components/blocks/WorkingCta.js b/components/blocks/WorkingCta.js
+index b2d4acc..77eba06 100644
+--- a/components/blocks/WorkingCta.js
++++ b/components/blocks/WorkingCta.js
+@@ -1,19 +1,23 @@
+ import Link from 'next/link';
+ 
+-export default function WorkingCta() {
++export default function WorkingCta({ blok }) {
+   return (
+     <section className="aw-cta">
+       <div className="container container--narrow">
+-        <p className="section-label">Nächster Schritt</p>
+-        <h2 className="aw-cta-headline">Lasst uns klären, was bei euch wirklich sinnvoll ist.</h2>
+-        <p className="aw-cta-text">
+-          Ob ihr zuerst Klarheit braucht, eine Idee sichtbar machen wollt oder schon vor einem
+-          konkreten Produktentscheid steht: Wir schauen gemeinsam auf eure Situation und sagen
+-          euch ehrlich, welcher nächste Schritt sinnvoll sein könnte.
+-        </p>
++        {blok.eyebrow && <p className="section-label">{blok.eyebrow}</p>}
++        {blok.headline && <h2 className="aw-cta-headline">{blok.headline}</h2>}
++        {blok.text && <p className="aw-cta-text">{blok.text}</p>}
+         <div className="aw-cta-actions">
+-          <Link href="/contact" className="btn btn-light">Gespräch starten →</Link>
+-          <Link href="/services" className="link-arrow aw-cta-link">Leistungen ansehen →</Link>
++          {blok.cta_label && (
++            <Link href={blok.cta_url || '/contact'} className="btn btn-light">
++              {blok.cta_label}
++            </Link>
++          )}
++          {blok.link_label && (
++            <Link href={blok.link_url || '/services'} className="link-arrow aw-cta-link">
++              {blok.link_label}
++            </Link>
++          )}
+         </div>
+       </div>
+     </section>
+diff --git a/components/blocks/WorkingPartners.js b/components/blocks/WorkingPartners.js
+index e504bce..0a16d36 100644
+--- a/components/blocks/WorkingPartners.js
++++ b/components/blocks/WorkingPartners.js
+@@ -1,15 +1,10 @@
+-export default function WorkingPartners() {
++export default function WorkingPartners({ blok }) {
+   return (
+     <section className="aw-partners">
+       <div className="container container--narrow">
+-        <p className="section-label">Ergänzende Expertise</p>
+-        <h2 className="aw-partners-headline">Die richtige Tiefe, wenn sie wirklich nötig ist.</h2>
+-        <p className="aw-partners-text">
+-          Nicht jede Aufgabe braucht ein grosses Team. Wenn ein Vorhaben zusätzliche
+-          Spezialisierung verlangt, ergänzen wir gezielt mit Menschen, die in ihrem Feld
+-          nachweislich Tiefe mitbringen. Klar eingebunden, mit klaren Rollen und ohne
+-          unnötige Zwischenebenen.
+-        </p>
++        {blok.eyebrow && <p className="section-label">{blok.eyebrow}</p>}
++        {blok.headline && <h2 className="aw-partners-headline">{blok.headline}</h2>}
++        {blok.text && <p className="aw-partners-text">{blok.text}</p>}
+       </div>
+     </section>
+   );
+diff --git a/components/blocks/WorkingSteps.js b/components/blocks/WorkingSteps.js
+index 69b6d28..78dbf88 100644
+--- a/components/blocks/WorkingSteps.js
++++ b/components/blocks/WorkingSteps.js
+@@ -1,49 +1,30 @@
+-const STEPS = [
+-  {
+-    num: '01',
+-    title: 'Die richtige Frage finden',
+-    text: 'Wir beginnen nicht bei der Technologie. Wir klären, was für Nutzer, Mitarbeitende, Kunden oder Prozesse besser möglich werden soll – und welche Entscheidung tatsächlich offen ist.',
+-  },
+-  {
+-    num: '02',
+-    title: 'Annahmen sichtbar machen',
+-    text: 'Statt lange über abstrakte Ideen zu sprechen, übersetzen wir zentrale Annahmen in Szenarien, Produktlogik, Prototypen oder klare Entscheidungsgrundlagen.',
+-  },
+-  {
+-    num: '03',
+-    title: 'Gemeinsam bauen',
+-    text: 'Strategie, Experience Design und Engineering arbeiten eng zusammen. So bleiben Kontext, Prioritäten und technische Konsequenzen während der Umsetzung sichtbar.',
+-  },
+-  {
+-    num: '04',
+-    title: 'Tragfähig weiterdenken',
+-    text: 'Nicht alles muss im ersten Release fertig sein. Aber Architektur, Integrationen, Betrieb und Weiterentwicklung werden früh genug berücksichtigt, damit die Richtung langfristig trägt.',
+-  },
+-];
++export default function WorkingSteps({ blok }) {
++  const steps = [
++    { num: blok.step_1_num, title: blok.step_1_title, text: blok.step_1_text },
++    { num: blok.step_2_num, title: blok.step_2_title, text: blok.step_2_text },
++    { num: blok.step_3_num, title: blok.step_3_title, text: blok.step_3_text },
++    { num: blok.step_4_num, title: blok.step_4_title, text: blok.step_4_text },
++  ].filter((s) => s.title);
+ 
+-export default function WorkingSteps() {
+   return (
+     <section className="aw-steps">
+       <div className="container">
+         <div className="aw-steps-header">
+-          <p className="section-label">Wie wir arbeiten</p>
+-          <h2 className="aw-steps-headline">Von der offenen Frage zu einer tragfähigen Lösung.</h2>
+-          <p className="aw-steps-intro">
+-            Nicht jedes Vorhaben beginnt gleich. Manche Teams brauchen zuerst Klarheit. Andere
+-            müssen eine Idee sichtbar machen oder ein bestehendes Produkt weiterentwickeln. Die
+-            Arbeitsweise bleibt dabei dieselbe: früh konkret werden, bewusst entscheiden und
+-            Umsetzung von Anfang an mitdenken.
+-          </p>
+-        </div>
+-        <div className="aw-steps-grid">
+-          {STEPS.map((step) => (
+-            <div key={step.num} className="aw-step">
+-              <span className="aw-step-num">{step.num}</span>
+-              <h3 className="aw-step-title">{step.title}</h3>
+-              <p className="aw-step-text">{step.text}</p>
+-            </div>
+-          ))}
++          {blok.eyebrow && <p className="section-label">{blok.eyebrow}</p>}
++          {blok.headline && <h2 className="aw-steps-headline">{blok.headline}</h2>}
++          {blok.intro && <p className="aw-steps-intro">{blok.intro}</p>}
+         </div>
++        {steps.length > 0 && (
++          <div className="aw-steps-grid">
++            {steps.map((step) => (
++              <div key={step.num} className="aw-step">
++                {step.num && <span className="aw-step-num">{step.num}</span>}
++                <h3 className="aw-step-title">{step.title}</h3>
++                {step.text && <p className="aw-step-text">{step.text}</p>}
++              </div>
++            ))}
++          </div>
++        )}
+       </div>
+     </section>
+   );
+diff --git a/components/blocks/WorkingTeamRef.js b/components/blocks/WorkingTeamRef.js
+index 02a8f3d..19bf19f 100644
+--- a/components/blocks/WorkingTeamRef.js
++++ b/components/blocks/WorkingTeamRef.js
+@@ -1,35 +1,39 @@
+ import Link from 'next/link';
+ 
+-const PEOPLE = [
+-  { name: 'Dirk Fliescher', role: 'Strategie & Experience Design' },
+-  { name: 'Stanislav Raskin', role: 'Engineering & Architektur' },
+-];
++export default function WorkingTeamRef({ blok }) {
++  const people = [
++    { name: blok.person_1_name, role: blok.person_1_role },
++    { name: blok.person_2_name, role: blok.person_2_role },
++  ].filter((p) => p.name);
+ 
+-export default function WorkingTeamRef() {
+   return (
+     <section className="aw-team">
+       <div className="container">
+         <div className="aw-team-header">
+-          <p className="section-label">Wer daran arbeitet</p>
+-          <h2 className="aw-team-headline">Direkt mit den Menschen, die Verantwortung tragen.</h2>
+-          <p className="aw-team-text">
+-            Kenalu verbindet Strategie und Experience Design mit technischer Architektur und
+-            Engineering. Die Menschen, die ein Vorhaben verstehen, bleiben nah an den wichtigen
+-            Entscheidungen – vom ersten Gespräch bis zur Umsetzung.
+-          </p>
++          {blok.eyebrow && <p className="section-label">{blok.eyebrow}</p>}
++          {blok.headline && <h2 className="aw-team-headline">{blok.headline}</h2>}
++          {blok.text && <p className="aw-team-text">{blok.text}</p>}
+         </div>
+-        <div className="aw-team-people">
+-          {PEOPLE.map((p) => (
+-            <div key={p.name} className="aw-person">
+-              <strong className="aw-person-name">{p.name}</strong>
+-              <span className="aw-person-sep">—</span>
+-              <span className="aw-person-role">{p.role}</span>
+-            </div>
+-          ))}
+-        </div>
+-        <Link href="/team" className="link-arrow">
+-          Team kennenlernen →
+-        </Link>
++        {people.length > 0 && (
++          <div className="aw-team-people">
++            {people.map((p) => (
++              <div key={p.name} className="aw-person">
++                <strong className="aw-person-name">{p.name}</strong>
++                {p.role && (
++                  <>
++                    <span className="aw-person-sep">—</span>
++                    <span className="aw-person-role">{p.role}</span>
++                  </>
++                )}
++              </div>
++            ))}
++          </div>
++        )}
++        {blok.link_label && (
++          <Link href={blok.link_url || '/team'} className="link-arrow">
++            {blok.link_label}
++          </Link>
++        )}
+       </div>
+     </section>
+   );
+diff --git a/components/blocks/WorkingWhy.js b/components/blocks/WorkingWhy.js
+index 9efc80b..0141187 100644
+--- a/components/blocks/WorkingWhy.js
++++ b/components/blocks/WorkingWhy.js
+@@ -1,27 +1,13 @@
+-export default function WorkingWhy() {
++export default function WorkingWhy({ blok }) {
+   return (
+     <section className="aw-why">
+       <div className="container container--narrow">
+-        <p className="section-label">Warum das wichtig ist</p>
+-        <h2 className="aw-why-headline">
+-          Gute Entscheidungen verlieren Wirkung, wenn sie unterwegs ihren Kontext verlieren.
+-        </h2>
++        {blok.eyebrow && <p className="section-label">{blok.eyebrow}</p>}
++        {blok.headline && <h2 className="aw-why-headline">{blok.headline}</h2>}
+         <div className="aw-why-text">
+-          <p>
+-            Viele digitale Vorhaben starten mit einer guten Frage. Doch zwischen Strategie,
+-            Konzept, Design und Umsetzung gehen oft Annahmen verloren. Entscheidungen werden
+-            weitergereicht, Briefings verkürzt und technische Konsequenzen erst sichtbar, wenn
+-            es bereits teuer wird.
+-          </p>
+-          <p>
+-            Kenalu bringt die Perspektiven früh zusammen, die für ein tragfähiges Produkt
+-            zusammengehören: Geschäftsziele, Nutzerbedürfnisse, Experience Design, Systeme und
+-            technische Realität.
+-          </p>
+-          <p>
+-            So entsteht nicht einfach ein besser abgestimmter Prozess. Es entsteht eine bessere
+-            Grundlage für Entscheidungen – und für Produkte, die im Alltag wirklich funktionieren.
+-          </p>
++          {blok.text_1 && <p>{blok.text_1}</p>}
++          {blok.text_2 && <p>{blok.text_2}</p>}
++          {blok.text_3 && <p>{blok.text_3}</p>}
+         </div>
+       </div>
+     </section>
