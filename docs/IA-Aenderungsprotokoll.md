@@ -119,7 +119,7 @@ git commit -m "docs: establish IA baseline and rollback protocol"
 | **Typ** | Dokumentation / Sicherung |
 | **Status** | Abgeschlossen |
 | **Baseline-Commit** | `ac4e7bc4c4e650abb15628c93fe9cc828564e74d` (lokal HEAD, 1 ahead of origin) |
-| **Abschluss-Commit** | [nach Commit ergänzen] |
+| **Abschluss-Commit** | `2d11c162826bbbf24cbafeb4c50b799deda4d869` — "docs: reconcile IA baseline and preserve rollback state" |
 
 ### Was und Warum
 
@@ -150,6 +150,7 @@ Der lokale HEAD `ac4e7bc` ist über den Branch `archive/ia-prework-2026-07-02` r
 
 ### Tatsächliches Ergebnis
 
+- IA-001b (Folgeticket) hat verbliebene Dokumentationswidersprüche bereinigt und den finalen Baseline-Commit abgeschlossen.
 - `docs/rollback/2026-07-02-ia-001/` angelegt mit 6 Snapshot-Dateien
 - Branch `archive/ia-prework-2026-07-02` auf HEAD `ac4e7bc` gesetzt
 - `docs/Informationsarchitektur.md`: Dokumentenstatus-Abschnitt, Markenlogik, /about-Korrektur, KAI-Korrektur, CollaborationIntro-Korrektur
@@ -157,6 +158,38 @@ Der lokale HEAD `ac4e7bc` ist über den Branch `archive/ia-prework-2026-07-02` r
 - `docs/IA-Aenderungsprotokoll.md`: Eintrag IA-001 (dieser Eintrag)
 - 9 historische Umsetzungsnotizen: Statushinweis nach H1 eingefügt
 - `docs/ia-inventur-2026-07.md`: Statushinweis eingefügt
+
+---
+
+---
+
+## [IA-001b] Dokumentationsabschluss und Baseline-Commit
+
+| Feld | Inhalt |
+|---|---|
+| **Datum** | 2026-07-02 |
+| **Initiiert von** | Dirk Fliescher / kenalu |
+| **Typ** | Dokumentation / Konsolidierung |
+| **Status** | Abgeschlossen |
+| **Baseline-Commit** | `2d11c162826bbbf24cbafeb4c50b799deda4d869` (HEAD vor diesem Commit) |
+| **Abschluss-Commit** | [nach lokalem Commit ergänzen] |
+
+### Was und Warum
+
+Bereinigung verbliebener Widersprüche aus IA-001. Insbesondere:
+- Navigationstabelle: `/about` korrekt als statisch live dokumentiert (war fälschlicherweise als "Storyblok → DynamicBlock / leer" eingetragen)
+- Rendering-Architektur: `/about` aus der Storyblok-Seiten-Liste entfernt, eigene Kategorie für geplante Umbauten ergänzt
+- Architekturproblem 7: Von "Seite zeigt leeren Content" auf "Produktion statisch live, Storyblok-Variante staged" korrigiert
+- Working\*-Komponenten-Sektion: Zwei Versionen (A live / B staged) klar getrennt
+- Vercel Production Deploy: Explizit als "Zu verifizieren" dokumentiert
+
+### Rollback-Weg
+
+Der ursprüngliche lokale HEAD ist weiterhin über `archive/ia-prework-2026-07-02` referenziert. Staged Arbeitsweise-Änderungen bleiben unverändert und über den Patch in `docs/rollback/2026-07-02-ia-001/` gesichert. Dieser Dokumentations-Commit kann separat mit `git revert <commit-hash>` zurückgenommen werden.
+
+### Tatsächliches Ergebnis
+
+[Nach lokalem Commit ausfüllen: Commit-Hash eintragen]
 
 ---
 

@@ -16,6 +16,15 @@
 | Gültigkeit | Bis zur nächsten IA-Entscheidung |
 | Änderungsregel | Jede Änderung wird vor und nach Umsetzung im IA-Änderungsprotokoll eingetragen |
 
+### Vercel Production Deploy
+
+| Feld | Wert |
+|---|---|
+| `origin/main` (Git-Referenz) | `fd9160e8c84f186b3bb1a0d7014b3e8d685626df` |
+| Lokaler HEAD | `2d11c162826bbbf24cbafeb4c50b799deda4d869` (noch nicht gepusht) |
+| Production Deploy | **Zu verifizieren** — kein direkter Vercel-Zugriff. `origin/main` ist als Git-Referenz dokumentiert, aber kein bestätigter Nachweis für den tatsächlich deployten Commit und Zeitpunkt vorhanden. |
+| Empfehlung | Vercel Dashboard → Production → aktuellen Deployment-Commit und Zeitstempel prüfen |
+
 ---
 
 ## Archivierungs- und Rückbauprinzip (verbindlich)
@@ -83,7 +92,7 @@ Quelle: `components/Nav.js` (hardcoded in JS, nicht via Storyblok steuerbar)
 |---|---|---|---|---|
 | _(Logo kenalu)_ | `/` | Positionierung, Einstieg, Kai | Storyblok → DynamicBlock | ✅ Live |
 | Leistungen | `/services` | Vier Einstiege in die Zusammenarbeit | Statisches JSX | ✅ Live |
-| Arbeitsweise | `/about` | Wie kenalu arbeitet | Storyblok → DynamicBlock | ⚠️ Aktuell leer — Storyblok-Script nötig |
+| Arbeitsweise | `/about` | Wie kenalu arbeitet | Statisches JSX (Produktion) | ✅ Live — statisch mit hardcodiertem Inhalt. Storyblok-Variante: staged, nicht deployed |
 | Lab | `/lab` | Prototypen, Arbeitsproben, Experimente | Statisches JSX | ✅ Live |
 | Insights | `/insights` | Artikel und Perspektiven | Storyblok + statischer Frame | ✅ Live |
 | Über kenalu | `/team` | Team, Persönlichkeit, Mitwirken | Hybrid: Storyblok + statisch | ✅ Live |
@@ -269,8 +278,10 @@ Quelle: `components/Nav.js` (hardcoded in JS, nicht via Storyblok steuerbar)
 
 ### Storyblok-gesteuerte Seiten (Content vollständig im CMS)
 - Homepage `/` (Story `home`)
-- About `/about` (Story `about`) — ⚠️ Script nötig
 - Contact `/contact` (Story `contact`)
+
+### Statische Seiten mit Storyblok-Umbau geplant (staged, nicht deployed)
+- About `/about` — **Produktion:** statisches JSX mit hardcodiertem Inhalt. **Staged:** Storyblok-First-Variante (DynamicBlock). Storyblok-Script nicht ausgeführt.
 
 ### Statische JSX-Seiten (Content im Code)
 - `/services` (vollständig statisch)
@@ -358,10 +369,10 @@ Quelle: `components/Nav.js` (hardcoded in JS, nicht via Storyblok steuerbar)
 **6. Lab-Unterseiten fehlen in Sitemap:**
 - `/lab/kenalu-website` und `/lab/produktmoment` nicht in Sitemap
 
-**7. `/about` Storyblok-Story leer:**
-- Das Script `scripts/rebuild-about-arbeitsweise.js` wurde noch nicht ausgeführt
-- 8 Code-Änderungen sind staged, aber noch nicht committed und noch nicht in Storyblok umgesetzt
-- Die öffentliche Seite `/about` zeigt aktuell vermutlich leeren Content
+**7. `/about` — zwei parallele Versionen, unterschiedlicher Stand:**
+- **Produktion:** `app/about/page.js` rendert die Working\*-Komponenten statisch mit hardcodiertem Inhalt. Die Seite ist live und zeigt vollständigen Content.
+- **Staged, nicht deployed:** Eine separate Storyblok-First-Variante von `app/about/page.js` plus aktualisierte Working\*-Komponenten (mit `blok`-Props) und DynamicBlock-Registrierung.
+- **Storyblok-Script:** `scripts/rebuild-about-arbeitsweise.js` wurde nicht ausgeführt. Keine neue Storyblok-Arbeitsweise-Struktur veröffentlicht. Die Storyblok-Story `about` spiegelt nicht den geplanten neuen Aufbau wider.
 
 ---
 

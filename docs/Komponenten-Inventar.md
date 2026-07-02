@@ -176,7 +176,15 @@
 
 ## 4. Working-Komponenten (Arbeitsweise /about)
 
-_Alle 6 Working-Komponenten sind fertig implementiert und in DynamicBlock.js registriert. Staged, aber noch nicht committed. Storyblok-Script noch nicht ausgeführt._
+**Zwei gleichnamige Versionen — klar trennen:**
+
+**Version A — Live in Produktion (committed in `fd9160e`):**
+Die sechs Working\*-Komponenten existieren im committed Code mit hardcodiertem Inhalt (keine `blok`-Props, keine Storyblok-Abhängigkeit). Sie werden direkt von `app/about/page.js` (statisch) importiert und gerendert. Die Seite `/about` ist live.
+
+**Version B — Staged, nicht committed:**
+Dieselben sechs Dateien in einer aktualisierten Version, die `blok`-Props akzeptiert (Storyblok-gesteuert). Dazu gehört eine neue Version von `app/about/page.js` (Storyblok-First via DynamicBlock) und eine aktualisierte `DynamicBlock.js` mit Working\*-Registrierung. Das Storyblok-Script wurde nicht ausgeführt.
+
+_Die folgenden Einträge beschreiben Version B (staged). Version A ist unter „✅ Live in Produktion" in der Übersicht erfasst._
 
 ### WorkingWhy.js
 | Feld | Inhalt |
