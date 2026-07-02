@@ -172,7 +172,7 @@ Der lokale HEAD `ac4e7bc` ist über den Branch `archive/ia-prework-2026-07-02` r
 | **Typ** | Dokumentation / Konsolidierung |
 | **Status** | Abgeschlossen |
 | **Baseline-Commit** | `2d11c162826bbbf24cbafeb4c50b799deda4d869` (HEAD vor diesem Commit) |
-| **Abschluss-Commit** | [nach lokalem Commit ergänzen] |
+| **Abschluss-Commit** | `f9524da` — "docs: finalize IA baseline and clarify live vs staged state" |
 
 ### Was und Warum
 
@@ -189,7 +189,73 @@ Der ursprüngliche lokale HEAD ist weiterhin über `archive/ia-prework-2026-07-0
 
 ### Tatsächliches Ergebnis
 
-[Nach lokalem Commit ausfüllen: Commit-Hash eintragen]
+Commit `f9524da` enthält ausschliesslich Änderungen unter `docs/`. Die 8 staged Arbeitsweise-Dateien sind unverändert und weiterhin staged. Alle Dokumentationswidersprüche zu `/about`, den Working\*-Komponenten und dem Vercel-Production-Status sind bereinigt. Die IA-Baseline ist formal abgeschlossen.
+
+---
+
+---
+
+## [IA-002] Arbeitsweise und Über kenalu – Vergleich, Seitenrollen und Entscheidungsgrundlage
+
+| Feld | Inhalt |
+|---|---|
+| **Datum** | 2026-07-02 |
+| **Initiiert von** | Dirk Fliescher / kenalu |
+| **Typ** | Analyse / Dokumentation |
+| **Status** | Abgeschlossen |
+| **Baseline-Commit** | `f9524da` (HEAD, lokal, 3 ahead of origin/main) |
+| **Abschluss-Commit** | _(Docs-Commit ausstehend — lokal ausführen, siehe unten)_ |
+
+### Was und Warum
+
+Reine Analyse der Produktionsseiten `/about` und `/team` sowie der nicht eingebundenen Komponenten `FitTest.js` und `CollaborationIntro.js`. Ziel: klare Seitenrollen definieren, Entscheidungsgrundlage für die nächsten Schritte schaffen.
+
+Keine sichtbaren Website-Änderungen, keine Storyblok-Änderungen, kein Deploy.
+
+### Umfang der Analyse
+
+- **Tabelle A:** Produktion /about — alle 7 Sektionen (Komponente / Inhalt / Seitenrolle / Zielgruppe / Empfehlung)
+- **Tabelle B:** Produktion vs. Staged /about — Vergleich Rendering, Content-Quelle, Deploy-Bereitschaft
+- **Tabelle C:** Produktion /team — alle 6 Elemente (Sektionsanalyse)
+- **Tabelle D:** Seitenrollen-Definition für /about und /team, inklusive Abgrenzungstabelle
+- **Tabelle E:** FitTest.js, CollaborationIntro.js und TeamIntro.js — Platzierungs-Evaluation
+- **Abschnitt F:** 5 offene Entscheidungen mit Priorität und Abhängigkeiten
+
+Vollständiger Abschlussbericht: `docs/ia-002-arbeitsweise-analyse.md`
+
+### Kernerkenntnisse
+
+- /about und /team haben unterschiedliche aber komplementäre Rollen (Arbeitsweise vs. Team-Kennenlernen). Die Abgrenzung ist bereits implizit klar, sollte aber explizit in der Architektur verankert werden.
+- `/team` verlinkt auf `/about#mitwirken` — dieser Anker existiert nicht. `CollaborationIntro.js` + `FitTest.js` würden diese Lücke schliessen.
+- `FitTest.js` gehört thematisch auf `/about` (Mitwirken-Bereich), nicht auf `/team`.
+- `CollaborationIntro.js` ist der natürliche Section-Header vor `FitTest.js`.
+- Die staged Storyblok-Variante von `/about` ist **nicht deploy-bereit** — `scripts/rebuild-about-arbeitsweise.js` muss zuerst lokal ausgeführt werden.
+- `TeamIntro.js` nutzt legacy `/api/team-chat` (nicht `/api/kai`) — bekanntes Problem, kein sofortiger Handlungsbedarf.
+
+### Was nicht gemacht wurde
+
+- Keine sichtbaren Website-Änderungen
+- Keine Storyblok-Bearbeitungen
+- Kein Script ausgeführt
+- Keine Komponente geändert, hinzugefügt oder entfernt
+- Keine staged Dateien verändert, unstaged oder committed
+- Kein Deploy, kein Push
+
+### Rollback-Weg
+
+Ausschliesslich Dokumentation. Die Datei `docs/ia-002-arbeitsweise-analyse.md` kann jederzeit gelöscht werden, ohne die Website zu beeinflussen.
+
+### Commit (lokal ausführen)
+
+```
+cd /Users/dirkfliescher/Documents/kenalu-website
+git add docs/ia-002-arbeitsweise-analyse.md docs/IA-Aenderungsprotokoll.md
+git commit docs/ia-002-arbeitsweise-analyse.md docs/IA-Aenderungsprotokoll.md -m "docs: define working method and about page roles"
+```
+
+### Tatsächliches Ergebnis
+
+_(Nach Commit ausfüllen)_
 
 ---
 
