@@ -8,13 +8,31 @@
  *   cd /Users/dirkfliescher/Documents/kenalu-website
  *   node scripts/cleanup-storyblok-2026-07.mjs
  *
- * Voraussetzung: Management-PAT in STORYBLOK_PAT (Env-Variable oder direkt hier setzen).
- * ACHTUNG: Dieses Script nicht ins Git-Repo committen, solange der PAT inline steht.
+ * Voraussetzung: STORYBLOK_MANAGEMENT_TOKEN als Umgebungsvariable gesetzt.
+ *   export STORYBLOK_MANAGEMENT_TOKEN=<wert>
+ *
+ * Publish ist standardmässig deaktiviert (nur Draft).
+ * Aktivieren: --publish Flag UND STORYBLOK_ALLOW_PUBLISH=YES
+ *   STORYBLOK_ALLOW_PUBLISH=YES node scripts/cleanup-storyblok-2026-07.mjs --publish
  */
 
-const PAT     = process.env.STORYBLOK_PAT || 'sb_pat_mYxxSxpmsSJe1k7UEAJ39mH4006srhlIoypsU2rtf4I';
+const PAT     = process.env.STORYBLOK_MANAGEMENT_TOKEN;
 const SPACE   = '293099469334951';
 const BASE    = `https://mapi.storyblok.com/v1/spaces/${SPACE}`;
+
+// ── Sicherheitsguard ─────────────────────────────────────────────────────────
+
+if (!PAT) {
+  console.error('Fehler: STORYBLOK_MANAGEMENT_TOKEN ist nicht gesetzt.');
+  console.error('Variable vor dem Ausführen setzen:');
+  console.error('  export STORYBLOK_MANAGEMENT_TOKEN=<wert>');
+  process.exit(1);
+}
+
+// Publish nur wenn --publish-Flag UND STORYBLOK_ALLOW_PUBLISH=YES gesetzt sind.
+const ALLOW_PUBLISH =
+  process.argv.includes('--publish') &&
+  process.env.STORYBLOK_ALLOW_PUBLISH === 'YES';
 
 // ── Hilfsfunktionen ──────────────────────────────────────────────────────────
 
@@ -39,9 +57,16 @@ async function getStory(slug) {
   return story;
 }
 
-async function updateStory(id, content, publish = true) {
-  await mapi(`/stories/${id}`, 'PUT', { story: { content }, publish: publish ? 1 : 0 });
-  console.log(`  ✓ Story ${id} aktualisiert${publish ? ' und publiziert' : ''}.`);
+async function updateStory(id, content, allowPublish = ALLOW_PUBLISH) {
+  await mapi(`/stories/${id}`, 'PUT', {
+    story: { content },
+    publish: allowPublish ? 1 : 0,
+  });
+  if (!allowPublish) {
+    console.log(`  ✓ Story ${id} als Draft gespeichert.`);
+  } else {
+    console.log(`  ✓ Story ${id} aktualisiert und publiziert.`);
+  }
 }
 
 /** Durchsucht alle Text-Felder in einem Blok-Baum und ersetzt Strings */
@@ -146,7 +171,8 @@ const DATENSCHUTZ_CALCOM_TEXT   = `Cal.com (Terminbuchung): cal.com/privacy`;
 
 async function run() {
   console.log('Storyblok Cleanup – kenalu.ch – Juli 2026');
-  console.log('==========================================\n');
+  console.log('==========================================');
+  console.log(`  Publish-Modus: ${ALLOW_PUBLISH ? 'aktiviert' : 'deaktiviert (nur Draft)'}\n`);
 
   // ── 1. Alle Stories auflisten ──────────────────────────────────────────────
   console.log('Lade alle Stories...');
@@ -324,7 +350,12 @@ async function run() {
   }
 
   console.log('\n==========================================');
-  console.log('Fertig. Alle Änderungen sind publiziert.');
+  if (!ALLOW_PUBLISH) {
+    console.log('Fertig. Alle Änderungen als Draft gespeichert.');
+    console.log('ℹ️  Publish: --publish Flag und STORYBLOK_ALLOW_PUBLISH=YES nicht gesetzt.');
+  } else {
+    console.log('Fertig. Alle Änderungen sind publiziert.');
+  }
   console.log('\nNächste Schritte (manuell):');
   console.log('  1. Lokaler Build-Check: npm run build');
   console.log('  2. git add -A && git commit -m "cleanup: navigation, footer, kai, metadata – Juli 2026"');

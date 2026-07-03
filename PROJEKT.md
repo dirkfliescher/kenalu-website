@@ -31,8 +31,22 @@ Next.js (App Router) Website für **kenalu** — Dirk Flieschers Unternehmung f�
 - **Content Delivery Token:** `UjST5D2IbHlQxZqnpC03xQtt` (in `.env.local` als `STORYBLOK_TOKEN`)
 - **Management API Token:** Storyblok-Management-Zugang: über lokale Umgebungsvariablen; nicht im Repository speichern.
   ⚠️ Nicht ins Git-Repo pushen. Nur lokal in Scripts verwenden.
+  **Env-Var-Name:** `STORYBLOK_MANAGEMENT_TOKEN` (nicht STORYBLOK_PAT oder andere)
 - **Management API Base:** `https://mapi.storyblok.com/v1/spaces/293099469334951`
   → Aus der Claude-Sandbox nicht erreichbar (Proxy-Block). Scripts immer lokal ausführen: `node scripts/xxx.js`
+
+### Script-Sicherheitsregeln (seit SEC-003, 2026-07-03)
+
+Alle Storyblok-Scripts (in `scripts/`) folgen diesen Pflichtregeln:
+
+- Token ausschliesslich aus `process.env.STORYBLOK_MANAGEMENT_TOKEN` — kein Hardcoding, kein Fallback
+- Safe-Abort-Guard: bricht ab wenn Variable fehlt
+- Publish: standardmässig deaktiviert — nur mit `--publish` UND `STORYBLOK_ALLOW_PUBLISH=YES`
+- Schema-Overwrite: standardmässig deaktiviert — nur mit `--migrate-schema`
+
+Fünf getrackte Scripts auf `origin/main` wurden in SEC-003 gehärtet:
+`setup-ecosystem-storyblok.mjs`, `setup-kai-storyblok.mjs`, `setup-lab-kenalu.mjs`,
+`cleanup-storyblok-2026-07.mjs`, `cleanup-storyblok-2026-07b.mjs`
 
 **Bekannte Story-IDs:**
 - Home: `185993926251643`
@@ -214,6 +228,10 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 
 | Punkt | Status | Details |
 |-------|--------|---------|
+| SEC-003-Commit | 🔧 Ausstehend | Dirk führt lokal aus — index.lock entfernen, dann `git add scripts/ CLAUDE.md PROJEKT.md docs/arbeitsberichte/SEC-003-...` + Commit. Kein `git add -A` (8 staged Dateien bleiben geschützt). |
+| SEC-004: History-Cleanup | 📋 Geplant | `git filter-repo` für veralteten Token aus Git-History. Separate Absprache erforderlich. Voraussetzungen in `docs/arbeitsberichte/SEC-002-token-remediation-plan.md`. |
+| Neuer Management-Token | 🔒 Gesperrt | Erst nach SEC-003-Commit und Script-Freigabe. Nur in `.env.local`, scoped auf Space, nie commiten. Env-Var: `STORYBLOK_MANAGEMENT_TOKEN`. |
+| CMS-002b: /about Fallback-Härtung | 📋 Geplant | `app/about/page.js` (staged): leere Seite bei Storyblok-Ausfall verhindern. Fallback oder `notFound()` implementieren — dann Commit der 8 Dateien + Push. |
 | About "Über kenalu"-Dopplung | 🔧 Script bereit | `scripts/update-hero-labels.js` prüft und behebt die Dopplung. Lokal ausführen: `node scripts/update-hero-labels.js`. Scripts-Verzeichnis ist gitignored. |
 | Homepage hero_label in Storyblok | ℹ️ Workaround | Per CSS ausgeblendet. Kann via `scripts/update-hero-labels.js` geleert werden. |
 | DynamicBlock.js vollständig? | ℹ️ Prüfen | Bei neuen Komponenten immer sicherstellen, dass Block-Key registriert ist |

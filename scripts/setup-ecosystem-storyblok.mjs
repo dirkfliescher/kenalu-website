@@ -8,12 +8,42 @@
  *    (nach about_team, vor Erfahrungshintergrund / CTA)
  *
  * Ausführen: node scripts/setup-ecosystem-storyblok.mjs
+ *
+ * Voraussetzung: STORYBLOK_MANAGEMENT_TOKEN als Umgebungsvariable gesetzt.
+ *   export STORYBLOK_MANAGEMENT_TOKEN=<wert>
+ *
+ * Publish ist standardmässig deaktiviert (nur Draft).
+ * Aktivieren: --publish Flag UND STORYBLOK_ALLOW_PUBLISH=YES
+ *   STORYBLOK_ALLOW_PUBLISH=YES node scripts/setup-ecosystem-storyblok.mjs --publish
+ *
+ * Schema-Änderungen (Whitelist-Erweiterung) erfordern --migrate-schema:
+ *   node scripts/setup-ecosystem-storyblok.mjs --migrate-schema
  */
 
 const SPACE_ID = '293099469334951';
-const MGMT_TOKEN = 'sb_pat_mYxxSxpmsSJe1k7UEAJ39mH4006srhlIoypsU2rtf4I';
-const CDN_TOKEN = 'UjST5D2IbHlQxZqnpC03xQtt';
 const BASE = `https://mapi.storyblok.com/v1/spaces/${SPACE_ID}`;
+
+// ── Sicherheitsguard ─────────────────────────────────────────────────────────
+
+const MGMT_TOKEN = process.env.STORYBLOK_MANAGEMENT_TOKEN;
+const CDN_TOKEN  = process.env.STORYBLOK_TOKEN;
+
+if (!MGMT_TOKEN) {
+  console.error('Fehler: STORYBLOK_MANAGEMENT_TOKEN ist nicht gesetzt.');
+  console.error('Variable vor dem Ausführen setzen:');
+  console.error('  export STORYBLOK_MANAGEMENT_TOKEN=<wert>');
+  process.exit(1);
+}
+
+// Publish nur wenn --publish-Flag UND STORYBLOK_ALLOW_PUBLISH=YES gesetzt sind.
+const ALLOW_PUBLISH =
+  process.argv.includes('--publish') &&
+  process.env.STORYBLOK_ALLOW_PUBLISH === 'YES';
+
+// Schema-Overwrite (Whitelist-Erweiterung) nur mit --migrate-schema.
+const MIGRATION_MODE = process.argv.includes('--migrate-schema');
+
+// ─────────────────────────────────────────────────────────────────────────────
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -175,6 +205,12 @@ async function addEcosystemToWhitelists(components) {
       }
     }
     if (changed) {
+      if (!MIGRATION_MODE) {
+        console.error(`\nAbbruch: '${comp.name}' hat eine body-Whitelist, die geändert werden würde.`);
+        console.error('Schema-Änderungen erfordern einen expliziten Migrationsschritt.');
+        console.error('Script mit --migrate-schema ausführen, wenn die Änderung freigegeben ist.');
+        process.exit(1);
+      }
       await mapi('PUT', `/components/${comp.id}`, {
         component: { ...comp, schema },
       });
@@ -258,7 +294,6 @@ async function updateAboutStory() {
   const aboutTeamIdx = body.findIndex((b) => b.component === 'about_team');
   const insertAt = aboutTeamIdx >= 0 ? aboutTeamIdx + 1 : body.length;
 
-  // CTA-Blöcke ans absolute Ende (nach Ecosystem)
   const newBody = [
     ...body.slice(0, insertAt),
     ecosystemBlock,
@@ -267,10 +302,15 @@ async function updateAboutStory() {
 
   await mapi('PUT', `/stories/${story.id}`, {
     story: { content: { ...story.content, body: newBody } },
-    publish: 1,
+    publish: ALLOW_PUBLISH ? 1 : 0,
   });
 
-  console.log(`   ✓ Fertig (Story ID: ${story.id})`);
+  if (!ALLOW_PUBLISH) {
+    console.log(`   ✓ Als Draft gespeichert (Story ID: ${story.id})`);
+    console.log('   ℹ️  Publish: --publish Flag und STORYBLOK_ALLOW_PUBLISH=YES nicht gesetzt.');
+  } else {
+    console.log(`   ✓ Gespeichert und publiziert (Story ID: ${story.id})`);
+  }
 }
 
 // ── Hauptprogramm ────────────────────────────────────────────────────────────
@@ -279,6 +319,8 @@ async function main() {
   console.log('══════════════════════════════════════════');
   console.log('  kenalu – Ecosystem Partners Storyblok');
   console.log('══════════════════════════════════════════');
+  console.log(`  Publish-Modus:     ${ALLOW_PUBLISH ? 'aktiviert' : 'deaktiviert (nur Draft)'}`);
+  console.log(`  Migrations-Modus:  ${MIGRATION_MODE ? 'aktiviert' : 'deaktiviert'}`);
 
   try {
     const { components } = await mapi('GET', '/components/');

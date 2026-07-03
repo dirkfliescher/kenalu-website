@@ -36,6 +36,20 @@ Hosting: Vercel. CMS: Storyblok. KI-Chat: OpenAI via `/api/kai`.
 
 ---
 
+## Script-Sicherheitsregeln — KRITISCH
+
+Alle Storyblok-Scripts müssen diese Regeln einhalten (seit SEC-003, 2026-07-03):
+
+- **Kein Tokenwert im Code** — ausschliesslich `process.env.STORYBLOK_MANAGEMENT_TOKEN`
+- **Env-Var-Name:** immer `STORYBLOK_MANAGEMENT_TOKEN` (nicht `STORYBLOK_PAT` oder andere)
+- **Safe-Abort-Guard:** Script bricht ab, wenn Variable fehlt
+- **Kein Fallback-Token** (`process.env.X || '<token>'` ist verboten)
+- **Publish deaktiviert** — nur mit `--publish` UND `STORYBLOK_ALLOW_PUBLISH=YES`
+- **Schema-Overwrite deaktiviert** — nur mit `--migrate-schema`
+- **Kein Token in Console-Ausgaben, Fehlern oder Logs**
+
+---
+
 ## Wichtige Verzeichnisse
 
 - `app/` – Next.js App Router Pages

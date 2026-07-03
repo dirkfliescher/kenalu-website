@@ -1,19 +1,23 @@
 import Link from 'next/link';
 
-export default function WorkingCta() {
+export default function WorkingCta({ blok }) {
   return (
     <section className="aw-cta">
       <div className="container container--narrow">
-        <p className="section-label">Nächster Schritt</p>
-        <h2 className="aw-cta-headline">Lasst uns klären, was bei euch wirklich sinnvoll ist.</h2>
-        <p className="aw-cta-text">
-          Ob ihr zuerst Klarheit braucht, eine Idee sichtbar machen wollt oder schon vor einem
-          konkreten Produktentscheid steht: Wir schauen gemeinsam auf eure Situation und sagen
-          euch ehrlich, welcher nächste Schritt sinnvoll sein könnte.
-        </p>
+        {blok.eyebrow && <p className="section-label">{blok.eyebrow}</p>}
+        {blok.headline && <h2 className="aw-cta-headline">{blok.headline}</h2>}
+        {blok.text && <p className="aw-cta-text">{blok.text}</p>}
         <div className="aw-cta-actions">
-          <Link href="/contact" className="btn btn-light">Gespräch starten →</Link>
-          <Link href="/services" className="link-arrow aw-cta-link">Leistungen ansehen →</Link>
+          {blok.cta_label && (
+            <Link href={blok.cta_url || '/contact'} className="btn btn-light">
+              {blok.cta_label}
+            </Link>
+          )}
+          {blok.link_label && (
+            <Link href={blok.link_url || '/services'} className="link-arrow aw-cta-link">
+              {blok.link_label}
+            </Link>
+          )}
         </div>
       </div>
     </section>

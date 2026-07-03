@@ -10,11 +10,32 @@
  * Ausführen:
  *   cd /Users/dirkfliescher/Documents/kenalu-website
  *   node scripts/cleanup-storyblok-2026-07b.mjs
+ *
+ * Voraussetzung: STORYBLOK_MANAGEMENT_TOKEN als Umgebungsvariable gesetzt.
+ *   export STORYBLOK_MANAGEMENT_TOKEN=<wert>
+ *
+ * Publish ist standardmässig deaktiviert (nur Draft).
+ * Aktivieren: --publish Flag UND STORYBLOK_ALLOW_PUBLISH=YES
+ *   STORYBLOK_ALLOW_PUBLISH=YES node scripts/cleanup-storyblok-2026-07b.mjs --publish
  */
 
-const PAT   = process.env.STORYBLOK_PAT || 'sb_pat_mYxxSxpmsSJe1k7UEAJ39mH4006srhlIoypsU2rtf4I';
+const PAT   = process.env.STORYBLOK_MANAGEMENT_TOKEN;
 const SPACE = '293099469334951';
 const BASE  = `https://mapi.storyblok.com/v1/spaces/${SPACE}`;
+
+// ── Sicherheitsguard ─────────────────────────────────────────────────────────
+
+if (!PAT) {
+  console.error('Fehler: STORYBLOK_MANAGEMENT_TOKEN ist nicht gesetzt.');
+  console.error('Variable vor dem Ausführen setzen:');
+  console.error('  export STORYBLOK_MANAGEMENT_TOKEN=<wert>');
+  process.exit(1);
+}
+
+// Publish nur wenn --publish-Flag UND STORYBLOK_ALLOW_PUBLISH=YES gesetzt sind.
+const ALLOW_PUBLISH =
+  process.argv.includes('--publish') &&
+  process.env.STORYBLOK_ALLOW_PUBLISH === 'YES';
 
 // ── Hilfsfunktionen ──────────────────────────────────────────────────────────
 
@@ -47,8 +68,15 @@ async function getStoryById(id) {
 }
 
 async function updateStory(id, content) {
-  await mapi(`/stories/${id}`, 'PUT', { story: { content }, publish: 1 });
-  console.log(`  ✓ Story ${id} aktualisiert und publiziert.`);
+  await mapi(`/stories/${id}`, 'PUT', {
+    story: { content },
+    publish: ALLOW_PUBLISH ? 1 : 0,
+  });
+  if (!ALLOW_PUBLISH) {
+    console.log(`  ✓ Story ${id} als Draft gespeichert.`);
+  } else {
+    console.log(`  ✓ Story ${id} aktualisiert und publiziert.`);
+  }
   await sleep(350); // 350ms zwischen Schreiboperationen → < 3 req/s
 }
 
@@ -103,7 +131,8 @@ const IDS = {
 
 async function run() {
   console.log('Storyblok Cleanup v2 – kenalu.ch – Juli 2026');
-  console.log('=============================================\n');
+  console.log('=============================================');
+  console.log(`  Publish-Modus: ${ALLOW_PUBLISH ? 'aktiviert' : 'deaktiviert (nur Draft)'}\n`);
 
   // ── 1. Contact: Kai-Privacy-Hinweis + globale Bereinigung ─────────────────
   console.log('── Contact ────────────────────────────────────────────────────');
@@ -187,17 +216,20 @@ async function run() {
   }
 
   console.log('\n=============================================');
-  console.log('Fertig.');
+  if (!ALLOW_PUBLISH) {
+    console.log('Fertig. Alle Änderungen als Draft gespeichert.');
+    console.log('ℹ️  Publish: --publish Flag und STORYBLOK_ALLOW_PUBLISH=YES nicht gesetzt.');
+  } else {
+    console.log('Fertig.');
+  }
   console.log('\nInsights-Artikel wurden bewusst NICHT bereinigt.');
   console.log('Redaktionelle Inhalte müssen manuell geprüft werden.');
   console.log('\nNoch zu erledigen (manuell):');
   console.log('  1. Insights-Artikel in Storyblok durchsuchen: noch "Intelligent Experiences" im Fliesstext?');
   console.log('     → Falls ja: nur gezielt, nicht maschinell ersetzen');
-  console.log('  2. git index.lock entfernen:');
-  console.log('     rm /Users/dirkfliescher/Documents/kenalu-website/.git/index.lock');
-  console.log('  3. Build prüfen:');
+  console.log('  2. Build prüfen:');
   console.log('     cd /Users/dirkfliescher/Documents/kenalu-website && npm run build');
-  console.log('  4. Committen und deployen:');
+  console.log('  3. Committen und deployen:');
   console.log('     git add -A');
   console.log('     git commit -m "cleanup: navigation, footer, kai-route, metadata – Juli 2026"');
   console.log('     git push origin main');

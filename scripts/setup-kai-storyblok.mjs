@@ -6,12 +6,40 @@
  * 2. Befüllt Homepage, /services und /contact mit kai-dialogue Blöcken
  *
  * Ausführen: node scripts/setup-kai-storyblok.mjs
+ *
+ * Voraussetzung: STORYBLOK_MANAGEMENT_TOKEN als Umgebungsvariable gesetzt.
+ *   export STORYBLOK_MANAGEMENT_TOKEN=<wert>
+ *
+ * Publish ist standardmässig deaktiviert (nur Draft).
+ * Aktivieren: --publish Flag UND STORYBLOK_ALLOW_PUBLISH=YES
+ *   STORYBLOK_ALLOW_PUBLISH=YES node scripts/setup-kai-storyblok.mjs --publish
+ *
+ * Whitelist-Änderungen erfordern --migrate-schema:
+ *   node scripts/setup-kai-storyblok.mjs --migrate-schema
  */
 
 const SPACE_ID = '293099469334951';
-const MGMT_TOKEN = 'sb_pat_mYxxSxpmsSJe1k7UEAJ39mH4006srhlIoypsU2rtf4I';
-const CDN_TOKEN = 'UjST5D2IbHlQxZqnpC03xQtt';
 const BASE = `https://mapi.storyblok.com/v1/spaces/${SPACE_ID}`;
+
+// ── Sicherheitsguard ─────────────────────────────────────────────────────────
+
+const MGMT_TOKEN = process.env.STORYBLOK_MANAGEMENT_TOKEN;
+const CDN_TOKEN  = process.env.STORYBLOK_TOKEN;
+
+if (!MGMT_TOKEN) {
+  console.error('Fehler: STORYBLOK_MANAGEMENT_TOKEN ist nicht gesetzt.');
+  console.error('Variable vor dem Ausführen setzen:');
+  console.error('  export STORYBLOK_MANAGEMENT_TOKEN=<wert>');
+  process.exit(1);
+}
+
+// Publish nur wenn --publish-Flag UND STORYBLOK_ALLOW_PUBLISH=YES gesetzt sind.
+const ALLOW_PUBLISH =
+  process.argv.includes('--publish') &&
+  process.env.STORYBLOK_ALLOW_PUBLISH === 'YES';
+
+// Schema-Overwrite (Whitelist-Erweiterung) nur mit --migrate-schema.
+const MIGRATION_MODE = process.argv.includes('--migrate-schema');
 
 // ── Hilfsfunktionen ──────────────────────────────────────────────────────────
 
@@ -228,6 +256,12 @@ async function addToWhitelists() {
     }
 
     if (changed) {
+      if (!MIGRATION_MODE) {
+        console.error(`\nAbbruch: '${comp.name}' hat eine body-Whitelist, die geändert werden würde.`);
+        console.error('Schema-Änderungen erfordern einen expliziten Migrationsschritt.');
+        console.error('Script mit --migrate-schema ausführen, wenn die Änderung freigegeben ist.');
+        process.exit(1);
+      }
       await mapi('PUT', `/components/${comp.id}`, {
         component: { ...comp, schema },
       });
@@ -268,10 +302,14 @@ async function updateHomepage() {
 
   await mapi('PUT', `/stories/${story.id}`, {
     story: { content: { ...story.content, body: newBody } },
-    publish: 1,
+    publish: ALLOW_PUBLISH ? 1 : 0,
   });
 
-  console.log(`   ✓ Fertig (Story ID: ${story.id})`);
+  if (!ALLOW_PUBLISH) {
+    console.log(`   ✓ Als Draft gespeichert (Story ID: ${story.id})`);
+  } else {
+    console.log(`   ✓ Gespeichert und publiziert (Story ID: ${story.id})`);
+  }
 }
 
 // ── 3. Services: kai_dialogue vor cta_section ────────────────────────────────
@@ -299,10 +337,14 @@ async function updateServices() {
 
   await mapi('PUT', `/stories/${story.id}`, {
     story: { content: { ...story.content, body: newBody } },
-    publish: 1,
+    publish: ALLOW_PUBLISH ? 1 : 0,
   });
 
-  console.log(`   ✓ Fertig (Story ID: ${story.id})`);
+  if (!ALLOW_PUBLISH) {
+    console.log(`   ✓ Als Draft gespeichert (Story ID: ${story.id})`);
+  } else {
+    console.log(`   ✓ Gespeichert und publiziert (Story ID: ${story.id})`);
+  }
 }
 
 // ── 4. Contact: kai_dialogue vor contact_section ─────────────────────────────
@@ -330,10 +372,14 @@ async function updateContact() {
 
   await mapi('PUT', `/stories/${story.id}`, {
     story: { content: { ...story.content, body: newBody } },
-    publish: 1,
+    publish: ALLOW_PUBLISH ? 1 : 0,
   });
 
-  console.log(`   ✓ Fertig (Story ID: ${story.id})`);
+  if (!ALLOW_PUBLISH) {
+    console.log(`   ✓ Als Draft gespeichert (Story ID: ${story.id})`);
+  } else {
+    console.log(`   ✓ Gespeichert und publiziert (Story ID: ${story.id})`);
+  }
 }
 
 // ── 5. Service-Detailseiten: kai_dialogue in story ──────────────────────────
@@ -354,8 +400,8 @@ const SERVICE_DETAIL_SLUGS = [
   { slug: 'services/produkt', contextKey: 'service_produkt',
     headline: 'Ist ein massgeschneidertes AI-Produkt der richtige Weg?',
     intro: 'Beschreibt, was Standardsoftware bei euch nicht löst.',
-    initialMessage: 'Was macht Standardsoftware bei euch zum Problem? Ich helfe euch einordnen, ob ein massgeschneidertes Produkt Sinn ergibt.',
-    inputPlaceholder: 'Wo stösst Standardsoftware an Grenzen?',
+    initialMessage: 'Was soll sich für eure Nutzer oder euren Prozess verändern, das mit der heutigen Lösung noch nicht gelingt?',
+    inputPlaceholder: 'Was soll sich verändern?',
     prompts: ['Wir haben Anforderungen, die kein Tool erfüllt.', 'Wir wollen uns von Vendor-Lock-in lösen.', 'Wir suchen eine skalierbare Eigenentwicklung.'] },
   { slug: 'services/urteil', contextKey: 'service_urteil',
     headline: 'Braucht ihr eine externe Einschätzung?',
@@ -400,10 +446,14 @@ async function updateServiceDetailPages() {
             kai_block: [kaiBlk],
           },
         },
-        publish: 1,
+        publish: ALLOW_PUBLISH ? 1 : 0,
       });
 
-      console.log(`   ✓ ${svc.slug} (ID: ${story.id})`);
+      if (!ALLOW_PUBLISH) {
+        console.log(`   ✓ ${svc.slug}: Als Draft gespeichert (ID: ${story.id})`);
+      } else {
+        console.log(`   ✓ ${svc.slug}: Gespeichert und publiziert (ID: ${story.id})`);
+      }
     } catch (e) {
       console.error(`   ✗ ${svc.slug}: ${e.message}`);
     }
@@ -416,6 +466,8 @@ async function main() {
   console.log('═══════════════════════════════════════');
   console.log('  kenalu – Kai Dialogue Storyblok Setup');
   console.log('═══════════════════════════════════════');
+  console.log(`  Publish-Modus:     ${ALLOW_PUBLISH ? 'aktiviert' : 'deaktiviert (nur Draft)'}`);
+  console.log(`  Migrations-Modus:  ${MIGRATION_MODE ? 'aktiviert' : 'deaktiviert'}`);
 
   try {
     await ensureKaiComponent();
@@ -425,7 +477,12 @@ async function main() {
     await updateContact();
     await updateServiceDetailPages();
 
-    console.log('\n✅ Alles erledigt. Storyblok-Seiten sind publiziert.\n');
+    if (!ALLOW_PUBLISH) {
+      console.log('\n✅ Alles erledigt. Storyblok-Seiten als Draft gespeichert.');
+      console.log('   ℹ️  Publish: --publish Flag und STORYBLOK_ALLOW_PUBLISH=YES nicht gesetzt.\n');
+    } else {
+      console.log('\n✅ Alles erledigt. Storyblok-Seiten sind publiziert.\n');
+    }
   } catch (e) {
     console.error('\n❌ Fehler:', e.message);
     process.exit(1);
