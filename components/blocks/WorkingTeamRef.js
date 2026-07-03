@@ -1,39 +1,35 @@
 import Link from 'next/link';
 
-export default function WorkingTeamRef({ blok }) {
-  const people = [
-    { name: blok.person_1_name, role: blok.person_1_role },
-    { name: blok.person_2_name, role: blok.person_2_role },
-  ].filter((p) => p.name);
+const PEOPLE = [
+  { name: 'Dirk Fliescher', role: 'Strategie & Experience Design' },
+  { name: 'Stanislav Raskin', role: 'Engineering & Architektur' },
+];
 
+export default function WorkingTeamRef() {
   return (
     <section className="aw-team">
       <div className="container">
         <div className="aw-team-header">
-          {blok.eyebrow && <p className="section-label">{blok.eyebrow}</p>}
-          {blok.headline && <h2 className="aw-team-headline">{blok.headline}</h2>}
-          {blok.text && <p className="aw-team-text">{blok.text}</p>}
+          <p className="section-label">Wer daran arbeitet</p>
+          <h2 className="aw-team-headline">Direkt mit den Menschen, die Verantwortung tragen.</h2>
+          <p className="aw-team-text">
+            Kenalu verbindet Strategie und Experience Design mit technischer Architektur und
+            Engineering. Die Menschen, die ein Vorhaben verstehen, bleiben nah an den wichtigen
+            Entscheidungen – vom ersten Gespräch bis zur Umsetzung.
+          </p>
         </div>
-        {people.length > 0 && (
-          <div className="aw-team-people">
-            {people.map((p) => (
-              <div key={p.name} className="aw-person">
-                <strong className="aw-person-name">{p.name}</strong>
-                {p.role && (
-                  <>
-                    <span className="aw-person-sep">—</span>
-                    <span className="aw-person-role">{p.role}</span>
-                  </>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-        {blok.link_label && (
-          <Link href={blok.link_url || '/team'} className="link-arrow">
-            {blok.link_label}
-          </Link>
-        )}
+        <div className="aw-team-people">
+          {PEOPLE.map((p) => (
+            <div key={p.name} className="aw-person">
+              <strong className="aw-person-name">{p.name}</strong>
+              <span className="aw-person-sep">—</span>
+              <span className="aw-person-role">{p.role}</span>
+            </div>
+          ))}
+        </div>
+        <Link href="/team" className="link-arrow">
+          Team kennenlernen →
+        </Link>
       </div>
     </section>
   );

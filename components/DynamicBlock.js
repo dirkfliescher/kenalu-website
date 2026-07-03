@@ -27,12 +27,6 @@ import SituationTeaser from './blocks/SituationTeaser';
 import ProcessJourney from './blocks/ProcessJourney';
 import KaiDialogue from './blocks/KaiDialogue';
 import EcosystemPartners from './blocks/EcosystemPartners';
-import WorkingWhy from './blocks/WorkingWhy';
-import WorkingSteps from './blocks/WorkingSteps';
-import WorkingBenefits from './blocks/WorkingBenefits';
-import WorkingTeamRef from './blocks/WorkingTeamRef';
-import WorkingPartners from './blocks/WorkingPartners';
-import WorkingCta from './blocks/WorkingCta';
 
 const Components = {
   hero: Hero,
@@ -63,12 +57,6 @@ const Components = {
   process_journey: ProcessJourney,
   kai_dialogue: KaiDialogue,
   ecosystem_partners: EcosystemPartners,
-  working_why: WorkingWhy,
-  working_steps: WorkingSteps,
-  working_benefits: WorkingBenefits,
-  working_team_ref: WorkingTeamRef,
-  working_partners: WorkingPartners,
-  working_cta: WorkingCta,
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist
