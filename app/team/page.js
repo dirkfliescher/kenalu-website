@@ -88,12 +88,14 @@ export default async function TeamPage() {
         </Reveal>
       </section>
 
-      {/* Storyblok-Blöcke — allgemeiner Gesprächs-CTA als ruhiger Seitenabschluss */}
-      {pageBlocks.map((blok) => (
-        <Reveal key={blok._uid}>
-          <DynamicBlock blok={blok} />
-        </Reveal>
-      ))}
+      {/* Storyblok-Blöcke — cta_section wird auf /team nicht gerendert (doppelter Seitenabschluss) */}
+      {pageBlocks
+        .filter((blok) => blok.component !== 'cta_section')
+        .map((blok) => (
+          <Reveal key={blok._uid}>
+            <DynamicBlock blok={blok} />
+          </Reveal>
+        ))}
     </main>
   );
 }

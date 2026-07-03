@@ -418,4 +418,33 @@ Der allgemeine KaiDialogue-Block wurde von `/team` entfernt, weil TeamIntro bere
 
 ---
 
+---
+
+---
+
+## [IA-003e] Doppelten Seitenabschluss auf /team bereinigt
+
+| Feld | Inhalt |
+|---|---|
+| **Datum** | 2026-07-03 |
+| **Initiiert von** | Dirk Fliescher / kenalu |
+| **Typ** | Seitenfluss / CTA-Bereinigung |
+| **Status** | Lokal umgesetzt, Veröffentlichung ausstehend |
+| **Baseline-Commit** | `8b2319f` — "docs: add IA-003d completion report" |
+| **Abschluss-Commit** | _(nach Commit ergänzen)_ |
+
+### Was und Warum
+
+Der allgemeine Kunden-CTA „Bereit für ein Gespräch?" (`cta_section`-Block aus Storyblok PageBlocks) wurde nur auf `/team` aus dem Rendering entfernt. Nach dem FitTest bleibt der bestehende Mitwirken-Abschluss „Meld dich" (CollaborationIntro ohne CTA-Link, gefolgt vom FitTest mit CTA) als einzige, thematisch passende Schlussaufforderung erhalten. Die Filterung erfolgt ausschliesslich in `app/team/page.js` über `blok.component !== 'cta_section'`. Storyblok bleibt unverändert; auf allen anderen Seiten rendert `cta_section` wie bisher.
+
+### Rollback-Weg
+
+`git revert [Commit-Hash]`
+
+### Tatsächliches Ergebnis
+
+_(Nach Commit und QA ausfüllen)_
+
+---
+
 _Ende der bestehenden Einträge. Neue Einträge werden unten angefügt._
