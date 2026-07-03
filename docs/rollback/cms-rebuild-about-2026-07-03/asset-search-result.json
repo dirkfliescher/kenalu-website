@@ -1,0 +1,37 @@
+{
+  "searched": [
+    "emporix",
+    "storyblok",
+    "beebase",
+    "skyquest",
+    "soulcode"
+  ],
+  "found": {
+    "emporix": {
+      "id": 188831327894803,
+      "filename": "https://a.storyblok.com/f/293099469334951/165x24/f66c8c1a42/emporix-cc.svg",
+      "alt": "emporix Logo"
+    },
+    "storyblok": {
+      "id": 190330233847182,
+      "filename": "https://a.storyblok.com/f/293099469334951/2387615/d9daaae536/kenalu-insight-zwei-jahre-ein-anderes-spiel.png",
+      "alt": "storyblok Logo"
+    },
+    "beebase": {
+      "id": 188830950513894,
+      "filename": "https://a.storyblok.com/f/293099469334951/254x47/9f39c1038d/beebase-cc.svg",
+      "alt": "beebase Logo"
+    },
+    "skyquest": {
+      "id": 188830949924031,
+      "filename": "https://a.storyblok.com/f/293099469334951/1920x1080/f9c11d8ee7/skyquest-cc.svg",
+      "alt": "skyquest Logo"
+    },
+    "soulcode": {
+      "id": 190138714494847,
+      "filename": "https://a.storyblok.com/f/293099469334951/1000x271/5fd8cd2cd6/soulcode-cc.svg",
+      "alt": "soulcode Logo"
+    }
+  },
+  "total": 97
+}

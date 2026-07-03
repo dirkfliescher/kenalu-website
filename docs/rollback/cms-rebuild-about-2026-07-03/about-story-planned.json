@@ -1,0 +1,203 @@
+{
+  "name": "about",
+  "parent_id": null,
+  "group_id": "feb61370-3512-4a0e-9ee5-915010555ee9",
+  "alternates": [],
+  "created_at": "2026-06-12T05:53:34.146Z",
+  "deleted_at": null,
+  "sort_by_date": null,
+  "tag_list": [],
+  "updated_at": "2026-07-03T19:43:55.683Z",
+  "published_at": "2026-07-03T18:22:44.555Z",
+  "id": 186589241977666,
+  "uuid": "cfcabd19-2b24-4c9a-afb5-20f916b14838",
+  "is_folder": false,
+  "content": {
+    "_uid": "6f0c2193-5148-46e6-ab3a-6c814a977fd1",
+    "body": [
+      {
+        "component": "about_hero",
+        "eyebrow": "ARBEITSWEISE",
+        "headline": "Wie wir arbeiten, ist Teil des Ergebnisses.",
+        "body": "Wir verbinden strategisches Denken, Nutzerperspektive und technische Realität. Nicht als aufeinanderfolgende Übergaben, sondern als integrierte Arbeit – von der ersten Frage bis zum fertigen Produkt."
+      },
+      {
+        "component": "about_working_why",
+        "eyebrow": "Warum das wichtig ist",
+        "headline": "Gute Entscheidungen verlieren Wirkung, wenn sie unterwegs ihren Kontext verlieren.",
+        "body_1": "Viele digitale Vorhaben starten mit einer guten Frage. Doch zwischen Strategie, Konzept, Design und Umsetzung gehen oft Annahmen verloren. Entscheidungen werden weitergereicht, Briefings verkürzt und technische Konsequenzen erst sichtbar, wenn es bereits teuer wird.",
+        "body_2": "Kenalu bringt die Perspektiven früh zusammen, die für ein tragfähiges Produkt zusammengehören: Geschäftsziele, Nutzerbedürfnisse, Experience Design, Systeme und technische Realität.",
+        "body_3": "So entsteht nicht einfach ein besser abgestimmter Prozess. Es entsteht eine bessere Grundlage für Entscheidungen – und für Produkte, die im Alltag wirklich funktionieren."
+      },
+      {
+        "component": "about_working_steps",
+        "eyebrow": "Wie wir arbeiten",
+        "headline": "Von der offenen Frage zu einer tragfähigen Lösung.",
+        "intro": "Nicht jedes Vorhaben beginnt gleich. Manche Teams brauchen zuerst Klarheit. Andere müssen eine Idee sichtbar machen oder ein bestehendes Produkt weiterentwickeln. Die Arbeitsweise bleibt dabei dieselbe: früh konkret werden, bewusst entscheiden und Umsetzung von Anfang an mitdenken.",
+        "step_1_number": "01",
+        "step_1_title": "Die richtige Frage finden",
+        "step_1_body": "Wir beginnen nicht bei der Technologie. Wir klären, was für Nutzer, Mitarbeitende, Kunden oder Prozesse besser möglich werden soll – und welche Entscheidung tatsächlich offen ist.",
+        "step_2_number": "02",
+        "step_2_title": "Annahmen sichtbar machen",
+        "step_2_body": "Statt lange über abstrakte Ideen zu sprechen, übersetzen wir zentrale Annahmen in Szenarien, Produktlogik, Prototypen oder klare Entscheidungsgrundlagen.",
+        "step_3_number": "03",
+        "step_3_title": "Gemeinsam bauen",
+        "step_3_body": "Strategie, Experience Design und Engineering arbeiten eng zusammen. So bleiben Kontext, Prioritäten und technische Konsequenzen während der Umsetzung sichtbar.",
+        "step_4_number": "04",
+        "step_4_title": "Tragfähig weiterdenken",
+        "step_4_body": "Nicht alles muss im ersten Release fertig sein. Aber Architektur, Integrationen, Betrieb und Weiterentwicklung werden früh genug berücksichtigt, damit die Richtung langfristig trägt."
+      },
+      {
+        "component": "about_working_benefits",
+        "eyebrow": "Was das für euch bedeutet",
+        "headline": "Weniger Reibung. Frühere Klarheit. Bessere Voraussetzungen für das, was folgt.",
+        "b1_title": "Direkte Verantwortung",
+        "b1_body": "Die Menschen, die eure Situation verstehen und die Richtung mitentwickeln, bleiben auch in der Umsetzung nah dran.",
+        "b2_title": "Früher etwas Greifbares",
+        "b2_body": "Zentrale Fragen werden nicht nur diskutiert. Sie werden so konkret, dass Teams sie sehen, testen und fundierter beurteilen können.",
+        "b3_title": "Bestehendes sinnvoll nutzen",
+        "b3_body": "Wir setzen auf Plattformen, Standards und Systeme, wenn sie ein gutes Fundament schaffen. Eigenständig entwickeln wir dort, wo Nutzererlebnis, Differenzierung oder Zukunftsfähigkeit es verlangen.",
+        "b4_title": "Keine künstliche Komplexität",
+        "b4_body": "Nicht jedes Vorhaben braucht ein grosses Programm. Wir arbeiten in einer Form, die zur Frage, zum Kontext und zur tatsächlichen Entscheidung passt."
+      },
+      {
+        "component": "about_team_reference",
+        "eyebrow": "Wer daran arbeitet",
+        "headline": "Direkt mit den Menschen, die Verantwortung tragen.",
+        "body": "Kenalu verbindet Strategie und Experience Design mit technischer Architektur und Engineering. Die Menschen, die ein Vorhaben verstehen, bleiben nah an den wichtigen Entscheidungen – vom ersten Gespräch bis zur Umsetzung.",
+        "person_1_name": "Dirk Fliescher",
+        "person_1_role": "Strategie & Experience Design",
+        "person_2_name": "Stanislav Raskin",
+        "person_2_role": "Engineering & Architektur",
+        "link_label": "Team kennenlernen →",
+        "link_url": "/team"
+      },
+      {
+        "component": "about_ecosystem_partners",
+        "eyebrow": "Ökosystem",
+        "headline": "Die richtigen Partner, wenn sie für das Vorhaben etwas beitragen.",
+        "intro": "kenalu arbeitet bewusst klein und verantwortungsvoll. Wenn ein Vorhaben zusätzliche Plattformkompetenz oder spezialisierte Umsetzung braucht, ergänzen ausgewählte Partner die Zusammenarbeit.",
+        "solution_partner_intro": "Plattformen, die wir dort einsetzen, wo sie für Commerce, Content oder digitale Produkte eine tragfähige Grundlage schaffen.",
+        "solution_partners": [
+          {
+            "component": "about_partner_item",
+            "name": "Emporix",
+            "description": "Composable-Commerce-Plattform für digitale Commerce-Erlebnisse, die flexibel an bestehende Prozesse, Daten und Systeme anschliessen müssen.",
+            "url": "",
+            "logo": {
+              "id": 188831327894803,
+              "filename": "https://a.storyblok.com/f/293099469334951/165x24/f66c8c1a42/emporix-cc.svg",
+              "alt": "emporix Logo"
+            },
+            "relationship_note": ""
+          },
+          {
+            "component": "about_partner_item",
+            "name": "Storyblok",
+            "description": "Headless-CMS für Inhalte, die Teams eigenständig pflegen und in unterschiedlichen digitalen Erlebnissen wiederverwenden können.",
+            "url": "",
+            "logo": {
+              "id": 190330233847182,
+              "filename": "https://a.storyblok.com/f/293099469334951/2387615/d9daaae536/kenalu-insight-zwei-jahre-ein-anderes-spiel.png",
+              "alt": "storyblok Logo"
+            },
+            "relationship_note": ""
+          }
+        ],
+        "service_partner_intro": "Spezialisierte Partner, die wir gezielt einbeziehen, wenn ihre Erfahrung für ein Vorhaben einen konkreten Unterschied macht.",
+        "service_partners": [
+          {
+            "component": "about_partner_item",
+            "name": "Beebase",
+            "description": "Ergänzt die Zusammenarbeit mit spezialisierter Expertise dort, wo sie für das Vorhaben relevant ist.",
+            "url": "",
+            "logo": {
+              "id": 188830950513894,
+              "filename": "https://a.storyblok.com/f/293099469334951/254x47/9f39c1038d/beebase-cc.svg",
+              "alt": "beebase Logo"
+            },
+            "relationship_note": ""
+          },
+          {
+            "component": "about_partner_item",
+            "name": "Skyquest",
+            "description": "Ergänzt die Zusammenarbeit mit zusätzlicher fachlicher und technischer Perspektive, wenn das Vorhaben dies verlangt.",
+            "url": "",
+            "logo": {
+              "id": 188830949924031,
+              "filename": "https://a.storyblok.com/f/293099469334951/1920x1080/f9c11d8ee7/skyquest-cc.svg",
+              "alt": "skyquest Logo"
+            },
+            "relationship_note": ""
+          },
+          {
+            "component": "about_partner_item",
+            "name": "Soulcode",
+            "description": "Ergänzt die Zusammenarbeit mit spezialisierter Umsetzungskompetenz, wenn zusätzliche Tiefe oder Kapazität sinnvoll ist.",
+            "url": "",
+            "logo": {
+              "id": 190138714494847,
+              "filename": "https://a.storyblok.com/f/293099469334951/1000x271/5fd8cd2cd6/soulcode-cc.svg",
+              "alt": "soulcode Logo"
+            },
+            "relationship_note": ""
+          }
+        ]
+      },
+      {
+        "component": "about_cta",
+        "eyebrow": "Nächster Schritt",
+        "headline": "Lasst uns klären, was bei euch wirklich sinnvoll ist.",
+        "body": "Ob ihr zuerst Klarheit braucht, eine Idee sichtbar machen wollt oder schon vor einem konkreten Produktentscheid steht: Wir schauen gemeinsam auf eure Situation und sagen euch ehrlich, welcher nächste Schritt sinnvoll sein könnte.",
+        "primary_label": "Gespräch starten →",
+        "primary_url": "/contact",
+        "secondary_label": "Leistungen ansehen →",
+        "secondary_url": "/services"
+      }
+    ],
+    "component": "page"
+  },
+  "published": true,
+  "slug": "about",
+  "path": null,
+  "full_slug": "about",
+  "default_root": null,
+  "disble_fe_editor": false,
+  "disable_fe_editor": false,
+  "parent": null,
+  "is_startpage": false,
+  "unpublished_changes": true,
+  "meta_data": null,
+  "imported_at": null,
+  "preview_token": {
+    "token": "42dc8ea46d912685a105fa1737761181ca09c9e4",
+    "timestamp": "1783107923"
+  },
+  "pinned": false,
+  "breadcrumbs": [],
+  "publish_at": null,
+  "expire_at": null,
+  "first_published_at": "2026-06-12T06:39:54.203Z",
+  "last_author": {
+    "id": 185941955308271,
+    "userid": "dirkfliescher",
+    "friendly_name": "dirkfliescher"
+  },
+  "last_author_id": 185941955308271,
+  "user_ids": [],
+  "space_role_ids": [],
+  "translated_slugs": [],
+  "localized_paths": [],
+  "position": -20,
+  "translated_stories": [],
+  "can_not_view": false,
+  "is_scheduled": null,
+  "scheduled_dates": null,
+  "ideas": [],
+  "current_version_id": 194225093292216,
+  "variant_type": null,
+  "experiment_ids": [],
+  "stage": null,
+  "stages": [],
+  "favourite_for_user_ids": []
+}

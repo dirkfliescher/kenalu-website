@@ -62,11 +62,17 @@ Fünf getrackte Scripts auf `origin/main` wurden in SEC-003 gehärtet:
 app/
   page.js                        Homepage (statisch + Storyblok)
   about/page.js                  Über kenalu / Arbeitsweise
-  services/page.js               Leistungsübersicht
-  services/klarheit/page.js      Service-Detail (statisch)
-  services/rapid-build/page.js   Service-Detail (statisch)
-  services/produkt/page.js       Service-Detail (statisch)
-  services/urteil/page.js        Service-Detail (statisch)
+  services/
+    page.js                      Leistungsübersicht (CMS-SERVICES-01: Storyblok-first)
+    _fallback-content.js         Statischer Fallback /services
+    klarheit/page.js             Service-Detail (CMS-SERVICES-01: Storyblok-first)
+    klarheit/_fallback-content.js
+    rapid-build/page.js          Service-Detail (CMS-SERVICES-01: Storyblok-first)
+    rapid-build/_fallback-content.js
+    produkt/page.js              Service-Detail (CMS-SERVICES-01: Storyblok-first)
+    produkt/_fallback-content.js
+    urteil/page.js               Service-Detail (CMS-SERVICES-01: Storyblok-first)
+    urteil/_fallback-content.js
   insights/page.js               Blog/Insights (Storyblok-dynamisch)
   insights/[slug]/page.js        Artikel-Detailseite
   lab/page.js                    Lab-Übersicht
@@ -96,12 +102,24 @@ components/
     AboutTeamReference.js        /about Team-Verweis (CMS-REBUILD-01)
     AboutEcosystemPartners.js    /about Partner-Ökosystem (CMS-REBUILD-01)
     AboutCta.js                  /about CTA (CMS-REBUILD-01)
+    ServicesHero.js              /services Hero (CMS-SERVICES-01)
+    ServicesCardGrid.js          /services Karten-Grid mit SVG-Visuals (CMS-SERVICES-01)
+    ServicesApproach.js          /services Arbeitsweise-Abschnitt (CMS-SERVICES-01)
+    ServicesCta.js               /services Abschluss-CTA (CMS-SERVICES-01)
+    ServiceHero.js               Service-Detail Hero, hero_variant + h1_wide (CMS-SERVICES-01)
+    ServiceScene.js              Service-Detail Szene/Moment davor (CMS-SERVICES-01)
+    ServiceArtifact.js           Service-Detail Arbeitsprobe, 4 Typen (CMS-SERVICES-01)
+    ServiceOutcome.js            Service-Detail Danach/Outcome (CMS-SERVICES-01)
+    ServiceHonestFit.js          Service-Detail Ehrliche Einordnung (CMS-SERVICES-01)
+    ServiceRelated.js            Service-Detail Andere Einstiege (CMS-SERVICES-01)
+    ServiceDetailCta.js          Service-Detail Abschluss-CTA (CMS-SERVICES-01)
     ...weitere Storyblok-Blöcke
-  DynamicBlock.js                Registry aller Storyblok-Block-Komponenten (about_* registriert)
+  DynamicBlock.js                Registry (about_* + services_* + service_* registriert)
   Nav.js, Footer.js, WaveBackground.js
 
 scripts/ (gitignored — nie committen)
   cms-rebuild-about.mjs          CMS-REBUILD-01: about_* in Storyblok aufbauen (lokal ausführen)
+  cms-services.mjs               CMS-SERVICES-01: services_* + service_* + 5 Stories (lokal ausführen)
   update-hero-labels.js          Storyblok: hero_label + contact_label leeren
 
 docs/                            Projektdokumentation (Markdown)
@@ -232,7 +250,7 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 
 ---
 
-## Offene Punkte (Stand: Juli 2026)
+## Offene Punkte (Stand: 2026-07-03)
 
 | Punkt | Status | Details |
 |-------|--------|---------|
@@ -240,10 +258,11 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 | OPS-002: WIP-Branch | ✅ Vorhanden | `wip/cms-002-about-storyblok-first` → zeigt auf `49f0eb2`. CMS-002a-Arbeit lokal gesichert (Worktree + Branch). |
 | SEC-004: History-Cleanup | 📋 Geplant | `git filter-repo` für veralteten Token aus Git-History. Separate Absprache erforderlich. Voraussetzungen in `docs/arbeitsberichte/SEC-002-token-remediation-plan.md`. |
 | Neuer Management-Token | 🔓 Freigegeben | SEC-003 ist committed und gepusht. Token kann jetzt erstellt werden: scoped auf Space, nur in `.env.local`, nie committen. Env-Var: `STORYBLOK_MANAGEMENT_TOKEN`. |
-| CMS-REBUILD-01: /about Storyblok-first | 🔧 Code fertig, lokal ausführen | 7 React-Komponenten (`about_*`), `page.js`, `_fallback-content.js` und `DynamicBlock.js` aktualisiert. Script `scripts/cms-rebuild-about.mjs` bereit. Lokal ausführen: `rm .git/index.lock && git add [Dateien] && git commit`, dann `npm run build`, dann `--dry-run`, `--apply`, `--verify`. Kein Push, kein Deploy, kein Publish. |
+| CMS-REBUILD-01: /about Storyblok-first | 🔧 Lokal ausführen | 7 React-Komponenten (`about_*`), `page.js`, `_fallback-content.js` und `DynamicBlock.js` fertig. Script `scripts/cms-rebuild-about.mjs` bereit. Merge-Commit fehlt noch wegen `.git/index.lock`: `rm .git/index.lock && git commit -m "merge: feat/cms-rebuild-about → main (about_* Komponenten)" && git push origin main`. Danach `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-rebuild-about.mjs --apply`. |
+| CMS-SERVICES-01: /services Storyblok-first | 🔧 Lokal ausführen | 11 React-Komponenten (`services_*` + `service_*`), 5 `page.js` + 5 `_fallback-content.js`, `DynamicBlock.js` fertig. Script `scripts/cms-services.mjs` bereit. **Reihenfolge:** (1) `npm run build` — Build prüfen. (2) `git add -A && git commit -m "feat: CMS-SERVICES-01 — /services Storyblok-first" && git push`. (3) `node scripts/cms-services.mjs` (dry-run). (4) `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-services.mjs --apply`. (5) Stories in Storyblok Visual Editor manuell publizieren. |
 | About "Über kenalu"-Dopplung | 🔧 Script bereit | `scripts/update-hero-labels.js` prüft und behebt die Dopplung. Lokal ausführen: `node scripts/update-hero-labels.js`. Scripts-Verzeichnis ist gitignored. |
 | Homepage hero_label in Storyblok | ℹ️ Workaround | Per CSS ausgeblendet. Kann via `scripts/update-hero-labels.js` geleert werden. |
-| DynamicBlock.js vollständig? | ✅ Aktuell | about_* Komponenten registriert (CMS-REBUILD-01). Bei neuen Komponenten immer sicherstellen, dass Block-Key eingetragen ist. |
+| DynamicBlock.js vollständig? | ✅ Aktuell | about_* + services_* + service_* registriert. NO_REVEAL-Set enthält `services_hero` und `service_hero`. Bei neuen Komponenten immer sicherstellen, dass Block-Key eingetragen ist. |
 
 ---
 

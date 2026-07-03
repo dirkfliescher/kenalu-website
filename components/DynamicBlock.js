@@ -28,6 +28,19 @@ import ProcessJourney from './blocks/ProcessJourney';
 import KaiDialogue from './blocks/KaiDialogue';
 import EcosystemPartners from './blocks/EcosystemPartners';
 
+// CMS-SERVICES-01: services_* und service_* Komponenten
+import ServicesHero from './blocks/ServicesHero';
+import ServicesCardGrid from './blocks/ServicesCardGrid';
+import ServicesApproach from './blocks/ServicesApproach';
+import ServicesCta from './blocks/ServicesCta';
+import ServiceHero from './blocks/ServiceHero';
+import ServiceScene from './blocks/ServiceScene';
+import ServiceArtifact from './blocks/ServiceArtifact';
+import ServiceOutcome from './blocks/ServiceOutcome';
+import ServiceHonestFit from './blocks/ServiceHonestFit';
+import ServiceRelated from './blocks/ServiceRelated';
+import ServiceDetailCta from './blocks/ServiceDetailCta';
+
 // CMS-REBUILD-01: about_* Komponenten für /about
 import AboutHero from './blocks/AboutHero';
 import AboutWorkingWhy from './blocks/AboutWorkingWhy';
@@ -67,6 +80,21 @@ const Components = {
   kai_dialogue: KaiDialogue,
   ecosystem_partners: EcosystemPartners,
 
+  // CMS-SERVICES-01: services_* Übersicht
+  services_hero: ServicesHero,
+  services_card_grid: ServicesCardGrid,
+  services_approach: ServicesApproach,
+  services_cta: ServicesCta,
+
+  // CMS-SERVICES-01: service_* Detail
+  service_hero: ServiceHero,
+  service_scene: ServiceScene,
+  service_artifact: ServiceArtifact,
+  service_outcome: ServiceOutcome,
+  service_honest_fit: ServiceHonestFit,
+  service_related: ServiceRelated,
+  service_detail_cta: ServiceDetailCta,
+
   // CMS-REBUILD-01: about_* Komponenten
   about_hero: AboutHero,
   about_working_why: AboutWorkingWhy,
@@ -78,7 +106,7 @@ const Components = {
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist
-const NO_REVEAL = new Set(['hero', 'page_hero', 'about_hero']);
+const NO_REVEAL = new Set(['hero', 'page_hero', 'about_hero', 'services_hero', 'service_hero']);
 
 export default function DynamicBlock({ blok }) {
   if (!blok) return null;

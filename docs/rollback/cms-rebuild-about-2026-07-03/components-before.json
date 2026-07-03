@@ -1,0 +1,4250 @@
+[
+  {
+    "name": "about_beliefs",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-12T05:51:01.287Z",
+    "updated_at": "2026-06-30T19:25:29.378Z",
+    "id": 186588615838079,
+    "schema": {
+      "about_beliefs_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "lOGC-QP_T8C2DgU_ldvIzg"
+      },
+      "about_beliefs_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "XtMw4z68TYmcZ76egDVwzA"
+      },
+      "about_beliefs_items": {
+        "type": "bloks",
+        "pos": 2,
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "belief_item",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "component_denylist": [],
+        "id": "yANVATIXSYSxHTNy86Z2kg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "about_beliefs",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "about_cta",
+    "display_name": "about_cta",
+    "description": null,
+    "created_at": "2026-07-03T19:43:54.500Z",
+    "updated_at": "2026-07-03T19:43:54.500Z",
+    "id": 194225088519423,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "display_name": "Eyebrow",
+        "id": "H5kt1xROQ-aAcbku1S5Xaw"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "display_name": "Überschrift (h2)",
+        "required": true,
+        "id": "vuQLFdaXT_yKkBGBPmCvRw"
+      },
+      "body": {
+        "type": "textarea",
+        "pos": 2,
+        "display_name": "Fliesstext",
+        "id": "AV9bsqwMQjmS7Gk6bPP4Nw"
+      },
+      "primary_label": {
+        "type": "text",
+        "pos": 3,
+        "display_name": "Primär-Button: Text",
+        "description": "z.B. Gespräch starten →",
+        "id": "kKXL5CJhRg-miDIArefyyQ"
+      },
+      "primary_url": {
+        "type": "text",
+        "pos": 4,
+        "display_name": "Primär-Button: URL",
+        "description": "z.B. /contact",
+        "id": "-P6CsizLSpejAPs2ON0lkQ"
+      },
+      "secondary_label": {
+        "type": "text",
+        "pos": 5,
+        "display_name": "Sekundär-Link: Text",
+        "description": "z.B. Leistungen ansehen →",
+        "id": "kDNqFAbhR1W00UEHVoPd0Q"
+      },
+      "secondary_url": {
+        "type": "text",
+        "pos": 6,
+        "display_name": "Sekundär-Link: URL",
+        "description": "z.B. /services",
+        "id": "B1APazykQjq58p_l05W6_Q"
+      }
+    },
+    "image": null,
+    "preview_field": "headline",
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "about_cta",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "about_ecosystem_partners",
+    "display_name": "about_ecosystem_partners",
+    "description": null,
+    "created_at": "2026-07-03T19:43:54.089Z",
+    "updated_at": "2026-07-03T19:43:54.089Z",
+    "id": 194225086840062,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "display_name": "Eyebrow",
+        "id": "GO2UYiTJSLSEyDA-xfJlqQ"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "display_name": "Überschrift (h2)",
+        "required": true,
+        "id": "m3HhvTbpTymr6Q_Fl0hwdA"
+      },
+      "intro": {
+        "type": "textarea",
+        "pos": 2,
+        "display_name": "Einleitung",
+        "id": "2nFaV_XKSAW-hkQksszw4Q"
+      },
+      "solution_partner_intro": {
+        "type": "textarea",
+        "pos": 3,
+        "display_name": "Solution Partner: Einleitung",
+        "id": "Q_FPUCLzTzinW_c2dK7c9A"
+      },
+      "solution_partners": {
+        "type": "bloks",
+        "pos": 4,
+        "display_name": "Solution Partner",
+        "required": true,
+        "description": "Technologie-/Plattformpartner. Mindestens 1 Eintrag erforderlich.",
+        "restrict_components": true,
+        "component_whitelist": [
+          "about_partner_item"
+        ],
+        "id": "hcAyCq4RR1idUv-djKG4TQ"
+      },
+      "service_partner_intro": {
+        "type": "textarea",
+        "pos": 5,
+        "display_name": "Service Partner: Einleitung",
+        "id": "sJJrC3piTh65FNdYggzGlg"
+      },
+      "service_partners": {
+        "type": "bloks",
+        "pos": 6,
+        "display_name": "Service Partner",
+        "required": true,
+        "description": "Spezialisierte Umsetzungspartner. Mindestens 1 Eintrag erforderlich.",
+        "restrict_components": true,
+        "component_whitelist": [
+          "about_partner_item"
+        ],
+        "id": "mXen77BBRi-9f4_zyFGhxA"
+      }
+    },
+    "image": null,
+    "preview_field": "headline",
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "about_ecosystem_partners",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "about_hero",
+    "display_name": "about_hero",
+    "description": null,
+    "created_at": "2026-07-03T19:43:52.186Z",
+    "updated_at": "2026-07-03T19:43:52.186Z",
+    "id": 194225079041273,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "display_name": "Eyebrow",
+        "description": "Kleines Label über der Überschrift (z.B. ARBEITSWEISE)",
+        "id": "H4WM3LcgSfi4AQMvSFbOYA"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "display_name": "Überschrift (h1)",
+        "required": true,
+        "description": "Hauptüberschrift des Heroes",
+        "id": "pEtpMNedSuKnTErcpKY8dw"
+      },
+      "body": {
+        "type": "textarea",
+        "pos": 2,
+        "display_name": "Fliesstext",
+        "description": "Kurzer Einleitungstext unter der Überschrift",
+        "id": "iroHgvElQgukPM3mJYfCcw"
+      }
+    },
+    "image": null,
+    "preview_field": "headline",
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "about_hero",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "about_intro",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-12T05:02:28.999Z",
+    "updated_at": "2026-06-12T06:33:19.047Z",
+    "id": 186576687106233,
+    "schema": {
+      "about_intro_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "DTwO54UNQI2_i48tUYDhDQ"
+      },
+      "about_intro_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "ztmyocngQ76BgsoccpWsmg"
+      },
+      "about_intro_text_1": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "OMSny0GqQYaEIfJcpC1YAA"
+      },
+      "about_intro_text_2": {
+        "type": "textarea",
+        "pos": 3,
+        "id": "w_yxmp-cRuuxPrEw_LgMxA"
+      },
+      "about_intro_text_3": {
+        "type": "textarea",
+        "pos": 4,
+        "id": "ZOlmnyNGQZysiGeDcZ17vw"
+      },
+      "about_intro_text_4": {
+        "type": "textarea",
+        "pos": 5,
+        "id": "s26G2mRkTKmQMi_H0auesw"
+      },
+      "about_intro_link_text": {
+        "type": "text",
+        "pos": 6,
+        "id": "Xb6hpKfTRVW7r00jcWhLKw"
+      },
+      "about_intro_image": {
+        "type": "asset",
+        "pos": 7,
+        "id": "_LSQh-mcSkKpVpcDriFbHw"
+      },
+      "about_intro_image_alt": {
+        "type": "asset",
+        "pos": 8,
+        "id": "tNDJdQ3zRouJRQ0OeyIFJg"
+      },
+      "about_intro_caption": {
+        "type": "text",
+        "pos": 9,
+        "id": "cmCEYxPVSw2auOg87B8NhA"
+      },
+      "about_intro_link_url": {
+        "type": "text",
+        "pos": 10,
+        "id": "VtMWJLtcTV6cJQlboPe6Ag"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "about_intro",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "about_name",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-12T05:52:11.742Z",
+    "updated_at": "2026-06-12T05:52:58.184Z",
+    "id": 186588904425857,
+    "schema": {
+      "about_name_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "H__nQAFlSq-Zx3nk0HcMMw"
+      },
+      "about_name_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "p5xLF0vyTbyyEzkIdl-GhA"
+      },
+      "about_name_text_1": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "F8jV5hkrQne9YPhb_GyxTA"
+      },
+      "about_name_text_2": {
+        "type": "textarea",
+        "pos": 3,
+        "id": "HQZkjj1rQImtXYvzHHTm5w"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "about_name",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "about_partner_item",
+    "display_name": "about_partner_item",
+    "description": null,
+    "created_at": "2026-07-03T19:43:51.805Z",
+    "updated_at": "2026-07-03T19:43:51.805Z",
+    "id": 194225077480696,
+    "schema": {
+      "name": {
+        "type": "text",
+        "pos": 0,
+        "display_name": "Name",
+        "required": true,
+        "description": "Offizieller Partnername — erscheint als Textlabel wenn kein Logo vorhanden",
+        "id": "0iXtjDGISmOJvI1JPs1jHQ"
+      },
+      "description": {
+        "type": "textarea",
+        "pos": 1,
+        "display_name": "Beschreibung",
+        "description": "Kurze Beschreibung der Partnerschaft (1–3 Sätze)",
+        "id": "bTOZid8eSq6JVz6ZASRBXg"
+      },
+      "url": {
+        "type": "text",
+        "pos": 2,
+        "display_name": "URL (optional)",
+        "description": "Wenn gesetzt, wird die Karte als Link gerendert",
+        "id": "ykw6NdRDSWea3Bp4dFvUCQ"
+      },
+      "logo": {
+        "type": "asset",
+        "pos": 3,
+        "display_name": "Logo (optional)",
+        "description": "Partner-Logo aus Storyblok-Assets. Wenn nicht vorhanden: Partnername als Textlabel",
+        "filetypes": [
+          "images"
+        ],
+        "id": "e_kjba4yQCWfzJKwpliS-g"
+      },
+      "relationship_note": {
+        "type": "text",
+        "pos": 4,
+        "display_name": "Beziehungshinweis (optional)",
+        "description": "Optionaler Hinweis zur Art der Zusammenarbeit",
+        "id": "ZzhC9xklRCWjxR1kydyxpA"
+      }
+    },
+    "image": null,
+    "preview_field": "name",
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "about_partner_item",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "about_team",
+    "display_name": "About Team",
+    "description": null,
+    "created_at": "2026-06-22T16:41:22.904Z",
+    "updated_at": "2026-06-22T16:41:22.904Z",
+    "id": 190287392382560,
+    "schema": {
+      "about_team_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "vKxc-sVMQpKhObXBMIttxQ"
+      },
+      "about_team_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "hPWinsbLQ8a_wgD-VdMHkg"
+      },
+      "about_team_sub": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "fHpJPHMtRWSEkoonv_LsRg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "About Team",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "about_team_reference",
+    "display_name": "about_team_reference",
+    "description": null,
+    "created_at": "2026-07-03T19:43:53.703Z",
+    "updated_at": "2026-07-03T19:43:53.703Z",
+    "id": 194225085259005,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "display_name": "Eyebrow",
+        "id": "6NvdSqjWQtGByTtNjwQkmA"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "display_name": "Überschrift (h2)",
+        "required": true,
+        "id": "zji5AbhySaqJKZWkxrzi9g"
+      },
+      "body": {
+        "type": "textarea",
+        "pos": 2,
+        "display_name": "Einleitungstext",
+        "id": "ew6zVSRQQLSHBuGMCyuOGA"
+      },
+      "person_1_name": {
+        "type": "text",
+        "pos": 3,
+        "display_name": "Person 1: Name",
+        "id": "3HSx0NOuTyWXR9CPvLEbxw"
+      },
+      "person_1_role": {
+        "type": "text",
+        "pos": 4,
+        "display_name": "Person 1: Rolle",
+        "id": "Uk7-wLUTQZOuGvwdkOaprg"
+      },
+      "person_2_name": {
+        "type": "text",
+        "pos": 5,
+        "display_name": "Person 2: Name",
+        "id": "XZw1Vs-7RQyu8h7jwnU-xw"
+      },
+      "person_2_role": {
+        "type": "text",
+        "pos": 6,
+        "display_name": "Person 2: Rolle",
+        "id": "u5G7920IQMiXxS72AOlWvg"
+      },
+      "link_label": {
+        "type": "text",
+        "pos": 7,
+        "display_name": "Link-Text",
+        "description": "z.B. Team kennenlernen →",
+        "id": "uf49aIjNSoyhGqGWb1goxg"
+      },
+      "link_url": {
+        "type": "text",
+        "pos": 8,
+        "display_name": "Link-URL",
+        "description": "Interner Pfad, z.B. /team",
+        "id": "KBUYABN7Q9qdi-dtJ35h9g"
+      }
+    },
+    "image": null,
+    "preview_field": "headline",
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "about_team_reference",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "about_working_benefits",
+    "display_name": "about_working_benefits",
+    "description": null,
+    "created_at": "2026-07-03T19:43:53.324Z",
+    "updated_at": "2026-07-03T19:43:53.324Z",
+    "id": 194225083702524,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "display_name": "Eyebrow",
+        "id": "3I2SUyneRAKoNh_lqY62cQ"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "display_name": "Überschrift (h2)",
+        "required": true,
+        "id": "ADY8WO2_RUCf4A_ZeSvxzw"
+      },
+      "b1_title": {
+        "type": "text",
+        "pos": 2,
+        "display_name": "Vorteil 1: Titel",
+        "required": true,
+        "id": "MysoWSjqQe6yrRSyen_-jQ"
+      },
+      "b1_body": {
+        "type": "textarea",
+        "pos": 3,
+        "display_name": "Vorteil 1: Text",
+        "id": "iAQcMqVdQBO1nQsF6l1TNA"
+      },
+      "b2_title": {
+        "type": "text",
+        "pos": 4,
+        "display_name": "Vorteil 2: Titel",
+        "id": "Wu6uOibUQKCsWpnLC7bljA"
+      },
+      "b2_body": {
+        "type": "textarea",
+        "pos": 5,
+        "display_name": "Vorteil 2: Text",
+        "id": "UqsjqSSMRE6cSXdsCgk7Hg"
+      },
+      "b3_title": {
+        "type": "text",
+        "pos": 6,
+        "display_name": "Vorteil 3: Titel",
+        "id": "lo_K9lS-SFWO3IRJonqh9w"
+      },
+      "b3_body": {
+        "type": "textarea",
+        "pos": 7,
+        "display_name": "Vorteil 3: Text",
+        "id": "0swzZwlITJi9zRUNfd7H0A"
+      },
+      "b4_title": {
+        "type": "text",
+        "pos": 8,
+        "display_name": "Vorteil 4: Titel",
+        "id": "b_zBBiBKRMqw-6abHccWcg"
+      },
+      "b4_body": {
+        "type": "textarea",
+        "pos": 9,
+        "display_name": "Vorteil 4: Text",
+        "id": "gxMb1BkkS1il7P8058_KqQ"
+      }
+    },
+    "image": null,
+    "preview_field": "headline",
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "about_working_benefits",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "about_working_steps",
+    "display_name": "about_working_steps",
+    "description": null,
+    "created_at": "2026-07-03T19:43:52.953Z",
+    "updated_at": "2026-07-03T19:43:52.953Z",
+    "id": 194225082182907,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "display_name": "Eyebrow",
+        "id": "d8LwOy07Qbaqkg6dtp3Omg"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "display_name": "Überschrift (h2)",
+        "required": true,
+        "id": "HSmlP38kSxqshFwR8_iGVQ"
+      },
+      "intro": {
+        "type": "textarea",
+        "pos": 2,
+        "display_name": "Einleitung",
+        "id": "bVW1HmARQhivv6g4SSQ1gA"
+      },
+      "step_1_number": {
+        "type": "text",
+        "pos": 3,
+        "display_name": "Schritt 1: Nummer",
+        "description": "z.B. 01",
+        "id": "D7bSYo0aREqJBB1ShoSOng"
+      },
+      "step_1_title": {
+        "type": "text",
+        "pos": 4,
+        "display_name": "Schritt 1: Titel",
+        "required": true,
+        "id": "Vd1nn2FxTeqoalqRt_yjPQ"
+      },
+      "step_1_body": {
+        "type": "textarea",
+        "pos": 5,
+        "display_name": "Schritt 1: Text",
+        "id": "CoV3CI1DQSGpDWjYUasaoA"
+      },
+      "step_2_number": {
+        "type": "text",
+        "pos": 6,
+        "display_name": "Schritt 2: Nummer",
+        "id": "uZjUr4wzQVGt3qSfyZEH2w"
+      },
+      "step_2_title": {
+        "type": "text",
+        "pos": 7,
+        "display_name": "Schritt 2: Titel",
+        "id": "DUFfiHKvQXuANEepcBXjoQ"
+      },
+      "step_2_body": {
+        "type": "textarea",
+        "pos": 8,
+        "display_name": "Schritt 2: Text",
+        "id": "MQAEcR57T1mHaR8Z9Fe97g"
+      },
+      "step_3_number": {
+        "type": "text",
+        "pos": 9,
+        "display_name": "Schritt 3: Nummer",
+        "id": "wGARdR7rT0GAzj6alwuDkw"
+      },
+      "step_3_title": {
+        "type": "text",
+        "pos": 10,
+        "display_name": "Schritt 3: Titel",
+        "id": "BaZj9f6uTa2fXxyaXdW9lQ"
+      },
+      "step_3_body": {
+        "type": "textarea",
+        "pos": 11,
+        "display_name": "Schritt 3: Text",
+        "id": "KWZK-irYT2ym91KjcOMQUQ"
+      },
+      "step_4_number": {
+        "type": "text",
+        "pos": 12,
+        "display_name": "Schritt 4: Nummer",
+        "id": "sWz4knqSTuis81tlm3EYnA"
+      },
+      "step_4_title": {
+        "type": "text",
+        "pos": 13,
+        "display_name": "Schritt 4: Titel",
+        "id": "__IgPlH7SDezNHbqAqT6Yw"
+      },
+      "step_4_body": {
+        "type": "textarea",
+        "pos": 14,
+        "display_name": "Schritt 4: Text",
+        "id": "0Exr-_XQQiat-sTRqDoZXg"
+      }
+    },
+    "image": null,
+    "preview_field": "headline",
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "about_working_steps",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "about_working_why",
+    "display_name": "about_working_why",
+    "description": null,
+    "created_at": "2026-07-03T19:43:52.574Z",
+    "updated_at": "2026-07-03T19:43:52.574Z",
+    "id": 194225080630522,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "display_name": "Eyebrow",
+        "id": "5SIfF2VCQROnRBgkn17MEQ"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "display_name": "Überschrift (h2)",
+        "required": true,
+        "id": "Wy1PGHL0QOmOS0SLYWTuTw"
+      },
+      "body_1": {
+        "type": "textarea",
+        "pos": 2,
+        "display_name": "Absatz 1",
+        "id": "UGay32t8RJCbYRsWIHFynw"
+      },
+      "body_2": {
+        "type": "textarea",
+        "pos": 3,
+        "display_name": "Absatz 2",
+        "id": "RtVl068MTqKqFJ8TNYGciQ"
+      },
+      "body_3": {
+        "type": "textarea",
+        "pos": 4,
+        "display_name": "Absatz 3",
+        "id": "EOUwBn3JTIu1k0qA1CC1zg"
+      }
+    },
+    "image": null,
+    "preview_field": "headline",
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "about_working_why",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "assistant_callout",
+    "display_name": "Assistant Callout",
+    "description": null,
+    "created_at": "2026-06-29T18:18:17.737Z",
+    "updated_at": "2026-06-29T18:18:17.737Z",
+    "id": 192788470736755,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "display_name": "Eyebrow",
+        "pos": 0,
+        "id": "N0p6NOlnQOm9IS6NqT5uzg"
+      },
+      "headline": {
+        "type": "text",
+        "display_name": "Headline",
+        "pos": 1,
+        "id": "QbUko05URi2-Vcey7Hlcxw"
+      },
+      "text": {
+        "type": "textarea",
+        "display_name": "Text",
+        "pos": 2,
+        "id": "37_CFeiuS3aoiaJr90izFQ"
+      },
+      "cta_label": {
+        "type": "text",
+        "display_name": "CTA Label",
+        "pos": 3,
+        "id": "lESYc0RfR1y6iZaoIweWnA"
+      },
+      "notice": {
+        "type": "textarea",
+        "display_name": "Hinweis",
+        "pos": 4,
+        "id": "xigXCtg_SUOPnmfDHNJr2g"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Assistant Callout",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "belief_item",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-12T05:50:10.822Z",
+    "updated_at": "2026-06-12T06:29:32.633Z",
+    "id": 186588409133438,
+    "schema": {
+      "belief_item_quote": {
+        "type": "textarea",
+        "pos": 0,
+        "id": "-ucasLylQlC1LMAP5Ys3YA"
+      },
+      "belief_item_text": {
+        "type": "textarea",
+        "pos": 1,
+        "id": "-E-uL2G7RqmAb0CSPnzqpA"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "belief_item",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "contact_section",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-18T14:11:24.782Z",
+    "updated_at": "2026-06-18T14:14:44.989Z",
+    "id": 188834958471301,
+    "schema": {
+      "contact_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "l23WBmD9RqeEQUpDNKll6Q"
+      },
+      "contact_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "G-kgCPhmTTKRAFfhvFRC4A"
+      },
+      "contact_intro": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "17Xd3TcpRKOv1L_eglRC2Q"
+      },
+      "contact_note": {
+        "type": "textarea",
+        "pos": 3,
+        "id": "gKXawzwmSKiKEq3xqxpCWA"
+      },
+      "contact_email": {
+        "type": "text",
+        "pos": 4,
+        "id": "oQL02GdqRPCTNzEOV-zLrA"
+      },
+      "contact_location": {
+        "type": "text",
+        "pos": 5,
+        "id": "fJnZEgmvQDed3piQWtDe7w"
+      },
+      "contact_linkedin_url": {
+        "type": "text",
+        "pos": 6,
+        "id": "tVnRgpNcRfeOEyh7Li1qCA"
+      },
+      "contact_booking_headline": {
+        "type": "text",
+        "pos": 7,
+        "id": "eUQ_pfLPS7OlNwtLw85n5A"
+      },
+      "booking_intro": {
+        "type": "textarea",
+        "pos": 8,
+        "id": "YOA6XA6ES-eBbvNmwMX63w"
+      },
+      "booking_calendly_url": {
+        "type": "text",
+        "pos": 9,
+        "id": "3FllnfK5QzKTcqdb0tX7yQ"
+      },
+      "booking_qualifier_responses": {
+        "type": "textarea",
+        "pos": 10,
+        "id": "4yEKui4IRuuoECqi2LkQWg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "contact_section",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "cta_section",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-10T19:45:41.963Z",
+    "updated_at": "2026-06-12T06:42:19.683Z",
+    "id": 186085957485977,
+    "schema": {
+      "cta_section_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "JTYdZ1FkQBOK1J0eq-2aGQ"
+      },
+      "cta_section_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "E23pma__StSZUXm5lZKfWQ"
+      },
+      "cta_section_subline": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "7nzrUhGoQcqUSJrvSrOgOA"
+      },
+      "cta_section_cta_text": {
+        "type": "text",
+        "pos": 3,
+        "id": "NrOvu97FT9S50vggNsMxcA",
+        "display_name": "cta__section_cta_text"
+      },
+      "cta_section_cta_link": {
+        "type": "text",
+        "pos": 4,
+        "id": "nHKU6dpgQRe7s4aNmcvf9g"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "cta_section",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "ecosystem_partner_item",
+    "display_name": "Ecosystem Partner Item",
+    "description": null,
+    "created_at": "2026-06-30T19:25:28.410Z",
+    "updated_at": "2026-06-30T19:25:28.410Z",
+    "id": 193158874774512,
+    "schema": {
+      "name": {
+        "type": "text",
+        "display_name": "Name",
+        "required": true,
+        "pos": 0,
+        "id": "A71vie6pRYOV3iFY-zNwqQ"
+      },
+      "logo": {
+        "type": "asset",
+        "display_name": "Logo (optional)",
+        "filetypes": [
+          "images"
+        ],
+        "pos": 1,
+        "id": "_iQPfNn7Qcad-rGcBFKdwg"
+      },
+      "description": {
+        "type": "textarea",
+        "display_name": "Beschreibung",
+        "pos": 2,
+        "id": "6Y1YGteNSY21xvmPGd7XdQ"
+      },
+      "url": {
+        "type": "text",
+        "display_name": "URL (optional – nur wenn freigegeben)",
+        "pos": 3,
+        "id": "6p4ue3k9REqLQLa17DzPqA"
+      },
+      "relationship_note": {
+        "type": "text",
+        "display_name": "Relationship Note (optional – nur wenn faktisch belegt)",
+        "pos": 4,
+        "id": "KoBR_VMeTXuINm1JD14UEg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Ecosystem Partner Item",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "ecosystem_partners",
+    "display_name": "Ecosystem Partners",
+    "description": null,
+    "created_at": "2026-06-30T19:25:28.744Z",
+    "updated_at": "2026-06-30T19:25:29.793Z",
+    "id": 193158876142577,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "display_name": "Eyebrow",
+        "pos": 0,
+        "id": "AjVSle6_S0q5His6lX8Paw"
+      },
+      "headline": {
+        "type": "text",
+        "display_name": "Headline",
+        "pos": 1,
+        "id": "SbwmiUZjRm6Gs-3Y26YPmw"
+      },
+      "intro": {
+        "type": "textarea",
+        "display_name": "Intro",
+        "pos": 2,
+        "id": "VK4IkNnxT7Stl3vfjvrG3g"
+      },
+      "solution_partner_intro": {
+        "type": "textarea",
+        "display_name": "Solution Partner – Einleitungstext",
+        "pos": 3,
+        "id": "O0yTG8zPTXuVcy_UkvdMmw"
+      },
+      "solution_partners": {
+        "type": "bloks",
+        "display_name": "Solution Partner",
+        "component_whitelist": [
+          "ecosystem_partner_item",
+          "ecosystem_partners"
+        ],
+        "pos": 4,
+        "id": "Om95FPC6SHqJYkDj7xZ47w"
+      },
+      "service_partner_intro": {
+        "type": "textarea",
+        "display_name": "Service Partner – Einleitungstext",
+        "pos": 5,
+        "id": "bNHHcAdxR1u0Ucp842yWyg"
+      },
+      "service_partners": {
+        "type": "bloks",
+        "display_name": "Service Partner",
+        "component_whitelist": [
+          "ecosystem_partner_item",
+          "ecosystem_partners"
+        ],
+        "pos": 6,
+        "id": "q-tdL6IDSZyTLkp9e531cg"
+      },
+      "tools_headline": {
+        "type": "text",
+        "display_name": "Werkzeuge – Titel",
+        "pos": 7,
+        "id": "i7XQEaKqQvCuZ5eT3lK1Qw"
+      },
+      "tools_text": {
+        "type": "textarea",
+        "display_name": "Werkzeuge – Text",
+        "pos": 8,
+        "id": "bhcN8TEdRlaCZgKPtoYazQ"
+      },
+      "tools": {
+        "type": "textarea",
+        "display_name": "Werkzeuge (je Zeile ein Name, z.B. Claude)",
+        "description": "Nur Textlabels. Keine Links, keine Logos. Max. 3–4 Einträge.",
+        "pos": 9,
+        "id": "QBSqJ0eaTHitDoY0Xt_JfA"
+      },
+      "closing_note": {
+        "type": "text",
+        "display_name": "Abschlusshinweis",
+        "pos": 10,
+        "id": "MkmMGAjuTm-gz7cHqCy3CA"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Ecosystem Partners",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "experience_item",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-16T09:33:46.761Z",
+    "updated_at": "2026-06-16T09:34:20.793Z",
+    "id": 188058938422025,
+    "schema": {
+      "experience_item_name": {
+        "type": "text",
+        "pos": 0,
+        "id": "jsHMNMfEQOWWexbxzfmYow"
+      },
+      "experience_item_logo": {
+        "type": "asset",
+        "pos": 1,
+        "id": "v5I6__5ISVa4yhpSVit2wg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "experience_item",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "experience_wall",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-16T09:32:33.757Z",
+    "updated_at": "2026-06-30T19:25:30.127Z",
+    "id": 188058639393542,
+    "schema": {
+      "experience_wall_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "DmN-M9hzTpKXkTiPmBGwMA"
+      },
+      "experience_wall_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "C5q__SydSxKK_Gc2NzsvBg"
+      },
+      "experience_wall_note": {
+        "type": "text",
+        "pos": 2,
+        "id": "Ppb9DZ9xTju3jaXS2qAhdw"
+      },
+      "experience_wall_items": {
+        "type": "bloks",
+        "pos": 3,
+        "restrict_type": "",
+        "restrict_components": true,
+        "id": "K7euE1lFSxC8QcxTzl8_2Q",
+        "component_whitelist": [
+          "experience_item",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "component_denylist": []
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "experience_wall",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "feature_item",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-11T13:03:15.215Z",
+    "updated_at": "2026-06-11T13:40:49.404Z",
+    "id": 186340946804820,
+    "schema": {
+      "feature_item_title": {
+        "type": "text",
+        "pos": 0,
+        "id": "hggrQMwuTGaVHmNHrvDzzg"
+      },
+      "feature_item_text": {
+        "type": "textarea",
+        "pos": 1,
+        "id": "xytbLuV3T9C4c6Mg9CpcmQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "feature_item",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "feature_list",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-11T13:14:30.336Z",
+    "updated_at": "2026-06-30T19:25:30.463Z",
+    "id": 186343712100587,
+    "schema": {
+      "feature_list_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "1GNEfCxBSVuH-bS-T6jn8g"
+      },
+      "feature_list_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "xJw1kt8GS42PxkhdQISPgA"
+      },
+      "feature_list_text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "i9UV2jl6RA6rs0vBEKITyg"
+      },
+      "feature_list_link_text": {
+        "type": "text",
+        "pos": 3,
+        "id": "wQSpqeopSeOtrWuJbx2_yQ"
+      },
+      "feature_list_link_url": {
+        "type": "text",
+        "pos": 4,
+        "id": "7LFaD16YQIyjsYA2UmbnPQ"
+      },
+      "feature_list_items": {
+        "type": "bloks",
+        "pos": 5,
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "feature_item",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "component_denylist": [],
+        "id": "s4ImaquqQfmMAVmC3wb0Tg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "feature_list",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "footer",
+    "display_name": "Footer",
+    "description": null,
+    "created_at": "2026-06-22T16:53:20.517Z",
+    "updated_at": "2026-06-22T16:53:20.517Z",
+    "id": 190290331725410,
+    "schema": {
+      "footer_tagline": {
+        "type": "text",
+        "pos": 0,
+        "id": "JPAwPVRrSHuhwyHIUL0XpQ"
+      },
+      "footer_email": {
+        "type": "text",
+        "pos": 1,
+        "id": "NgxJfZ-FQ5ShPTlIFzqhCw"
+      },
+      "footer_address": {
+        "type": "text",
+        "pos": 2,
+        "id": "WFD2eZQcQICy5ndZ8D4HoA"
+      },
+      "footer_copyright": {
+        "type": "text",
+        "pos": 3,
+        "id": "UEwYvhVDSs6gSIR5cDWLuQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": true,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Footer",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "grid",
+    "display_name": null,
+    "description": null,
+    "created_at": "2026-06-10T13:22:54.347Z",
+    "updated_at": "2026-06-10T13:22:54.347Z",
+    "id": 185991882129526,
+    "schema": {
+      "columns": {
+        "type": "bloks",
+        "id": "JIaBF9moSwWmkRhlh6H0og"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "grid",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "help_item",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-15T07:57:33.130Z",
+    "updated_at": "2026-06-22T08:23:05.184Z",
+    "id": 187681395224759,
+    "schema": {
+      "help_item_title": {
+        "type": "text",
+        "pos": 0,
+        "id": "yWB0Q2SGT2aI983Ze4gLwQ"
+      },
+      "help_item_text": {
+        "type": "textarea",
+        "pos": 1,
+        "id": "Fsd5oCmCQ_CYu37RGgmvow"
+      },
+      "help_item_category": {
+        "type": "text",
+        "pos": 2,
+        "id": "Jl88-rnsQPyFDcLRxwhGfg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "help_item",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "help_section",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-15T07:55:46.973Z",
+    "updated_at": "2026-06-30T19:25:31.080Z",
+    "id": 187680960405673,
+    "schema": {
+      "help_section_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "yV3W6DceSeiVBsAZ2kq9Og"
+      },
+      "help_section_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "yIRsG8hEQm-ZWsAiMgfuGA"
+      },
+      "help_section_intro": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "u44A3GdSRVKsMhIQBRmACw"
+      },
+      "help_section_items": {
+        "type": "bloks",
+        "pos": 3,
+        "id": "BGWijVa8RBuYhm2yrCs6yA",
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "help_item",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "component_denylist": []
+      },
+      "help_section_connector": {
+        "type": "textarea",
+        "pos": 4,
+        "id": "xJkookBFRb-AMUPEDmEcNw"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "help_section",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "hero",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-10T19:44:20.832Z",
+    "updated_at": "2026-06-22T21:01:14.520Z",
+    "id": 186085625173400,
+    "schema": {
+      "hero_headline": {
+        "type": "text",
+        "pos": 4,
+        "id": "IqqyAFzYTMSBMVLo_W6wEA"
+      },
+      "hero_label": {
+        "type": "text",
+        "pos": 4,
+        "id": "yKQO2m34R-2_BeZ8iHxDDg"
+      },
+      "hero_accent_word": {
+        "type": "text",
+        "pos": 5,
+        "display_name": "Akzent-Wort (Terracotta)",
+        "description": "Exakt ein Wort aus hero_headline – wird farblich hervorgehoben.",
+        "id": "hkWCoGnWS_udjlTvo9egZg"
+      },
+      "hero_subline": {
+        "type": "text",
+        "pos": 6,
+        "id": "uRiUm50SRCWz1GgntF6Y1g"
+      },
+      "hero_cta_text": {
+        "type": "text",
+        "pos": 7,
+        "id": "jAzQKz2wQCGNu9Tve0ubDg"
+      },
+      "hero_cta_link": {
+        "type": "text",
+        "pos": 8,
+        "id": "JLVm9YgtQK-_TPD76Ywl7A"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "hero",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "insight_article",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-12T07:02:54.493Z",
+    "updated_at": "2026-06-15T14:58:20.257Z",
+    "id": 186606282734095,
+    "schema": {
+      "insight_title": {
+        "type": "text",
+        "pos": 0,
+        "id": "tBeVLWgHRTeznGzqcA5eNg"
+      },
+      "insight_author": {
+        "type": "option",
+        "pos": 1,
+        "source": "internal_stories",
+        "entry_appearance": "card",
+        "allow_advanced_search": true,
+        "folder_slug": "",
+        "filter_content_type": [],
+        "id": "G0Qy2OnhQPK68x1EdSYzCw",
+        "use_uuid": true
+      },
+      "insight_excerpt": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "HzV4fdKRT4G3B53XlxoLWQ"
+      },
+      "insight_tag": {
+        "type": "text",
+        "pos": 3,
+        "id": "e_7pUj02RYqBX55IbWVBaQ"
+      },
+      "insight_date": {
+        "type": "datetime",
+        "pos": 4,
+        "id": "icplj1l3QjGrnGMQsX8V5g"
+      },
+      "insight_image": {
+        "type": "asset",
+        "pos": 5,
+        "id": "wZLGvlbHRqq2VP11KkE2Gg"
+      },
+      "insight_image_alt": {
+        "type": "text",
+        "pos": 6,
+        "id": "RDeJv35OQX-rYYstTGn9dA"
+      },
+      "insight_body": {
+        "type": "richtext",
+        "pos": 7,
+        "id": "6CgkrzsvSyOTQZaPUyYOQA"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": true,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "insight_article",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "kai_dialogue",
+    "display_name": "Kai Dialogue",
+    "description": null,
+    "created_at": "2026-06-30T17:54:38.255Z",
+    "updated_at": "2026-06-30T17:54:38.255Z",
+    "id": 193136550939468,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "display_name": "Eyebrow",
+        "pos": 0,
+        "id": "r1bxksQlTUyzlWkB-kKNCg"
+      },
+      "headline": {
+        "type": "text",
+        "display_name": "Headline",
+        "pos": 1,
+        "id": "K4YO2kbsTCGcU-V7GlzT-Q"
+      },
+      "intro": {
+        "type": "text",
+        "display_name": "Intro-Text",
+        "pos": 2,
+        "id": "8159QYIvRqCaUFiiFylGLg"
+      },
+      "context_key": {
+        "type": "text",
+        "display_name": "Context Key",
+        "description": "homepage | services | service_klarheit | service_rapid_build | service_produkt | service_urteil | contact | insights",
+        "pos": 3,
+        "id": "A7JmtghhSQqfVMsjrKU_bA"
+      },
+      "initial_message": {
+        "type": "textarea",
+        "display_name": "Kai: Erste Nachricht",
+        "pos": 4,
+        "id": "vsSSJg1cTtS8oFUWu6QP-g"
+      },
+      "input_placeholder": {
+        "type": "text",
+        "display_name": "Input-Platzhalter",
+        "pos": 5,
+        "id": "QwxOZXinSbCvgxzGaGPZcQ"
+      },
+      "suggested_prompts": {
+        "type": "textarea",
+        "display_name": "Suggested Prompts (je Zeile, max. 3)",
+        "pos": 6,
+        "id": "9E5Um9KES36b3rtqPFwiJQ"
+      },
+      "privacy_notice": {
+        "type": "textarea",
+        "display_name": "Datenschutzhinweis",
+        "pos": 7,
+        "id": "brfFq83OQyiFqnUWWEWanQ"
+      },
+      "show_contact_cta": {
+        "type": "boolean",
+        "display_name": "Kontakt-CTA anzeigen (wenn Kai Gespräch empfiehlt)",
+        "default_value": true,
+        "pos": 8,
+        "id": "kc7OKTrlQv-pWqCwfc5S4g"
+      },
+      "contact_cta_label": {
+        "type": "text",
+        "display_name": "Kontakt-CTA Label",
+        "pos": 9,
+        "id": "m1JN_m5WREefLBjlwk7bvg"
+      },
+      "contact_cta_link": {
+        "type": "text",
+        "display_name": "Kontakt-CTA Link",
+        "pos": 10,
+        "id": "fvZYuhTIRnKbpw_nwZRxtA"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Kai Dialogue",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "lab_article",
+    "display_name": null,
+    "description": null,
+    "created_at": "2026-06-30T21:15:47.109Z",
+    "updated_at": "2026-06-30T21:16:31.173Z",
+    "id": 193185984965972,
+    "schema": {
+      "seo_title": {
+        "type": "text",
+        "display_name": "SEO Title",
+        "pos": 0,
+        "id": "Qwax8LjLQ1GYFNt8wPcBKg"
+      },
+      "seo_description": {
+        "type": "textarea",
+        "display_name": "SEO Description",
+        "pos": 1,
+        "id": "TTi8OYDvSyOrAu5vme7DMw"
+      },
+      "og_title": {
+        "type": "text",
+        "display_name": "OG Title",
+        "pos": 2,
+        "id": "quWaZzChSBum8a63NMqdCA"
+      },
+      "og_description": {
+        "type": "textarea",
+        "display_name": "OG Description",
+        "pos": 3,
+        "id": "QZ27ZgpzR_2p6I0j1n7QJQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": true,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "lab_article",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "lab_case",
+    "display_name": "Lab Case",
+    "description": null,
+    "created_at": "2026-06-23T08:08:10.355Z",
+    "updated_at": "2026-06-23T08:34:30.945Z",
+    "id": 190515160499139,
+    "schema": {
+      "lc_number": {
+        "type": "text",
+        "display_name": "Nummer (z.B. 01)",
+        "pos": 0,
+        "id": "WZPihSiNSv-bhz-Mn6s_1g"
+      },
+      "lc_date": {
+        "type": "text",
+        "display_name": "Datum (z.B. Jun 2026)",
+        "pos": 1,
+        "id": "fyx-yw7sTQGo7BBvkZBewA"
+      },
+      "lc_name": {
+        "type": "text",
+        "display_name": "Projektname",
+        "pos": 2,
+        "id": "dglz_sCGTrOHyzW99S5YXw"
+      },
+      "lc_tagline": {
+        "type": "text",
+        "display_name": "Tagline",
+        "pos": 3,
+        "id": "lJiAcIZhTqmkckER7FCEsQ"
+      },
+      "lc_tags": {
+        "type": "text",
+        "display_name": "Tags (kommagetrennt)",
+        "pos": 4,
+        "id": "l4JPEMQWQ5-SZp4deIjFbw"
+      },
+      "lc_url": {
+        "type": "text",
+        "display_name": "Live-URL",
+        "pos": 5,
+        "id": "04XXbu_lSXqLZute7qVhXw"
+      },
+      "lc_order": {
+        "type": "number",
+        "display_name": "Reihenfolge",
+        "pos": 6,
+        "id": "UNS_KWYuSfuQbKsuhKuZ6A"
+      },
+      "lc_situation": {
+        "type": "textarea",
+        "display_name": "Ausgangslage",
+        "pos": 10,
+        "id": "kAKIFdzVTD6qBFggoL9s9w"
+      },
+      "lc_d1_title": {
+        "type": "text",
+        "display_name": "Entscheidung 1: Titel",
+        "pos": 20,
+        "id": "prVdk0IKSGe_HgjDojem1A"
+      },
+      "lc_d1_text": {
+        "type": "textarea",
+        "display_name": "Entscheidung 1: Text",
+        "pos": 21,
+        "id": "gw4p5UsnQ7iQlTFZ7vkEVQ"
+      },
+      "lc_d2_title": {
+        "type": "text",
+        "display_name": "Entscheidung 2: Titel",
+        "pos": 22,
+        "id": "sWJidyF_SNOmKeWPY8wY6A"
+      },
+      "lc_d2_text": {
+        "type": "textarea",
+        "display_name": "Entscheidung 2: Text",
+        "pos": 23,
+        "id": "F86d1XuRQKGMQGIxVU3RpQ"
+      },
+      "lc_d3_title": {
+        "type": "text",
+        "display_name": "Entscheidung 3: Titel",
+        "pos": 24,
+        "id": "0avRRO9lSBiJm0FqPRiTzA"
+      },
+      "lc_d3_text": {
+        "type": "textarea",
+        "display_name": "Entscheidung 3: Text",
+        "pos": 25,
+        "id": "z7WD_deQQxKEmN3Df1ibFw"
+      },
+      "lc_d4_title": {
+        "type": "text",
+        "display_name": "Entscheidung 4: Titel",
+        "pos": 26,
+        "id": "6U0qps26Q4yTYFISwPKreA"
+      },
+      "lc_d4_text": {
+        "type": "textarea",
+        "display_name": "Entscheidung 4: Text",
+        "pos": 27,
+        "id": "VyVZhfdkQzu3_6d8Q5bUgA"
+      },
+      "lc_stack": {
+        "type": "text",
+        "display_name": "Tech-Stack (kommagetrennt)",
+        "pos": 30,
+        "id": "K-EMEmmkT22hiP17r6Z2qA"
+      },
+      "lc_m1_value": {
+        "type": "text",
+        "display_name": "Metrik 1: Wert",
+        "pos": 40,
+        "id": "gKIPP_5gQDebRN_5k_YNHg"
+      },
+      "lc_m1_label": {
+        "type": "text",
+        "display_name": "Metrik 1: Label",
+        "pos": 41,
+        "id": "2Ri7MJKoS9SPcxXvIVIzjA"
+      },
+      "lc_m2_value": {
+        "type": "text",
+        "display_name": "Metrik 2: Wert",
+        "pos": 42,
+        "id": "FlfDpGQOTf6_4rReXKBuSA"
+      },
+      "lc_m2_label": {
+        "type": "text",
+        "display_name": "Metrik 2: Label",
+        "pos": 43,
+        "id": "F1yWWI4CQU2vrLgeudUbLQ"
+      },
+      "lc_m3_value": {
+        "type": "text",
+        "display_name": "Metrik 3: Wert",
+        "pos": 44,
+        "id": "54LtaJsrSYO8Z2j2MXG2WA"
+      },
+      "lc_m3_label": {
+        "type": "text",
+        "display_name": "Metrik 3: Label",
+        "pos": 45,
+        "id": "rb-h7hxLQ-6cAusHjMPTUg"
+      },
+      "lc_m4_value": {
+        "type": "text",
+        "display_name": "Metrik 4: Wert",
+        "pos": 46,
+        "id": "SVBpYU55RSiysDJOPSOr2A"
+      },
+      "lc_m4_label": {
+        "type": "text",
+        "display_name": "Metrik 4: Label",
+        "pos": 47,
+        "id": "z59SblWvQv-UDvCzM4MODg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": true,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Lab Case",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "lab_page",
+    "display_name": "Lab Page",
+    "description": null,
+    "created_at": "2026-06-23T08:47:13.727Z",
+    "updated_at": "2026-06-23T08:56:07.133Z",
+    "id": 190524758951183,
+    "schema": {
+      "lp_label": {
+        "type": "text",
+        "display_name": "Intro-Label (z.B. Lab)",
+        "pos": 0,
+        "id": "qTbMEzWwRPy1TzVAU9yBqg"
+      },
+      "lp_headline": {
+        "type": "text",
+        "display_name": "Intro-Headline",
+        "pos": 1,
+        "id": "cPX9PbJNTvaBLqxuEItAJw"
+      },
+      "lp_sub": {
+        "type": "textarea",
+        "display_name": "Intro-Text",
+        "pos": 2,
+        "id": "c6Iu75GYRMaTSMzdSBeWjQ"
+      },
+      "lp_builder_headline": {
+        "type": "text",
+        "display_name": "Builder-Headline",
+        "pos": 5,
+        "id": "pU2iu8WdQtemgj2sWA8dZQ"
+      },
+      "lp_builder_sub": {
+        "type": "textarea",
+        "display_name": "Builder-Text",
+        "pos": 6,
+        "id": "_bNjWstRRLCqRHGJDCEYKw"
+      },
+      "lp_next_eyebrow": {
+        "type": "text",
+        "display_name": "CTA-Eyebrow (z.B. Projekt 02)",
+        "pos": 10,
+        "id": "QL_3bRxsTnaEi6f8Aguj8Q"
+      },
+      "lp_next_text": {
+        "type": "textarea",
+        "display_name": "CTA-Text",
+        "pos": 11,
+        "id": "LnRAGgEVQMeLA5OVQKuvyA"
+      },
+      "lp_next_cta": {
+        "type": "text",
+        "display_name": "CTA-Button-Label",
+        "pos": 12,
+        "id": "R7PXFWrkSDusdiEALxtHUg"
+      },
+      "lp_next_cta_link": {
+        "type": "text",
+        "display_name": "CTA-Link",
+        "pos": 13,
+        "id": "0AmIovKSQ_e6X2QCGnuQag"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": true,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Lab Page",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "legal_page",
+    "display_name": "Legal Page",
+    "description": null,
+    "created_at": "2026-06-22T17:01:44.201Z",
+    "updated_at": "2026-06-30T19:25:31.440Z",
+    "id": 190292394815078,
+    "schema": {
+      "legal_title": {
+        "type": "text",
+        "pos": 0,
+        "id": "6-_xWSOKQhuud0VyjpKwEQ"
+      },
+      "legal_intro": {
+        "type": "textarea",
+        "pos": 1,
+        "id": "HaA5zVBJQnWTOzxbGtBBJA"
+      },
+      "legal_sections": {
+        "type": "bloks",
+        "pos": 2,
+        "restrict_components": true,
+        "component_whitelist": [
+          "legal_section",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "id": "jv16d1E8QPWOYEqnYGY1Tw"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": true,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Legal Page",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "legal_section",
+    "display_name": "Legal Section",
+    "description": null,
+    "created_at": "2026-06-22T17:01:42.714Z",
+    "updated_at": "2026-06-22T17:01:42.714Z",
+    "id": 190292388728421,
+    "schema": {
+      "legal_section_heading": {
+        "type": "text",
+        "pos": 0,
+        "id": "4uqZDLfCTnOBMU8zHSFbJw"
+      },
+      "legal_section_body": {
+        "type": "textarea",
+        "pos": 1,
+        "id": "8Qq9efPlRPm-r945yEYbKQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Legal Section",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "outcome_item",
+    "display_name": "Outcome Item",
+    "description": null,
+    "created_at": "2026-06-22T16:26:42.194Z",
+    "updated_at": "2026-06-22T16:26:42.194Z",
+    "id": 190283784994343,
+    "schema": {
+      "outcome_number": {
+        "type": "text",
+        "pos": 0,
+        "id": "_AdVoH5gRMumE3joDomRLQ"
+      },
+      "outcome_area": {
+        "type": "text",
+        "pos": 1,
+        "id": "fBbDRwhzQb2NimRQjBw0Yw"
+      },
+      "outcome_headline": {
+        "type": "text",
+        "pos": 2,
+        "id": "Q0u8ZcFZQI234rYxHrWUaQ"
+      },
+      "outcome_body": {
+        "type": "textarea",
+        "pos": 3,
+        "id": "GBxMLTqiSM2laPQdR5M06Q"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Outcome Item",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "outcomes_section",
+    "display_name": "Outcomes Section",
+    "description": null,
+    "created_at": "2026-06-22T16:26:43.129Z",
+    "updated_at": "2026-06-30T19:25:31.762Z",
+    "id": 190283788828200,
+    "schema": {
+      "outcomes_section_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "D0Ko8xUkRoG7jRMQSeFf4g"
+      },
+      "outcomes_section_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "dE9EBRFuSC-G-AbTKIAaBg"
+      },
+      "outcomes_section_sub": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "Zxg5rZp-To6IhMZiT5Zj9A"
+      },
+      "outcomes_section_items": {
+        "type": "bloks",
+        "pos": 3,
+        "restrict_components": true,
+        "component_whitelist": [
+          "outcome_item",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "id": "XnFatfn2SO2y_DW4_SKkng"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Outcomes Section",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "page",
+    "display_name": null,
+    "description": null,
+    "created_at": "2026-06-10T13:22:54.325Z",
+    "updated_at": "2026-06-30T19:25:32.096Z",
+    "id": 185991882043508,
+    "schema": {
+      "body": {
+        "type": "bloks",
+        "id": "NGbyURajRBehm3eS9dT8cA",
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "hero",
+          "page_hero",
+          "cta_section",
+          "provocation",
+          "services_section",
+          "feature_list",
+          "text_block",
+          "feature_item",
+          "grid",
+          "process_section",
+          "process_step",
+          "service_detail",
+          "service_item",
+          "value_item",
+          "services_detail_section",
+          "belief_item",
+          "about_name",
+          "about_intro",
+          "zusammenarbeit_partners",
+          "zusammenarbeit_team",
+          "zusammenarbeit_open",
+          "help_section",
+          "thinking_section",
+          "experience_wall",
+          "contact_section",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "component_denylist": []
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": true,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "page",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "page_hero",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-11T13:17:15.038Z",
+    "updated_at": "2026-06-11T13:17:53.528Z",
+    "id": 186344386720016,
+    "schema": {
+      "page_hero_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "WLhHgC3QTEmi_AkQgoWshw"
+      },
+      "page_hero_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "pCPV_T1yQNqC-hquB0Medg"
+      },
+      "page_hero_text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "ohA7LDV4S8SgKwRwI9gLtg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "page_hero",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "partner_card",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-12T10:29:28.902Z",
+    "updated_at": "2026-06-30T13:01:46.779Z",
+    "id": 186657050230510,
+    "schema": {
+      "partner_card_name": {
+        "type": "text",
+        "pos": 0,
+        "id": "YNQoMk1KRsGxes-3RVTP8g"
+      },
+      "partner_card_logo": {
+        "type": "asset",
+        "pos": 1,
+        "id": "CiSMuZegRGuoDIgZb2In_g"
+      },
+      "partner_card_logo_alt": {
+        "type": "text",
+        "pos": 2,
+        "id": "u-dpw3qDQby-P-B07E0DzQ"
+      },
+      "partner_card_tag": {
+        "type": "text",
+        "pos": 3,
+        "id": "B4GvujHKTMWyrob00iDWDA"
+      },
+      "partner_card_url": {
+        "type": "text",
+        "pos": 4,
+        "id": "yMDqIgqYS7iLvUPXmTgqvA"
+      },
+      "partner_card_description": {
+        "type": "textarea",
+        "pos": 5,
+        "id": "MGj6FfKTS3OBg7ds6A5WsQ"
+      },
+      "partner_card_category": {
+        "type": "option",
+        "pos": 6,
+        "options": [
+          {
+            "value": "technologie",
+            "name": "Technologiepartner"
+          },
+          {
+            "value": "service",
+            "name": "Servicepartner"
+          }
+        ],
+        "id": "FMO3kQzASCeUBeWi9Su2Ig"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "partner_card",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "principle_card",
+    "display_name": "Principle Card",
+    "description": null,
+    "created_at": "2026-06-29T18:18:18.738Z",
+    "updated_at": "2026-06-29T18:18:18.738Z",
+    "id": 192788474836852,
+    "schema": {
+      "title": {
+        "type": "text",
+        "display_name": "Titel",
+        "pos": 0,
+        "id": "vWCHjj3IStCbRI5QiXeYUA"
+      },
+      "text": {
+        "type": "textarea",
+        "display_name": "Text",
+        "pos": 1,
+        "id": "JiSOjxYSRz2BKftHGGeb4Q"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Principle Card",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "process_journey",
+    "display_name": null,
+    "description": null,
+    "created_at": "2026-06-30T14:03:52.056Z",
+    "updated_at": "2026-06-30T19:25:32.458Z",
+    "id": 193079836907663,
+    "schema": {
+      "pj_eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "display_name": "Eyebrow-Label",
+        "id": "wKmomE3CQj6lGif1xKno1w"
+      },
+      "pj_steps": {
+        "type": "bloks",
+        "pos": 1,
+        "display_name": "Schritte",
+        "restrict_components": true,
+        "component_whitelist": [
+          "process_step",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "id": "nODIQn4iTWOT7i6EMd6rGA"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "process_journey",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "process_section",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-11T14:26:47.833Z",
+    "updated_at": "2026-06-30T19:25:32.796Z",
+    "id": 186361478488933,
+    "schema": {
+      "process_section_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "71f32w-CQme-YNm2sGpbnQ"
+      },
+      "process_section_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "Mo1ZGo8BRL2iUQnqTdhBHw"
+      },
+      "process_section_steps": {
+        "type": "bloks",
+        "pos": 2,
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "process_step",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "component_denylist": [],
+        "id": "REOgKcZWQdq6ZEY_Fz-Urg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "process_section",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "process_step",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-11T14:25:22.038Z",
+    "updated_at": "2026-06-30T14:04:10.311Z",
+    "id": 186361127072569,
+    "schema": {
+      "ps_number": {
+        "type": "text",
+        "pos": 0,
+        "display_name": "Nummer (z.B. 01)",
+        "id": "enDUGbmEQO-VHAHuUfmhWQ"
+      },
+      "ps_name": {
+        "type": "text",
+        "pos": 1,
+        "display_name": "Name",
+        "id": "SUozLbuvSQS_pLezaMW6uw"
+      },
+      "ps_meta": {
+        "type": "text",
+        "pos": 2,
+        "display_name": "Typischer Rahmen",
+        "id": "5Zbg6Wf6Q3ySMALYgAFTOw"
+      },
+      "ps_headline": {
+        "type": "text",
+        "pos": 3,
+        "display_name": "Headline",
+        "id": "02LyE0yMTPuYJZvPBfbqCw"
+      },
+      "ps_description": {
+        "type": "textarea",
+        "pos": 4,
+        "display_name": "Beschreibung",
+        "id": "KGcVNIejRCSHZu-Riq0Bgw"
+      },
+      "ps_fits": {
+        "type": "textarea",
+        "pos": 5,
+        "display_name": "Passt wenn … (eine Zeile pro Punkt)",
+        "id": "rIJg7YNBS4qMKgwvMHCeoA"
+      },
+      "ps_link": {
+        "type": "text",
+        "pos": 6,
+        "display_name": "Link-URL",
+        "id": "duf1ZCH0SyypUbl16f9RlQ"
+      },
+      "ps_link_label": {
+        "type": "text",
+        "pos": 7,
+        "display_name": "Link-Text",
+        "id": "EMF_tC56SGCPe2XXphZPuw"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "process_step",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "provocation",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-11T12:55:51.892Z",
+    "updated_at": "2026-06-30T19:25:33.238Z",
+    "id": 186339130957890,
+    "schema": {
+      "provocation_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "iUq_RENjSHW-7O2AI8BZFw"
+      },
+      "provocation_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "ZB1HfuvsQYu8GgLnuXD5EQ"
+      },
+      "provocation_text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "1vmdQJ02Som2SSSCDdAiVQ"
+      },
+      "provocation_values": {
+        "type": "bloks",
+        "pos": 3,
+        "id": "gewrj-yzT9aeikx-GpNSiw",
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "value_item",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "component_denylist": []
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "provocation",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "service_detail",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-11T14:20:56.128Z",
+    "updated_at": "2026-06-11T14:37:36.859Z",
+    "id": 186360037905122,
+    "schema": {
+      "service_detail_number": {
+        "type": "text",
+        "pos": 0,
+        "id": "x-JEnZp4SvSYG77r7aL6jA"
+      },
+      "service_detail_tag": {
+        "type": "text",
+        "pos": 1,
+        "id": "Er-LPpaYRK-4Q3c8_HOdwg"
+      },
+      "service_detail_headline": {
+        "type": "text",
+        "pos": 2,
+        "id": "hOP1dvcATKO13WhRVjqJgg"
+      },
+      "service_detail_text": {
+        "type": "textarea",
+        "pos": 3,
+        "id": "mtp3s-PwRQuI-5NUXvc7Jg"
+      },
+      "service_detail_list": {
+        "type": "textarea",
+        "pos": 4,
+        "id": "4ZNhWPYxTLGN6IrNFbbT9w"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "service_detail",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "service_detail_page",
+    "display_name": "Service Detail Page",
+    "description": null,
+    "created_at": "2026-06-29T20:13:14.732Z",
+    "updated_at": "2026-06-30T19:25:33.576Z",
+    "id": 192816720828540,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "display_name": "Eyebrow (z.B. «Leistung 01»)",
+        "pos": 0,
+        "id": "Zb3PO37GRdWR3V_Ce-7xAg"
+      },
+      "headline": {
+        "type": "text",
+        "display_name": "Headline (H1)",
+        "pos": 1,
+        "id": "FCQDwKAbTmex5AuUpR5qCw"
+      },
+      "intro": {
+        "type": "textarea",
+        "display_name": "Intro-Text",
+        "pos": 2,
+        "id": "XG8G30wBSg2l-kEu14KdBw"
+      },
+      "fit_points": {
+        "type": "bloks",
+        "display_name": "Passt für euch, wenn…",
+        "restrict_components": true,
+        "component_whitelist": [
+          "service_point",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "pos": 3,
+        "id": "08gZvueKQY-1fvHAZMpPpg"
+      },
+      "outcome_points": {
+        "type": "bloks",
+        "display_name": "Was ihr bekommt",
+        "restrict_components": true,
+        "component_whitelist": [
+          "service_point",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "pos": 4,
+        "id": "MJ__Otk-Q6KroV7yxnYv9Q"
+      },
+      "approach_text": {
+        "type": "textarea",
+        "display_name": "Wie wir vorgehen",
+        "pos": 5,
+        "id": "ULcOGu_cS5uHz1zvTRJmTQ"
+      },
+      "cta_label": {
+        "type": "text",
+        "display_name": "CTA Button Text",
+        "pos": 6,
+        "id": "NX41oFleQ-Og2EuMjRDGYw"
+      },
+      "seo_title": {
+        "type": "text",
+        "display_name": "SEO Titel",
+        "pos": 7,
+        "id": "UtsuYyvAT3yHCMpLG2jadA"
+      },
+      "seo_description": {
+        "type": "textarea",
+        "display_name": "SEO Beschreibung",
+        "pos": 8,
+        "id": "WyG6aijvR_6pyITD2TPhPQ"
+      },
+      "story_text": {
+        "type": "textarea",
+        "display_name": "Projekt-Story (Fliesstext, Absätze mit Leerzeile trennen)",
+        "pos": 45,
+        "id": "t-6PJoNRSPKWvTumIjh_SA"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": true,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Service Detail Page",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "service_entry_card",
+    "display_name": "Service Entry Card",
+    "description": null,
+    "created_at": "2026-06-29T18:18:15.767Z",
+    "updated_at": "2026-06-29T18:18:15.767Z",
+    "id": 192788462667633,
+    "schema": {
+      "number": {
+        "type": "text",
+        "display_name": "Nummer (01–04)",
+        "pos": 0,
+        "id": "MmVA5mfRQ7KmyxWIaEiu1Q"
+      },
+      "label": {
+        "type": "text",
+        "display_name": "Label",
+        "pos": 1,
+        "id": "87mnFwsLR2CQF9dBS4M2mw"
+      },
+      "title": {
+        "type": "text",
+        "display_name": "Titel",
+        "pos": 2,
+        "id": "PttN1Vu2Q0iy-aj6FpJ7ZA"
+      },
+      "text": {
+        "type": "textarea",
+        "display_name": "Text",
+        "pos": 3,
+        "id": "76hwNAMkTA6H20B8H8WsEQ"
+      },
+      "cta_label": {
+        "type": "text",
+        "display_name": "CTA Label",
+        "pos": 4,
+        "id": "0qvdmh-2TiSB8a0GigFlRA"
+      },
+      "internal_link": {
+        "type": "text",
+        "display_name": "Interner Link",
+        "pos": 5,
+        "id": "nmW4JHkoTpaCbRQcN2lobw"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Service Entry Card",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "service_entry_grid",
+    "display_name": "Service Entry Grid",
+    "description": null,
+    "created_at": "2026-06-29T18:18:16.742Z",
+    "updated_at": "2026-06-30T19:25:33.905Z",
+    "id": 192788466661234,
+    "schema": {
+      "anchor_id": {
+        "type": "text",
+        "display_name": "Anchor ID",
+        "pos": 0,
+        "id": "BuiDG8dyQtWFzOo7JSLCpA"
+      },
+      "eyebrow": {
+        "type": "text",
+        "display_name": "Eyebrow",
+        "pos": 1,
+        "id": "wmZ3pA-wRJW19x8XSCadSA"
+      },
+      "headline": {
+        "type": "text",
+        "display_name": "Headline",
+        "pos": 2,
+        "id": "OzUtDFsMSO60CZ6vugNkgQ"
+      },
+      "intro": {
+        "type": "textarea",
+        "display_name": "Intro",
+        "pos": 3,
+        "id": "VUnZsL2UQSSpiLptjoL_nQ"
+      },
+      "cards": {
+        "type": "bloks",
+        "display_name": "Cards",
+        "restrict_components": true,
+        "component_whitelist": [
+          "service_entry_card",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "pos": 4,
+        "id": "uPL4Dv8TR7yh05m40VKogw"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Service Entry Grid",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "service_item",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-11T13:02:36.016Z",
+    "updated_at": "2026-06-11T13:56:54.196Z",
+    "id": 186340786245715,
+    "schema": {
+      "service_item_number": {
+        "type": "text",
+        "pos": 0,
+        "id": "hyTFVfCKTc-3k7_nBfAe8Q"
+      },
+      "service_item_title": {
+        "type": "text",
+        "pos": 1,
+        "id": "BYNjyZuZQeaOj2dto7C2UA"
+      },
+      "service_item_text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "kWn-YE0TSYeEIo4y5Q00IQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "service_item",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "service_point",
+    "display_name": "Service Point",
+    "description": null,
+    "created_at": "2026-06-29T20:13:13.737Z",
+    "updated_at": "2026-06-29T20:13:13.737Z",
+    "id": 192816716748923,
+    "schema": {
+      "text": {
+        "type": "text",
+        "display_name": "Punkt",
+        "pos": 0,
+        "id": "azajbH5DReWKZNpa_b9GZQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Service Point",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "services_compare",
+    "display_name": "Services Vergleich",
+    "description": null,
+    "created_at": "2026-06-26T06:26:28.198Z",
+    "updated_at": "2026-06-26T06:26:28.198Z",
+    "id": 191551849264895,
+    "schema": {},
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Services Vergleich",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "services_detail_section",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-11T14:24:00.628Z",
+    "updated_at": "2026-06-30T19:25:34.253Z",
+    "id": 186360793621222,
+    "schema": {
+      "services_detail_section_items": {
+        "type": "bloks",
+        "pos": 0,
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "service_detail",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "component_denylist": [],
+        "id": "xJON76I3QzSJdiQfmfzOEQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "services_detail_section",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "services_section",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-11T13:12:37.146Z",
+    "updated_at": "2026-06-30T19:25:34.588Z",
+    "id": 186343248474344,
+    "schema": {
+      "services_section_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "pT31SWQTSji9Y-qXX4UN0g"
+      },
+      "services_section_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "9JWUYlB1QTyVq6Sk_NAwGg"
+      },
+      "services_section_text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "sdT_mykvQ36O7pVqbFwt7A"
+      },
+      "services_section_items": {
+        "type": "bloks",
+        "pos": 3,
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "service_item",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "component_denylist": [],
+        "id": "TtT1TBDPSLaJogoTtdKJWA"
+      },
+      "services_section_cta_text": {
+        "type": "text",
+        "pos": 4,
+        "id": "ruPXVRBYQx2kDwsIbdJiIQ"
+      },
+      "services_section_cta_link": {
+        "type": "text",
+        "pos": 5,
+        "id": "YzhQD53kTVOBp3nbA5FlVQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "services_section",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "situation_item",
+    "display_name": "Situation Item",
+    "description": null,
+    "created_at": "2026-06-29T20:06:23.829Z",
+    "updated_at": "2026-06-29T20:06:23.829Z",
+    "id": 192815037769835,
+    "schema": {
+      "text": {
+        "type": "text",
+        "display_name": "Statement (provokativ-direkt)",
+        "pos": 0,
+        "id": "dSNXRSB_SLyAZgK6J--z6g"
+      },
+      "link_label": {
+        "type": "text",
+        "display_name": "Link Label",
+        "pos": 1,
+        "id": "mDeh3JGaRyS3sIs9kGQ-hg"
+      },
+      "internal_link": {
+        "type": "text",
+        "display_name": "Interner Link",
+        "pos": 2,
+        "id": "XAHTBzWWRLWOJRP1ax2Khg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Situation Item",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "situation_teaser",
+    "display_name": "Situation Teaser",
+    "description": null,
+    "created_at": "2026-06-29T20:06:24.733Z",
+    "updated_at": "2026-06-30T19:25:34.913Z",
+    "id": 192815041472620,
+    "schema": {
+      "items": {
+        "type": "bloks",
+        "display_name": "Situationen",
+        "restrict_components": true,
+        "component_whitelist": [
+          "situation_item",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "pos": 0,
+        "id": "S4zTq5EvRHiHXPiJaH9l0Q"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Situation Teaser",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "team_facts",
+    "display_name": null,
+    "description": null,
+    "created_at": "2026-06-23T04:55:26.973Z",
+    "updated_at": "2026-06-23T04:55:26.973Z",
+    "id": 190467796885775,
+    "schema": {
+      "dirk_bio": {
+        "type": "textarea",
+        "pos": 0,
+        "display_name": "Dirk – Bio",
+        "id": "cmTFH5O3SS-eSgzhzAOR5w"
+      },
+      "dirk_persoenlichkeit": {
+        "type": "textarea",
+        "pos": 1,
+        "display_name": "Dirk – Persönlichkeit (Stichpunkte)",
+        "id": "4i1ACcX7RoGQBaIJFYTZXw"
+      },
+      "dirk_spiel": {
+        "type": "textarea",
+        "pos": 2,
+        "display_name": "Dirk – Spiel JSON (nicht manuell editieren)",
+        "id": "rz94QRgLQAu-1uc8RMVRmA"
+      },
+      "stan_bio": {
+        "type": "textarea",
+        "pos": 3,
+        "display_name": "Stan – Bio",
+        "id": "77_uzsj_Sz2iAW_TRMDMxA"
+      },
+      "stan_persoenlichkeit": {
+        "type": "textarea",
+        "pos": 4,
+        "display_name": "Stan – Persönlichkeit (Stichpunkte)",
+        "id": "WTTFS_5vSHekpd7-aI5ctw"
+      },
+      "stan_spiel": {
+        "type": "textarea",
+        "pos": 5,
+        "display_name": "Stan – Spiel JSON (nicht manuell editieren)",
+        "id": "0iL-o8LkSWewE8cSP3BE-A"
+      },
+      "quiz": {
+        "type": "textarea",
+        "pos": 6,
+        "display_name": "Quiz JSON (nicht manuell editieren)",
+        "id": "titzlxIYQ9mfr4O0SrxHSg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "team_facts",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "team_member",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-14T19:54:29.767Z",
+    "updated_at": "2026-06-30T19:25:35.245Z",
+    "id": 187503696973072,
+    "schema": {
+      "team_member_name": {
+        "type": "text",
+        "pos": 0,
+        "id": "OIRTt2v0S0q6NFbVKREjRg"
+      },
+      "team_member_role": {
+        "type": "text",
+        "pos": 1,
+        "id": "u7q8AIeaT6iYi8DeHOpeKQ"
+      },
+      "team_member_tag": {
+        "type": "text",
+        "pos": 2,
+        "id": "g3d6QxcATmOhVFphjIzHaQ"
+      },
+      "team_member_photo": {
+        "type": "asset",
+        "pos": 3,
+        "id": "yL3IrY0DTOujYWfc0xwGiw"
+      },
+      "team_member_photo_alt": {
+        "type": "text",
+        "pos": 4,
+        "id": "m1JDjUo1SSCogxqrOfppTA"
+      },
+      "team_member_teaser": {
+        "type": "textarea",
+        "pos": 5,
+        "id": "PPemp1FjQZaT3CT59GTsgA"
+      },
+      "team_member_intro_1": {
+        "type": "textarea",
+        "pos": 6,
+        "id": "AYiflZBbQNKKhDSFOtsBCg"
+      },
+      "team_member_intro_2": {
+        "type": "textarea",
+        "pos": 7,
+        "id": "0AYaUxb8QcOuENyEmMdHMQ"
+      },
+      "team_member_order": {
+        "type": "number",
+        "pos": 8,
+        "id": "fbphyp9AR9CppSrlG3UAvQ"
+      },
+      "team_member_testimonials": {
+        "type": "bloks",
+        "pos": 9,
+        "restrict_type": "",
+        "restrict_components": true,
+        "id": "urVRG61PQo2R1mpDw21Few",
+        "component_whitelist": [
+          "testimonial_item",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "component_denylist": []
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": true,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "team_member",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "team_member_card",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-12T10:34:53.392Z",
+    "updated_at": "2026-06-12T10:37:57.468Z",
+    "id": 186658379345655,
+    "schema": {
+      "team_member_card_name": {
+        "type": "text",
+        "pos": 0,
+        "id": "tkH6jHx-ScyOP3BJ8d39JA"
+      },
+      "team_member_card_role": {
+        "type": "text",
+        "pos": 1,
+        "id": "ghASEPUOQIiVipUOw_lzyQ"
+      },
+      "team_member_card_photo": {
+        "type": "asset",
+        "pos": 2,
+        "id": "joJmVv8jTjqcGMNtw7UkzQ"
+      },
+      "team_member_card_photo_alt": {
+        "type": "text",
+        "pos": 3,
+        "id": "D7JB0NHAT32r9_lDaDBVhQ"
+      },
+      "team_member_card_bio": {
+        "type": "textarea",
+        "pos": 4,
+        "id": "_1zCeUM9QU-4XtGcWBzsHA"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "team_member_card",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "testimonial_item",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-14T19:57:01.410Z",
+    "updated_at": "2026-06-15T06:18:35.228Z",
+    "id": 187504318102802,
+    "schema": {
+      "testimonial_quote": {
+        "type": "textarea",
+        "pos": 0,
+        "id": "CeD3ALdXQ4qGGBau0vQf3Q"
+      },
+      "testimonial_name": {
+        "type": "text",
+        "pos": 1,
+        "id": "A3lYUzdbSQCzxQk_F9fdJw"
+      },
+      "testimonial_role": {
+        "type": "text",
+        "pos": 2,
+        "id": "o9Do0Fh0RQix448Pjxj9UQ"
+      },
+      "testimonial_customer_name": {
+        "type": "text",
+        "pos": 3,
+        "id": "mhOtBhXKTwqGYY1OLP4HWw"
+      },
+      "testimonial_customer_logo": {
+        "type": "asset",
+        "pos": 4,
+        "id": "tYbGQRMdTK2WcPrSFmCXqw"
+      },
+      "testimonial_customer_logo_alt": {
+        "type": "text",
+        "pos": 5,
+        "id": "Wnvb1ZKqR0WRNawbKfbXdg"
+      },
+      "testimonial_photo": {
+        "type": "asset",
+        "pos": 6,
+        "id": "OUAuXbzUSqW5FZo0fss_WQ"
+      },
+      "testimonial_photo_alt": {
+        "type": "text",
+        "pos": 7,
+        "id": "8GgUGlRUSymHNMlVnNqtOQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "testimonial_item",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "text_block",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-11T13:16:20.079Z",
+    "updated_at": "2026-06-11T13:16:52.768Z",
+    "id": 186344161612013,
+    "schema": {
+      "text_block_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "xMQ4BRMQTXq4jnl7nP1kXA"
+      },
+      "text_block_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "P2nIzit5S06M5LXns-ReMw"
+      },
+      "text_block_text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "jN3m0DKlSOyo1ALFhkLuNA"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "text_block",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "thinking_section",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-15T08:55:02.041Z",
+    "updated_at": "2026-06-15T08:56:38.396Z",
+    "id": 187695521968599,
+    "schema": {
+      "thinking_section_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "NzM9LyQwR6axX4-hRQWlNQ"
+      },
+      "thinking_section_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "S0TIgAGpT_-cwtzeRjC3aQ"
+      },
+      "thinking_section_intro": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "Bma8M2TqQPC9k3bwwG5fPA"
+      },
+      "thinking_section_cta_text": {
+        "type": "text",
+        "pos": 3,
+        "id": "nyFsqxZ3RK-6jSChUfaVJg"
+      },
+      "thinking_section_cta_link": {
+        "type": "text",
+        "pos": 4,
+        "id": "bLre2ErgQ72-avBx-E8GqA"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "thinking_section",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "value_item",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-11T13:02:04.650Z",
+    "updated_at": "2026-06-11T13:39:20.244Z",
+    "id": 186340657770578,
+    "schema": {
+      "value_item_icon": {
+        "type": "text",
+        "pos": 0,
+        "id": "lDB9zCWGSKWKMzFVlAPc1Q"
+      },
+      "value_item_text": {
+        "type": "text",
+        "pos": 1,
+        "id": "0EXDmhRxQieqpIa6mOu6fg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "value_item",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "working_benefits",
+    "display_name": "Arbeitsweise — Kundennutzen",
+    "description": null,
+    "created_at": "2026-07-03T10:30:19.673Z",
+    "updated_at": "2026-07-03T10:30:19.673Z",
+    "id": 194089040585036,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "id": "nC5fA4I3SyWztMaYqeYvBA"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "Kmg6vI4bRd-jedgUOZBZ9g"
+      },
+      "b1_title": {
+        "type": "text",
+        "pos": 2,
+        "id": "uYM57laxQwOwCGYQiyFWBA"
+      },
+      "b1_text": {
+        "type": "textarea",
+        "pos": 3,
+        "id": "c_WNyv7EQsq7H3PtXqRDaw"
+      },
+      "b2_title": {
+        "type": "text",
+        "pos": 4,
+        "id": "kZMgR9JqQiKmhzxIetqGVg"
+      },
+      "b2_text": {
+        "type": "textarea",
+        "pos": 5,
+        "id": "jHng1DbWRkGOj0GtaEFZzg"
+      },
+      "b3_title": {
+        "type": "text",
+        "pos": 6,
+        "id": "qeH9rmGyQfem5dlDQLSrKw"
+      },
+      "b3_text": {
+        "type": "textarea",
+        "pos": 7,
+        "id": "U6ngJPYRQECzLbfLzMekdA"
+      },
+      "b4_title": {
+        "type": "text",
+        "pos": 8,
+        "id": "kqXAYc8wSeCUseTNp-1mkw"
+      },
+      "b4_text": {
+        "type": "textarea",
+        "pos": 9,
+        "id": "RdueNz-bR12Nawe9l8Tuyw"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Arbeitsweise — Kundennutzen",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "working_cta",
+    "display_name": "Arbeitsweise — Abschluss-CTA",
+    "description": null,
+    "created_at": "2026-07-03T10:30:20.994Z",
+    "updated_at": "2026-07-03T10:30:20.994Z",
+    "id": 194089045995855,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "id": "Xzc5HOuWTamtTfJaj_HVqg"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "pOsXV54FS0qDImFWKXS_ew"
+      },
+      "text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "iZKGhNpBTFGUTZkkp2aiMA"
+      },
+      "cta_label": {
+        "type": "text",
+        "pos": 3,
+        "description": "Primärer Button-Text",
+        "id": "o4BxYhg8Q8Cy_yzbyOWz0A"
+      },
+      "cta_url": {
+        "type": "text",
+        "pos": 4,
+        "description": "URL, Standard: /contact",
+        "id": "GFTDrWL6QeeCBMQ0NkJ2mw"
+      },
+      "link_label": {
+        "type": "text",
+        "pos": 5,
+        "description": "Sekundärer Link-Text",
+        "id": "JHy7Q3SeQOC5X5nzrLidOA"
+      },
+      "link_url": {
+        "type": "text",
+        "pos": 6,
+        "description": "URL, Standard: /services",
+        "id": "bKh1lnv_TbOoz3KxgmJL8w"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Arbeitsweise — Abschluss-CTA",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "working_partners",
+    "display_name": "Arbeitsweise — Ergänzende Expertise",
+    "description": null,
+    "created_at": "2026-07-03T10:30:20.562Z",
+    "updated_at": "2026-07-03T10:30:20.562Z",
+    "id": 194089044230478,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "id": "L9NEonrmSJWSVJeysgxPbg"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "vPrrc2usQESMmoMJtTGqRQ"
+      },
+      "text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "LZgDI9M7QqOIxGO0KG7EBQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Arbeitsweise — Ergänzende Expertise",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "working_principles",
+    "display_name": "Working Principles",
+    "description": null,
+    "created_at": "2026-06-29T18:18:19.736Z",
+    "updated_at": "2026-06-30T19:25:35.585Z",
+    "id": 192788478924661,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "display_name": "Eyebrow",
+        "pos": 0,
+        "id": "t7NWEngVQKGsbbXyD4QWqw"
+      },
+      "headline": {
+        "type": "text",
+        "display_name": "Headline",
+        "pos": 1,
+        "id": "1Zlvx_LxQIC4x_ALN83wSA"
+      },
+      "intro": {
+        "type": "textarea",
+        "display_name": "Intro",
+        "pos": 2,
+        "id": "lygug9_9Tl-RWQuCn6gtEw"
+      },
+      "principles": {
+        "type": "bloks",
+        "display_name": "Prinzipien",
+        "restrict_components": true,
+        "component_whitelist": [
+          "principle_card",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "pos": 3,
+        "id": "bQHVnF_gQcWfJAvF69hWVA"
+      },
+      "link_label": {
+        "type": "text",
+        "display_name": "Link Label",
+        "pos": 4,
+        "id": "kzDErCOxTz-QkU0f0emlYg"
+      },
+      "internal_link": {
+        "type": "text",
+        "display_name": "Interner Link",
+        "pos": 5,
+        "id": "rurYJBQMSwOxpwlfD7txoQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Working Principles",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "working_steps",
+    "display_name": "Arbeitsweise — Vier Schritte",
+    "description": null,
+    "created_at": "2026-07-03T10:30:19.203Z",
+    "updated_at": "2026-07-03T10:30:19.203Z",
+    "id": 194089038668107,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "id": "Xni034ANSo6hGBb1wCovWQ"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "mYyTNRxASj20TNLDkP0Veg"
+      },
+      "intro": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "WsZXo2snS8-HIa7JSlterw"
+      },
+      "step_1_num": {
+        "type": "text",
+        "pos": 3,
+        "description": "z.B. 01",
+        "id": "jZyyn7BATaGlDIbIKmjZhQ"
+      },
+      "step_1_title": {
+        "type": "text",
+        "pos": 4,
+        "id": "RkE0ZaCqRl24ShkRJExXtg"
+      },
+      "step_1_text": {
+        "type": "textarea",
+        "pos": 5,
+        "id": "Kpw__k2CShC1N36cwhr3sg"
+      },
+      "step_2_num": {
+        "type": "text",
+        "pos": 6,
+        "id": "cusoDjVORTWYOBW_5LLpew"
+      },
+      "step_2_title": {
+        "type": "text",
+        "pos": 7,
+        "id": "SeKGpNNvR5yj6qr09K2VFA"
+      },
+      "step_2_text": {
+        "type": "textarea",
+        "pos": 8,
+        "id": "uXcK8H3gQ1-VXFvQP5caRw"
+      },
+      "step_3_num": {
+        "type": "text",
+        "pos": 9,
+        "id": "z7ve0Sj-SdyUJ5G81ENg6w"
+      },
+      "step_3_title": {
+        "type": "text",
+        "pos": 10,
+        "id": "kAhHj47ZSHGp1wvi-TXCjQ"
+      },
+      "step_3_text": {
+        "type": "textarea",
+        "pos": 11,
+        "id": "01vGggTERbq05MXu6VQA8Q"
+      },
+      "step_4_num": {
+        "type": "text",
+        "pos": 12,
+        "id": "pooIbd4ZRO2YZje5gNe8Zg"
+      },
+      "step_4_title": {
+        "type": "text",
+        "pos": 13,
+        "id": "Od9WcMdfS_-etNXiP76-Qg"
+      },
+      "step_4_text": {
+        "type": "textarea",
+        "pos": 14,
+        "id": "A7zo9yEnTEef-mrW3Hesvg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Arbeitsweise — Vier Schritte",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "working_team_ref",
+    "display_name": "Arbeitsweise — Team-Verweis",
+    "description": null,
+    "created_at": "2026-07-03T10:30:20.125Z",
+    "updated_at": "2026-07-03T10:30:20.125Z",
+    "id": 194089042440525,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "id": "gLTxilaHQa2_0NGJnS1B_Q"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "jCWmjBqGQO2s5q7xZgsNxg"
+      },
+      "text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "8SMUcADeQMKJhrPpdkSIlA"
+      },
+      "person_1_name": {
+        "type": "text",
+        "pos": 3,
+        "id": "XzBEYV5HSDiFQliqV5Mepw"
+      },
+      "person_1_role": {
+        "type": "text",
+        "pos": 4,
+        "id": "M-_4b3-iT-OVq_aRQKvSNA"
+      },
+      "person_2_name": {
+        "type": "text",
+        "pos": 5,
+        "id": "VI4o-lb3Rn62xCqm2p9YyA"
+      },
+      "person_2_role": {
+        "type": "text",
+        "pos": 6,
+        "id": "IB1L8gylSNyiUfCfC60ouA"
+      },
+      "link_label": {
+        "type": "text",
+        "pos": 7,
+        "description": "Text des Links zur Teamseite",
+        "id": "I2FGL1fLR5yYfNMYdaJ5Ug"
+      },
+      "link_url": {
+        "type": "text",
+        "pos": 8,
+        "description": "URL, Standard: /team",
+        "id": "vdq87RCWRdufwQ3Y1vMKDw"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Arbeitsweise — Team-Verweis",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "working_why",
+    "display_name": "Arbeitsweise — Warum",
+    "description": null,
+    "created_at": "2026-07-03T10:30:18.752Z",
+    "updated_at": "2026-07-03T10:30:18.752Z",
+    "id": 194089036816714,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "description": "Label über der Überschrift",
+        "id": "pEsinFF2TimMx3mLYCiNWQ"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "description": "Hauptüberschrift",
+        "id": "kj5PdqvKRr6Byj2jY1zW9w"
+      },
+      "text_1": {
+        "type": "textarea",
+        "pos": 2,
+        "description": "Erster Absatz",
+        "id": "CcZFLXmpTJqMMm5VS2qdKw"
+      },
+      "text_2": {
+        "type": "textarea",
+        "pos": 3,
+        "description": "Zweiter Absatz",
+        "id": "6g2sDPCNRGeqMZvmqdNJLg"
+      },
+      "text_3": {
+        "type": "textarea",
+        "pos": 4,
+        "description": "Dritter Absatz",
+        "id": "ChuQs5W7QryZtWijPWSg-Q"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Arbeitsweise — Warum",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "zusammenarbeit_open",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-12T19:32:05.811Z",
+    "updated_at": "2026-06-12T19:33:20.694Z",
+    "id": 186790403327242,
+    "schema": {
+      "zusammenarbeit_open_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "UesEgeExRp6kBIvfzjn0Iw"
+      },
+      "zusammenarbeit_open_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "pcyGc5yOQFqcRJaPwlhlaw"
+      },
+      "zusammenarbeit_open_text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "g9Cq4lzNRwaKngjRrFaraA"
+      },
+      "zusammenarbeit_open_cta_text": {
+        "type": "text",
+        "pos": 3,
+        "id": "ux5a4xTkQBOuARJ2B-HuKw"
+      },
+      "zusammenarbeit_open_cta_link": {
+        "type": "text",
+        "pos": 4,
+        "id": "c7Ec0GLhQ8Wvo2HKKOueyQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "zusammenarbeit_open",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "zusammenarbeit_partners",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-12T10:27:44.004Z",
+    "updated_at": "2026-06-30T19:25:35.927Z",
+    "id": 186656620572391,
+    "schema": {
+      "zusammenarbeit_partners_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "yJser_sZQ_SNbVbF9P0u5w"
+      },
+      "zusammenarbeit_partners_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "aC0Evv3KTXSAUczQJH294A"
+      },
+      "zusammenarbeit_partners_intro": {
+        "type": "text",
+        "pos": 2,
+        "id": "C0VkhNdRQgy3PyvdM09w6w"
+      },
+      "zusammenarbeit_partners_items": {
+        "type": "bloks",
+        "pos": 3,
+        "id": "iK9K8PQkQdO5sObGkr6c1w",
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "partner_card",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "component_denylist": []
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "zusammenarbeit_partners",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "zusammenarbeit_team",
+    "display_name": null,
+    "description": "",
+    "created_at": "2026-06-12T10:30:44.412Z",
+    "updated_at": "2026-06-30T19:25:36.268Z",
+    "id": 186657359519471,
+    "schema": {
+      "zusammenarbeit_team_label": {
+        "type": "text",
+        "pos": 0,
+        "id": "eJjNn9REQcCWjdu8NvebSw"
+      },
+      "zusammenarbeit_team_headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "9knp4soPQNivTo9n7zBDkw"
+      },
+      "zusammenarbeit_team_intro": {
+        "type": "text",
+        "pos": 2,
+        "id": "lRogOoq8TaWfC7kLXuE7Vw"
+      },
+      "zusammenarbeit_team_items": {
+        "type": "bloks",
+        "pos": 3,
+        "id": "4egp8C-yR9mT0j2-5bDYFg",
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "team_member_card",
+          "kai_dialogue",
+          "ecosystem_partners"
+        ],
+        "component_denylist": []
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "zusammenarbeit_team",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  }
+]
