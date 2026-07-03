@@ -4,7 +4,7 @@
 
 - Ticket: IA-003e
 - Datum: 2026-07-03
-- Status: Lokal umgesetzt, Veröffentlichung ausstehend
+- Status: Lokal umgesetzt und geprüft, Veröffentlichung ausstehend
 - Baseline-Commit: `8b2319f` — "docs: add IA-003d completion report"
 - Umsetzungs-Commit: `db23bc8` — "fix: keep team page ending focused"
 - Push: Nein
@@ -50,12 +50,13 @@ Neue allgemeine CTA-Blöcke für diese Seite müssen künftig bewusst anders mod
 
 ## Qualitätssicherung
 
+- Lokaler Mac-Produktions-Build: erfolgreich.
 - Desktop: Allgemeiner CTA auf `/team` nicht mehr sichtbar; Mitwirken-Abschluss direkt vor Footer sichtbar.
-- Lokaler Mac-Build: Ausstehend
-- Mobile: Ausstehend
-- `#mitwirken`: Ausstehend
-- TeamIntro: Ausstehend
-- Horizontaler Overflow: Ausstehend
+- Mobile bei ca. 390 px: erfolgreich.
+- `#mitwirken`: funktioniert.
+- FitTest: funktioniert.
+- „Meld dich"-Button: sichtbar und bedienbar.
+- Horizontaler Overflow: keiner.
 
 ## Rollback
 
@@ -65,8 +66,8 @@ git revert db23bc8
 
 ## Offene Punkte
 
-Lokaler Mac-Build und Mobile-QA ausstehend.
+Keine für dieses Ticket.
 
 ## Nächster Schritt
 
-Nach vollständiger lokaler QA separat über den kontrollierten Push der geprüften Team-Änderungen entscheiden.
+Separat über den kontrollierten Push der geprüften Team-Änderungen entscheiden.

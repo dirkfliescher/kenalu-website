@@ -448,8 +448,8 @@ Der allgemeine Kunden-CTA „Bereit für ein Gespräch?" (`cta_section`-Block au
 - Nach dem FitTest bleibt nur der Mitwirken-Abschluss „Meld dich" als Seitenabschluss.
 - Die Filterregel gilt bewusst für alle `cta_section`-Blocks auf `/team`.
 - Desktop-QA bestätigt: allgemeiner CTA nicht mehr sichtbar, Mitwirken-Abschluss direkt vor Footer sichtbar.
-- Lokaler Mac-Build: Ausstehend.
-- Mobile-QA: Ausstehend.
+- Lokaler Mac-Produktions-Build erfolgreich.
+- Mobile-QA bei ca. 390 px erfolgreich: kein horizontaler Scroll, FitTest und „Meld dich"-Button funktionieren.
 - Kein Push und kein Deploy.
 
 ---
