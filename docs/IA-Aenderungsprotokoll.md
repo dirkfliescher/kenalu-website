@@ -439,18 +439,16 @@ Der allgemeine Kunden-CTA „Bereit für ein Gespräch?" (`cta_section`-Block au
 
 ### Rollback-Weg
 
-`git revert [Commit-Hash]`
+`git revert db23bc8`
 
 ### Tatsächliches Ergebnis
 
-- `cta_section`-Blöcke werden in `app/team/page.js` via `.filter((blok) => blok.component !== 'cta_section')` vor dem Rendering herausgefiltert.
-- Storyblok-Story `team-page` bleibt unverändert — `cta_section` ist weiterhin vorhanden und rendert auf allen anderen Seiten normal.
-- TeamIntro, CollaborationIntro, FitTest und deren Logik unverändert.
-- Seitenfluss nach Umsetzung: Hero → Team-Profile → TeamIntro → Mitwirken → FitTest → Footer.
-- Keine CSS-, API-, Storyblok-, Navigation- oder Footer-Änderung.
-- Die acht staged Arbeitsweise-Dateien unberührt.
-- Kein Push, kein Deploy.
-- Lokaler Mac-Build und visuelle QA: ausstehend.
+- Der allgemeine `cta_section`-Block wird ausschliesslich auf `/team` vor dem Rendering herausgefiltert.
+- Die Storyblok-Story selbst wurde nicht verändert.
+- Nach FitTest bleibt nur der Mitwirken-Abschluss „Meld dich" als Seitenabschluss.
+- Die Filterregel gilt bewusst für alle `cta_section`-Blöcke auf `/team`; neue allgemeine CTA-Sections auf dieser Seite müssen künftig bewusst anders modelliert werden.
+- Lokaler Mac-Build und visuelle QA: Ausstehend.
+- Kein Push und kein Deploy.
 
 ---
 
