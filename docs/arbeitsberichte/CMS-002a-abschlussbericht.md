@@ -6,10 +6,10 @@
 |---|---|
 | Ticket | CMS-002a |
 | Datum | 2026-07-03 |
-| Status | Scripts bereit, lokale Ausführung durch Dirk ausstehend |
+| Status | ✅ Abgeschlossen — lokale Preview bestätigt durch Dirk Fliescher |
 | Typ | CMS-Draft / Lokale Preview |
 | Baseline-Commit | `2d93bb5` — "docs: define Storyblok-first target architecture" |
-| Abschluss-Commit | wird nach Docs-Commit ergänzt |
+| Abschluss-Commit | `e90d3ca` — "docs: prepare Storyblok draft for working method pilot" |
 | Push | Nein |
 | Deploy | Nein |
 | Storyblok Publish | Nein |
@@ -54,8 +54,8 @@ Backup-Verzeichnis: `docs/rollback/2026-07-03-cms-002a/`
 
 | Datei | Inhalt | Status |
 |---|---|---|
-| `about-story-before.json` | Aktueller Storyblok-Zustand der `about`-Story | Wird durch `cms-002a-backup.js` erstellt |
-| `working-schema-before.json` | Aktuelle `working_*`-Schemas | Wird durch `cms-002a-backup.js` erstellt |
+| `about-story-before.json` | Aktueller Storyblok-Zustand der `about`-Story | ✅ Vorhanden |
+| `working-schema-before.json` | Aktuelle `working_*`-Schemas | ✅ Vorhanden |
 | `storyblok-write-plan.md` | Was das Build-Script verändert | ✅ Vorhanden |
 
 ---
@@ -108,13 +108,13 @@ npm run dev
 
 | Prüfpunkt | Status |
 |---|---|
-| `node scripts/cms-002a-backup.js` | Ausstehend |
-| `node scripts/cms-002a-build-draft.js` | Ausstehend |
-| `npm run dev` — lokaler Start | Ausstehend |
-| Alle 7 Abschnitte sichtbar | Ausstehend |
-| Verbotene Blöcke nicht sichtbar | Ausstehend |
-| Mobile ca. 390 px | Ausstehend |
-| Storyblok Visual Editor Draft-Check | Ausstehend |
+| `node scripts/cms-002a-backup.js` | ✅ |
+| `node scripts/cms-002a-build-draft.js` | ✅ |
+| `npm run dev` — lokaler Start | ✅ |
+| Alle 7 Abschnitte sichtbar | ✅ |
+| Verbotene Blöcke nicht sichtbar | ✅ |
+| Mobile ca. 390 px | ✅ |
+| Storyblok Visual Editor Draft-Check | ✅ |
 
 ---
 

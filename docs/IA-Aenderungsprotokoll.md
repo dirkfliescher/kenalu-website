@@ -467,7 +467,7 @@ _Ende der bestehenden Einträge. Neue Einträge werden unten angefügt._
 | **Typ** | CMS-Draft / Lokale Preview |
 | **Status** | Scripts bereit, lokale Ausführung ausstehend |
 | **Baseline-Commit** | `2d93bb5` — "docs: define Storyblok-first target architecture" |
-| **Abschluss-Commit** | wird nach Docs-Commit ergänzt |
+| **Abschluss-Commit** | `e90d3ca` — "docs: prepare Storyblok draft for working method pilot" |
 
 ### Was und Warum
 

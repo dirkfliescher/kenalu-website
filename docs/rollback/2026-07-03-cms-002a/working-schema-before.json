@@ -1,0 +1,409 @@
+[
+  {
+    "name": "working_benefits",
+    "display_name": "Arbeitsweise — Kundennutzen",
+    "description": null,
+    "created_at": "2026-07-03T10:30:19.673Z",
+    "updated_at": "2026-07-03T10:30:19.673Z",
+    "id": 194089040585036,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "id": "nC5fA4I3SyWztMaYqeYvBA"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "Kmg6vI4bRd-jedgUOZBZ9g"
+      },
+      "b1_title": {
+        "type": "text",
+        "pos": 2,
+        "id": "uYM57laxQwOwCGYQiyFWBA"
+      },
+      "b1_text": {
+        "type": "textarea",
+        "pos": 3,
+        "id": "c_WNyv7EQsq7H3PtXqRDaw"
+      },
+      "b2_title": {
+        "type": "text",
+        "pos": 4,
+        "id": "kZMgR9JqQiKmhzxIetqGVg"
+      },
+      "b2_text": {
+        "type": "textarea",
+        "pos": 5,
+        "id": "jHng1DbWRkGOj0GtaEFZzg"
+      },
+      "b3_title": {
+        "type": "text",
+        "pos": 6,
+        "id": "qeH9rmGyQfem5dlDQLSrKw"
+      },
+      "b3_text": {
+        "type": "textarea",
+        "pos": 7,
+        "id": "U6ngJPYRQECzLbfLzMekdA"
+      },
+      "b4_title": {
+        "type": "text",
+        "pos": 8,
+        "id": "kqXAYc8wSeCUseTNp-1mkw"
+      },
+      "b4_text": {
+        "type": "textarea",
+        "pos": 9,
+        "id": "RdueNz-bR12Nawe9l8Tuyw"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Arbeitsweise — Kundennutzen",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "working_cta",
+    "display_name": "Arbeitsweise — Abschluss-CTA",
+    "description": null,
+    "created_at": "2026-07-03T10:30:20.994Z",
+    "updated_at": "2026-07-03T10:30:20.994Z",
+    "id": 194089045995855,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "id": "Xzc5HOuWTamtTfJaj_HVqg"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "pOsXV54FS0qDImFWKXS_ew"
+      },
+      "text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "iZKGhNpBTFGUTZkkp2aiMA"
+      },
+      "cta_label": {
+        "type": "text",
+        "pos": 3,
+        "description": "Primärer Button-Text",
+        "id": "o4BxYhg8Q8Cy_yzbyOWz0A"
+      },
+      "cta_url": {
+        "type": "text",
+        "pos": 4,
+        "description": "URL, Standard: /contact",
+        "id": "GFTDrWL6QeeCBMQ0NkJ2mw"
+      },
+      "link_label": {
+        "type": "text",
+        "pos": 5,
+        "description": "Sekundärer Link-Text",
+        "id": "JHy7Q3SeQOC5X5nzrLidOA"
+      },
+      "link_url": {
+        "type": "text",
+        "pos": 6,
+        "description": "URL, Standard: /services",
+        "id": "bKh1lnv_TbOoz3KxgmJL8w"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Arbeitsweise — Abschluss-CTA",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "working_partners",
+    "display_name": "Arbeitsweise — Ergänzende Expertise",
+    "description": null,
+    "created_at": "2026-07-03T10:30:20.562Z",
+    "updated_at": "2026-07-03T10:30:20.562Z",
+    "id": 194089044230478,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "id": "L9NEonrmSJWSVJeysgxPbg"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "vPrrc2usQESMmoMJtTGqRQ"
+      },
+      "text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "LZgDI9M7QqOIxGO0KG7EBQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Arbeitsweise — Ergänzende Expertise",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "working_steps",
+    "display_name": "Arbeitsweise — Vier Schritte",
+    "description": null,
+    "created_at": "2026-07-03T10:30:19.203Z",
+    "updated_at": "2026-07-03T10:30:19.203Z",
+    "id": 194089038668107,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "id": "Xni034ANSo6hGBb1wCovWQ"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "mYyTNRxASj20TNLDkP0Veg"
+      },
+      "intro": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "WsZXo2snS8-HIa7JSlterw"
+      },
+      "step_1_num": {
+        "type": "text",
+        "pos": 3,
+        "description": "z.B. 01",
+        "id": "jZyyn7BATaGlDIbIKmjZhQ"
+      },
+      "step_1_title": {
+        "type": "text",
+        "pos": 4,
+        "id": "RkE0ZaCqRl24ShkRJExXtg"
+      },
+      "step_1_text": {
+        "type": "textarea",
+        "pos": 5,
+        "id": "Kpw__k2CShC1N36cwhr3sg"
+      },
+      "step_2_num": {
+        "type": "text",
+        "pos": 6,
+        "id": "cusoDjVORTWYOBW_5LLpew"
+      },
+      "step_2_title": {
+        "type": "text",
+        "pos": 7,
+        "id": "SeKGpNNvR5yj6qr09K2VFA"
+      },
+      "step_2_text": {
+        "type": "textarea",
+        "pos": 8,
+        "id": "uXcK8H3gQ1-VXFvQP5caRw"
+      },
+      "step_3_num": {
+        "type": "text",
+        "pos": 9,
+        "id": "z7ve0Sj-SdyUJ5G81ENg6w"
+      },
+      "step_3_title": {
+        "type": "text",
+        "pos": 10,
+        "id": "kAhHj47ZSHGp1wvi-TXCjQ"
+      },
+      "step_3_text": {
+        "type": "textarea",
+        "pos": 11,
+        "id": "01vGggTERbq05MXu6VQA8Q"
+      },
+      "step_4_num": {
+        "type": "text",
+        "pos": 12,
+        "id": "pooIbd4ZRO2YZje5gNe8Zg"
+      },
+      "step_4_title": {
+        "type": "text",
+        "pos": 13,
+        "id": "Od9WcMdfS_-etNXiP76-Qg"
+      },
+      "step_4_text": {
+        "type": "textarea",
+        "pos": 14,
+        "id": "A7zo9yEnTEef-mrW3Hesvg"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Arbeitsweise — Vier Schritte",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "working_team_ref",
+    "display_name": "Arbeitsweise — Team-Verweis",
+    "description": null,
+    "created_at": "2026-07-03T10:30:20.125Z",
+    "updated_at": "2026-07-03T10:30:20.125Z",
+    "id": 194089042440525,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "id": "gLTxilaHQa2_0NGJnS1B_Q"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "id": "jCWmjBqGQO2s5q7xZgsNxg"
+      },
+      "text": {
+        "type": "textarea",
+        "pos": 2,
+        "id": "8SMUcADeQMKJhrPpdkSIlA"
+      },
+      "person_1_name": {
+        "type": "text",
+        "pos": 3,
+        "id": "XzBEYV5HSDiFQliqV5Mepw"
+      },
+      "person_1_role": {
+        "type": "text",
+        "pos": 4,
+        "id": "M-_4b3-iT-OVq_aRQKvSNA"
+      },
+      "person_2_name": {
+        "type": "text",
+        "pos": 5,
+        "id": "VI4o-lb3Rn62xCqm2p9YyA"
+      },
+      "person_2_role": {
+        "type": "text",
+        "pos": 6,
+        "id": "IB1L8gylSNyiUfCfC60ouA"
+      },
+      "link_label": {
+        "type": "text",
+        "pos": 7,
+        "description": "Text des Links zur Teamseite",
+        "id": "I2FGL1fLR5yYfNMYdaJ5Ug"
+      },
+      "link_url": {
+        "type": "text",
+        "pos": 8,
+        "description": "URL, Standard: /team",
+        "id": "vdq87RCWRdufwQ3Y1vMKDw"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Arbeitsweise — Team-Verweis",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "working_why",
+    "display_name": "Arbeitsweise — Warum",
+    "description": null,
+    "created_at": "2026-07-03T10:30:18.752Z",
+    "updated_at": "2026-07-03T10:30:18.752Z",
+    "id": 194089036816714,
+    "schema": {
+      "eyebrow": {
+        "type": "text",
+        "pos": 0,
+        "description": "Label über der Überschrift",
+        "id": "pEsinFF2TimMx3mLYCiNWQ"
+      },
+      "headline": {
+        "type": "text",
+        "pos": 1,
+        "description": "Hauptüberschrift",
+        "id": "kj5PdqvKRr6Byj2jY1zW9w"
+      },
+      "text_1": {
+        "type": "textarea",
+        "pos": 2,
+        "description": "Erster Absatz",
+        "id": "CcZFLXmpTJqMMm5VS2qdKw"
+      },
+      "text_2": {
+        "type": "textarea",
+        "pos": 3,
+        "description": "Zweiter Absatz",
+        "id": "6g2sDPCNRGeqMZvmqdNJLg"
+      },
+      "text_3": {
+        "type": "textarea",
+        "pos": 4,
+        "description": "Dritter Absatz",
+        "id": "ChuQs5W7QryZtWijPWSg-Q"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Arbeitsweise — Warum",
+    "component_group_uuid": null,
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  }
+]
