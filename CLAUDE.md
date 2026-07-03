@@ -30,7 +30,7 @@ Hosting: Vercel. CMS: Storyblok. KI-Chat: OpenAI via `/api/kai`.
 
 - **Space-ID:** `293099469334951`
 - **Content Delivery Token (Preview):** `UjST5D2IbHlQxZqnpC03xQtt` (in `.env.local` als `STORYBLOK_TOKEN`)
-- **Management API Token:** `sb_pat_mYxxSxpmsSJe1k7UEAJ39mH4006srhlIoypsU2rtf4I`
+- **Management API Token:** Storyblok-Management-Zugang: über lokale Umgebungsvariablen; nicht im Repository speichern.
   ⚠️ Nicht ins Git-Repo pushen. Nur lokal in Scripts verwenden.
 - **Management API aus Claude-Sandbox:** nicht erreichbar (Proxy-Block). Scripts lokal ausführen: `node scripts/xxx.js`
 

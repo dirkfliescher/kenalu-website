@@ -29,7 +29,7 @@ Next.js (App Router) Website für **kenalu** — Dirk Flieschers Unternehmung f�
 ## Storyblok-Zugang
 
 - **Content Delivery Token:** `UjST5D2IbHlQxZqnpC03xQtt` (in `.env.local` als `STORYBLOK_TOKEN`)
-- **Management API Token:** `sb_pat_mYxxSxpmsSJe1k7UEAJ39mH4006srhlIoypsU2rtf4I`
+- **Management API Token:** Storyblok-Management-Zugang: über lokale Umgebungsvariablen; nicht im Repository speichern.
   ⚠️ Nicht ins Git-Repo pushen. Nur lokal in Scripts verwenden.
 - **Management API Base:** `https://mapi.storyblok.com/v1/spaces/293099469334951`
   → Aus der Claude-Sandbox nicht erreichbar (Proxy-Block). Scripts immer lokal ausführen: `node scripts/xxx.js`

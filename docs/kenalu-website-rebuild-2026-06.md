@@ -187,7 +187,7 @@ Alle 4 Seiten wurden vollständig überarbeitet.
 - **Name:** kenalu
 - **Space-ID:** 293099469334951
 - **Preview Token:** in `.env.local` als `STORYBLOK_TOKEN`
-- **Management API Token:** `sb_pat_mYxxSxpmsSJe1k7UEAJ39mH4006srhlIoypsU2rtf4I` — **NICHT committen**
+- **Management API Token:** Storyblok-Management-Zugang: über lokale Umgebungsvariablen; nicht im Repository speichern.
 
 ### Komponenten-Registry (DynamicBlock.js)
 Alle Blöcke sind registriert. Relevante neue Einträge:
