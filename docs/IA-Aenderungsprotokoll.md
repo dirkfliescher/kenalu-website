@@ -455,3 +455,41 @@ Der allgemeine Kunden-CTA „Bereit für ein Gespräch?" (`cta_section`-Block au
 ---
 
 _Ende der bestehenden Einträge. Neue Einträge werden unten angefügt._
+
+---
+
+## [CMS-001] Storyblok-Zielarchitektur und Migrationsplan
+
+| Feld | Inhalt |
+|---|---|
+| **Datum** | 2026-07-03 |
+| **Initiiert von** | Dirk Fliescher / kenalu |
+| **Typ** | CMS-Architektur / Dokumentation |
+| **Status** | Abgeschlossen |
+| **Baseline-Commit** | `5ee73ee` — "docs: finalize IA-003e completion report" |
+| **Abschluss-Commit** | wird nach Commit ergänzt |
+
+### Was und Warum
+
+Storyblok wird als redaktionelles Herz der kenalu-Website geplant. Ziel ist eine klar abgegrenzte Headless-Architektur: Storyblok für Inhalte, Seitenkomposition und redaktionelle Konfiguration; Next.js für Designsystem, Verhalten, APIs, Sicherheit und Performance. CMS-001 erstellt die verbindliche Architektur- und Migrationsgrundlage — ohne technische Migration.
+
+### Erstellte Dokumente
+
+- `docs/storyblok/CMS-Zielarchitektur.md` — Route-Inventar, Rendering-Strategie pro Seite, vollständiges Zielmodell mit Governance
+- `docs/storyblok/CMS-Migrationsplan.md` — Migrationsreihenfolge CMS-002 bis CMS-008
+- `docs/storyblok/Headless-Showcase-Konzept.md` — Lab-Artikel-Konzept: kenalu.ch als Headless-Arbeitsprobe
+- `docs/arbeitsberichte/CMS-001-abschlussbericht.md` — Abschlussbericht
+
+### Rollback-Weg
+
+Ausschliesslich Dokumentation. Rollback via `git revert [Commit-Hash]` entfernt alle erstellten Dokumente und diesen Changelog-Eintrag.
+
+### Tatsächliches Ergebnis
+
+- Vier neue Dokumente unter `docs/storyblok/` und `docs/arbeitsberichte/` erstellt.
+- Vollständiges Route-Inventar für alle 18 Routen mit Rendering-Strategie, Priorität und Migrationsrisiko.
+- Zielmodell in 6 Ebenen: Globale Konfiguration, Seiten, Blöcke, Sammlungen, Hybrid-Komponenten, Governance.
+- Migrationspfad CMS-002 bis CMS-008 mit konkreten Abnahmekriterien.
+- Headless-Showcase-Konzept für Lab-Artikel.
+- Die acht staged Arbeitsweise-Dateien unberührt.
+- Kein Storyblok-Write, kein Push, kein Deploy.
