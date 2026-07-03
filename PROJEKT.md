@@ -232,7 +232,7 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 | OPS-002: WIP-Branch | ✅ Vorhanden | `wip/cms-002-about-storyblok-first` → zeigt auf `49f0eb2`. CMS-002a-Arbeit lokal gesichert (Worktree + Branch). |
 | SEC-004: History-Cleanup | 📋 Geplant | `git filter-repo` für veralteten Token aus Git-History. Separate Absprache erforderlich. Voraussetzungen in `docs/arbeitsberichte/SEC-002-token-remediation-plan.md`. |
 | Neuer Management-Token | 🔓 Freigegeben | SEC-003 ist committed und gepusht. Token kann jetzt erstellt werden: scoped auf Space, nur in `.env.local`, nie committen. Env-Var: `STORYBLOK_MANAGEMENT_TOKEN`. |
-| CMS-002b: /about Storyblok-first | 📋 Geplant | 8 Dateien liegen im lokalen Worktree (Storyblok-fetching Version). Fallback-Härtung (`notFound()` bei Storyblok-Ausfall) implementieren — dann Commit + Push. Script `scripts/setup-ecosystem-storyblok.mjs` lokal ausführen sobald neuer Token vorhanden. |
+| CMS-002b: /about Storyblok-first | ✅ Implementiert | `app/about/page.js` mit strikter Validierung (7 Blöcke, exakte Reihenfolge, Pflichtfelder) + vollständiger statischer Fallback in `app/about/_static-content.js`. Commit ausstehend (Dirk lokal). Script `scripts/setup-ecosystem-storyblok.mjs` lokal ausführen sobald neuer Management-Token vorhanden. |
 | About "Über kenalu"-Dopplung | 🔧 Script bereit | `scripts/update-hero-labels.js` prüft und behebt die Dopplung. Lokal ausführen: `node scripts/update-hero-labels.js`. Scripts-Verzeichnis ist gitignored. |
 | Homepage hero_label in Storyblok | ℹ️ Workaround | Per CSS ausgeblendet. Kann via `scripts/update-hero-labels.js` geleert werden. |
 | DynamicBlock.js vollständig? | ℹ️ Prüfen | Bei neuen Komponenten immer sicherstellen, dass Block-Key registriert ist |

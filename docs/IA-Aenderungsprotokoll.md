@@ -458,6 +458,56 @@ _Ende der bestehenden Einträge. Neue Einträge werden unten angefügt._
 
 ---
 
+## [CMS-002b] Storyblok-first für /about mit vollständigem statischem Fallback
+
+| Feld | Inhalt |
+|---|---|
+| **Datum** | 2026-07-03 |
+| **Initiiert von** | Dirk Fliescher / kenalu |
+| **Typ** | Komponente geändert / Neue Datei / Robustheit |
+| **Status** | Abgeschlossen |
+| **Baseline-Commit** | `203bb2f` — "feat: about Storyblok-first + notFound fallback (CMS-002b)" |
+| **Abschluss-Commit** | _(Commit auf main nach lokaler Ausführung durch Dirk)_ |
+
+### Was und Warum
+
+`app/about/page.js` hatte als Fallback nur `notFound()`. Das führte dazu, dass bei
+jedem Storyblok-Ausfall oder ungültigem Story-Stand die `/about`-Seite als 404
+erschienen wäre. CMS-002b ersetzt diesen unsicheren Zustand durch:
+
+- Strikte Validierung (exakter Block-Count, exakte Reihenfolge, Pflichtfelder)
+- Vollständigen statischen Fallback aus `app/about/_static-content.js`
+- Kein Partial-Rendering, kein leerer Zustand, keine Fehlermeldung für Nutzer
+
+### Geänderte Dateien
+
+| Datei | Art |
+|-------|-----|
+| `app/about/page.js` | Geändert — Validierungslogik + Fallback |
+| `app/about/_static-content.js` | Neu — produktiver Fallback-Inhalt als blok-Objekte |
+| `docs/storyblok/CMS-002b-About-Fallback-Contract.md` | Neu — Maintenance-Contract |
+| `docs/arbeitsberichte/CMS-002b-abschlussbericht.md` | Neu — Abschlussbericht |
+
+### Rollback-Weg
+
+```bash
+git revert [CMS-002b-Commit-Hash]
+```
+
+Stellt `page.js` auf den Stand `203bb2f` zurück (notFound-Version).
+`_static-content.js` wird entfernt. Docs-Dateien bleiben als historische Referenz.
+
+### Tatsächliches Ergebnis
+
+- `app/about/page.js` validiert Storyblok-Body strikt und fällt bei jeder Abweichung
+  auf den vollständigen statischen Fallback zurück.
+- `app/about/_static-content.js` enthält alle 7 Abschnitte mit exaktem Produktivinhalt
+  (Basis: `git show origin/main:components/blocks/Working*.js`, Stand `5850919`).
+- Kein 404 mehr bei Storyblok-Ausfall.
+- Kein Push, kein Deploy, kein Storyblok-Write.
+
+---
+
 ## [CMS-002a] Arbeitsweise-Draft in Storyblok aufgebaut
 
 | Feld | Inhalt |
