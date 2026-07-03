@@ -395,7 +395,7 @@ _(Nach Commit und QA ausfüllen)_
 | **Typ** | Komponente aus Seitenfluss entfernt |
 | **Status** | Lokal umgesetzt, Veröffentlichung ausstehend |
 | **Baseline-Commit** | `39c614b` — "fix: refine team collaboration flow" |
-| **Abschluss-Commit** | _(nach Commit ergänzen)_ |
+| **Abschluss-Commit** | `ed15c30` — "fix: remove duplicate team kai dialogue" |
 
 ### Was und Warum
 
@@ -407,7 +407,14 @@ Der allgemeine KaiDialogue-Block wurde von `/team` entfernt, weil TeamIntro bere
 
 ### Tatsächliches Ergebnis
 
-_(Nach Commit und QA ausfüllen)_
+- Direkter Import von `KaiDialogue` aus `app/team/page.js` entfernt.
+- Direktes `KaiDialogue`-Rendering (Reveal-Block mit `contextKey="team"`) aus `app/team/page.js` entfernt.
+- `TeamIntro.js` unverändert — Chat-Modus vollständig erhalten.
+- Seitenfluss vereinfacht: Hero → Team-Profile → TeamIntro → Mitwirken → FitTest → Gesprächs-CTA.
+- Keine Änderung an Storyblok, API-Routen, CSS, Navigation, Footer, `/about`.
+- Die acht staged Arbeitsweise-Dateien unberührt.
+- Kein Push, kein Deploy.
+- Lokaler Mac-Build und visuelle QA: ausstehend.
 
 ---
 
