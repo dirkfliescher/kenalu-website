@@ -345,4 +345,41 @@ Die acht staged Arbeitsweise-Dateien blieben unverändert und waren nicht Teil d
 
 ---
 
+---
+
+## [IA-003c] Mitwirken-Dramaturgie auf Über kenalu verfeinert
+
+| Feld | Inhalt |
+|---|---|
+| **Datum** | 2026-07-03 |
+| **Initiiert von** | Dirk Fliescher / kenalu |
+| **Typ** | Inhaltliche Reihenfolge / Komponentenkonfiguration |
+| **Status** | Lokal umgesetzt, Veröffentlichung ausstehend |
+| **Baseline-Commit** | `d92c0c4f6b3a1ba1a84c01a0d0fb7be2d90026da` |
+| **Abschluss-Commit** | _(nach Commit ergänzen)_ |
+
+### Was und Warum
+
+Der Mitwirken-Bereich mit CollaborationIntro und FitTest bleibt auf `/team#mitwirken`. Der allgemeine Gesprächs-CTA ("Bereit für ein Gespräch?", aus Storyblok PageBlocks) wird ans tatsächliche Seitenende verschoben. KaiDialogue rückt als persönliches/interaktives Element vor den Mitwirken-Bereich. Der redundante Kontakt-Link im Mitwirken-Intro entfällt (via `ctaLabel={null}`). Das FitTest-Label wird präzisiert, damit die Frage "Passt du zu der Art, wie wir arbeiten?" nicht unmittelbar zweimal erscheint.
+
+### Änderungen
+
+- `app/team/page.js`: Reihenfolge KaiDialogue → Mitwirken → PageBlocks (war: TeamIntro → PageBlocks → Mitwirken → KaiDialogue). CollaborationIntro mit `ctaLabel={null}` aufgerufen.
+- `components/blocks/FitTest.js`: section-label von "Passt du zu der Art, wie wir arbeiten?" → "Eine ehrliche Einschätzung."
+- `CollaborationIntro.js`: keine Änderung (CTA bereits per Prop steuerbar).
+
+### Hinweis zur h2 in FitTest
+
+Die h2 lautet `6 Fragen. / Eine ehrliche Einschätzung.` (zweizeilig). Nach der Label-Änderung lautet das Label ebenfalls "Eine ehrliche Einschätzung." — dies ist eine bewusste Wiederholung in unterschiedlichen Hierarchieebenen (label vs. h2) und visuell durch die CSS-Gewichtung differenziert.
+
+### Rollback-Weg
+
+`git revert [Commit-Hash]`
+
+### Tatsächliches Ergebnis
+
+_(Nach Commit und QA ausfüllen)_
+
+---
+
 _Ende der bestehenden Einträge. Neue Einträge werden unten angefügt._

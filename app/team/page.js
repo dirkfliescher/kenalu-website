@@ -79,24 +79,7 @@ export default async function TeamPage() {
         <TeamIntro />
       </Reveal>
 
-      {/* Storyblok-Blöcke (Abschluss-CTA etc.) */}
-      {pageBlocks.map((blok) => (
-        <Reveal key={blok._uid}>
-          <DynamicBlock blok={blok} />
-        </Reveal>
-      ))}
-
-      {/* Mitwirken */}
-      <section id="mitwirken">
-        <Reveal>
-          <CollaborationIntro />
-        </Reveal>
-        <Reveal>
-          <FitTest />
-        </Reveal>
-      </section>
-
-      {/* Kai */}
+      {/* Kai — persönlicher Abschluss vor dem Mitwirken-Bereich */}
       <Reveal>
         <KaiDialogue
           contextKey="team"
@@ -112,6 +95,23 @@ export default async function TeamPage() {
           ]}
         />
       </Reveal>
+
+      {/* Mitwirken */}
+      <section id="mitwirken">
+        <Reveal>
+          <CollaborationIntro ctaLabel={null} />
+        </Reveal>
+        <Reveal>
+          <FitTest />
+        </Reveal>
+      </section>
+
+      {/* Storyblok-Blöcke — allgemeiner Gesprächs-CTA als ruhiger Seitenabschluss */}
+      {pageBlocks.map((blok) => (
+        <Reveal key={blok._uid}>
+          <DynamicBlock blok={blok} />
+        </Reveal>
+      ))}
     </main>
   );
 }

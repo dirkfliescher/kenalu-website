@@ -118,7 +118,7 @@ export default function FitTest() {
 
           {/* Linke Seite: Text */}
           <div className="fit-intro">
-            <p className="section-label">Passt du zu der Art, wie wir arbeiten?</p>
+            <p className="section-label">Eine ehrliche Einschätzung.</p>
             <h2 className="fit-headline">6 Fragen.<br />Eine ehrliche Einschätzung.</h2>
             <p className="fit-sub">
               Wir arbeiten gerne mit Menschen zusammen, die fachlich tief gehen, Verantwortung
