@@ -356,7 +356,7 @@ Die acht staged Arbeitsweise-Dateien blieben unverändert und waren nicht Teil d
 | **Typ** | Inhaltliche Reihenfolge / Komponentenkonfiguration |
 | **Status** | Lokal umgesetzt, Veröffentlichung ausstehend |
 | **Baseline-Commit** | `d92c0c4f6b3a1ba1a84c01a0d0fb7be2d90026da` |
-| **Abschluss-Commit** | _(nach Commit ergänzen)_ |
+| **Abschluss-Commit** | `39c614b` — "fix: refine team collaboration flow" |
 
 ### Was und Warum
 
@@ -371,6 +371,35 @@ Der Mitwirken-Bereich mit CollaborationIntro und FitTest bleibt auf `/team#mitwi
 ### Hinweis zur h2 in FitTest
 
 Die h2 lautet `6 Fragen. / Eine ehrliche Einschätzung.` (zweizeilig). Nach der Label-Änderung lautet das Label ebenfalls "Eine ehrliche Einschätzung." — dies ist eine bewusste Wiederholung in unterschiedlichen Hierarchieebenen (label vs. h2) und visuell durch die CSS-Gewichtung differenziert.
+
+### Rollback-Weg
+
+`git revert [Commit-Hash]`
+
+### Tatsächliches Ergebnis
+
+_(Nach Commit und QA ausfüllen)_
+
+---
+
+---
+
+---
+
+## [IA-003d] Doppelten KAI-Dialog auf /team entfernt
+
+| Feld | Inhalt |
+|---|---|
+| **Datum** | 2026-07-03 |
+| **Initiiert von** | Dirk Fliescher / kenalu |
+| **Typ** | Komponente aus Seitenfluss entfernt |
+| **Status** | Lokal umgesetzt, Veröffentlichung ausstehend |
+| **Baseline-Commit** | `39c614b` — "fix: refine team collaboration flow" |
+| **Abschluss-Commit** | _(nach Commit ergänzen)_ |
+
+### Was und Warum
+
+Der allgemeine KaiDialogue-Block wurde von `/team` entfernt, weil TeamIntro bereits einen persönlichen Chat-Modus anbietet. Zwei direkt aufeinanderfolgende Gesprächsangebote vor dem FitTest erzeugten eine unnötige Reibung. Neu folgt Mitwirken direkt nach TeamIntro.
 
 ### Rollback-Weg
 
