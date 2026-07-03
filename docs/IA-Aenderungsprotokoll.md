@@ -431,7 +431,7 @@ Der allgemeine KaiDialogue-Block wurde von `/team` entfernt, weil TeamIntro bere
 | **Typ** | Seitenfluss / CTA-Bereinigung |
 | **Status** | Lokal umgesetzt, Veröffentlichung ausstehend |
 | **Baseline-Commit** | `8b2319f` — "docs: add IA-003d completion report" |
-| **Abschluss-Commit** | _(nach Commit ergänzen)_ |
+| **Abschluss-Commit** | `db23bc8` — "fix: keep team page ending focused" |
 
 ### Was und Warum
 
@@ -443,7 +443,14 @@ Der allgemeine Kunden-CTA „Bereit für ein Gespräch?" (`cta_section`-Block au
 
 ### Tatsächliches Ergebnis
 
-_(Nach Commit und QA ausfüllen)_
+- `cta_section`-Blöcke werden in `app/team/page.js` via `.filter((blok) => blok.component !== 'cta_section')` vor dem Rendering herausgefiltert.
+- Storyblok-Story `team-page` bleibt unverändert — `cta_section` ist weiterhin vorhanden und rendert auf allen anderen Seiten normal.
+- TeamIntro, CollaborationIntro, FitTest und deren Logik unverändert.
+- Seitenfluss nach Umsetzung: Hero → Team-Profile → TeamIntro → Mitwirken → FitTest → Footer.
+- Keine CSS-, API-, Storyblok-, Navigation- oder Footer-Änderung.
+- Die acht staged Arbeitsweise-Dateien unberührt.
+- Kein Push, kein Deploy.
+- Lokaler Mac-Build und visuelle QA: ausstehend.
 
 ---
 
