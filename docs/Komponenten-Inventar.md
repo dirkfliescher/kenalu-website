@@ -283,12 +283,12 @@ _Die folgenden Einträge beschreiben Version B (staged). Version A ist unter „
 |---|---|
 | **Datei** | `components/blocks/CollaborationIntro.js` |
 | **Kategorie** | Working / Mitwirken |
-| **Status** | `Vorhanden, nicht eingebunden` |
-| **Einsatzort** | Nirgends — kein Import in keiner Seite (verifiziert per Codebase-Grep) |
+| **Status** | 🔶 **Lokal eingebunden auf `/team`, Veröffentlichung ausstehend** |
+| **Einsatzort** | `app/team/page.js` — Mitwirken-Sektion (`id="mitwirken"`), vor FitTest. Lokal, noch nicht deployed. |
 | **Frühere Einsätze** | Für `/about` geplant/erstellt, aber nie in Produktion eingebunden |
-| **Funktion** | Mitwirken-Teaser. Ansprache bewusst in du-Form (Einzelperson, nicht Unternehmensansprache) |
+| **Funktion** | Mitwirken-Teaser. Einleitung vor FitTest. Ansprache bewusst in du-Form (Einzelperson, nicht Unternehmensansprache) |
 | **Abhängigkeiten** | Statisch (Default-Props im Code). Kein Storyblok, keine API |
-| **Rückbau-Hinweis** | Nicht löschen. Kann bei Bedarf in `/about` oder `/team` eingebunden werden |
+| **Rückbau-Hinweis** | Rollback: `git revert <ia-003a-commit>` entfernt die Einbindung vollständig |
 
 ---
 
@@ -299,14 +299,13 @@ _Die folgenden Einträge beschreiben Version B (staged). Version A ist unter „
 |---|---|
 | **Datei** | `components/blocks/FitTest.js` |
 | **Kategorie** | Interaktive Komponente / Assessment |
-| **Status** | 🔷 **Technisch vorhanden, nicht eingebunden** |
-| **Einsatzort** | Aktuell nirgends öffentlich erreichbar |
+| **Status** | 🔶 **Lokal eingebunden auf `/team`, Veröffentlichung ausstehend** |
+| **Einsatzort** | `app/team/page.js` — Mitwirken-Sektion (`id="mitwirken"`), nach CollaborationIntro. Lokal, noch nicht deployed. |
 | **Frühere Einsätze** | War auf `/about` (Kollaborations-Bereich) und `/team` (Mitwirken-Tab) aktiv |
 | **Funktion** | Selbst-Assessment in 6 Fragen zur Arbeitsweise-Kompatibilität. Ansprache in du-Form. Drei Ergebnisse: "Du passt" (≥15 Punkte → CTA zu /contact), "Wir müssten reden" (8–14 Punkte), "Nicht jetzt" (0–7 Punkte). |
 | **Abhängigkeiten** | Keine API-Abhängigkeiten. Vollständig self-contained. Keine Storyblok-Felder |
 | **⚠️ Löschen** | **Ausdrücklich nicht erlaubt** — keine explizite Freigabe vorhanden |
-| **Rückbau-Hinweis** | Kann jederzeit mit `<FitTest />` auf einer beliebigen Seite eingebunden werden, da keine externen Abhängigkeiten bestehen |
-| **Empfehlung** | Placement-Entscheid ausstehend: `/team` (Mitwirken-Tab), Ende von `/about`, oder eigenständige Route `/mitwirken` oder `/passt` |
+| **Rückbau-Hinweis** | Rollback: `git revert <ia-003a-commit>` entfernt die Einbindung vollständig. Datei selbst bleibt erhalten. |
 
 ---
 
@@ -504,8 +503,11 @@ Working\*-Komponenten (statisch, hardcoded): `WorkingWhy.js`, `WorkingSteps.js`,
 und sechs Working\*-Komponenten in der `blok`-Props-Version:
 `WorkingWhy.js`, `WorkingSteps.js`, `WorkingBenefits.js`, `WorkingTeamRef.js`, `WorkingPartners.js`, `WorkingCta.js`
 
+### Lokal eingebunden, noch nicht deployed
+`FitTest.js`, `CollaborationIntro.js` — beide in `app/team/page.js` (Mitwirken-Sektion), Veröffentlichung ausstehend
+
 ### Vorhanden, nicht eingebunden — nicht löschen
-`FitTest.js`, `CollaborationIntro.js`, `ServiceDetailPage.js`, `CheckTeaser.js`, `EcosystemPartners.js`, `WorkingPrinciples.js`, `ServiceChat.js`, `InsightsChat.js`, `LabBuilder.js`, `ServicesFinder.js`
+`ServiceDetailPage.js`, `CheckTeaser.js`, `EcosystemPartners.js`, `WorkingPrinciples.js`, `ServiceChat.js`, `InsightsChat.js`, `LabBuilder.js`, `ServicesFinder.js`
 
 ### API-Routen vorhanden, nicht aktiv aufgerufen — nicht löschen
 `/api/service-chat`, `/api/services-chat`, `/api/insights-chat`, `/api/lab-builder`

@@ -259,4 +259,64 @@ _(Nach Commit ausfüllen)_
 
 ---
 
+---
+
+## [IA-003a] FitTest auf Über kenalu lokal eingebunden
+
+| Feld | Inhalt |
+|---|---|
+| **Datum** | 2026-07-02 |
+| **Initiiert von** | Dirk Fliescher / kenalu |
+| **Typ** | Komponente eingebunden / IA-Umsetzung |
+| **Status** | Lokal umgesetzt, Veröffentlichung ausstehend |
+| **Baseline-Commit** | `0d2a254135da63c2ae2045522c6398f457439bc1` — "docs: define working method and about page roles" |
+| **Abschluss-Commit** | _(nach lokalem Commit ergänzen)_ |
+
+### Was und Warum
+
+Der eigenständige FitTest wird als Mitwirken-Bereich auf `/team` eingebunden. `/about` bleibt die reine Kunden- und Arbeitsweise-Seite. Bestehende aktive Mitwirken-Links werden bereinigt.
+
+Seitenrollen (verbindlich ab diesem Ticket):
+- `/about`: Wie kenalu arbeitet — für potenzielle Kunden
+- `/team`: Wer hinter kenalu steht, wie Zusammenarbeit funktioniert und ob diese Art zu jemandem passt
+
+### Umfang der Änderungen
+
+**`app/team/page.js`:**
+- Imports: `CollaborationIntro` und `FitTest` hinzugefügt; `Link` (nicht mehr benötigt) entfernt
+- Neuer Abschnitt `<section id="mitwirken">` mit `CollaborationIntro` und `FitTest`, nach Storyblok-PageBlocks, vor KaiDialogue
+- Alter Mitwirken-Teaser (mit kaputtem Link `/about#mitwirken`) entfernt
+
+**Angepasste aktive Links:**
+- `app/team/page.js:121` — `<Link href="/about#mitwirken">` — **entfernt** (war Teil des alten Mitwirken-Teasers; der Link existierte im Code, führte aber zu einem nicht existierenden Anker). Durch `id="mitwirken"` auf der gleichen Seite ersetzt.
+
+**Keine Änderungen an:**
+- `app/about/page.js` (unverändert — weder staged noch working-tree)
+- `app/globals.css` (alle benötigten CSS-Klassen bereits vorhanden)
+- Storyblok, Scripts, API-Routen, Navigation, Footer, KAI-Logik
+- `FitTest.js`, `CollaborationIntro.js` (Komponentendateien unverändert)
+- Die 8 staged Arbeitsweise-Dateien (unverändert und weiterhin staged)
+
+### Rollback-Weg
+
+Der isolierte Commit kann mit `git revert <commit-hash>` vollständig zurückgenommen werden. Die acht staged Arbeitsweise-Dateien bleiben unverändert und sind nicht Teil dieses Commits. `FitTest.js` und `CollaborationIntro.js` bleiben als Dateien erhalten.
+
+### Commit (lokal ausführen)
+
+```bash
+cd /Users/dirkfliescher/Documents/kenalu-website
+git add app/team/page.js docs/Informationsarchitektur.md docs/Komponenten-Inventar.md docs/IA-Aenderungsprotokoll.md
+git commit --only -m "feat: restore fit test in team collaboration section" -- \
+  app/team/page.js \
+  docs/Informationsarchitektur.md \
+  docs/Komponenten-Inventar.md \
+  docs/IA-Aenderungsprotokoll.md
+```
+
+### Tatsächliches Ergebnis
+
+_(Nach Commit und visueller QA ausfüllen)_
+
+---
+
 _Ende der bestehenden Einträge. Neue Einträge werden unten angefügt._

@@ -192,8 +192,9 @@ Quelle: `components/Nav.js` (hardcoded in JS, nicht via Storyblok steuerbar)
 - **H1:** "Die Menschen hinter kenalu."
 - **Rolle:** Team vorstellen, Mitwirken anbieten, interaktive Persönlichkeit zeigen
 - **Rendering:** Hybrid — `app/team/page.js` (statisch + Storyblok für Team-Profile + Storyblok für PageBlocks)
-- **Hauptkomponenten:** Hero (statisch), `TeamMemberTeaser`-Grid, `TeamIntro` (3 interaktive Modi), Mitwirken-Teaser, `KaiDialogue`
+- **Hauptkomponenten:** Hero (statisch), `TeamMemberTeaser`-Grid, `TeamIntro` (3 interaktive Modi), `CollaborationIntro` + `FitTest` (Mitwirken-Sektion, `id="mitwirken"`), `KaiDialogue`
 - **KAI:** KaiDialogue (contextKey `team`, `/api/kai`) + TeamIntro-Chat-Modus (⚠️ nutzt `/api/team-chat`, Legacy)
+- **Mitwirken-Bereich:** `section id="mitwirken"` — enthält CollaborationIntro (Einleitung) + FitTest (6-Fragen-Fit-Check). Lokal eingebunden, Veröffentlichung ausstehend.
 - **Anmerkung:** Die Seite lädt Blöcke aus Storyblok-Story `team-page`, Team-Profile aus `team/*`
 
 ---
@@ -335,8 +336,8 @@ Quelle: `components/Nav.js` (hardcoded in JS, nicht via Storyblok steuerbar)
 | TeamIntro | Neugierige, potenzielle Partner | Fragen stellen, Lüge finden, Vergleichen | ✅ Live | `/team` |
 | ProductMomentBuilder | Teams mit Produktideen | Idee in Produktmoment übersetzen | ✅ Live | `/lab/produktmoment` |
 | CheckTool | Unternehmen (ihr) | AI-Reife einschätzen, Service empfehlen | `Live` (versteckt) | `/check` (kein Nav-Eintrag) |
-| FitTest | Einzelpersonen (du) | Kultur-/Arbeitsweisen-Fit einschätzen | `Vorhanden, nicht eingebunden` | Nirgends — nicht löschen |
-| CollaborationIntro | Einzelpersonen (du) | Mitwirken-Teaser (Datei vorhanden) | `Vorhanden, nicht eingebunden` | Nirgends — kein Import in keiner Seite |
+| FitTest | Einzelpersonen (du) | Kultur-/Arbeitsweisen-Fit einschätzen | `Lokal eingebunden auf /team (Mitwirken-Sektion). Veröffentlichung ausstehend.` | `/team#mitwirken` |
+| CollaborationIntro | Einzelpersonen (du) | Einleitung Mitwirken-Bereich | `Lokal eingebunden auf /team (Mitwirken-Sektion). Veröffentlichung ausstehend.` | `/team#mitwirken` |
 
 ---
 
@@ -384,7 +385,7 @@ Die folgenden Fragen wurden absichtlich noch nicht entschieden:
 
 2. **Slug-Migration `/team`:** Soll `/team` als "Über kenalu"-Seite in `/ueber-kenalu` umbenannt werden, oder bleibt der technische Slug?
 
-3. **FitTest-Platzierung:** Wo soll `FitTest.js` künftig platziert werden? Optionen: `/team` (Mitwirken-Tab), Ende von `/about`, eigenständige Route `/passt` oder `/mitwirken`
+3. ~~**FitTest-Platzierung:**~~ ✅ Entschieden in IA-003a: `FitTest.js` ist auf `/team` als Mitwirken-Sektion (`id="mitwirken"`) eingebunden. Lokal umgesetzt, Veröffentlichung ausstehend.
 
 4. **`/check` sichtbar machen:** Soll der AI Readiness Check in die Navigation, als Teaser auf `/services` oder via `CheckTeaser.js` sichtbarer werden? Oder soll er vorerst versteckt bleiben?
 
