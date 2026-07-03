@@ -458,6 +458,31 @@ _Ende der bestehenden Einträge. Neue Einträge werden unten angefügt._
 
 ---
 
+## [CMS-002a] Arbeitsweise-Draft in Storyblok aufgebaut
+
+| Feld | Inhalt |
+|---|---|
+| **Datum** | 2026-07-03 |
+| **Initiiert von** | Dirk Fliescher / kenalu |
+| **Typ** | CMS-Draft / Lokale Preview |
+| **Status** | Scripts bereit, lokale Ausführung ausstehend |
+| **Baseline-Commit** | `2d93bb5` — "docs: define Storyblok-first target architecture" |
+| **Abschluss-Commit** | wird nach Docs-Commit ergänzt |
+
+### Was und Warum
+
+Die Arbeitsweise-Seite wird als erster Storyblok-Pilot vorbereitet. Die öffentliche statische `/about`-Seite bleibt unverändert. Storyblok erhält eine vollständige Draft-Struktur mit genau sieben zugelassenen Arbeitsweise-Blöcken (`page_hero`, `working_why`, `working_steps`, `working_benefits`, `working_team_ref`, `working_partners`, `working_cta`).
+
+### Rollback-Weg
+
+Story `about` bleibt unveröffentlicht. Die vorherige Story-Konfiguration wird durch `cms-002a-backup.js` gesichert unter `docs/rollback/2026-07-03-cms-002a/`. Die acht staged Arbeitsweise-Dateien bleiben unverändert.
+
+### Tatsächliches Ergebnis
+
+[Nach lokaler Ausführung und Preview durch Dirk ausfüllen]
+
+---
+
 ## [CMS-001] Storyblok-Zielarchitektur und Migrationsplan
 
 | Feld | Inhalt |
@@ -467,7 +492,7 @@ _Ende der bestehenden Einträge. Neue Einträge werden unten angefügt._
 | **Typ** | CMS-Architektur / Dokumentation |
 | **Status** | Abgeschlossen |
 | **Baseline-Commit** | `5ee73ee` — "docs: finalize IA-003e completion report" |
-| **Abschluss-Commit** | wird nach Commit ergänzt |
+| **Abschluss-Commit** | `2d93bb5` — "docs: define Storyblok-first target architecture" |
 
 ### Was und Warum
 

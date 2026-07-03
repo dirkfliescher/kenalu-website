@@ -9,7 +9,7 @@
 | Status | Abgeschlossen |
 | Typ | Docs-only — keine Code-, CMS- oder Website-Änderungen |
 | Baseline-Commit | `5ee73ee` — "docs: finalize IA-003e completion report" |
-| Abschluss-Commit | wird nach Commit ergänzt |
+| Abschluss-Commit | `2d93bb5` — "docs: define Storyblok-first target architecture" |
 | Push | Nein |
 | Deploy | Nein |
 
