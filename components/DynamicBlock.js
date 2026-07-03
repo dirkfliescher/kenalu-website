@@ -28,6 +28,15 @@ import ProcessJourney from './blocks/ProcessJourney';
 import KaiDialogue from './blocks/KaiDialogue';
 import EcosystemPartners from './blocks/EcosystemPartners';
 
+// CMS-REBUILD-01: about_* Komponenten für /about
+import AboutHero from './blocks/AboutHero';
+import AboutWorkingWhy from './blocks/AboutWorkingWhy';
+import AboutWorkingSteps from './blocks/AboutWorkingSteps';
+import AboutWorkingBenefits from './blocks/AboutWorkingBenefits';
+import AboutTeamReference from './blocks/AboutTeamReference';
+import AboutEcosystemPartners from './blocks/AboutEcosystemPartners';
+import AboutCta from './blocks/AboutCta';
+
 const Components = {
   hero: Hero,
   page_hero: PageHero,
@@ -57,10 +66,19 @@ const Components = {
   process_journey: ProcessJourney,
   kai_dialogue: KaiDialogue,
   ecosystem_partners: EcosystemPartners,
+
+  // CMS-REBUILD-01: about_* Komponenten
+  about_hero: AboutHero,
+  about_working_why: AboutWorkingWhy,
+  about_working_steps: AboutWorkingSteps,
+  about_working_benefits: AboutWorkingBenefits,
+  about_team_reference: AboutTeamReference,
+  about_ecosystem_partners: AboutEcosystemPartners,
+  about_cta: AboutCta,
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist
-const NO_REVEAL = new Set(['hero', 'page_hero']);
+const NO_REVEAL = new Set(['hero', 'page_hero', 'about_hero']);
 
 export default function DynamicBlock({ blok }) {
   if (!blok) return null;
