@@ -228,10 +228,11 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 
 | Punkt | Status | Details |
 |-------|--------|---------|
-| SEC-003-Commit | 🔧 Ausstehend | Dirk führt lokal aus — index.lock entfernen, dann `git add scripts/ CLAUDE.md PROJEKT.md docs/arbeitsberichte/SEC-003-...` + Commit. Kein `git add -A` (8 staged Dateien bleiben geschützt). |
+| SEC-003 + OPS-002 | ✅ Abgeschlossen | Scripts gehärtet, Correction-Commit, Docs — gepusht als `19a233f` (2026-07-03). |
+| OPS-002: WIP-Branch | ✅ Vorhanden | `wip/cms-002-about-storyblok-first` → zeigt auf `49f0eb2`. CMS-002a-Arbeit lokal gesichert (Worktree + Branch). |
 | SEC-004: History-Cleanup | 📋 Geplant | `git filter-repo` für veralteten Token aus Git-History. Separate Absprache erforderlich. Voraussetzungen in `docs/arbeitsberichte/SEC-002-token-remediation-plan.md`. |
-| Neuer Management-Token | 🔒 Gesperrt | Erst nach SEC-003-Commit und Script-Freigabe. Nur in `.env.local`, scoped auf Space, nie commiten. Env-Var: `STORYBLOK_MANAGEMENT_TOKEN`. |
-| CMS-002b: /about Fallback-Härtung | 📋 Geplant | `app/about/page.js` (staged): leere Seite bei Storyblok-Ausfall verhindern. Fallback oder `notFound()` implementieren — dann Commit der 8 Dateien + Push. |
+| Neuer Management-Token | 🔓 Freigegeben | SEC-003 ist committed und gepusht. Token kann jetzt erstellt werden: scoped auf Space, nur in `.env.local`, nie committen. Env-Var: `STORYBLOK_MANAGEMENT_TOKEN`. |
+| CMS-002b: /about Storyblok-first | 📋 Geplant | 8 Dateien liegen im lokalen Worktree (Storyblok-fetching Version). Fallback-Härtung (`notFound()` bei Storyblok-Ausfall) implementieren — dann Commit + Push. Script `scripts/setup-ecosystem-storyblok.mjs` lokal ausführen sobald neuer Token vorhanden. |
 | About "Über kenalu"-Dopplung | 🔧 Script bereit | `scripts/update-hero-labels.js` prüft und behebt die Dopplung. Lokal ausführen: `node scripts/update-hero-labels.js`. Scripts-Verzeichnis ist gitignored. |
 | Homepage hero_label in Storyblok | ℹ️ Workaround | Per CSS ausgeblendet. Kann via `scripts/update-hero-labels.js` geleert werden. |
 | DynamicBlock.js vollständig? | ℹ️ Prüfen | Bei neuen Komponenten immer sicherstellen, dass Block-Key registriert ist |
@@ -267,3 +268,6 @@ node scripts/update-hero-labels.js
 - ✅ Typewriter-Effekt im Kai-Chat
 - ✅ EcosystemPartners, CollaborationIntro, FitTest
 - ✅ Navigation und Footer bereinigt
+- ✅ SEC-003: Alle Scripts gehärtet (kein Token, kein Fallback, Safe-Abort-Guard, Publish-Schutz)
+- ✅ OPS-002: Unbeabsichtigter Commit korrigiert, WIP-Branch gesichert
+- ✅ Security-Release gepusht (2026-07-03, Commit `19a233f`)
