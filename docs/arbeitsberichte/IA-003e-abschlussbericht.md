@@ -4,7 +4,7 @@
 
 - Ticket: IA-003e
 - Datum: 2026-07-03
-- Status: Lokal umgesetzt und geprüft, Veröffentlichung ausstehend
+- Status: Lokal umgesetzt, Veröffentlichung ausstehend
 - Baseline-Commit: `8b2319f` — "docs: add IA-003d completion report"
 - Umsetzungs-Commit: `db23bc8` — "fix: keep team page ending focused"
 - Push: Nein
@@ -12,7 +12,7 @@
 
 ## Ziel
 
-Den allgemeinen Kunden-CTA auf `/team` entfernen, damit nach FitTest nur der passende Mitwirken-Abschluss verbleibt.
+Den allgemeinen Kunden-CTA auf `/team` entfernen, damit nach dem FitTest nur der passende Mitwirken-Abschluss verbleibt.
 
 ## Umsetzung
 
@@ -20,11 +20,13 @@ Den allgemeinen Kunden-CTA auf `/team` entfernen, damit nach FitTest nur der pas
 - Umsetzung nur auf `/team`: `pageBlocks` werden vor dem Rendering um `cta_section` gefiltert.
 - Storyblok selbst bleibt unverändert.
 - Resultierender Seitenfluss:
+
   TeamIntro → Mitwirken → FitTest → Mitwirken-Abschluss „Meld dich" → Footer.
 
 ## Bewusste technische Regel
 
 Auf `/team` werden `cta_section`-PageBlocks aktuell nicht gerendert.
+
 Neue allgemeine CTA-Blöcke für diese Seite müssen künftig bewusst anders modelliert oder gezielt freigegeben werden.
 
 ## Nicht verändert
@@ -48,12 +50,11 @@ Neue allgemeine CTA-Blöcke für diese Seite müssen künftig bewusst anders mod
 
 ## Qualitätssicherung
 
+- Desktop: Allgemeiner CTA auf `/team` nicht mehr sichtbar; Mitwirken-Abschluss direkt vor Footer sichtbar.
 - Lokaler Mac-Build: Ausstehend
-- Desktop: Ausstehend
 - Mobile: Ausstehend
 - `#mitwirken`: Ausstehend
 - TeamIntro: Ausstehend
-- Allgemeiner CTA auf `/team`: nicht mehr sichtbar
 - Horizontaler Overflow: Ausstehend
 
 ## Rollback
@@ -64,8 +65,8 @@ git revert db23bc8
 
 ## Offene Punkte
 
-Keine für dieses Ticket.
+Lokaler Mac-Build und Mobile-QA ausstehend.
 
 ## Nächster Schritt
 
-Separat über den kontrollierten Push der lokalen, bereits geprüften Team-Änderungen entscheiden.
+Nach vollständiger lokaler QA separat über den kontrollierten Push der geprüften Team-Änderungen entscheiden.

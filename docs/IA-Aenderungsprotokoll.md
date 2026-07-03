@@ -443,11 +443,13 @@ Der allgemeine Kunden-CTA „Bereit für ein Gespräch?" (`cta_section`-Block au
 
 ### Tatsächliches Ergebnis
 
-- Der allgemeine `cta_section`-Block wird ausschliesslich auf `/team` vor dem Rendering herausgefiltert.
-- Die Storyblok-Story selbst wurde nicht verändert.
-- Nach FitTest bleibt nur der Mitwirken-Abschluss „Meld dich" als Seitenabschluss.
-- Die Filterregel gilt bewusst für alle `cta_section`-Blöcke auf `/team`; neue allgemeine CTA-Sections auf dieser Seite müssen künftig bewusst anders modelliert werden.
-- Lokaler Mac-Build und visuelle QA: Ausstehend.
+- Der allgemeine `cta_section`-Block wird nur auf `/team` vor dem Rendering herausgefiltert.
+- Die Storyblok-Story `team-page` wurde nicht verändert.
+- Nach dem FitTest bleibt nur der Mitwirken-Abschluss „Meld dich" als Seitenabschluss.
+- Die Filterregel gilt bewusst für alle `cta_section`-Blocks auf `/team`.
+- Desktop-QA bestätigt: allgemeiner CTA nicht mehr sichtbar, Mitwirken-Abschluss direkt vor Footer sichtbar.
+- Lokaler Mac-Build: Ausstehend.
+- Mobile-QA: Ausstehend.
 - Kein Push und kein Deploy.
 
 ---
