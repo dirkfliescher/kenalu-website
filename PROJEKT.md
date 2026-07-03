@@ -85,15 +85,23 @@ components/
     Hero.js                      Homepage-Hero
     ContactSection.js            Kontaktseite
     ContactBookingWidget.js      Calendly-Integration
-    EcosystemPartners.js         Partner-Sektion (About)
+    EcosystemPartners.js         Partner-Sektion (nicht mehr für /about)
     CollaborationIntro.js        Zusammenarbeit-Intro
     ProductMomentBuilder.js      Lab: Produktmoment-Builder
     FitTest.js                   Fit-Test
+    AboutHero.js                 /about Hero (CMS-REBUILD-01)
+    AboutWorkingWhy.js           /about Warum-Abschnitt (CMS-REBUILD-01)
+    AboutWorkingSteps.js         /about Schritte (CMS-REBUILD-01)
+    AboutWorkingBenefits.js      /about Vorteile (CMS-REBUILD-01)
+    AboutTeamReference.js        /about Team-Verweis (CMS-REBUILD-01)
+    AboutEcosystemPartners.js    /about Partner-Ökosystem (CMS-REBUILD-01)
+    AboutCta.js                  /about CTA (CMS-REBUILD-01)
     ...weitere Storyblok-Blöcke
-  DynamicBlock.js                Registry aller Storyblok-Block-Komponenten
+  DynamicBlock.js                Registry aller Storyblok-Block-Komponenten (about_* registriert)
   Nav.js, Footer.js, WaveBackground.js
 
-scripts/
+scripts/ (gitignored — nie committen)
+  cms-rebuild-about.mjs          CMS-REBUILD-01: about_* in Storyblok aufbauen (lokal ausführen)
   update-hero-labels.js          Storyblok: hero_label + contact_label leeren
 
 docs/                            Projektdokumentation (Markdown)
@@ -232,10 +240,10 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 | OPS-002: WIP-Branch | ✅ Vorhanden | `wip/cms-002-about-storyblok-first` → zeigt auf `49f0eb2`. CMS-002a-Arbeit lokal gesichert (Worktree + Branch). |
 | SEC-004: History-Cleanup | 📋 Geplant | `git filter-repo` für veralteten Token aus Git-History. Separate Absprache erforderlich. Voraussetzungen in `docs/arbeitsberichte/SEC-002-token-remediation-plan.md`. |
 | Neuer Management-Token | 🔓 Freigegeben | SEC-003 ist committed und gepusht. Token kann jetzt erstellt werden: scoped auf Space, nur in `.env.local`, nie committen. Env-Var: `STORYBLOK_MANAGEMENT_TOKEN`. |
-| CMS-002b: /about Storyblok-first | ✅ Implementiert | `app/about/page.js` mit strikter Validierung (7 Blöcke, exakte Reihenfolge, Pflichtfelder) + vollständiger statischer Fallback in `app/about/_static-content.js`. Commit ausstehend (Dirk lokal). Script `scripts/setup-ecosystem-storyblok.mjs` lokal ausführen sobald neuer Management-Token vorhanden. |
+| CMS-REBUILD-01: /about Storyblok-first | 🔧 Code fertig, lokal ausführen | 7 React-Komponenten (`about_*`), `page.js`, `_fallback-content.js` und `DynamicBlock.js` aktualisiert. Script `scripts/cms-rebuild-about.mjs` bereit. Lokal ausführen: `rm .git/index.lock && git add [Dateien] && git commit`, dann `npm run build`, dann `--dry-run`, `--apply`, `--verify`. Kein Push, kein Deploy, kein Publish. |
 | About "Über kenalu"-Dopplung | 🔧 Script bereit | `scripts/update-hero-labels.js` prüft und behebt die Dopplung. Lokal ausführen: `node scripts/update-hero-labels.js`. Scripts-Verzeichnis ist gitignored. |
 | Homepage hero_label in Storyblok | ℹ️ Workaround | Per CSS ausgeblendet. Kann via `scripts/update-hero-labels.js` geleert werden. |
-| DynamicBlock.js vollständig? | ℹ️ Prüfen | Bei neuen Komponenten immer sicherstellen, dass Block-Key registriert ist |
+| DynamicBlock.js vollständig? | ✅ Aktuell | about_* Komponenten registriert (CMS-REBUILD-01). Bei neuen Komponenten immer sicherstellen, dass Block-Key eingetragen ist. |
 
 ---
 

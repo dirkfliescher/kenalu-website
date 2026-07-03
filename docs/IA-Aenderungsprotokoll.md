@@ -508,6 +508,66 @@ Stellt `page.js` auf den Stand `203bb2f` zurück (notFound-Version).
 
 ---
 
+## [CMS-REBUILD-01] /about als Storyblok-first Content-Modell mit about_* Komponenten
+
+| Feld | Inhalt |
+|---|---|
+| **Datum** | 2026-07-03 |
+| **Initiiert von** | Dirk Fliescher / kenalu |
+| **Typ** | CMS-Migration / Neue Komponentenfamilie / Fallback-System |
+| **Status** | Abgeschlossen — merged nach main, deployed auf Vercel |
+| **Baseline-Commit** | `e47913c` — HEAD auf `origin/main` vor diesem Ticket |
+| **Abschluss-Commit** | Merge-Commit auf main |
+
+### Was und Warum
+
+Die `/about`-Seite wird von vollständig statischem Code (Working*-Familie ohne Storyblok-Anbindung) auf ein Storyblok-first Content-Modell mit vollständigem statischen Fallback umgestellt.
+
+**Neue Komponentenfamilie (`about_*`):** 7 React-Komponenten + 1 Nested-Typ:
+- `about_hero` → `AboutHero.js`
+- `about_working_why` → `AboutWorkingWhy.js`
+- `about_working_steps` → `AboutWorkingSteps.js`
+- `about_working_benefits` → `AboutWorkingBenefits.js`
+- `about_team_reference` → `AboutTeamReference.js`
+- `about_ecosystem_partners` → `AboutEcosystemPartners.js`
+- `about_cta` → `AboutCta.js`
+- `about_partner_item` (Nested, nicht eigenständig)
+
+**Fallback-Strategie:** `app/about/_fallback-content.js` enthält einen vollständigen Snapshot der Produktionsinhalte. `isValidBody()` in `page.js` prüft strikt 7 Blöcke in exakter Reihenfolge + Pflichtfelder. Jede Abweichung → Fallback.
+
+**Migration-Script:** `scripts/cms-rebuild-about.mjs` (gitignored, SEC-003-konform).
+
+### Änderungsumfang
+
+**Neue Dateien:**
+- `components/blocks/AboutHero.js`
+- `components/blocks/AboutWorkingWhy.js`
+- `components/blocks/AboutWorkingSteps.js`
+- `components/blocks/AboutWorkingBenefits.js`
+- `components/blocks/AboutTeamReference.js`
+- `components/blocks/AboutEcosystemPartners.js`
+- `components/blocks/AboutCta.js`
+- `app/about/_fallback-content.js`
+
+**Geänderte Dateien:**
+- `components/DynamicBlock.js` — 7 about_* Registrierungen + `NO_REVEAL` erweitert
+- `app/about/page.js` — vollständig neu (Storyblok-first mit Fallback)
+- `PROJEKT.md` — about_* Komponenten, offene Punkte aktualisiert
+
+### Rollback-Weg
+
+1. `git revert [Merge-Commit-Hash]` — entfernt alle Code-Änderungen
+2. Storyblok: Story `about` auf vorherigen Stand zurückstellen (Backup in `docs/rollback/cms-rebuild-about-2026-07-03/`)
+
+### Tatsächliches Ergebnis
+
+- 8 Storyblok-Komponenten erstellt (`about_*` + `about_partner_item`)
+- Story `about` publiziert mit 7 Blöcken in korrekter Reihenfolge
+- 5 Partner-Einträge mit kontextuellen Beschreibungen (Emporix, Storyblok, Soulcode, Beebase, Skyquest)
+- Statischer Fallback aktiv für CMS-Ausfall-Szenario
+
+---
+
 ## [CMS-002a] Arbeitsweise-Draft in Storyblok aufgebaut
 
 | Feld | Inhalt |

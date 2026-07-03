@@ -1,96 +1,77 @@
-/**
- * /about — Arbeitsweise
- *
- * CMS-002b: Storyblok-first mit vollständigem statischem Fallback.
- *
- * Strategie:
- *   1. Storyblok-Story laden
- *   2. Strenge Validierung: genau 7 Blöcke, exakte Reihenfolge, Pflichtfelder
- *   3. Validierung bestanden → CMS-Daten rendern
- *   4. Validierung fehlgeschlagen (Fehler, Netzwerk, falscher Stand) → statischen
- *      Fallback aus _static-content.js rendern — nie eine leere oder fehlerhafte Seite
- */
+// CMS-REBUILD-01: /about als Storyblok-first Page
+// Validiert CMS-Body strikt (7 Blöcke, exakte Typreihenfolge, Pflichtfelder).
+// Fällt bei ungültigem oder fehlendem CMS-Body auf FALLBACK_ABOUT_BODY zurück.
 
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../components/DynamicBlock';
-import { STATIC_ABOUT_BODY } from './_static-content';
+import { FALLBACK_ABOUT_BODY } from './_fallback-content';
 
 export const revalidate = 60;
-
-// Erlaubte Typen in exakter Reihenfolge — jede Abweichung löst den Fallback aus
-const ALLOWED_SEQUENCE = [
-  'page_hero',
-  'working_why',
-  'working_steps',
-  'working_benefits',
-  'working_team_ref',
-  'working_partners',
-  'working_cta',
-];
-
-const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 export const metadata = {
   title: 'Arbeitsweise – kenalu',
   description:
-    'Kenalu verbindet strategisches Denken, Nutzerperspektive und technische Realität – ' +
-    'von der ersten Frage bis zum fertigen Produkt.',
+    'Kenalu verbindet strategisches Denken, Nutzerperspektive und technische Realität – von der ersten Frage bis zum fertigen Produkt.',
 };
 
-async function fetchStoryblok() {
-  try {
-    const { data } = await Storyblok.get('cdn/stories/about', {
-      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
-    });
-    return data?.story?.content ?? null;
-  } catch {
-    return null;
-  }
-}
+const ALLOWED_SEQUENCE = [
+  'about_hero',
+  'about_working_why',
+  'about_working_steps',
+  'about_working_benefits',
+  'about_team_reference',
+  'about_ecosystem_partners',
+  'about_cta',
+];
 
-/**
- * Validiert einen einzelnen Blok gegen den erwarteten Typ und seine Pflichtfelder.
- * Gibt false zurück, wenn ein Pflichtfeld fehlt oder der Typ falsch ist.
- */
+const REQUIRED_FIELDS = {
+  about_hero: ['headline'],
+  about_working_why: ['headline'],
+  about_working_steps: ['headline', 'step_1_title'],
+  about_working_benefits: ['headline', 'b1_title'],
+  about_team_reference: ['headline'],
+  about_ecosystem_partners: ['headline', 'solution_partners', 'service_partners'],
+  about_cta: ['headline'],
+};
+
 function isValidBlok(blok, expectedType) {
   if (!blok || blok.component !== expectedType) return false;
-  switch (expectedType) {
-    case 'page_hero':
-      return Boolean(blok.page_hero_headline);
-    case 'working_why':
-      return Boolean(blok.headline);
-    case 'working_steps':
-      return Boolean(blok.headline && blok.step_1_title);
-    case 'working_benefits':
-      return Boolean(blok.headline && blok.b1_title);
-    case 'working_team_ref':
-      return Boolean(blok.headline);
-    case 'working_partners':
-      return Boolean(blok.headline);
-    case 'working_cta':
-      return Boolean(blok.headline);
-    default:
-      return false;
+  const required = REQUIRED_FIELDS[expectedType] || [];
+  for (const field of required) {
+    if (field === 'solution_partners' || field === 'service_partners') {
+      const arr = blok[field];
+      if (!Array.isArray(arr) || arr.length === 0) return false;
+      if (!arr.every((p) => p && p.name)) return false;
+    } else {
+      if (!blok[field]) return false;
+    }
   }
+  return true;
 }
 
-/**
- * Validiert das body-Array vollständig:
- * - Muss ein Array sein
- * - Genau 7 Blöcke (keine mehr, keine weniger)
- * - Exakte Typreihenfolge: page_hero → working_cta
- * - Alle Pflichtfelder pro Typ gesetzt
- */
 function isValidBody(body) {
   if (!Array.isArray(body)) return false;
   if (body.length !== ALLOWED_SEQUENCE.length) return false;
   return ALLOWED_SEQUENCE.every((type, i) => isValidBlok(body[i], type));
 }
 
+const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
+
+async function fetchAboutContent() {
+  try {
+    const { data } = await Storyblok.get('cdn/stories/about', {
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
+    });
+    return data.story.content;
+  } catch {
+    return null;
+  }
+}
+
 export default async function About() {
-  const content = await fetchStoryblok();
+  const content = await fetchAboutContent();
   const cmsBody = content?.body ?? [];
-  const blocks = isValidBody(cmsBody) ? cmsBody : STATIC_ABOUT_BODY;
+  const blocks = isValidBody(cmsBody) ? cmsBody : FALLBACK_ABOUT_BODY;
 
   return (
     <>
