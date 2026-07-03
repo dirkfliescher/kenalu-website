@@ -67,7 +67,7 @@ Alle acht Dateien sind staged (Index `M `) und unverändert. Kein unstaged diff 
 | Publish möglich | Nein — kein Publish-Parameter |
 | Rollback-Verhalten | Erstellt Backup, kein Rollback nötig |
 | Ausführungsreife | Bereits ausgeführt. Ergebnis: `docs/rollback/2026-07-03-cms-002a/about-story-before.json` + `working-schema-before.json` committed |
-| API-Token im Code | Ja — `sb_pat_mYxx...` hardcoded. Script ist gitignored. Kein Token in Git-History. |
+| API-Token im Code | Ja — hardcoded (Wert nicht reproduziert). Script ist gitignored. |
 | Fehlerverhalten | Wirft Fehler wenn Story nicht gefunden — bricht ab |
 
 ### `scripts/cms-002a-build-draft.js`
@@ -82,7 +82,7 @@ Alle acht Dateien sind staged (Index `M `) und unverändert. Kein unstaged diff 
 | Publish möglich | **Nein** — `saveDraft` enthält kein `publish: 1`. Verifiziert in Zeilen 79–93. Kommentar: "Kein 'publish: 1' — bewusst weggelassen" |
 | Backup vor Schreiben | Nein — Script prüft nicht, ob Backup existiert. Setzt voraus, dass `cms-002a-backup.js` vorher ausgeführt wurde. Keine technische Absicherung. |
 | Fehlerverhalten | `createComponent`/`updateComponent`: wirft bei `data.error`. `saveDraft`: wirft wenn kein `data.story`. Fehler stoppen die Ausführung zuverlässig. |
-| API-Token im Code | Ja — `sb_pat_mYxx...` hardcoded. Script ist gitignored. |
+| API-Token im Code | Ja — hardcoded (Wert nicht reproduziert). Script ist gitignored. |
 | Ausführungsreife | Bereits ausgeführt. Lokale Preview bestätigt ("bestätigt."). |
 
 ### `scripts/rebuild-about-arbeitsweise.js`
@@ -96,7 +96,7 @@ Alle acht Dateien sind staged (Index `M `) und unverändert. Kein unstaged diff 
 | **Publish möglich** | **Ja — `publish: 1` in `updateStory` (Zeile 78): `body: JSON.stringify({ story, publish: 1 })`** |
 | Backup vor Schreiben | Nein — kein Backup-Mechanismus |
 | Fehlerverhalten | Wirft bei fehlgeschlagenem Story-Update |
-| API-Token im Code | Ja — `sb_pat_mYxx...` hardcoded. Script ist gitignored. |
+| API-Token im Code | Ja — hardcoded (Wert nicht reproduziert). Script ist gitignored. |
 | Ausführungsreife | **Nicht ausführen.** Publiziert die Story `about` sofort ohne Abnahme. |
 
 ---
