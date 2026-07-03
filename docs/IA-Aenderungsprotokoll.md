@@ -319,4 +319,30 @@ _(Nach Commit und visueller QA ausfüllen)_
 
 ---
 
+---
+
+## [IA-003b] Commit-Referenz FitTest-Einbindung
+
+| Feld | Inhalt |
+|---|---|
+| **Datum** | 2026-07-02 |
+| **Initiiert von** | Dirk Fliescher / kenalu |
+| **Typ** | Dokumentation |
+| **Status** | Abgeschlossen |
+| **Referenz-Commit** | `9cae2b4` |
+
+### Was und Warum
+
+Referenziert den isolierten lokalen Commit für die Einbindung von CollaborationIntro und FitTest auf `/team#mitwirken`.
+
+### Rollback-Weg
+
+`git revert 9cae2b4`
+
+### Tatsächliches Ergebnis
+
+Die acht staged Arbeitsweise-Dateien blieben unverändert und waren nicht Teil des Commits. Kein Push, kein Deploy und keine Storyblok-Änderung.
+
+---
+
 _Ende der bestehenden Einträge. Neue Einträge werden unten angefügt._
