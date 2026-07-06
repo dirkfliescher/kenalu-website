@@ -976,24 +976,30 @@ p { color: var(--charcoal); }
   .dp-hero-intro { font-size: 10.5pt; max-width: 100%; }
   .dp-meta-link { color: #1a1a1a !important; text-decoration: none; }
 
-  /* Alle Sektionen: weisser Hintergrund, kompaktes Padding */
+  /* Alle Sektionen: weisser Hintergrund, kompaktes Padding, keine Trennlinien */
   .dp-bio, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials {
     background: white !important;
     padding: 1.25rem 0 !important;
-    border-top: 1px solid #e0ddd8;
+    border: none !important;
   }
 
   /* Bio */
   .dp-bio-inner { display: block; }
   .dp-bio-label { margin-bottom: 0.4rem; }
 
-  /* Stationen: einspaltig + harter Umbruchschutz */
+  /* Stationen: einspaltig + harter Umbruchschutz + einheitliche Abstände, keine Trennlinien */
   .dp-station {
     display: block !important;
     break-inside: avoid;
     page-break-inside: avoid;
+    padding: 1rem 0 !important;
+    border: none !important;
   }
-  .dp-station-period { margin-bottom: 0.25rem; }
+  .dp-station-period {
+    display: block;
+    margin: 0 0 0.4rem 0 !important;
+    padding: 0 !important;
+  }
 
   /* Projekte: Akkordeons immer offen (JS öffnet sie, CSS als Backup) */
   details.dp-project-item { display: block !important; page-break-inside: avoid; }
