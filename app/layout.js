@@ -43,6 +43,10 @@ export const metadata = {
     index: true,
     follow: true,
   },
+  // Verhindert, dass Browser Jahreszahlen als Telefonnummern erkennen
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default function RootLayout({ children }) {

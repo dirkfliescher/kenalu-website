@@ -1011,8 +1011,21 @@ p { color: var(--charcoal); }
   .section-label { font-size: 7.5pt; letter-spacing: 0.1em; }
   h2 { font-size: 15pt; }
 
-  /* Links: keine Unterstreichung, kein Blau */
+  /* Links: keine Unterstreichung, kein Blau, keine URL-Ausgabe nach Links */
   a { color: #1a1a1a !important; text-decoration: none !important; }
+  a::after { content: none !important; }
+
+  /* Alle Texte explizit schwarz — CSS-Variablen werden im Druck nicht immer aufgelöst */
+  .dp-station-role { color: #1a1a1a !important; }
+  .dp-station-org { color: #555 !important; }
+  .dp-station-text { color: #444 !important; }
+  .dp-project-client { color: #1a1a1a !important; }
+  .dp-project-sector { color: #666 !important; }
+  .dp-project-period { color: #C5694A !important; }
+  .dp-project-text { color: #444 !important; }
+  .dp-hero-h1 { color: #1a1a1a !important; }
+  .dp-hero-intro { color: #333 !important; }
+  .dp-meta-item { color: #555 !important; }
 
   /* Kontaktblock: nur im Druck sichtbar */
   .dp-print-contact {
