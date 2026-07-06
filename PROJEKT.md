@@ -82,6 +82,7 @@ app/
   lab/kenalu-website/page.js     Lab-Artikel (statisch)
   lab/produktmoment/page.js      Prototyp: Produktmoment-Builder
   contact/page.js                Kontakt + Booking-Widget
+  dirk/page.js                   Verstecktes Profil (robots: noindex) — Storyblok-first + Testimonials
   globals.css                    ALLE Styles — eine Datei
   layout.js                      Root Layout (Nav + Footer)
   api/
@@ -117,6 +118,7 @@ components/
     ServiceRelated.js            Service-Detail Andere Einstiege (CMS-SERVICES-01)
     ServiceDetailCta.js          Service-Detail Abschluss-CTA (CMS-SERVICES-01)
     TeamHero.js                  /about Hero (Storyblok-first, Fallback: hardcoded)
+    DirkProfile.js               /dirk Profil-Seite (Storyblok-first, 8 Projekte, Testimonials)
     ...weitere Storyblok-Blöcke
   DynamicBlock.js                Registry (about_* + services_* + service_* + team_hero registriert)
   Nav.js, Footer.js, WaveBackground.js
@@ -297,6 +299,8 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 | DynamicBlock.js vollständig? | ✅ Aktuell | about_* + services_* + service_* + team_hero registriert. NO_REVEAL-Set enthält `services_hero`, `service_hero` und `team_hero`. Bei neuen Komponenten immer sicherstellen, dass Block-Key eingetragen ist. |
 | TEAM-HERO-01: /about Hero Storyblok-first | 🔧 Story noch Draft | `components/blocks/TeamHero.js`, `DynamicBlock.js`, `app/about/page.js` fertig. Script `scripts/cms-team-hero.mjs` wurde ausgeführt (Draft gesetzt). **Noch ausstehend:** Story im Storyblok Visual Editor manuell publizieren. |
 | POST-SLUG: Storyblok-Namen + Links bereinigen | ✅ Script ausgeführt | `scripts/cms-fix-after-slug-rename.mjs` mit --apply ausgeführt (2026-07-06). Story-Namen umbenannt, team_hero befüllt, /team-Links → /about ersetzt. **Noch ausstehend:** Geänderte Stories im Storyblok Visual Editor publizieren (insb. "Über kenalu" / team-page). |
+| /dirk Testimonials-Inhalt | ⌛ Manuell in Storyblok | Sektion ist gebaut und bereit (dp-testimonials). Testimonials aus `cdn/stories/team/dirk` werden automatisch geladen. **Aktion:** Im Storyblok Visual Editor die Story `team/dirk` öffnen, Feld `team_member_testimonials` mit Einträgen befüllen, Story publizieren. |
+| /dirk PDF-Printbarkeit | 📋 Geplant | `@media print` CSS + client-seitiger Drucken-Button auf `/dirk`. Noch nicht implementiert. |
 
 ---
 
@@ -336,3 +340,5 @@ node scripts/update-hero-labels.js
 - ✅ SEC-003: Alle Scripts gehärtet (kein Token, kein Fallback, Safe-Abort-Guard, Publish-Schutz)
 - ✅ OPS-002: Unbeabsichtigter Commit korrigiert, WIP-Branch gesichert
 - ✅ Security-Release gepusht (2026-07-03, Commit `19a233f`)
+- ✅ /dirk — Verstecktes Profil (robots: noindex): Hero, Bio, Werdegang, 8 Projekte (Accordion), Kompetenzen, Testimonials (aus team/dirk Story), CTA
+- ✅ /dirk Projekte: Storyblok-Schema (dirk_station, dirk_project, dirk_theme) + Script cms-dirk-profile.mjs
