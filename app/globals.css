@@ -992,9 +992,9 @@ p { color: var(--charcoal); }
     border: none !important;
   }
 
-  /* ── 33/66-Raster: Seite 2+ ── */
+  /* ── Layout Seite 2+ ── */
 
-  /* Bio */
+  /* Bio: 33/66 (Label links, Text rechts) — kurze Sektionen profitieren davon */
   .dp-bio-inner {
     display: grid !important;
     grid-template-columns: 1fr 2fr !important;
@@ -1003,35 +1003,30 @@ p { color: var(--charcoal); }
   }
   .dp-bio-label { margin-bottom: 0 !important; }
 
-  /* Alle Sektionen: Label links (33%), Inhalt rechts (66%) */
-  .dp-stations .container,
-  .dp-projects .container,
-  .dp-themes .container,
-  .dp-testimonials .container {
-    display: grid !important;
-    grid-template-columns: 1fr 2fr !important;
-    gap: 0 2.5rem !important;
-    align-items: start !important;
-  }
+  /* Sektionslabels: volle Breite, als klarer Abschnittsheader */
   .dp-stations-label, .dp-projects-label, .dp-themes-label, .dp-testimonials-label {
-    margin-bottom: 0 !important;
-    padding-top: 0.1rem;
+    display: block;
+    width: 100%;
+    margin-bottom: 0.75rem !important;
+    padding-bottom: 0.4rem !important;
+    border-bottom: 1px solid #e0ddd8;
   }
 
-  /* Stationen: intern 33/66 (Periode links, Inhalt rechts), Umbruchschutz */
+  /* Stationen: Datum links (fix), Inhalt rechts — klassisches CV-Raster */
   .dp-station {
     display: grid !important;
-    grid-template-columns: 6rem 1fr !important;
-    gap: 0 1.5rem !important;
+    grid-template-columns: 6.5rem 1fr !important;
+    gap: 0 2rem !important;
     break-inside: avoid !important;
     page-break-inside: avoid !important;
-    padding: 0.75rem 0 !important;
+    padding: 0.6rem 0 !important;
     border: none !important;
   }
   .dp-station-period {
     margin: 0 !important;
     padding: 0 !important;
-    padding-top: 0.1rem !important;
+    padding-top: 0.15rem !important;
+    line-height: 1.4 !important;
   }
 
   /* Projekte: Akkordeons immer offen (JS öffnet sie, CSS als Backup) */
