@@ -41,24 +41,26 @@ async function getTeamMembers() {
   }
 }
 
+const FALLBACK_HERO = {
+  _uid: 'team-hero-fallback',
+  component: 'team_hero',
+  eyebrow: 'Team',
+  headline: 'Die Menschen hinter kenalu.',
+  body: 'kenalu wächst nicht durch Stellen, sondern durch Menschen, die auf ihrem Gebiet wirklich herausragen. Qualität, Haltung und Verlässlichkeit sind entscheidender als Breite.',
+};
+
 export default async function TeamPage() {
   const [members, pageBlocks] = await Promise.all([getTeamMembers(), getPageBlocks()]);
 
+  const heroBlock = pageBlocks.find((b) => b.component === 'team_hero') || FALLBACK_HERO;
+  const otherBlocks = pageBlocks.filter(
+    (b) => b.component !== 'team_hero' && b.component !== 'cta_section'
+  );
+
   return (
     <main>
-      {/* Hero */}
-      <section className="team-hero">
-        <div className="container">
-          <p className="section-label">Team</p>
-          <h1 className="team-hero-headline">
-            Die Menschen hinter kenalu.
-          </h1>
-          <p className="team-hero-sub">
-            kenalu wächst nicht durch Stellen, sondern durch Menschen, die auf ihrem Gebiet
-            wirklich herausragen. Qualität, Haltung und Verlässlichkeit sind entscheidender als Breite.
-          </p>
-        </div>
-      </section>
+      {/* Hero — aus Storyblok oder Fallback */}
+      <DynamicBlock blok={heroBlock} />
 
       {/* Team-Profile */}
       {members.length > 0 && (
@@ -88,14 +90,12 @@ export default async function TeamPage() {
         </Reveal>
       </section>
 
-      {/* Storyblok-Blöcke — cta_section wird auf /team nicht gerendert (doppelter Seitenabschluss) */}
-      {pageBlocks
-        .filter((blok) => blok.component !== 'cta_section')
-        .map((blok) => (
-          <Reveal key={blok._uid}>
-            <DynamicBlock blok={blok} />
-          </Reveal>
-        ))}
+      {/* Weitere Storyblok-Blöcke */}
+      {otherBlocks.map((blok) => (
+        <Reveal key={blok._uid}>
+          <DynamicBlock blok={blok} />
+        </Reveal>
+      ))}
     </main>
   );
 }

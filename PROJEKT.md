@@ -113,13 +113,15 @@ components/
     ServiceHonestFit.js          Service-Detail Ehrliche Einordnung (CMS-SERVICES-01)
     ServiceRelated.js            Service-Detail Andere Einstiege (CMS-SERVICES-01)
     ServiceDetailCta.js          Service-Detail Abschluss-CTA (CMS-SERVICES-01)
+    TeamHero.js                  /team Hero (Storyblok-first, Fallback: hardcoded)
     ...weitere Storyblok-Blöcke
-  DynamicBlock.js                Registry (about_* + services_* + service_* registriert)
+  DynamicBlock.js                Registry (about_* + services_* + service_* + team_hero registriert)
   Nav.js, Footer.js, WaveBackground.js
 
 scripts/ (gitignored — nie committen)
   cms-rebuild-about.mjs          CMS-REBUILD-01: about_* in Storyblok aufbauen (lokal ausführen)
   cms-services.mjs               CMS-SERVICES-01: services_* + service_* + 5 Stories (lokal ausführen)
+  cms-team-hero.mjs              TEAM-HERO-01: team_hero Komponente + team-page Story (lokal ausführen)
   update-hero-labels.js          Storyblok: hero_label + contact_label leeren
 
 docs/                            Projektdokumentation (Markdown)
@@ -262,7 +264,8 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 | CMS-SERVICES-01: /services Storyblok-first | 🔧 Lokal ausführen | 11 React-Komponenten (`services_*` + `service_*`), 5 `page.js` + 5 `_fallback-content.js`, `DynamicBlock.js` fertig. Script `scripts/cms-services.mjs` bereit. **Reihenfolge:** (1) `npm run build` — Build prüfen. (2) `git add -A && git commit -m "feat: CMS-SERVICES-01 — /services Storyblok-first" && git push`. (3) `node scripts/cms-services.mjs` (dry-run). (4) `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-services.mjs --apply`. (5) Stories in Storyblok Visual Editor manuell publizieren. |
 | About "Über kenalu"-Dopplung | 🔧 Script bereit | `scripts/update-hero-labels.js` prüft und behebt die Dopplung. Lokal ausführen: `node scripts/update-hero-labels.js`. Scripts-Verzeichnis ist gitignored. |
 | Homepage hero_label in Storyblok | ℹ️ Workaround | Per CSS ausgeblendet. Kann via `scripts/update-hero-labels.js` geleert werden. |
-| DynamicBlock.js vollständig? | ✅ Aktuell | about_* + services_* + service_* registriert. NO_REVEAL-Set enthält `services_hero` und `service_hero`. Bei neuen Komponenten immer sicherstellen, dass Block-Key eingetragen ist. |
+| DynamicBlock.js vollständig? | ✅ Aktuell | about_* + services_* + service_* + team_hero registriert. NO_REVEAL-Set enthält `services_hero`, `service_hero` und `team_hero`. Bei neuen Komponenten immer sicherstellen, dass Block-Key eingetragen ist. |
+| TEAM-HERO-01: /team Hero Storyblok-first | 🔧 Build + Commit ausstehend | `components/blocks/TeamHero.js`, `DynamicBlock.js`, `app/team/page.js` fertig. Script `scripts/cms-team-hero.mjs` bereit. **Reihenfolge:** (1) `npm run build` — Build prüfen. (2) `git add -A && git commit -m "feat: TEAM-HERO-01 — /team hero aus Storyblok" && git push`. (3) `node scripts/cms-team-hero.mjs` (dry-run). (4) `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-team-hero.mjs --apply`. (5) Story in Storyblok Visual Editor manuell publizieren. |
 
 ---
 
@@ -282,7 +285,7 @@ node scripts/update-hero-labels.js
 
 ---
 
-## Was vollständig erledigt ist
+## Was vollständig erledigt ist (Stand: 2026-07-06)
 
 - ✅ Vollständige Website (alle Seiten, alle Komponenten)
 - ✅ Storyblok-Integration (CMS, ISR)

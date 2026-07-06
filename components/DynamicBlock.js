@@ -41,6 +41,8 @@ import ServiceHonestFit from './blocks/ServiceHonestFit';
 import ServiceRelated from './blocks/ServiceRelated';
 import ServiceDetailCta from './blocks/ServiceDetailCta';
 
+import TeamHero from './blocks/TeamHero';
+
 // CMS-REBUILD-01: about_* Komponenten für /about
 import AboutHero from './blocks/AboutHero';
 import AboutWorkingWhy from './blocks/AboutWorkingWhy';
@@ -95,6 +97,8 @@ const Components = {
   service_related: ServiceRelated,
   service_detail_cta: ServiceDetailCta,
 
+  team_hero: TeamHero,
+
   // CMS-REBUILD-01: about_* Komponenten
   about_hero: AboutHero,
   about_working_why: AboutWorkingWhy,
@@ -106,7 +110,7 @@ const Components = {
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist
-const NO_REVEAL = new Set(['hero', 'page_hero', 'about_hero', 'services_hero', 'service_hero']);
+const NO_REVEAL = new Set(['hero', 'page_hero', 'about_hero', 'team_hero', 'services_hero', 'service_hero']);
 
 export default function DynamicBlock({ blok }) {
   if (!blok) return null;
