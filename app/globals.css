@@ -1008,8 +1008,15 @@ p { color: var(--charcoal); }
     display: block;
     width: 100%;
     margin-bottom: 0.75rem !important;
-    padding-bottom: 0.4rem !important;
-    border-bottom: 1px solid #e0ddd8;
+    padding-bottom: 0 !important;
+    border: none !important;
+  }
+
+  /* Alle dp-* Borders aus Screen-CSS komplett unterdrücken */
+  .dp-station, .dp-station:last-child,
+  .dp-stations-list, .dp-projects-list,
+  .dp-bio, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials {
+    border: none !important;
   }
 
   /* Stationen: Datum links (fix), Inhalt rechts — klassisches CV-Raster */
