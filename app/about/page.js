@@ -17,7 +17,7 @@ const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN
 
 async function getPageBlocks() {
   try {
-    const { data } = await Storyblok.get('cdn/stories/team-page', {
+    const { data } = await Storyblok.get('cdn/stories/about', {
       version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
     });
     return data.story.content.body || [];

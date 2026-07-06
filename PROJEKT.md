@@ -125,6 +125,7 @@ scripts/ (gitignored — nie committen)
   cms-rebuild-about.mjs          CMS-REBUILD-01: about_* in Storyblok aufbauen (lokal ausführen)
   cms-services.mjs               CMS-SERVICES-01: services_* + service_* + 5 Stories (lokal ausführen)
   cms-team-hero.mjs              TEAM-HERO-01: team_hero Komponente + team-page Story (lokal ausführen)
+  cms-fix-after-slug-rename.mjs  POST-SLUG: Story-Namen umbenennen, team_hero befüllen, /team-Links → /about
   update-hero-labels.js          Storyblok: hero_label + contact_label leeren
 
 docs/                            Projektdokumentation (Markdown)
@@ -295,6 +296,7 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 | Homepage hero_label in Storyblok | ℹ️ Workaround | Per CSS ausgeblendet. Kann via `scripts/update-hero-labels.js` geleert werden. |
 | DynamicBlock.js vollständig? | ✅ Aktuell | about_* + services_* + service_* + team_hero registriert. NO_REVEAL-Set enthält `services_hero`, `service_hero` und `team_hero`. Bei neuen Komponenten immer sicherstellen, dass Block-Key eingetragen ist. |
 | TEAM-HERO-01: /about Hero Storyblok-first | 🔧 Story noch Draft | `components/blocks/TeamHero.js`, `DynamicBlock.js`, `app/about/page.js` fertig. Script `scripts/cms-team-hero.mjs` wurde ausgeführt (Draft gesetzt). **Noch ausstehend:** Story im Storyblok Visual Editor manuell publizieren. |
+| POST-SLUG: Storyblok-Namen + Links bereinigen | ✅ Script ausgeführt | `scripts/cms-fix-after-slug-rename.mjs` mit --apply ausgeführt (2026-07-06). Story-Namen umbenannt, team_hero befüllt, /team-Links → /about ersetzt. **Noch ausstehend:** Geänderte Stories im Storyblok Visual Editor publizieren (insb. "Über kenalu" / team-page). |
 
 ---
 
