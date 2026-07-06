@@ -149,40 +149,42 @@ export default function DirkProfile({ blok = {}, testimonials = [] }) {
 
   return (
     <>
-      {/* ── Hero ── */}
-      <section className="dp-hero">
-        <div className="dp-hero-inner container">
-          <p className="section-label dp-hero-label">{hero_eyebrow}</p>
-          <h1 className="dp-hero-h1">{hero_headline}</h1>
-          <p className="dp-hero-intro">{hero_intro}</p>
-          <div className="dp-hero-meta">
-            <span className="dp-meta-item">◎ {hero_location}</span>
-            <a
-              href={hero_linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="dp-meta-item dp-meta-link"
-            >
-              in LinkedIn
-            </a>
+      {/* ── Cover: Hero + Kontakt (im Druck 50:50) ── */}
+      <div className="dp-cover">
+        <section className="dp-hero">
+          <div className="dp-hero-inner container">
+            <p className="section-label dp-hero-label">{hero_eyebrow}</p>
+            <h1 className="dp-hero-h1">{hero_headline}</h1>
+            <p className="dp-hero-intro">{hero_intro}</p>
+            <div className="dp-hero-meta">
+              <span className="dp-meta-item">◎ {hero_location}</span>
+              <a
+                href={hero_linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="dp-meta-item dp-meta-link"
+              >
+                in LinkedIn
+              </a>
+            </div>
+            <PrintButton />
           </div>
-          <PrintButton />
-        </div>
-      </section>
+        </section>
 
-      {/* ── Kontakt (nur Print: erscheint auf Titelseite) ── */}
-      <div className="dp-print-contact" aria-hidden="true">
-        <div className="dp-print-contact-inner">
-          <div>
-            <strong>Dirk Fliescher</strong>
-            <span>Principal Consultant</span>
-            <span>kenalu · a Brand of Dirk Fliescher Consulting GmbH</span>
-            <span>Zürich, Switzerland</span>
-          </div>
-          <div>
-            <span>dirk@fliescher.ch</span>
-            <span>+41 79 301 54 63</span>
-            <span>kenalu.ch</span>
+        {/* ── Kontakt (nur Print: erscheint auf Titelseite rechts) ── */}
+        <div className="dp-print-contact" aria-hidden="true">
+          <div className="dp-print-contact-inner">
+            <div>
+              <strong>Dirk Fliescher</strong>
+              <span>Principal Consultant</span>
+              <span>kenalu · a Brand of Dirk Fliescher Consulting GmbH</span>
+              <span>Zürich, Switzerland</span>
+            </div>
+            <div>
+              <span>dirk@fliescher.ch</span>
+              <span>+41 79 301 54 63</span>
+              <span>kenalu.ch</span>
+            </div>
           </div>
         </div>
       </div>
