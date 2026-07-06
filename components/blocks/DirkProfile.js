@@ -87,6 +87,38 @@ export default function DirkProfile({ blok = {} }) {
       text: 'Konzeption, Design und Entwicklung der neuen internen Kommunikationsplattform für den Regionalbahnbetreiber Thurbo in Winterthur. Nutzerzentrierter Ansatz, agile Umsetzung.',
       award: null,
     },
+    {
+      _uid: 'proj-5',
+      client: 'SIX Group — Advanced Tax Services',
+      period: '2019 – 2020',
+      sector: 'Finanzmarktinfrastruktur',
+      text: 'Digitales Steuerprojekt bei SIX Group. Konzeption und Umsetzungsbegleitung im regulierten Finanzumfeld.',
+      award: null,
+    },
+    {
+      _uid: 'proj-6',
+      client: 'SIX Group — Cyber Security Operations Center',
+      period: '2018',
+      sector: 'Finanzdienstleistungen · Cybersecurity',
+      text: 'Aufbau und Unterstützung der Sales-Aktivitäten für das Cyber Security Operations Center bei SIX — für institutionelle Kunden aus der Finanzwelt.',
+      award: null,
+    },
+    {
+      _uid: 'proj-7',
+      client: 'SIX Payment Services — Website Relaunch',
+      period: '2017 – 2019',
+      sector: 'Finanzmarktinfrastruktur · Digital',
+      text: 'Relaunch der Website von SIX Payment Services. Neukonzeption, Design und Umsetzungsbegleitung im komplexen Konzernumfeld.',
+      award: null,
+    },
+    {
+      _uid: 'proj-8',
+      client: 'SIX Group — Digital ID',
+      period: '2018',
+      sector: 'Finanzmarktinfrastruktur · Digital Identity',
+      text: 'Konzeption und Umsetzungsbegleitung für ein Digital Identity-Vorhaben bei SIX Group.',
+      award: null,
+    },
   ];
 
   const defaultThemes = [
