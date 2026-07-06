@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
 const SYSTEM_PROMPT = `Du bist der kenalu-Assistent auf der Kontaktseite. Deine Aufgabe ist es, dem Besucher zu helfen, sein Anliegen klar zu formulieren – damit das Erstgespräch mit Dirk Fliescher konkret und wertvoll wird.
 
 Dein Ziel: Verstehe, was der Besucher bewegt. Stelle gezielte, kurze Rückfragen. Fasse am Ende zusammen, was du verstanden hast.
@@ -32,6 +30,8 @@ Themen, auf die du NICHT eingehen sollst:
 Wenn ein Thema ausserhalb liegt, sage es kurz und leite zurück.`;
 
 export async function POST(request) {
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
   try {
     const { messages } = await request.json();
 
