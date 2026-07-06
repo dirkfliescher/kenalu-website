@@ -1004,13 +1004,44 @@ p { color: var(--charcoal); }
   .dp-testimonials-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
   .dp-testimonial-card { background: #f9f8f6 !important; border-color: #e0ddd8 !important; padding: 0.75rem !important; page-break-inside: avoid; }
 
+  /* Seitenumbrüche: Sektionen beginnen auf neuer Seite wenn sie nicht passen */
+  .dp-stations, .dp-projects, .dp-themes, .dp-testimonials { break-before: page; }
+
   /* Labels und Texte */
   .section-label { font-size: 7.5pt; letter-spacing: 0.1em; }
   h2 { font-size: 15pt; }
 
   /* Links: keine Unterstreichung, kein Blau */
   a { color: #1a1a1a !important; text-decoration: none !important; }
+
+  /* Kontaktblock: nur im Druck sichtbar */
+  .dp-print-contact {
+    break-before: page;
+    padding: 2rem 0 0;
+    border-top: 2px solid #1a1a1a;
+    margin-top: 1rem;
+  }
+  .dp-print-contact-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .dp-print-contact-inner > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 9.5pt;
+    color: #1a1a1a;
+  }
+  .dp-print-contact-inner strong {
+    font-size: 11pt;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+  }
 }
+
+/* Kontaktblock: auf Screen versteckt */
+.dp-print-contact { display: none; }
 
 /* ── Contact ────────────────────────────────────────────────────── */
 .contact-page { padding: 12rem var(--gutter) 7rem; min-height: 100svh; background: var(--charcoal); color: var(--ivory); }
