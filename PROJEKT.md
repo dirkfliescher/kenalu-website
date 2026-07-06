@@ -61,7 +61,10 @@ Fünf getrackte Scripts auf `origin/main` wurden in SEC-003 gehärtet:
 ```
 app/
   page.js                        Homepage (statisch + Storyblok)
-  about/page.js                  Über kenalu / Arbeitsweise
+  approach/page.js               Arbeitsweise (/approach — Storyblok-Slug: about)
+  approach/_fallback-content.js  Statischer Fallback /approach
+  approach/_static-content.js   Produktiver Seiteninhalt (blok-förmig)
+  about/page.js                  Über kenalu (/about — früher /team)
   services/
     page.js                      Leistungsübersicht (CMS-SERVICES-01: Storyblok-first)
     _fallback-content.js         Statischer Fallback /services
@@ -78,12 +81,12 @@ app/
   lab/page.js                    Lab-Übersicht
   lab/kenalu-website/page.js     Lab-Artikel (statisch)
   lab/produktmoment/page.js      Prototyp: Produktmoment-Builder
-  team/page.js                   Team
-  contact/page.js                Kontakt + Calendly Booking
+  contact/page.js                Kontakt + Booking-Widget
   globals.css                    ALLE Styles — eine Datei
   layout.js                      Root Layout (Nav + Footer)
   api/
     kai/route.js                 KI-Chat API (OpenAI) — einheitliche Route für alle Seiten
+    qualify/route.js             Chat-API für Kontakt-Booking-Widget (OpenAI gpt-4o-mini)
 
 components/
   blocks/
@@ -113,7 +116,7 @@ components/
     ServiceHonestFit.js          Service-Detail Ehrliche Einordnung (CMS-SERVICES-01)
     ServiceRelated.js            Service-Detail Andere Einstiege (CMS-SERVICES-01)
     ServiceDetailCta.js          Service-Detail Abschluss-CTA (CMS-SERVICES-01)
-    TeamHero.js                  /team Hero (Storyblok-first, Fallback: hardcoded)
+    TeamHero.js                  /about Hero (Storyblok-first, Fallback: hardcoded)
     ...weitere Storyblok-Blöcke
   DynamicBlock.js                Registry (about_* + services_* + service_* + team_hero registriert)
   Nav.js, Footer.js, WaveBackground.js
@@ -133,6 +136,21 @@ docs/                            Projektdokumentation (Markdown)
 
 **Grundregel:** Nav ist `position: fixed`, ~72px Höhe. Alle Heroes brauchen genug `padding-top`, damit Content klar unterhalb der Nav beginnt (Desktop: ≥96px Luft, Mobile: ≥72px).
 
+### Hintergrundfarben — Regel
+
+**Nur die Homepage** hat einen ivory Hero. Alle anderen Seiten starten mit `background: var(--charcoal)`.
+
+| Seite | Hero-Klasse | Hintergrund |
+|-------|------------|-------------|
+| Homepage | `.hero` | ivory (bewusste Ausnahme) |
+| Approach | `.page-hero` | charcoal |
+| Insights | `.insights-hero` | charcoal |
+| Über kenalu | `.team-hero` | charcoal |
+| Services-Übersicht | `.sov-hero` | charcoal |
+| Service-Detail | `.sd-hero` | charcoal |
+| Lab | `.lpv2-hero` | charcoal |
+| Contact | `.contact-page` | charcoal |
+
 ### Desktop-Paddings (aktuell in globals.css)
 
 Alle Heroes haben `min-height: 100svh`, `display: flex; flex-direction: column; justify-content: center` und `position: relative` (für Scroll-Indikator).
@@ -140,12 +158,12 @@ Alle Heroes haben `min-height: 100svh`, `display: flex; flex-direction: column; 
 | Seite | CSS-Klasse | Padding |
 |-------|-----------|---------|
 | Homepage | `.hero` | `12rem var(--gutter) 8rem` |
-| About | `.page-hero` | `12rem var(--gutter) 7rem` |
+| Approach | `.page-hero` | `12rem var(--gutter) 7rem` |
 | Insights | `.insights-hero` | `12rem var(--gutter) 7rem` |
-| Team | `.team-hero` | `12rem var(--gutter) 7rem` |
+| Über kenalu | `.team-hero` | `12rem var(--gutter) 7rem` |
 | Services-Übersicht | `.sov-hero` | `12rem 0 7rem` |
 | Service-Detail | `.sd-hero` | `12rem 0 7rem` |
-| Lab | `.lpv2-hero` | `12rem 0 8rem` + `background: var(--charcoal)` |
+| Lab | `.lpv2-hero` | `12rem 0 8rem` |
 | Contact | `.contact-page` | `12rem var(--gutter) 7rem` |
 
 ### Scroll-Indikator
@@ -162,6 +180,15 @@ Alle Full-Viewport-Heroes (ausser Homepage) zeigen unten mittig einen animierten
 | `.sov-hero`, `.sd-hero` | `8rem 0 5rem` |
 | `.contact-page` | `8rem var(--gutter) 4rem` |
 
+### Nav — DARK_HERO_PAGES
+
+```js
+const DARK_HERO_PAGES = ['/services', '/approach', '/insights', '/about', '/lab', '/contact'];
+```
+
+Nav startet auf diesen Seiten mit hellem Text (ivory). Nach Scroll: dunkles Nav-Band.
+Auf `/contact` wird der CTA «Gespräch starten» ausgeblendet (Besucher ist bereits dort).
+
 ### Section-Labels
 
 ```css
@@ -175,10 +202,12 @@ Alle Full-Viewport-Heroes (ausser Homepage) zeigen unten mittig einen animierten
 }
 ```
 
+Auf dunklem Hero: `color: rgba(255, 255, 255, 0.42)` überschreibt den sage-Wert.
+
 - **Homepage:** hero_label per CSS ausgeblendet → `.hero .hero-label { display: none; }`
 - **Service-Details:** `01 / KLARHEIT`, `02 / RAPID BUILD`, `03 / PRODUKT`, `04 / URTEIL`
 - **Lab:** `KENALU LAB`
-- **Contact:** kein Label — `"Gespräch starten."` direkt als erste dominante Überschrift
+- **Contact:** Section-Label vorhanden; `<h1>` dominant
 
 ---
 
@@ -252,7 +281,7 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 
 ---
 
-## Offene Punkte (Stand: 2026-07-03)
+## Offene Punkte (Stand: 2026-07-06)
 
 | Punkt | Status | Details |
 |-------|--------|---------|
@@ -265,7 +294,7 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 | About "Über kenalu"-Dopplung | 🔧 Script bereit | `scripts/update-hero-labels.js` prüft und behebt die Dopplung. Lokal ausführen: `node scripts/update-hero-labels.js`. Scripts-Verzeichnis ist gitignored. |
 | Homepage hero_label in Storyblok | ℹ️ Workaround | Per CSS ausgeblendet. Kann via `scripts/update-hero-labels.js` geleert werden. |
 | DynamicBlock.js vollständig? | ✅ Aktuell | about_* + services_* + service_* + team_hero registriert. NO_REVEAL-Set enthält `services_hero`, `service_hero` und `team_hero`. Bei neuen Komponenten immer sicherstellen, dass Block-Key eingetragen ist. |
-| TEAM-HERO-01: /team Hero Storyblok-first | 🔧 Build + Commit ausstehend | `components/blocks/TeamHero.js`, `DynamicBlock.js`, `app/team/page.js` fertig. Script `scripts/cms-team-hero.mjs` bereit. **Reihenfolge:** (1) `npm run build` — Build prüfen. (2) `git add -A && git commit -m "feat: TEAM-HERO-01 — /team hero aus Storyblok" && git push`. (3) `node scripts/cms-team-hero.mjs` (dry-run). (4) `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-team-hero.mjs --apply`. (5) Story in Storyblok Visual Editor manuell publizieren. |
+| TEAM-HERO-01: /about Hero Storyblok-first | 🔧 Story noch Draft | `components/blocks/TeamHero.js`, `DynamicBlock.js`, `app/about/page.js` fertig. Script `scripts/cms-team-hero.mjs` wurde ausgeführt (Draft gesetzt). **Noch ausstehend:** Story im Storyblok Visual Editor manuell publizieren. |
 
 ---
 
@@ -293,11 +322,15 @@ node scripts/update-hero-labels.js
 - ✅ Lab mit zwei Artikeln + Produktmoment-Prototyp
 - ✅ Einheitlicher Kai-Chat (alle Seiten, eine Route)
 - ✅ Hero-System (alle Heroes: flex-centered, 100svh, Scroll-Indikator)
+- ✅ Hintergrundfarben: nur Homepage ivory, alle anderen Seiten charcoal
 - ✅ Widget-System (5 visuell verschiedene Typen, Pflichtregeln im Prompt)
 - ✅ Ihr/euch/euer durchgängig (Code + Storyblok)
 - ✅ Typewriter-Effekt im Kai-Chat
 - ✅ EcosystemPartners, CollaborationIntro, FitTest
 - ✅ Navigation und Footer bereinigt
+- ✅ Slugs korrigiert: `/about` → `/approach`, `/team` → `/about` (15 Dateien)
+- ✅ Nav-Bug auf /contact behoben (CSS-Selektor `li:last-child` → `.btn-primary`)
+- ✅ Booking-Widget repariert: `/api/qualify` ist jetzt echte Chat-API (OpenAI), Calendly-CTA erscheint erst nach 3 Exchanges
 - ✅ SEC-003: Alle Scripts gehärtet (kein Token, kein Fallback, Safe-Abort-Guard, Publish-Schutz)
 - ✅ OPS-002: Unbeabsichtigter Commit korrigiert, WIP-Branch gesichert
 - ✅ Security-Release gepusht (2026-07-03, Commit `19a233f`)
