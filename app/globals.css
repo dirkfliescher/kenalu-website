@@ -832,7 +832,7 @@ p { color: var(--charcoal); }
   align-self: flex-end;
   max-width: 85%;
 }
-.qualifier-msg.ai { color: var(--stone); }
+.qualifier-msg.assistant { color: var(--stone); }
 .qualifier-input-row { display: flex; gap: 0.5rem; }
 .qualifier-input {
   flex: 1; padding: 0.65rem 0.9rem;

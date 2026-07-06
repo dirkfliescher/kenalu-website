@@ -133,7 +133,7 @@ export default function ContactBookingWidget({
           </div>
         )}
 
-        <p className="qualifier-note">Eure Antwort wird an Dirk weitergeleitet.</p>
+        <p className="qualifier-note">KI-Assistent · Hilft euch, euer Anliegen zu formulieren.</p>
       </div>
 
       {/* Calendly-Button */}

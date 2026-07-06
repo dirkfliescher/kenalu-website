@@ -1,120 +1,61 @@
 import { NextResponse } from 'next/server';
-import StoryblokClient from 'storyblok-js-client';
+import OpenAI from 'openai';
 
-const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// In-memory Embedding-Cache (bleibt während der Server-Session bestehen)
-let cache = null;
+const SYSTEM_PROMPT = `Du bist der kenalu-Assistent auf der Kontaktseite. Deine Aufgabe ist es, dem Besucher zu helfen, sein Anliegen klar zu formulieren – damit das Erstgespräch mit Dirk Fliescher konkret und wertvoll wird.
 
-// Rekursiver Textextraktor für Storyblok Rich Text
-function extractText(node) {
-  if (!node) return '';
-  if (typeof node === 'string') return node;
-  if (node.type === 'text') return node.text || '';
-  if (Array.isArray(node)) return node.map(extractText).join(' ');
-  if (node.content) return extractText(node.content);
-  return '';
-}
+Dein Ziel: Verstehe, was der Besucher bewegt. Stelle gezielte, kurze Rückfragen. Fasse am Ende zusammen, was du verstanden hast.
 
-function cosineSimilarity(a, b) {
-  let dot = 0, normA = 0, normB = 0;
-  for (let i = 0; i < a.length; i++) {
-    dot += a[i] * b[i];
-    normA += a[i] * a[i];
-    normB += b[i] * b[i];
-  }
-  const denom = Math.sqrt(normA) * Math.sqrt(normB);
-  return denom === 0 ? 0 : dot / denom;
-}
+Vorgehen:
+- Erste Antwort: Geh auf die beschriebene Situation ein. Stelle eine konkrete Rückfrage.
+- Zweite Antwort: Vertiefe ein offenes Thema (z.B. aktueller Stand, Team, Zeithorizont). Stelle nochmals eine Frage.
+- Ab der dritten Antwort: Fasse das Anliegen in 2–3 Sätzen zusammen. Sage, dass das eine gute Grundlage für das Gespräch ist. Empfehle, jetzt einen Termin zu buchen.
 
-async function embed(text) {
-  const res = await fetch('https://api.openai.com/v1/embeddings', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: 'text-embedding-3-small',
-      input: text.slice(0, 8000),
-    }),
-  });
-  const data = await res.json();
-  if (!data.data?.[0]?.embedding) throw new Error('Embedding failed');
-  return data.data[0].embedding;
-}
+Sprache:
+- Deutsch, Schweizer Schriftsprache (kein ß)
+- Anrede: ihr/euch/euer – NIEMALS du/Sie
+- Ton: direkt, menschlich, klar. Keine Floskeln. Keine Beratungssprache.
+- Kurze Antworten – maximal 4 Sätze pro Antwort.
 
-async function buildCache() {
-  const { data } = await Storyblok.get('cdn/stories', {
-    version: 'draft',
-    starts_with: 'insights/',
-    excluding_slugs: 'insights/',
-    sort_by: 'content.insight_date:desc',
-    per_page: 100,
-  });
+Themen, auf die du eingehen kannst:
+- Digitale Vorhaben, Produkte, Plattformen, Erlebnisse
+- Strategie, Discovery, Konzept, Prototypen, Umsetzung
+- Klarheit über den nächsten Schritt
+- Offene Fragen vor einem grösseren Entscheid
 
-  const articles = (data.stories || []).filter((s) => s.content?.insight_title);
+Themen, auf die du NICHT eingehen sollst:
+- Preise, Konditionen, Vertragsdetails
+- Technische Details zu spezifischen Tools oder Frameworks
+- Alles, was nicht mit kenalu oder dem Vorhaben des Besuchers zu tun hat
 
-  // Suchtext pro Artikel zusammenstellen
-  const texts = articles.map((article) => {
-    const c = article.content;
-    const parts = [
-      c.insight_title || '',
-      c.insight_tag || '',
-      c.insight_excerpt || '',
-      c.insight_teaser || '',
-      c.insight_intro || '',
-      c.insight_body ? extractText(c.insight_body) : '',
-      c.body ? extractText(c.body) : '',
-    ];
-    return parts.filter(Boolean).join('. ').replace(/\s+/g, ' ').trim();
-  });
-
-  // Alle Artikel-Embeddings parallel generieren
-  const embeddings = await Promise.all(texts.map((t) => embed(t)));
-
-  cache = { articles, embeddings, generatedAt: Date.now() };
-  console.log(`[search] Cache aufgebaut: ${articles.length} Artikel`);
-  return cache;
-}
+Wenn ein Thema ausserhalb liegt, sage es kurz und leite zurück.`;
 
 export async function POST(request) {
   try {
-    const { query } = await request.json();
+    const { messages } = await request.json();
 
-    if (!query || query.trim().length < 2) {
-      return NextResponse.json({ articles: [] });
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return NextResponse.json({ error: 'Keine Nachrichten' }, { status: 400 });
     }
 
-    // Cache laden oder aufbauen
-    const { articles, embeddings } = cache || (await buildCache());
+    // Letzte 8 Nachrichten – Kontext begrenzen
+    const recent = messages.slice(-8);
 
-    // Query-Embedding generieren
-    const queryEmbedding = await embed(query.trim());
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        ...recent,
+      ],
+      max_tokens: 200,
+      temperature: 0.5,
+    });
 
-    // Ähnlichkeit berechnen und sortieren
-    const scored = articles.map((article, i) => ({
-      article,
-      score: cosineSimilarity(queryEmbedding, embeddings[i]),
-    }));
-
-    scored.sort((a, b) => b.score - a.score);
-
-    // Nur relevante Treffer zurückgeben (Threshold 0.25)
-    const results = scored
-      .filter((s) => s.score > 0.25)
-      .slice(0, 12)
-      .map((s) => s.article);
-
-    return NextResponse.json({ articles: results });
+    const message = completion.choices[0]?.message?.content || '';
+    return NextResponse.json({ message });
   } catch (e) {
-    console.error('[search] Fehler:', e);
-    return NextResponse.json({ error: 'Suche fehlgeschlagen' }, { status: 500 });
+    console.error('[qualify] Fehler:', e);
+    return NextResponse.json({ error: 'Fehler bei der Verarbeitung' }, { status: 500 });
   }
-}
-
-// Cache invalidieren (z.B. nach Storyblok Webhook)
-export async function DELETE() {
-  cache = null;
-  return NextResponse.json({ ok: true });
 }
