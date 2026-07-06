@@ -1,6 +1,4 @@
-// CMS-SERVICES-01: /services als Storyblok-first Page
-// Validiert Body (5 Blöcke, exakte Typreihenfolge).
-// Fällt bei ungültigem oder fehlendem CMS-Body auf FALLBACK_SERVICES_BODY zurück.
+// /services — Storyblok-first, Fallback bei leerem Body
 
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../components/DynamicBlock';
@@ -24,39 +22,8 @@ export const metadata = {
   },
 };
 
-const ALLOWED_SEQUENCE = [
-  'services_hero',
-  'services_card_grid',
-  'kai_dialogue',
-  'services_approach',
-  'services_cta',
-];
-
-const REQUIRED_FIELDS = {
-  services_hero: ['headline'],
-  services_card_grid: ['headline', 'cards'],
-  kai_dialogue: ['headline'],
-  services_approach: ['headline'],
-  services_cta: ['headline'],
-};
-
-function isValidBlok(blok, expectedType) {
-  if (!blok || blok.component !== expectedType) return false;
-  const required = REQUIRED_FIELDS[expectedType] || [];
-  for (const field of required) {
-    if (field === 'cards') {
-      if (!Array.isArray(blok[field]) || blok[field].length === 0) return false;
-    } else {
-      if (!blok[field]) return false;
-    }
-  }
-  return true;
-}
-
-function isValidBody(body) {
-  if (!Array.isArray(body)) return false;
-  if (body.length !== ALLOWED_SEQUENCE.length) return false;
-  return ALLOWED_SEQUENCE.every((type, i) => isValidBlok(body[i], type));
+function hasContent(body) {
+  return Array.isArray(body) && body.length > 0;
 }
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
@@ -75,7 +42,7 @@ async function fetchContent() {
 export default async function ServicesPage() {
   const content = await fetchContent();
   const cmsBody = content?.body ?? [];
-  const blocks = isValidBody(cmsBody) ? cmsBody : FALLBACK_SERVICES_BODY;
+  const blocks = hasContent(cmsBody) ? cmsBody : FALLBACK_SERVICES_BODY;
 
   return (
     <main className="sov-page">

@@ -1,4 +1,4 @@
-// CMS-SERVICES-01: /services/urteil als Storyblok-first Page
+// /services/urteil — Storyblok-first, Fallback bei leerem Body
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../../components/DynamicBlock';
 import { FALLBACK_URTEIL_BODY } from './_fallback-content';
@@ -11,21 +11,8 @@ const SEO_DEFAULTS = {
     'Urteil bringt eine unabhängige Sicht auf Konzepte, Angebote und digitale Produkte: Was trägt, was fehlt und welche Konsequenz als Nächstes folgt.',
 };
 
-const ALLOWED_SEQUENCE = [
-  'service_hero',
-  'service_scene',
-  'service_artifact',
-  'kai_dialogue',
-  'service_outcome',
-  'service_honest_fit',
-  'service_related',
-  'service_detail_cta',
-];
-
-function isValidBody(body) {
-  if (!Array.isArray(body)) return false;
-  if (body.length !== ALLOWED_SEQUENCE.length) return false;
-  return ALLOWED_SEQUENCE.every((type, i) => body[i]?.component === type);
+function hasContent(body) {
+  return Array.isArray(body) && body.length > 0;
 }
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
@@ -60,7 +47,7 @@ export async function generateMetadata() {
 export default async function UrteilPage() {
   const content = await fetchContent();
   const cmsBody = content?.body ?? [];
-  const blocks = isValidBody(cmsBody) ? cmsBody : FALLBACK_URTEIL_BODY;
+  const blocks = hasContent(cmsBody) ? cmsBody : FALLBACK_URTEIL_BODY;
 
   return (
     <main className="sd-page sd-page--urteil">

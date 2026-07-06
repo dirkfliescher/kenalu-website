@@ -1,4 +1,4 @@
-// CMS-SERVICES-01: /services/rapid-build als Storyblok-first Page
+// /services/rapid-build — Storyblok-first, Fallback bei leerem Body
 import StoryblokClient from 'storyblok-js-client';
 import DynamicBlock from '../../../components/DynamicBlock';
 import { FALLBACK_RAPID_BUILD_BODY } from './_fallback-content';
@@ -11,21 +11,8 @@ const SEO_DEFAULTS = {
     'Rapid Build macht aus einer Hypothese einen erlebbaren Produktausschnitt – damit Teams nicht länger nur über eine Idee sprechen, sondern sie fundiert prüfen können.',
 };
 
-const ALLOWED_SEQUENCE = [
-  'service_hero',
-  'service_scene',
-  'service_artifact',
-  'service_outcome',
-  'kai_dialogue',
-  'service_honest_fit',
-  'service_related',
-  'service_detail_cta',
-];
-
-function isValidBody(body) {
-  if (!Array.isArray(body)) return false;
-  if (body.length !== ALLOWED_SEQUENCE.length) return false;
-  return ALLOWED_SEQUENCE.every((type, i) => body[i]?.component === type);
+function hasContent(body) {
+  return Array.isArray(body) && body.length > 0;
 }
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
@@ -60,7 +47,7 @@ export async function generateMetadata() {
 export default async function RapidBuildPage() {
   const content = await fetchContent();
   const cmsBody = content?.body ?? [];
-  const blocks = isValidBody(cmsBody) ? cmsBody : FALLBACK_RAPID_BUILD_BODY;
+  const blocks = hasContent(cmsBody) ? cmsBody : FALLBACK_RAPID_BUILD_BODY;
 
   return (
     <main className="sd-page sd-page--rapid-build">
