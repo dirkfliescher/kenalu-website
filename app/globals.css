@@ -797,9 +797,17 @@ p { color: var(--charcoal); }
   background: var(--mineral);
   border-radius: var(--radius);
   padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
+.booking-headline { font-size: 1.5rem; margin-bottom: 0.75rem; }
 .booking-widget h2 { font-size: 1.5rem; margin-bottom: 0.75rem; }
 .booking-intro { font-size: 0.95rem; color: var(--stone); margin-bottom: 2rem; }
+.booking-cta-block { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 0.5rem; }
+.booking-btn-large { font-size: 1rem; padding: 0.85rem 1.75rem; }
+.booking-note { font-size: 0.8rem; color: var(--stone); }
 
 /* AI Qualifier */
 .qualifier {
