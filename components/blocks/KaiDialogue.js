@@ -104,9 +104,11 @@ export default function KaiDialogue({
   const _contactCtaLabel = blok.contact_cta_label ?? contactCtaLabel ?? 'Gespräch buchen';
   const _contactCtaLink  = blok.contact_cta_link  ?? contactCtaLink  ?? '/contact';
 
-  // Suggested Prompts: Storyblok-Textarea (zeilengetrennt) oder Array-Prop
+  // Suggested Prompts: String (Storyblok-Textarea, zeilengetrennt), Array (Fallback) oder Prop
   let _suggestedPrompts = [];
-  if (blok.suggested_prompts) {
+  if (Array.isArray(blok.suggested_prompts)) {
+    _suggestedPrompts = blok.suggested_prompts.slice(0, 3);
+  } else if (typeof blok.suggested_prompts === 'string' && blok.suggested_prompts) {
     _suggestedPrompts = blok.suggested_prompts
       .split('\n')
       .map((s) => s.trim())
