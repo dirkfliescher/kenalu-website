@@ -968,7 +968,6 @@ p { color: var(--charcoal); }
   .dp-cover {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    min-height: 100vh !important;
     break-after: page !important;
   }
   .dp-hero {
@@ -993,22 +992,46 @@ p { color: var(--charcoal); }
     border: none !important;
   }
 
-  /* Bio */
-  .dp-bio-inner { display: block; }
-  .dp-bio-label { margin-bottom: 0.4rem; }
+  /* ── 33/66-Raster: Seite 2+ ── */
 
-  /* Stationen: einspaltig + harter Umbruchschutz + einheitliche Abstände, keine Trennlinien */
+  /* Bio */
+  .dp-bio-inner {
+    display: grid !important;
+    grid-template-columns: 1fr 2fr !important;
+    gap: 0 2.5rem !important;
+    align-items: start !important;
+  }
+  .dp-bio-label { margin-bottom: 0 !important; }
+
+  /* Alle Sektionen: Label links (33%), Inhalt rechts (66%) */
+  .dp-stations .container,
+  .dp-projects .container,
+  .dp-themes .container,
+  .dp-testimonials .container {
+    display: grid !important;
+    grid-template-columns: 1fr 2fr !important;
+    gap: 0 2.5rem !important;
+    align-items: start !important;
+  }
+  .dp-stations-label, .dp-projects-label, .dp-themes-label, .dp-testimonials-label {
+    margin-bottom: 0 !important;
+    padding-top: 0.1rem;
+  }
+
+  /* Stationen: intern 33/66 (Periode links, Inhalt rechts), Umbruchschutz */
   .dp-station {
-    display: block !important;
-    break-inside: avoid;
-    page-break-inside: avoid;
-    padding: 1rem 0 !important;
+    display: grid !important;
+    grid-template-columns: 6rem 1fr !important;
+    gap: 0 1.5rem !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    padding: 0.75rem 0 !important;
     border: none !important;
   }
   .dp-station-period {
-    display: block;
-    margin: 0 0 0.4rem 0 !important;
+    margin: 0 !important;
     padding: 0 !important;
+    padding-top: 0.1rem !important;
   }
 
   /* Projekte: Akkordeons immer offen (JS öffnet sie, CSS als Backup) */
@@ -1025,8 +1048,8 @@ p { color: var(--charcoal); }
   .dp-testimonials-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
   .dp-testimonial-card { background: #f9f8f6 !important; border-color: #e0ddd8 !important; padding: 0.75rem !important; page-break-inside: avoid; }
 
-  /* Seitenumbrüche: alle Sektionen beginnen auf neuer Seite */
-  .dp-bio, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials { break-before: page; }
+  /* Seitenumbrüche: ab Werdegang jede Sektion auf neuer Seite (Bio fliesst direkt nach Cover) */
+  .dp-stations, .dp-projects, .dp-themes, .dp-testimonials { break-before: page; }
 
   /* Labels und Texte */
   .section-label { font-size: 7.5pt; letter-spacing: 0.1em; }
