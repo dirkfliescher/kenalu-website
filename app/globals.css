@@ -880,6 +880,16 @@ p { color: var(--charcoal); }
 .calendly-cta { text-align: center; padding-top: 0.5rem; }
 .calendly-cta p { font-size: 0.9rem; color: var(--stone); margin-bottom: 1.25rem; }
 .calendly-note { font-size: 0.75rem; color: var(--stone); margin-top: 0.75rem; margin-bottom: 0; }
+.calendly-cta--revealed {
+  animation: cta-reveal 0.45s ease both;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--softline);
+  margin-top: 0.5rem;
+}
+@keyframes cta-reveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 /* Responsive */
 @media (max-width: 900px) {

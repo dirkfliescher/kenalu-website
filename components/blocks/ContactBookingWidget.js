@@ -136,19 +136,21 @@ export default function ContactBookingWidget({
         <p className="qualifier-note">KI-Assistent · Hilft euch, euer Anliegen zu formulieren.</p>
       </div>
 
-      {/* Calendly-Button */}
-      <div className="calendly-cta">
-        <p>Wählt einen Termin für euer 30-minütiges Erstgespräch.</p>
-        <a
-          href={bookingUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn btn-primary"
-        >
-          Termin buchen <span className="arrow">→</span>
-        </a>
-        <p className="calendly-note">Öffnet Calendly in einem neuen Tab</p>
-      </div>
+      {/* Calendly-Button – erscheint nach dem Gespräch */}
+      {done && (
+        <div className="calendly-cta calendly-cta--revealed">
+          <p>Gut. Jetzt fehlt nur noch ein Termin.</p>
+          <a
+            href={bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+          >
+            Termin buchen <span className="arrow">→</span>
+          </a>
+          <p className="calendly-note">30 Minuten · Öffnet Calendly in einem neuen Tab</p>
+        </div>
+      )}
     </div>
   );
 }
