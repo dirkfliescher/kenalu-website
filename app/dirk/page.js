@@ -20,8 +20,9 @@ async function getContent() {
     const { data } = await Storyblok.get('cdn/stories/dirk', {
       version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
     });
-    const body = data.story.content?.body || [];
-    return body.find((b) => b.component === 'dirk_profile') || null;
+    const content = data.story.content;
+    // dirk_profile ist Root-Komponente der Story
+    return content?.component === 'dirk_profile' ? content : null;
   } catch {
     return null;
   }

@@ -8,6 +8,7 @@ export default function DirkProfile({ blok = {} }) {
     bio_headline    = 'Wer ich bin',
     bio_text        = 'Seit über 25 Jahren arbeite ich an digitalen Projekten — in Banken, Beratungen, Agenturen und als selbstständiger Berater. Den Grundstein habe ich bei GFT Technologies und Credit Suisse gelegt: Projektmanagement in anspruchsvollen, regulierten Umgebungen. Danach habe ich mich auf Informationsarchitektur und strategische Beratung spezialisiert, bei Infocentric Research AG.\n\nSeit 2013 bin ich mit meiner eigenen Consulting GmbH unterwegs. Über elf Jahre war ich Partner bei viu, einem Schweizer Studio für digitale Produkte. Diese Kombination — strategische Tiefe, Nutzerperspektive und echte Umsetzungserfahrung — ist die Basis von kenalu.',
     stations        = [],
+    projects        = [],
     themes          = [],
     cta_headline    = 'Interesse an einem Gespräch?',
     cta_text        = '30 Minuten, unverbindlich. Kein Pitch — ein ehrliches Gespräch über eure Ausgangslage.',
@@ -49,7 +50,42 @@ export default function DirkProfile({ blok = {} }) {
       role: 'Senior Project Manager / Key Account Manager',
       org: 'GFT Technologies Schweiz AG',
       location: 'Wallisellen',
-      text: 'Projektemangement und Key Account Management im Bereich Public Sector und Finanzdienstleistungen.',
+      text: 'Projektmanagement und Key Account Management im Bereich Public Sector und Finanzdienstleistungen.',
+    },
+  ];
+
+  const defaultProjects = [
+    {
+      _uid: 'proj-1',
+      client: 'Saferparty.ch',
+      period: '2021 – 2022',
+      sector: 'NGO · Public Health',
+      text: 'Relaunch der deutschsprachigen Informationsplattform zum sicheren Umgang mit Substanzen. Klare Informationsarchitektur, nutzerfreundliches Design — für eine Zielgruppe, die Vertrauen braucht, keine Belehrung.',
+      award: 'Best of Swiss Web 2022 — Silber, Public Value',
+    },
+    {
+      _uid: 'proj-2',
+      client: 'Pax Lebensversicherung',
+      period: '2020 – 2021',
+      sector: 'Finanzdienstleistungen',
+      text: 'Relaunch der Online-Präsenz der Pax Schweizerischen Lebensversicherungs AG. Neues Design, neue Informationsarchitektur, neue technische Plattform auf Basis von Sitecore. End-to-end — von der Strategie bis zur Umsetzungsbegleitung.',
+      award: null,
+    },
+    {
+      _uid: 'proj-3',
+      client: 'Kantonspolizei',
+      period: '2021 – 2023',
+      sector: 'Public Sector · Commerce',
+      text: 'Internes Bestellsystem für eine grosse Schweizer Kantonspolizei — für persönliches, verbrauchsgebundenes und Einsatzmaterial. Komplexe Anforderungen, klare Lösung auf Basis von SAP Commerce.',
+      award: null,
+    },
+    {
+      _uid: 'proj-4',
+      client: 'Thurbo AG',
+      period: '2022 – 2023',
+      sector: 'Transport · Interne Kommunikation',
+      text: 'Konzeption, Design und Entwicklung der neuen internen Kommunikationsplattform für den Regionalbahnbetreiber Thurbo in Winterthur. Nutzerzentrierter Ansatz, agile Umsetzung.',
+      award: null,
     },
   ];
 
@@ -73,6 +109,7 @@ export default function DirkProfile({ blok = {} }) {
   ];
 
   const resolvedStations = stations.length > 0 ? stations : defaultStations;
+  const resolvedProjects = projects.length > 0 ? projects : defaultProjects;
   const resolvedThemes   = themes.length > 0 ? themes : defaultThemes;
   const bioLines = bio_text.split('\n\n');
 
@@ -126,6 +163,39 @@ export default function DirkProfile({ blok = {} }) {
                   {s.text && <p className="dp-station-text">{s.text}</p>}
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Projekte ── */}
+      <section className="dp-projects">
+        <div className="container">
+          <p className="section-label dp-projects-label">Ausgewählte Projekte</p>
+          <div className="dp-projects-list">
+            {resolvedProjects.map((p, i) => (
+              <details key={p._uid || i} className="dp-project-item">
+                <summary className="dp-project-summary">
+                  <div className="dp-project-summary-main">
+                    <strong className="dp-project-client">{p.client}</strong>
+                    {p.sector && <span className="dp-project-sector">{p.sector}</span>}
+                  </div>
+                  <div className="dp-project-summary-right">
+                    <span className="dp-project-period">{p.period}</span>
+                    <span className="dp-project-chevron" aria-hidden="true">›</span>
+                  </div>
+                </summary>
+                <div className="dp-project-body">
+                  <p className="dp-project-text">{p.text}</p>
+                  {p.detail && <p className="dp-project-detail">{p.detail}</p>}
+                  {p.award && (
+                    <div className="dp-project-award">
+                      <span className="dp-award-icon">◆</span>
+                      {p.award}
+                    </div>
+                  )}
+                </div>
+              </details>
             ))}
           </div>
         </div>
