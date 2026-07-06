@@ -1015,6 +1015,11 @@ p { color: var(--charcoal); }
   a { color: #1a1a1a !important; text-decoration: none !important; }
   a::after { content: none !important; }
 
+  /* Überschriften-Waisenregel: kein Umbruch nach Titel, Rolle oder Firma */
+  .dp-station-period { break-after: avoid; }
+  .dp-station-role { break-after: avoid; }
+  .dp-station-org { break-after: avoid; }
+
   /* Alle Texte explizit schwarz — CSS-Variablen werden im Druck nicht immer aufgelöst */
   .dp-station-role { color: #1a1a1a !important; }
   .dp-station-org { color: #555 !important; }
