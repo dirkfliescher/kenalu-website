@@ -936,6 +936,82 @@ p { color: var(--charcoal); }
   .dp-project-summary-main { gap: 0.75rem; }
 }
 
+/* Print-Button (nur Screen) */
+.dp-print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding: 0.6rem 1.25rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 2rem;
+  color: var(--ivory);
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+.dp-print-btn:hover { opacity: 1; border-color: rgba(255,255,255,0.7); }
+
+/* ── Print / PDF ────────────────────────────────────────────────── */
+@media print {
+  /* Seiten-Setup */
+  @page { margin: 1.5cm 2cm; size: A4 portrait; }
+  body { font-size: 10pt; color: #1a1a1a; background: white; }
+
+  /* Verstecken: Nav, Footer, Button, CTA-Sektion */
+  nav, footer, .dp-print-btn, .dp-cta { display: none !important; }
+
+  /* Hero: kompakt, kein Vollbild */
+  .dp-hero {
+    min-height: auto !important;
+    background: white !important;
+    color: #1a1a1a !important;
+    padding: 1.5rem 0 1rem !important;
+  }
+  .dp-hero::after { display: none !important; } /* Scroll-Indikator weg */
+  .dp-hero-h1 { font-size: 20pt; color: #1a1a1a; }
+  .dp-hero-intro { font-size: 10.5pt; max-width: 100%; }
+  .dp-meta-link { color: #1a1a1a !important; text-decoration: none; }
+
+  /* Alle Sektionen: weisser Hintergrund, kompaktes Padding */
+  .dp-bio, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials {
+    background: white !important;
+    padding: 1.25rem 0 !important;
+    border-top: 1px solid #e0ddd8;
+  }
+
+  /* Bio */
+  .dp-bio-inner { display: block; }
+  .dp-bio-label { margin-bottom: 0.4rem; }
+
+  /* Stationen */
+  .dp-station { page-break-inside: avoid; }
+
+  /* Projekte: Akkordeons immer offen (JS öffnet sie, CSS als Backup) */
+  details.dp-project-item { display: block !important; page-break-inside: avoid; }
+  details.dp-project-item .dp-project-body { display: block !important; }
+  .dp-project-chevron { display: none; }
+  .dp-project-award { background: #f4f1ec !important; }
+
+  /* Themen-Grid: 2 Spalten → 1 Spalte */
+  .dp-themes-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .dp-theme-card { background: #f9f8f6 !important; border-color: #e0ddd8 !important; padding: 0.75rem !important; page-break-inside: avoid; }
+
+  /* Testimonials */
+  .dp-testimonials-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .dp-testimonial-card { background: #f9f8f6 !important; border-color: #e0ddd8 !important; padding: 0.75rem !important; page-break-inside: avoid; }
+
+  /* Labels und Texte */
+  .section-label { font-size: 7.5pt; letter-spacing: 0.1em; }
+  h2 { font-size: 15pt; }
+
+  /* Links: keine Unterstreichung, kein Blau */
+  a { color: #1a1a1a !important; text-decoration: none !important; }
+}
+
 /* ── Contact ────────────────────────────────────────────────────── */
 .contact-page { padding: 12rem var(--gutter) 7rem; min-height: 100svh; background: var(--charcoal); color: var(--ivory); }
 .contact-layout {

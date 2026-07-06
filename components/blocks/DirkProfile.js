@@ -1,3 +1,5 @@
+import PrintButton from './PrintButton';
+
 export default function DirkProfile({ blok = {}, testimonials = [] }) {
   const {
     hero_eyebrow    = 'Dirk Fliescher',
@@ -164,6 +166,7 @@ export default function DirkProfile({ blok = {}, testimonials = [] }) {
               in LinkedIn
             </a>
           </div>
+          <PrintButton />
         </div>
       </section>
 
