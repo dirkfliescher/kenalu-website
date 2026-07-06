@@ -170,6 +170,23 @@ export default function DirkProfile({ blok = {}, testimonials = [] }) {
         </div>
       </section>
 
+      {/* ── Kontakt (nur Print: erscheint auf Titelseite) ── */}
+      <div className="dp-print-contact" aria-hidden="true">
+        <div className="dp-print-contact-inner">
+          <div>
+            <strong>Dirk Fliescher</strong>
+            <span>Principal Consultant</span>
+            <span>kenalu · a Brand of Dirk Fliescher Consulting GmbH</span>
+            <span>Zürich, Switzerland</span>
+          </div>
+          <div>
+            <span>dirk@fliescher.ch</span>
+            <span>+41 79 301 54 63</span>
+            <span>kenalu.ch</span>
+          </div>
+        </div>
+      </div>
+
       {/* ── Bio ── */}
       <section className="dp-bio">
         <div className="container dp-bio-inner">
@@ -299,23 +316,6 @@ export default function DirkProfile({ blok = {}, testimonials = [] }) {
           </div>
         </section>
       )}
-
-      {/* ── Kontakt (nur Print) ── */}
-      <div className="dp-print-contact" aria-hidden="true">
-        <div className="dp-print-contact-inner">
-          <div>
-            <strong>Dirk Fliescher</strong>
-            <span>Principal Consultant</span>
-            <span>kenalu · a Brand of Dirk Fliescher Consulting GmbH</span>
-            <span>Zürich, Switzerland</span>
-          </div>
-          <div>
-            <span>dirk@fliescher.ch</span>
-            <span>+41 79 301 54 63</span>
-            <span>kenalu.ch</span>
-          </div>
-        </div>
-      </div>
 
       {/* ── CTA ── */}
       <section className="dp-cta">

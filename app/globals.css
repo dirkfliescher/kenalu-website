@@ -964,17 +964,18 @@ p { color: var(--charcoal); }
   /* Verstecken: Nav, Footer, Button, CTA-Sektion */
   nav, footer, .dp-print-btn, .dp-cta { display: none !important; }
 
-  /* Hero: kompakt, kein Vollbild */
+  /* ── Titelseite: Hero ── */
   .dp-hero {
     min-height: auto !important;
     background: white !important;
     color: #1a1a1a !important;
-    padding: 1.5rem 0 1rem !important;
+    padding: 3.5cm 0 0 !important;
   }
-  .dp-hero::after { display: none !important; } /* Scroll-Indikator weg */
-  .dp-hero-h1 { font-size: 20pt; color: #1a1a1a; }
-  .dp-hero-intro { font-size: 10.5pt; max-width: 100%; }
-  .dp-meta-link { color: #1a1a1a !important; text-decoration: none; }
+  .dp-hero::after { display: none !important; }
+  .dp-hero-label { color: #C5694A !important; margin-bottom: 1.75rem !important; font-size: 8pt !important; }
+  .dp-hero-h1 { font-size: 26pt !important; line-height: 1.2 !important; color: #1a1a1a !important; margin-bottom: 1.5rem !important; }
+  .dp-hero-intro { font-size: 11pt !important; max-width: 100% !important; color: #333 !important; line-height: 1.65 !important; }
+  .dp-hero-meta { display: none !important; }
 
   /* Alle Sektionen: weisser Hintergrund, kompaktes Padding, keine Trennlinien */
   .dp-bio, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials {
@@ -1015,8 +1016,8 @@ p { color: var(--charcoal); }
   .dp-testimonials-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
   .dp-testimonial-card { background: #f9f8f6 !important; border-color: #e0ddd8 !important; padding: 0.75rem !important; page-break-inside: avoid; }
 
-  /* Seitenumbrüche: Sektionen beginnen auf neuer Seite wenn sie nicht passen */
-  .dp-stations, .dp-projects, .dp-themes, .dp-testimonials { break-before: page; }
+  /* Seitenumbrüche: alle Sektionen beginnen auf neuer Seite */
+  .dp-bio, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials { break-before: page; }
 
   /* Labels und Texte */
   .section-label { font-size: 7.5pt; letter-spacing: 0.1em; }
@@ -1043,12 +1044,13 @@ p { color: var(--charcoal); }
   .dp-hero-intro { color: #333 !important; }
   .dp-meta-item { color: #555 !important; }
 
-  /* Kontaktblock: nur im Druck sichtbar */
+  /* ── Kontaktblock: Titelseite unten ── */
   .dp-print-contact {
-    break-before: page;
-    padding: 2rem 0 0;
-    border-top: 2px solid #1a1a1a;
-    margin-top: 1rem;
+    display: block !important;
+    margin-top: 4rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #ccc;
+    break-after: page !important;
   }
   .dp-print-contact-inner {
     display: flex;
@@ -1058,19 +1060,19 @@ p { color: var(--charcoal); }
   .dp-print-contact-inner > div {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0.25rem;
     font-size: 9.5pt;
     color: #1a1a1a;
   }
   .dp-print-contact-inner strong {
-    font-size: 11pt;
+    font-size: 10.5pt;
     font-weight: 700;
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.1rem;
   }
 }
 
-/* Kontaktblock: auf Screen versteckt */
-.dp-print-contact { display: none; }
+/* Kontaktblock: auf Screen versteckt, im Druck sichtbar */
+@media screen { .dp-print-contact { display: none; } }
 
 /* ── Contact ────────────────────────────────────────────────────── */
 .contact-page { padding: 12rem var(--gutter) 7rem; min-height: 100svh; background: var(--charcoal); color: var(--ivory); }
