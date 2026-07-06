@@ -24,9 +24,9 @@ function FooterPreview({ tagline, email, address, copyright }) {
             <h4>Navigation</h4>
             <ul>
               <li><Link href="/services">Leistungen</Link></li>
-              <li><Link href="/about">Arbeitsweise</Link></li>
+              <li><Link href="/approach">Arbeitsweise</Link></li>
               <li><Link href="/insights">Insights</Link></li>
-              <li><Link href="/team">Über kenalu</Link></li>
+              <li><Link href="/about">Über kenalu</Link></li>
               <li><Link href="/contact">Kontakt</Link></li>
             </ul>
           </div>

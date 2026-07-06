@@ -59,7 +59,7 @@ function PersonWidget({ widget }) {
     ? widget.name.split(' ').map((n) => n[0]).slice(0, 2).join('').toUpperCase()
     : '?';
   return (
-    <Link href={`/team/${widget.slug}`} className="hcw-person">
+    <Link href={`/about/${widget.slug}`} className="hcw-person">
       <div className="hcw-person-avatar">
         {widget.photo ? (
           <img src={widget.photo} alt={widget.name} />
@@ -95,7 +95,7 @@ function CheckWidget({ widget }) {
 
 function TeamWidget({ widget }) {
   return (
-    <Link href="/team" className="hcw-check">
+    <Link href="/about" className="hcw-check">
       <div className="hcw-check-inner">
         <div>
           <p className="hcw-check-label">{widget.label || 'Das Team kennenlernen'}</p>

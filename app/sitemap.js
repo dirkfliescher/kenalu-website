@@ -8,8 +8,8 @@ const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN
 const STATIC_ROUTES = [
   { url: '/',               priority: 1.0,  changeFrequency: 'weekly'  },
   { url: '/services',       priority: 0.9,  changeFrequency: 'monthly' },
+  { url: '/approach',       priority: 0.8,  changeFrequency: 'monthly' },
   { url: '/about',          priority: 0.8,  changeFrequency: 'monthly' },
-  { url: '/team',           priority: 0.8,  changeFrequency: 'monthly' },
   { url: '/lab',            priority: 0.8,  changeFrequency: 'weekly'  },
   { url: '/insights',       priority: 0.7,  changeFrequency: 'weekly'  },
   { url: '/contact',        priority: 0.6,  changeFrequency: 'monthly' },
@@ -52,7 +52,7 @@ export default async function sitemap() {
       content_type: 'team_member',
     });
     const teamEntries = (data.stories || []).map((story) => ({
-      url: `${BASE}/team/${story.slug}`,
+      url: `${BASE}/about/${story.slug}`,
       lastModified: new Date(story.published_at || story.created_at),
       changeFrequency: 'monthly',
       priority: 0.5,

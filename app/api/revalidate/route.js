@@ -4,8 +4,8 @@ import { revalidatePath } from 'next/cache';
 const ALL_PATHS = [
   '/',
   '/services',
+  '/approach',
   '/about',
-  '/team',
   '/lab',
   '/insights',
   '/contact',
@@ -43,7 +43,7 @@ export async function POST(req) {
 
   // Dynamische Routen: Team-Profile
   if (slug.startsWith('team/')) {
-    revalidatePath(`/team/${slug.replace('team/', '')}`);
+    revalidatePath(`/about/${slug.replace('team/', '')}`);
   }
 
   console.log(`[revalidate] Story publiziert: "${slug}" – ${ALL_PATHS.length} Pfade erneuert`);

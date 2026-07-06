@@ -68,7 +68,7 @@ const FALLBACK_ABOUT_TEAM_REFERENCE = {
   person_2_name: 'Stanislav Raskin',
   person_2_role: 'Engineering & Architektur',
   link_label: 'Team kennenlernen →',
-  link_url: '/team',
+  link_url: '/about',
 };
 
 const FALLBACK_ABOUT_ECOSYSTEM_PARTNERS = {

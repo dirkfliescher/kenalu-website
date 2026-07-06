@@ -58,7 +58,7 @@ const KENALU_SERVICES = [
 
 // ── kenalu Team ────────────────────────────────────────────────────────────
 const KENALU_TEAM = [
-  { name: 'Dirk Fliescher', role: 'Gründer von kenalu', href: '/team' },
+  { name: 'Dirk Fliescher', role: 'Gründer von kenalu', href: '/about' },
 ];
 
 // ── kenalu Lab-Inhalte ─────────────────────────────────────────────────────
@@ -240,7 +240,7 @@ Widget-Typen (JSON-Format):
    { "type": "service", "name": "Klarheit|Rapid Build|Produkt|Urteil", "description": "...", "href": "..." }
 
 3. "team" — bei Fragen zu Personen oder Team:
-   { "type": "team", "name": "Dirk Fliescher", "role": "Gründer von kenalu", "href": "/team" }
+   { "type": "team", "name": "Dirk Fliescher", "role": "Gründer von kenalu", "href": "/about" }
 
 4. "lab_article" — Lab-Beitrag (Arbeitsprobe, Prototyp), der relevant ist:
    { "type": "lab_article", "slug": "EXAKTER-SLUG-AUS-DER-LAB-LISTE", "title": "...", "tag": "Lab", "excerpt": "...", "href": "..." }

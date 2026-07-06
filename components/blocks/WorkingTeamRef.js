@@ -30,7 +30,7 @@ export default function WorkingTeamRef({ blok }) {
           </div>
         )}
         {blok.link_label && (
-          <Link href={blok.link_url || '/team'} className="link-arrow">
+          <Link href={blok.link_url || '/about'} className="link-arrow">
             {blok.link_label}
           </Link>
         )}

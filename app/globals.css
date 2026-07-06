@@ -130,9 +130,9 @@ p { color: var(--charcoal); }
 .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
 .nav-links li a { font-size: 0.9rem; font-weight: 500; color: var(--stone); transition: color var(--transition); }
 .nav-links li a:hover { color: var(--charcoal); }
-/* CTA-Button-Text nur auf Desktop weiss (btn-primary hat dunklen Hintergrund) */
+/* CTA-Button-Text weiss — gezielt auf btn-primary, nicht li:last-child */
 @media (min-width: 769px) {
-  .nav-links li:last-child a { color: var(--ivory); }
+  .nav-links .btn-primary { color: var(--ivory); }
 }
 .nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 4px; background: none; border: none; cursor: pointer; }
 .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: transform var(--transition), opacity var(--transition); }

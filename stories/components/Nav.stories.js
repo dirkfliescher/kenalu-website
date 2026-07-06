@@ -24,7 +24,7 @@ export default {
 
 - Client Component mit Scroll-State und Mobile-Toggle
 - Erkennt automatisch, ob sie auf einem dunklen Hero steht (heller Text)
-- Dark-Hero-Seiten: \`/services\`, \`/about\`, \`/insights\`, \`/team\`
+- Dark-Hero-Seiten: \`/services\`, \`/approach\`, \`/insights\`, \`/about\`
 - CTA «Gespräch starten» wird auf \`/contact\` ausgeblendet
 - Voller Accessibility-Support: Focus Trap, Escape-Key, \`aria-expanded\`
 
@@ -91,7 +91,7 @@ export const UeberKenaluAktiv = {
   name: 'Über kenalu – aktiver Link',
   parameters: {
     nextjs: {
-      navigation: { pathname: '/team' },
+      navigation: { pathname: '/about' },
     },
     backgrounds: { default: 'ocean' },
   },

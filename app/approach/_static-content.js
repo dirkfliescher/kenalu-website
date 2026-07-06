@@ -115,7 +115,7 @@ const STATIC_WORKING_TEAM_REF = {
   person_2_name: 'Stanislav Raskin',
   person_2_role: 'Engineering & Architektur',
   link_label: 'Team kennenlernen →',
-  link_url: '/team',
+  link_url: '/about',
 };
 
 const STATIC_WORKING_PARTNERS = {
