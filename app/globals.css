@@ -767,7 +767,7 @@ p { color: var(--charcoal); }
   align-items: center;
 }
 .dp-hero-inner { max-width: 720px; }
-.dp-hero-label { color: rgba(255,255,255,0.42); margin-bottom: 2rem; }
+.dp-hero-label { color: var(--terracotta); margin-bottom: 2rem; }
 .dp-hero-h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.15; margin-bottom: 1.75rem; }
 .dp-hero-intro { font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.75); max-width: 580px; margin-bottom: 2.5rem; }
 .dp-hero-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
@@ -783,13 +783,13 @@ p { color: var(--charcoal); }
   gap: 5rem;
   align-items: start;
 }
-.dp-bio-label .section-label { color: var(--sage); }
+.dp-bio-label .section-label { color: var(--terracotta); }
 .dp-bio-text p { font-size: 1.05rem; line-height: 1.8; color: var(--charcoal); margin-bottom: 1.25rem; }
 .dp-bio-text p:last-child { margin-bottom: 0; }
 
 /* Stationen */
 .dp-stations { background: var(--charcoal); color: var(--ivory); padding: 7rem var(--gutter); }
-.dp-stations-label { color: rgba(255,255,255,0.42); margin-bottom: 3rem; }
+.dp-stations-label { color: var(--terracotta); margin-bottom: 3rem; }
 .dp-stations-list { display: flex; flex-direction: column; gap: 0; }
 .dp-station {
   display: grid;
@@ -806,7 +806,7 @@ p { color: var(--charcoal); }
 
 /* Projekte (Accordion) */
 .dp-projects { background: var(--mineral); padding: 7rem var(--gutter); }
-.dp-projects-label { color: var(--stone); margin-bottom: 3rem; }
+.dp-projects-label { color: var(--terracotta); margin-bottom: 3rem; }
 .dp-projects-list { display: flex; flex-direction: column; gap: 0; }
 
 .dp-project-item {
@@ -896,7 +896,7 @@ p { color: var(--charcoal); }
 
 /* Themen */
 .dp-themes { background: var(--ivory); padding: 7rem var(--gutter); }
-.dp-themes-label { color: var(--sage); margin-bottom: 3rem; }
+.dp-themes-label { color: var(--terracotta); margin-bottom: 3rem; }
 .dp-themes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
 .dp-theme-card { padding: 2rem; background: white; border-radius: var(--radius); border: 1px solid var(--softline); }
 .dp-theme-label { display: block; font-size: 0.95rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.75rem; }
@@ -904,7 +904,7 @@ p { color: var(--charcoal); }
 
 /* Testimonials */
 .dp-testimonials { background: var(--ivory); padding: 7rem var(--gutter); }
-.dp-testimonials-label { color: var(--sage); margin-bottom: 3rem; }
+.dp-testimonials-label { color: var(--terracotta); margin-bottom: 3rem; }
 .dp-testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 .dp-testimonial-card { background: white; border-radius: var(--radius); border: 1px solid var(--softline); padding: 2.25rem 2rem; display: flex; flex-direction: column; gap: 1.75rem; }
 .dp-testimonial-quote { font-size: 1rem; line-height: 1.7; color: var(--charcoal); margin: 0; font-style: italic; }
