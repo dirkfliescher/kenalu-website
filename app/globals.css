@@ -987,8 +987,13 @@ p { color: var(--charcoal); }
   .dp-bio-inner { display: block; }
   .dp-bio-label { margin-bottom: 0.4rem; }
 
-  /* Stationen */
-  .dp-station { page-break-inside: avoid; }
+  /* Stationen: einspaltig + harter Umbruchschutz */
+  .dp-station {
+    display: block !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .dp-station-period { margin-bottom: 0.25rem; }
 
   /* Projekte: Akkordeons immer offen (JS öffnet sie, CSS als Backup) */
   details.dp-project-item { display: block !important; page-break-inside: avoid; }
