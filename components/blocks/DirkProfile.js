@@ -1,4 +1,4 @@
-export default function DirkProfile({ blok = {} }) {
+export default function DirkProfile({ blok = {}, testimonials = [] }) {
   const {
     hero_eyebrow    = 'Dirk Fliescher',
     hero_headline   = 'Strategie, Nutzerperspektive, Umsetzung — in einer Person.',
@@ -247,6 +247,55 @@ export default function DirkProfile({ blok = {} }) {
           </div>
         </div>
       </section>
+
+      {/* ── Testimonials ── */}
+      {testimonials.length > 0 && (
+        <section className="dp-testimonials">
+          <div className="container">
+            <p className="section-label dp-testimonials-label">Was andere sagen</p>
+            <div className="dp-testimonials-grid">
+              {testimonials.map((t, i) => {
+                const rawPhoto = t.testimonial_photo;
+                const photo = Array.isArray(rawPhoto) ? rawPhoto[0] : rawPhoto;
+                const photoSrc = photo?.filename;
+                return (
+                  <div key={t._uid || i} className="dp-testimonial-card">
+                    {t.testimonial_quote && (
+                      <p className="dp-testimonial-quote">&#x201E;{t.testimonial_quote}&#x201C;</p>
+                    )}
+                    <div className="dp-testimonial-author-row">
+                      <div className="dp-testimonial-photo">
+                        {photoSrc ? (
+                          <img
+                            src={photoSrc}
+                            alt={t.testimonial_photo_alt || photo?.alt || t.testimonial_name || ''}
+                          />
+                        ) : (
+                          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <circle cx="40" cy="33" r="18" fill="#D8D4CE" />
+                            <path d="M 8 76 Q 40 56 72 76" fill="#D8D4CE" />
+                          </svg>
+                        )}
+                      </div>
+                      <div className="dp-testimonial-author-info">
+                        {t.testimonial_name && (
+                          <strong className="dp-testimonial-name">{t.testimonial_name}</strong>
+                        )}
+                        {t.testimonial_role && (
+                          <span className="dp-testimonial-role">{t.testimonial_role}</span>
+                        )}
+                        {t.testimonial_customer_name && (
+                          <span className="dp-testimonial-customer">{t.testimonial_customer_name}</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── CTA ── */}
       <section className="dp-cta">
