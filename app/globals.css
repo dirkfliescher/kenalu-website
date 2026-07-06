@@ -1015,6 +1015,7 @@ p { color: var(--charcoal); }
   /* Alle dp-* Borders aus Screen-CSS komplett unterdrücken */
   .dp-station, .dp-station:last-child,
   .dp-stations-list, .dp-projects-list,
+  .dp-project-item, .dp-project-item:last-child,
   .dp-bio, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials {
     border: none !important;
   }
@@ -1046,9 +1047,15 @@ p { color: var(--charcoal); }
   .dp-themes-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
   .dp-theme-card { background: #f9f8f6 !important; border-color: #e0ddd8 !important; padding: 0.75rem !important; page-break-inside: avoid; }
 
-  /* Testimonials */
-  .dp-testimonials-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-  .dp-testimonial-card { background: #f9f8f6 !important; border-color: #e0ddd8 !important; padding: 0.75rem !important; page-break-inside: avoid; }
+  /* Testimonials: einspaltig, volle Breite, kein Abschnitt an Seitengrenzen */
+  .dp-testimonials-grid { display: flex !important; flex-direction: column !important; gap: 1rem !important; }
+  .dp-testimonial-card {
+    background: transparent !important;
+    border: none !important;
+    padding: 0.75rem 0 !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
 
   /* Seitenumbrüche: ab Werdegang jede Sektion auf neuer Seite (Bio fliesst direkt nach Cover) */
   .dp-stations, .dp-projects, .dp-themes, .dp-testimonials { break-before: page; }
