@@ -264,6 +264,55 @@ Setze showContact auf true, wenn die Person:
 - explizit ein Gespräch anspricht oder signalisiert, dass sie weiterkommen möchte`;
 }
 
+// ── Scope-Klassifikation ───────────────────────────────────────────────────
+async function isInScope(message) {
+  try {
+    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'gpt-4o-mini',
+        messages: [
+          {
+            role: 'system',
+            content: `Du klassifizierst Nachrichten für einen KI-Assistenten auf der Website von kenalu — einem Beratungs- und Umsetzungsstudio für digitale Produkte aus Zürich.
+
+Erlaubte Themen: kenalu (Leistungen, Arbeitsweise, Team, Preise, Ablauf, Zusammenarbeit), digitale Produkte und Software, Produktstrategie, Experience Design, UX/UI, AI-Produkte und -Anwendungen, Prototyping, Softwareentwicklung, digitale Transformation, Projektbegleitung, allgemeine Fragen zu Beratung oder Agenturen.
+
+Antworte mit einem einzigen Wort — "yes" oder "no":
+- "yes" wenn die Nachricht zu einem erlaubten Thema gehört oder wenn unklar ist, ob sie dazugehört
+- "no" nur wenn die Nachricht eindeutig nichts damit zu tun hat
+
+Beispiele:
+"Wie läuft eine Zusammenarbeit mit kenalu ab?" → yes
+"Wir überlegen, eine App zu bauen — wo fangen wir an?" → yes
+"Was kostet ein Prototyp?" → yes
+"Wie ist das Wetter morgen in Zürich?" → no
+"Schreib mir ein Python-Script zum Datenbankabfragen" → no
+"Kannst du mir bei meinen Hausaufgaben helfen?" → no
+"Erkläre mir Quantenphysik" → no
+"Wie schreibe ich einen Businessplan für eine Bäckerei?" → no
+"Was ist der Unterschied zwischen UX und UI?" → yes`,
+          },
+          { role: 'user', content: message },
+        ],
+        max_tokens: 5,
+        temperature: 0,
+      }),
+    });
+
+    if (!res.ok) return true; // Fehlerfall: lieber antworten als blockieren
+    const data = await res.json();
+    const answer = data.choices[0]?.message?.content?.trim().toLowerCase();
+    return answer === 'yes';
+  } catch {
+    return true; // Fehlerfall: lieber antworten als blockieren
+  }
+}
+
 // ── Route Handler ──────────────────────────────────────────────────────────
 export async function POST(request) {
   try {
@@ -276,6 +325,16 @@ export async function POST(request) {
     const lastUserMessage = messages[messages.length - 1]?.content || '';
     if (lastUserMessage.trim().length < 2) {
       return NextResponse.json({ answer: null, showContact: false, widgets: [] });
+    }
+
+    // Scope-Check: Ist die Frage relevant für kenalu?
+    const inScope = await isInScope(lastUserMessage);
+    if (!inScope) {
+      return NextResponse.json({
+        answer: 'Dazu kann ich euch leider nicht weiterhelfen — Kai ist auf digitale Produkte und kenalus Leistungen spezialisiert. Habt ihr eine Frage dazu?',
+        showContact: false,
+        widgets: [],
+      });
     }
 
     const articles = await getArticles();
