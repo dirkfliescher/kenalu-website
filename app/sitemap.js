@@ -13,7 +13,7 @@ const STATIC_ROUTES = [
   { url: '/lab',            priority: 0.8,  changeFrequency: 'weekly'  },
   { url: '/insights',       priority: 0.7,  changeFrequency: 'weekly'  },
   { url: '/contact',        priority: 0.6,  changeFrequency: 'monthly' },
-  { url: '/check',          priority: 0.7,  changeFrequency: 'monthly' },
+  // /check ist in robots.txt disallowed – bewusst nicht in der Sitemap
 ];
 
 export default async function sitemap() {
