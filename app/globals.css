@@ -1085,14 +1085,9 @@ p { color: var(--charcoal); }
   /* Ausbildung: ganzer Block zusammenhalten — kein Seitenumbruch innerhalb der Sektion */
   .dp-education { break-inside: avoid !important; }
 
-  /* Ausbildung: 33/66 — Label links, Einträge rechts im CV-Raster */
-  .dp-education-inner {
-    display: grid !important;
-    grid-template-columns: 1fr 2fr !important;
-    gap: 0 2.5rem !important;
-    align-items: start !important;
-  }
-  .dp-education-label { margin-bottom: 0 !important; }
+  /* Ausbildung: Label oben, Einträge darunter (kein Dreier-Grid) */
+  .dp-education-inner { display: block !important; }
+  .dp-education-label { margin-bottom: 0.5rem !important; }
   .dp-edu-item {
     display: grid !important;
     grid-template-columns: 6.5rem 1fr !important;
