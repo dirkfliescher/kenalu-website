@@ -1011,7 +1011,19 @@ p { color: var(--charcoal); }
   body { font-size: 10pt; color: #1a1a1a; background: white; }
 
   /* Verstecken: Nav, Footer, Button, CTA-Sektion */
-  nav, footer, .dp-print-btn, .dp-cta { display: none !important; }
+  nav, footer, .dp-print-btn { display: none !important; }
+  /* dp-cta: Safari reserviert trotz display:none manchmal Höhe → explizit auf 0 setzen */
+  .dp-cta {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    break-before: avoid !important;
+    break-after: avoid !important;
+  }
 
   /* ── Titelseite: 50:50 Cover ── */
   .dp-cover {
