@@ -1063,6 +1063,9 @@ p { color: var(--charcoal); }
     align-items: start !important;
   }
   .dp-bio-label { margin-bottom: 0 !important; }
+  /* Bio-Text: kompakter für Druck */
+  .dp-bio-text p { font-size: 9pt !important; line-height: 1.55 !important; margin-bottom: 0.6rem !important; }
+  .dp-bio-photo { display: none !important; } /* Foto nur im Kontaktblock sichtbar */
 
   /* Sprachen: 33/66 — Label links, Liste rechts */
   .dp-languages-inner {
@@ -1078,6 +1081,9 @@ p { color: var(--charcoal); }
   }
   .dp-language-name { font-size: 9pt !important; color: #1a1a1a !important; }
   .dp-language-level { font-size: 9pt !important; color: #555 !important; }
+
+  /* Ausbildung: ganzer Block zusammenhalten — kein Seitenumbruch innerhalb der Sektion */
+  .dp-education { break-inside: avoid !important; }
 
   /* Ausbildung: 33/66 — Label links, Einträge rechts im CV-Raster */
   .dp-education-inner {
