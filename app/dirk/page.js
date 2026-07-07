@@ -26,25 +26,35 @@ async function getContent() {
   }
 }
 
-// Testimonials aus der Team-Story holen (Single Source of Truth)
-async function getTestimonials() {
+// Foto + Testimonials aus der Team-Story holen (Single Source of Truth)
+async function getTeamData() {
   const slugsToTry = ['dirk', 'dirk-fliescher'];
   for (const slug of slugsToTry) {
     try {
       const { data } = await Storyblok.get(`cdn/stories/team/${slug}`, { version: VERSION });
-      const testimonials = data.story?.content?.team_member_testimonials;
-      if (Array.isArray(testimonials) && testimonials.length > 0) return testimonials;
+      const content = data.story?.content;
+      if (!content) continue;
+      return {
+        photo:        content.team_member_photo || null,
+        photoAlt:     content.team_member_photo_alt || content.team_member_photo?.alt || 'Dirk Fliescher',
+        testimonials: Array.isArray(content.team_member_testimonials) ? content.team_member_testimonials : [],
+      };
     } catch { /* nächster Slug */ }
   }
-  return [];
+  return { photo: null, photoAlt: '', testimonials: [] };
 }
 
 export default async function DirkPage() {
-  const [blok, testimonials] = await Promise.all([getContent(), getTestimonials()]);
+  const [blok, teamData] = await Promise.all([getContent(), getTeamData()]);
 
   return (
     <main>
-      <DirkProfile blok={blok || {}} testimonials={testimonials} />
+      <DirkProfile
+        blok={blok || {}}
+        testimonials={teamData.testimonials}
+        photo={teamData.photo}
+        photoAlt={teamData.photoAlt}
+      />
     </main>
   );
 }

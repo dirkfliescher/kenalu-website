@@ -784,6 +784,8 @@ p { color: var(--charcoal); }
   align-items: start;
 }
 .dp-bio-label .section-label { color: var(--terracotta); }
+.dp-bio-photo { margin-top: 2rem; }
+.dp-bio-photo img { width: 100%; max-width: 160px; border-radius: 4px; display: block; }
 .dp-bio-text p { font-size: 1.05rem; line-height: 1.8; color: var(--charcoal); margin-bottom: 1.25rem; }
 .dp-bio-text p:last-child { margin-bottom: 0; }
 
@@ -1111,6 +1113,12 @@ p { color: var(--charcoal); }
     font-size: 10.5pt;
     font-weight: 700;
     margin-bottom: 0.2rem;
+  }
+  .dp-print-contact-photo img {
+    width: 100%;
+    max-width: 120px;
+    border-radius: 3px;
+    display: block;
   }
 }
 

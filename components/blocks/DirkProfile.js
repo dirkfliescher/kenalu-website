@@ -1,6 +1,6 @@
 import PrintButton from './PrintButton';
 
-export default function DirkProfile({ blok = {}, testimonials = [] }) {
+export default function DirkProfile({ blok = {}, testimonials = [], photo = null, photoAlt = 'Dirk Fliescher' }) {
   const {
     hero_eyebrow    = 'Dirk Fliescher',
     hero_headline   = 'Strategie, Nutzerperspektive, Umsetzung — in einer Person.',
@@ -174,6 +174,11 @@ export default function DirkProfile({ blok = {}, testimonials = [] }) {
         {/* ── Kontakt (nur Print: erscheint auf Titelseite rechts) ── */}
         <div className="dp-print-contact" aria-hidden="true">
           <div className="dp-print-contact-inner">
+            {photo?.filename && (
+              <div className="dp-print-contact-photo">
+                <img src={photo.filename} alt={photoAlt} />
+              </div>
+            )}
             <div>
               <strong>Dirk Fliescher</strong>
               <span>Principal Consultant</span>
@@ -194,6 +199,11 @@ export default function DirkProfile({ blok = {}, testimonials = [] }) {
         <div className="container dp-bio-inner">
           <div className="dp-bio-label">
             <p className="section-label">{bio_headline}</p>
+            {photo?.filename && (
+              <div className="dp-bio-photo">
+                <img src={photo.filename} alt={photoAlt} />
+              </div>
+            )}
           </div>
           <div className="dp-bio-text">
             {bioLines.map((para, i) => (
