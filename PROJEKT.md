@@ -118,7 +118,7 @@ components/
     ServiceRelated.js            Service-Detail Andere Einstiege (CMS-SERVICES-01)
     ServiceDetailCta.js          Service-Detail Abschluss-CTA (CMS-SERVICES-01)
     TeamHero.js                  /about Hero (Storyblok-first, Fallback: hardcoded)
-    DirkProfile.js               /dirk Profil-Seite (Storyblok-first, 8 Projekte, Testimonials)
+    DirkProfile.js               /dirk Profil-Seite (Storyblok-first, 8 Projekte, Foto, Sprachen, Testimonials, Print)
     ...weitere Storyblok-Blöcke
   DynamicBlock.js                Registry (about_* + services_* + service_* + team_hero registriert)
   Nav.js, Footer.js, WaveBackground.js
@@ -129,6 +129,8 @@ scripts/ (gitignored — nie committen)
   cms-team-hero.mjs              TEAM-HERO-01: team_hero Komponente + team-page Story (lokal ausführen)
   cms-fix-after-slug-rename.mjs  POST-SLUG: Story-Namen umbenennen, team_hero befüllen, /team-Links → /about
   update-hero-labels.js          Storyblok: hero_label + contact_label leeren
+  update-dirk-bio.mjs            /dirk Bio-Text aktualisieren (Syntheseversion) — slugsToTry: ['dirk', 'team/dirk-fliescher']
+  reset-team-bio.mjs             team/dirk-fliescher bio_text entfernen (SEC-003-konform)
 
 docs/                            Projektdokumentation (Markdown)
 ```
@@ -280,11 +282,12 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 | `page-hero` | About-Hero |
 | `insights-hero` | Insights-Hero |
 | `team-hero` | Team-Hero |
+| `dp-` | DirkProfile (/dirk) |
 | `sc-` | Service-Chat (veraltet, ersetzt durch kw-) |
 
 ---
 
-## Offene Punkte (Stand: 2026-07-06)
+## Offene Punkte (Stand: 2026-07-07)
 
 | Punkt | Status | Details |
 |-------|--------|---------|
@@ -300,7 +303,7 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 | TEAM-HERO-01: /about Hero Storyblok-first | 🔧 Story noch Draft | `components/blocks/TeamHero.js`, `DynamicBlock.js`, `app/about/page.js` fertig. Script `scripts/cms-team-hero.mjs` wurde ausgeführt (Draft gesetzt). **Noch ausstehend:** Story im Storyblok Visual Editor manuell publizieren. |
 | POST-SLUG: Storyblok-Namen + Links bereinigen | ✅ Script ausgeführt | `scripts/cms-fix-after-slug-rename.mjs` mit --apply ausgeführt (2026-07-06). Story-Namen umbenannt, team_hero befüllt, /team-Links → /about ersetzt. **Noch ausstehend:** Geänderte Stories im Storyblok Visual Editor publizieren (insb. "Über kenalu" / team-page). |
 | /dirk Testimonials-Inhalt | ⌛ Manuell in Storyblok | Sektion ist gebaut und bereit (dp-testimonials). Testimonials aus `cdn/stories/team/dirk` werden automatisch geladen. **Aktion:** Im Storyblok Visual Editor die Story `team/dirk` öffnen, Feld `team_member_testimonials` mit Einträgen befüllen, Story publizieren. |
-| /dirk PDF-Printbarkeit | 📋 Geplant | `@media print` CSS + client-seitiger Drucken-Button auf `/dirk`. Noch nicht implementiert. |
+| /dirk PDF-Printbarkeit | ✅ Implementiert | `@media print`: A4 Portrait, 50:50 Cover-Grid (Hero + Kontaktblock), 33/66 Sektionslayout (Bio, Sprachen), Stationen als CV-Raster, Projekte immer aufgeklappt, PrintButton-Komponente. Commit: `82f3186`. |
 
 ---
 
@@ -320,7 +323,7 @@ node scripts/update-hero-labels.js
 
 ---
 
-## Was vollständig erledigt ist (Stand: 2026-07-06)
+## Was vollständig erledigt ist (Stand: 2026-07-07)
 
 - ✅ Vollständige Website (alle Seiten, alle Komponenten)
 - ✅ Storyblok-Integration (CMS, ISR)
@@ -340,5 +343,9 @@ node scripts/update-hero-labels.js
 - ✅ SEC-003: Alle Scripts gehärtet (kein Token, kein Fallback, Safe-Abort-Guard, Publish-Schutz)
 - ✅ OPS-002: Unbeabsichtigter Commit korrigiert, WIP-Branch gesichert
 - ✅ Security-Release gepusht (2026-07-03, Commit `19a233f`)
-- ✅ /dirk — Verstecktes Profil (robots: noindex): Hero, Bio, Werdegang, 8 Projekte (Accordion), Kompetenzen, Testimonials (aus team/dirk Story), CTA
+- ✅ /dirk — Verstecktes Profil (robots: noindex): Hero, Bio, Sprachen, Werdegang, 8 Projekte (Accordion), Kompetenzen, Testimonials (aus team/dirk Story), CTA
 - ✅ /dirk Projekte: Storyblok-Schema (dirk_station, dirk_project, dirk_theme) + Script cms-dirk-profile.mjs
+- ✅ /dirk Foto: aus `team/dirk-fliescher` geladen via `getTeamData()` in `page.js` — erscheint in Bio (Screen) + Kontaktblock (Print)
+- ✅ /dirk Sprachen: Deutsch (Muttersprache), Englisch (Verhandlungssicher), Französisch (Grundkenntnisse) — hardcoded in DirkProfile.js, mit 33/66 Print-Layout
+- ✅ /dirk Bio-Text: Syntheseversion publiziert via `scripts/update-dirk-bio.mjs` (Story: `dirk`, Feld: `bio_text`)
+- ✅ /dirk Print-Layout: vollständig mit A4, Cover-Grid, CV-Raster, Seitenumbrüchen

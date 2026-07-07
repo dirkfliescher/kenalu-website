@@ -789,6 +789,28 @@ p { color: var(--charcoal); }
 .dp-bio-text p { font-size: 1.05rem; line-height: 1.8; color: var(--charcoal); margin-bottom: 1.25rem; }
 .dp-bio-text p:last-child { margin-bottom: 0; }
 
+/* Sprachen */
+.dp-languages { background: var(--mineral); padding: 7rem var(--gutter); }
+.dp-languages-inner {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.dp-languages-label .section-label { color: var(--terracotta); }
+.dp-languages-list { display: flex; flex-direction: column; }
+.dp-language-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-top: 1px solid var(--softline);
+  gap: 2rem;
+}
+.dp-language-row:last-child { border-bottom: 1px solid var(--softline); }
+.dp-language-name { font-size: 1rem; font-weight: 600; color: var(--charcoal); }
+.dp-language-level { font-size: 0.875rem; color: #666; }
+
 /* Stationen */
 .dp-stations { background: var(--charcoal); color: var(--ivory); padding: 7rem var(--gutter); }
 .dp-stations-label { color: var(--terracotta); margin-bottom: 3rem; }
@@ -988,7 +1010,7 @@ p { color: var(--charcoal); }
   .dp-hero-meta { display: none !important; }
 
   /* Alle Sektionen: weisser Hintergrund, kompaktes Padding, keine Trennlinien */
-  .dp-bio, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials {
+  .dp-bio, .dp-languages, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials {
     background: white !important;
     padding: 1.25rem 0 !important;
     border: none !important;
@@ -1005,6 +1027,21 @@ p { color: var(--charcoal); }
   }
   .dp-bio-label { margin-bottom: 0 !important; }
 
+  /* Sprachen: 33/66 — Label links, Liste rechts */
+  .dp-languages-inner {
+    display: grid !important;
+    grid-template-columns: 1fr 2fr !important;
+    gap: 0 2.5rem !important;
+    align-items: start !important;
+  }
+  .dp-languages-label { margin-bottom: 0 !important; }
+  .dp-language-row {
+    padding: 0.25rem 0 !important;
+    border: none !important;
+  }
+  .dp-language-name { font-size: 9pt !important; color: #1a1a1a !important; }
+  .dp-language-level { font-size: 9pt !important; color: #555 !important; }
+
   /* Sektionslabels: volle Breite, als klarer Abschnittsheader */
   .dp-stations-label, .dp-projects-label, .dp-themes-label, .dp-testimonials-label {
     display: block;
@@ -1016,9 +1053,10 @@ p { color: var(--charcoal); }
 
   /* Alle dp-* Borders aus Screen-CSS komplett unterdrücken */
   .dp-station, .dp-station:last-child,
+  .dp-language-row, .dp-language-row:last-child,
   .dp-stations-list, .dp-projects-list,
   .dp-project-item, .dp-project-item:last-child,
-  .dp-bio, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials {
+  .dp-bio, .dp-languages, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials {
     border: none !important;
   }
 
@@ -1059,7 +1097,7 @@ p { color: var(--charcoal); }
     page-break-inside: avoid !important;
   }
 
-  /* Seitenumbrüche: ab Werdegang jede Sektion auf neuer Seite (Bio fliesst direkt nach Cover) */
+  /* Seitenumbrüche: ab Werdegang jede Sektion auf neuer Seite (Bio + Sprachen fliessen direkt nach Cover) */
   .dp-stations, .dp-projects, .dp-themes, .dp-testimonials { break-before: page; }
 
   /* Labels und Texte */

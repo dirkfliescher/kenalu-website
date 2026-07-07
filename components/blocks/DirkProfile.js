@@ -213,6 +213,20 @@ export default function DirkProfile({ blok = {}, testimonials = [], photo = null
         </div>
       </section>
 
+      {/* ── Sprachen ── */}
+      <section className="dp-languages">
+        <div className="container dp-languages-inner">
+          <div className="dp-languages-label">
+            <p className="section-label">Sprachen</p>
+          </div>
+          <div className="dp-languages-list">
+            <div className="dp-language-row"><span className="dp-language-name">Deutsch</span><span className="dp-language-level">Muttersprache</span></div>
+            <div className="dp-language-row"><span className="dp-language-name">Englisch</span><span className="dp-language-level">Verhandlungssicher</span></div>
+            <div className="dp-language-row"><span className="dp-language-name">Französisch</span><span className="dp-language-level">Grundkenntnisse</span></div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Stationen ── */}
       <section className="dp-stations">
         <div className="container">
