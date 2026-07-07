@@ -227,6 +227,37 @@ export default function DirkProfile({ blok = {}, testimonials = [], photo = null
         </div>
       </section>
 
+      {/* ── Ausbildung ── */}
+      <section className="dp-education">
+        <div className="container dp-education-inner">
+          <div className="dp-education-label">
+            <p className="section-label">Ausbildung</p>
+          </div>
+          <div className="dp-education-list">
+            <div className="dp-edu-item">
+              <div className="dp-edu-meta">
+                <span className="dp-edu-period">2002 – 2006</span>
+                <span className="dp-edu-note">Berufsbegleitend · Nicht abgeschlossen</span>
+              </div>
+              <div className="dp-edu-content">
+                <strong className="dp-edu-degree">MSc Wirtschaftsinformatik</strong>
+                <span className="dp-edu-school">Universitäten Bamberg, Essen und München</span>
+                <p className="dp-edu-remark">Studium bis kurz vor Abschluss, aus familiären Gründen unterbrochen. Hervorragende Noten.</p>
+              </div>
+            </div>
+            <div className="dp-edu-item">
+              <div className="dp-edu-meta">
+                <span className="dp-edu-period">bis 2000</span>
+              </div>
+              <div className="dp-edu-content">
+                <strong className="dp-edu-degree">Diplom rer. nat., Geographie</strong>
+                <span className="dp-edu-school">Rheinische Friedrich-Wilhelms-Universität Bonn</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Stationen ── */}
       <section className="dp-stations">
         <div className="container">
