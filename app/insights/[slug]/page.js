@@ -91,8 +91,33 @@ export default async function InsightArticle({ params }) {
   const author = await getAuthor(authorUuid);
   const authorArticles = await getAuthorArticles(authorUuid, story.slug);
 
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: content.insight_title || '',
+    description: content.insight_excerpt || undefined,
+    datePublished: content.insight_date || story.created_at,
+    dateModified: story.published_at || story.created_at,
+    url: `https://kenalu.ch/insights/${story.slug}`,
+    image: content.insight_image?.filename || 'https://kenalu.ch/og-image.png',
+    author: author?.content?.team_member_name
+      ? { '@type': 'Person', name: author.content.team_member_name }
+      : { '@type': 'Organization', name: 'kenalu' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'kenalu',
+      url: 'https://kenalu.ch',
+      logo: { '@type': 'ImageObject', url: 'https://kenalu.ch/og-image.png' },
+    },
+    inLanguage: 'de-CH',
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <section className="page-hero">
         <div className="container">
           {content.insight_tag && <div className="hero-label">{content.insight_tag}</div>}
