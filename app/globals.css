@@ -1175,11 +1175,12 @@ p { color: var(--charcoal); }
   .dp-station-org { break-after: avoid; }
 
   /* Alle Texte explizit schwarz — CSS-Variablen werden im Druck nicht immer aufgelöst */
-  .dp-station-role { color: #1a1a1a !important; }
+  .dp-station-role { color: #1a1a1a !important; font-size: 9.5pt !important; }
   .dp-station-org { color: #555 !important; }
   .dp-station-text { color: #444 !important; }
-  .dp-project-client { color: #1a1a1a !important; }
+  .dp-project-client { color: #1a1a1a !important; font-size: 9.5pt !important; }
   .dp-project-sector { color: #666 !important; }
+  .dp-theme-label { font-size: 9.5pt !important; color: #1a1a1a !important; }
   .dp-project-period { color: #C5694A !important; }
   .dp-project-text { color: #444 !important; }
   .dp-hero-h1 { color: #1a1a1a !important; }
