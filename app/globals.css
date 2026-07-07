@@ -1004,6 +1004,34 @@ p { color: var(--charcoal); }
 }
 .dp-print-btn:hover { opacity: 1; border-color: rgba(255,255,255,0.7); }
 
+/* Markdown-Download-Button — gleiche Pill-Form, minimal abgesetzt */
+.dp-md-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 2rem;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, border-color 0.2s, color 0.2s;
+}
+.dp-md-btn:hover { opacity: 1; border-color: rgba(255,255,255,0.5); color: var(--ivory); }
+
+/* Wrapper: beide Buttons nebeneinander, ohne extra margin-top */
+.dp-profile-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.dp-profile-actions .dp-print-btn,
+.dp-profile-actions .dp-md-btn { margin-top: 0; }
+
 /* ── Print / PDF ────────────────────────────────────────────────── */
 @media print {
   /* Seiten-Setup */
@@ -1011,7 +1039,7 @@ p { color: var(--charcoal); }
   body { font-size: 10pt; color: #1a1a1a; background: white; }
 
   /* Verstecken: Nav, Footer, Button, CTA-Sektion */
-  nav, footer, .dp-print-btn { display: none !important; }
+  nav, footer, .dp-print-btn, .dp-md-btn { display: none !important; }
   /* dp-cta: Safari reserviert trotz display:none manchmal Höhe → explizit auf 0 setzen */
   .dp-cta {
     display: none !important;

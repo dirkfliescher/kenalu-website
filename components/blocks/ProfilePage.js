@@ -8,6 +8,7 @@
  */
 
 import PrintButton from './PrintButton';
+import MarkdownDownloadButton from './MarkdownDownloadButton';
 
 export default function ProfilePage({ blok = {} }) {
   const {
@@ -63,7 +64,10 @@ export default function ProfilePage({ blok = {} }) {
                 </a>
               )}
             </div>
-            <PrintButton />
+            <div className="dp-profile-actions">
+              <PrintButton />
+              <MarkdownDownloadButton blok={blok} />
+            </div>
           </div>
         </section>
 
