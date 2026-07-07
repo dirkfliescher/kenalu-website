@@ -43,6 +43,7 @@ import ServiceDetailCta from './blocks/ServiceDetailCta';
 
 import TeamHero from './blocks/TeamHero';
 import DirkProfile from './blocks/DirkProfile';
+import ProfilePage from './blocks/ProfilePage';
 
 // CMS-REBUILD-01: about_* Komponenten für /about
 import AboutHero from './blocks/AboutHero';
@@ -100,6 +101,7 @@ const Components = {
 
   team_hero: TeamHero,
   dirk_profile: DirkProfile,
+  person_profile: ProfilePage,
 
   // CMS-REBUILD-01: about_* Komponenten
   about_hero: AboutHero,
