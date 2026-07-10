@@ -974,15 +974,22 @@ p { color: var(--charcoal); }
 
 /* Responsive */
 @media (max-width: 760px) {
+  /* Grids auf 1-Spalte */
   .dp-bio-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .dp-languages-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .dp-education-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .dp-edu-item { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.5rem 0; }
   .dp-station { grid-template-columns: 1fr; gap: 0.5rem; }
   .dp-station-period { padding-top: 0; }
   .dp-themes-grid { grid-template-columns: 1fr; }
   .dp-testimonials-grid { grid-template-columns: 1fr; }
-  .dp-hero { padding: 9rem var(--gutter) 6rem; align-items: flex-start; }
+  /* Hero: kein Vollbild auf Mobile */
+  .dp-hero { padding: 9rem var(--gutter) 6rem; align-items: flex-start; min-height: auto; }
   .dp-hero-intro { margin-bottom: 1.75rem; }
   .dp-hero-meta { margin-bottom: 0; }
-  .dp-bio, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials, .dp-cta { padding: 5rem var(--gutter); }
+  /* Sections: reduziertes Padding */
+  .dp-bio, .dp-languages, .dp-education, .dp-stations, .dp-projects, .dp-themes, .dp-testimonials, .dp-cta { padding: 5rem var(--gutter); }
+  /* Projekte-Accordion */
   .dp-project-summary { gap: 1rem; }
   .dp-project-summary-main { gap: 0.75rem; }
 }
