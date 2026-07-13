@@ -78,9 +78,10 @@ app/
     urteil/_fallback-content.js
   insights/page.js               Blog/Insights (Storyblok-dynamisch)
   insights/[slug]/page.js        Artikel-Detailseite
-  lab/page.js                    Lab-Übersicht
-  lab/kenalu-website/page.js     Lab-Artikel (statisch)
-  lab/produktmoment/page.js      Prototyp: Produktmoment-Builder
+  lab/page.js                    Lab-Übersicht (dynamische Projektliste aus Storyblok)
+  lab/[slug]/page.js             Dynamische Lab-Projektseite (CMS-LAB-01: Storyblok-first)
+  lab/kenalu-website/page.js     Lab-Artikel (statisch — nach Script-Ausführung löschen)
+  lab/produktmoment/page.js      Prototyp: Produktmoment-Builder (interaktiv, bleibt statisch)
   contact/page.js                Kontakt + Booking-Widget
   dirk/page.js                   Verstecktes Profil (robots: noindex) — Storyblok-first + Testimonials
   globals.css                    ALLE Styles — eine Datei
@@ -119,8 +120,15 @@ components/
     ServiceDetailCta.js          Service-Detail Abschluss-CTA (CMS-SERVICES-01)
     TeamHero.js                  /about Hero (Storyblok-first, Fallback: hardcoded)
     DirkProfile.js               /dirk Profil-Seite (Storyblok-first, 8 Projekte, Foto, Sprachen, Testimonials, Print)
+    LabHero.js                   Lab-Projektseite Hero (CMS-LAB-01)
+    LabTextSection.js            Lab-Textsektion, optional tinted (CMS-LAB-01)
+    LabHighlight.js              Lab-Highlight mit Cards (CMS-LAB-01)
+    LabComparison.js             Lab-Vergleichs-Canvas (CMS-LAB-01)
+    LabDialogue.js               Lab-Dialog-Demo mit Nachrichten (CMS-LAB-01)
+    LabFoundation.js             Lab-Foundation-Layers (CMS-LAB-01)
+    LabCta.js                    Lab-CTA-Sektion (CMS-LAB-01)
     ...weitere Storyblok-Blöcke
-  DynamicBlock.js                Registry (about_* + services_* + service_* + team_hero registriert)
+  DynamicBlock.js                Registry (about_* + services_* + service_* + team_hero + lab_* registriert)
   Nav.js, Footer.js, WaveBackground.js
 
 scripts/ (gitignored — nie committen)
@@ -130,6 +138,7 @@ scripts/ (gitignored — nie committen)
   cms-fix-after-slug-rename.mjs  POST-SLUG: Story-Namen umbenennen, team_hero befüllen, /team-Links → /about
   cms-ki-repositioning.mjs       KI-REPO-01: Homepage, Services, Approach, Footer, 4 Service-Details (ausgeführt 2026-07-13)
   cms-ki-about.mjs               KI-REPO-02: About-Seite — team_hero + KI-Inhalte in Storyblok (lokal ausführen)
+  cms-lab-migration.mjs          CMS-LAB-01: lab_* Komponenten + kenalu-website Story migrieren (lokal ausführen)
   update-hero-labels.js          Storyblok: hero_label + contact_label leeren
   update-dirk-bio.mjs            /dirk Bio-Text aktualisieren (Syntheseversion) — slugsToTry: ['dirk', 'team/dirk-fliescher']
   reset-team-bio.mjs             team/dirk-fliescher bio_text entfernen (SEC-003-konform)
@@ -307,7 +316,8 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 | CMS-SERVICES-01: /services Storyblok-first | 🔧 Lokal ausführen | 11 React-Komponenten (`services_*` + `service_*`), 5 `page.js` + 5 `_fallback-content.js`, `DynamicBlock.js` fertig. Script `scripts/cms-services.mjs` bereit. **Reihenfolge:** (1) `npm run build` — Build prüfen. (2) `git add -A && git commit -m "feat: CMS-SERVICES-01 — /services Storyblok-first" && git push`. (3) `node scripts/cms-services.mjs` (dry-run). (4) `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-services.mjs --apply`. (5) Stories in Storyblok Visual Editor manuell publizieren. |
 | About "Über kenalu"-Dopplung | 🔧 Script bereit | `scripts/update-hero-labels.js` prüft und behebt die Dopplung. Lokal ausführen: `node scripts/update-hero-labels.js`. Scripts-Verzeichnis ist gitignored. |
 | Homepage hero_label in Storyblok | ℹ️ Workaround | Per CSS ausgeblendet. Kann via `scripts/update-hero-labels.js` geleert werden. |
-| DynamicBlock.js vollständig? | ✅ Aktuell | about_* + services_* + service_* + team_hero registriert. NO_REVEAL-Set enthält `services_hero`, `service_hero` und `team_hero`. Bei neuen Komponenten immer sicherstellen, dass Block-Key eingetragen ist. |
+| DynamicBlock.js vollständig? | ✅ Aktuell | about_* + services_* + service_* + team_hero + **lab_*** registriert. NO_REVEAL-Set enthält `services_hero`, `service_hero`, `team_hero` und **`lab_hero`**. Bei neuen Komponenten immer sicherstellen, dass Block-Key eingetragen ist. |
+| CMS-LAB-01: Lab Storyblok-Migration | 🔧 Lokal ausführen | 7 neue lab_* Blöcke, dynamische Route `/lab/[slug]`, Übersicht holt Projekte aus Storyblok. Script `scripts/cms-lab-migration.mjs` bereit. **Reihenfolge:** (1) `git add -A && git commit -m "feat: CMS-LAB-01 — dynamische Lab-Seiten" && git push`. (2) `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-lab-migration.mjs --migrate-schema`. (3) `STORYBLOK_ALLOW_WRITE=YES STORYBLOK_ALLOW_PUBLISH=YES node scripts/cms-lab-migration.mjs --apply --publish`. (4) `/lab/kenalu-website` im Browser testen — dann `app/lab/kenalu-website/page.js` löschen (damit greift die dynamische Route). |
 | TEAM-HERO-01: /about Hero Storyblok-first | 🔧 Story noch Draft | `components/blocks/TeamHero.js`, `DynamicBlock.js`, `app/about/page.js` fertig. Script `scripts/cms-team-hero.mjs` wurde ausgeführt (Draft gesetzt). **Noch ausstehend:** Story im Storyblok Visual Editor manuell publizieren. |
 | POST-SLUG: Storyblok-Namen + Links bereinigen | ✅ Script ausgeführt | `scripts/cms-fix-after-slug-rename.mjs` mit --apply ausgeführt (2026-07-06). Story-Namen umbenannt, team_hero befüllt, /team-Links → /about ersetzt. **Noch ausstehend:** Geänderte Stories im Storyblok Visual Editor publizieren (insb. "Über kenalu" / team-page). |
 | /dirk Testimonials-Inhalt | ⌛ Manuell in Storyblok | Sektion ist gebaut und bereit (dp-testimonials). Testimonials aus `cdn/stories/team/dirk` werden automatisch geladen. **Aktion:** Im Storyblok Visual Editor die Story `team/dirk` öffnen, Feld `team_member_testimonials` mit Einträgen befüllen, Story publizieren. |
@@ -337,6 +347,7 @@ node scripts/update-hero-labels.js
 - ✅ Storyblok-Integration (CMS, ISR)
 - ✅ Vier Service-Detailseiten (statisch, vollständig getextet und gestaltet)
 - ✅ Lab mit zwei Artikeln + Produktmoment-Prototyp
+- ✅ CMS-LAB-01: Lab vollständig Storyblok-first (7 neue Blöcke, dynamische Route, Übersicht holt Projekte aus CMS — Script lokal ausführen)
 - ✅ Einheitlicher Kai-Chat (alle Seiten, eine Route)
 - ✅ Hero-System (alle Heroes: flex-centered, 100svh, Scroll-Indikator)
 - ✅ Hintergrundfarben: nur Homepage ivory, alle anderen Seiten charcoal

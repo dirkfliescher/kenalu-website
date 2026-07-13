@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import StoryblokClient from 'storyblok-js-client';
 import KaiDialogue from '@/components/blocks/KaiDialogue';
 
 export const revalidate = 60;
@@ -19,7 +20,36 @@ export const metadata = {
   },
 };
 
-export default function LabPage() {
+const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
+
+/**
+ * Lädt alle Lab-Projekte aus Storyblok.
+ * Projekte mit project_featured = true erscheinen zuerst (im Featured-Format),
+ * alle anderen folgen als Grid-Cards.
+ */
+async function getLabProjects() {
+  try {
+    const { data } = await Storyblok.get('cdn/stories', {
+      version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
+      starts_with: 'lab/',
+      sort_by: 'content.project_featured:desc,first_published_at:desc',
+      per_page: 25,
+    });
+    // Nur Stories mit project_status oder project_teaser_1 anzeigen
+    return (data.stories || []).filter(
+      (s) => s.content?.project_status || s.content?.project_teaser_1,
+    );
+  } catch {
+    return [];
+  }
+}
+
+export default async function LabPage() {
+  const projects = await getLabProjects();
+
+  const featuredProjects = projects.filter((p) => p.content?.project_featured);
+  const otherProjects    = projects.filter((p) => !p.content?.project_featured);
+
   return (
     <main className="lab-page-v2">
 
@@ -38,39 +68,57 @@ export default function LabPage() {
         </div>
       </section>
 
-      {/* ── 2. kenalu.ch als Live Prototype ─────────────────────── */}
-      <section className="lpv2-featured">
-        <div className="container">
-          <div className="lfw-inner lfw-inner--single">
-            <div className="lfw-content">
-              <p className="lfw-status-badge">Live · wird kontinuierlich weiterentwickelt</p>
-              <h2 className="lfw-title">
-                kenalu.ch – gemeinsam gebaut von Mensch und KI
-              </h2>
-              <p className="lfw-teaser">
-                Diese Website ist kein Kunden-Case und kein Agentur-Produkt. Sie wurde von Dirk
-                und Claude — Anthropics KI — gemeinsam visioniert, geplant, konzipiert, designed
-                und umgesetzt. Vision, Haltung und Entscheidungen: Dirk. Strategie, Konzept,
-                Architektur, Code, Copy, SEO und GEO: in enger Zusammenarbeit zwischen Mensch
-                und KI.
-              </p>
-              <p className="lfw-teaser lfw-teaser--space">
-                Was das heisst in der Praxis: Jede Komponente wurde gemeinsam durchdacht. Jeder
-                Text iteriert. Code Reviews, Accessibility, Performance, Suchmaschinenoptimierung
-                und Generative Engine Optimization — also wie die Seite in KI-Antworten
-                auftaucht — laufen kontinuierlich. Die Website ist keine Momentaufnahme,
-                sondern ein laufendes Experiment darüber, was möglich ist, wenn KI wirklich
-                als Partner arbeitet.
-              </p>
-              <Link href="/lab/kenalu-website" className="btn btn-primary lfw-cta">
-                Arbeitsprobe ansehen →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ── 2. Projekte (dynamisch aus Storyblok) ───────────────── */}
+      {projects.length > 0 && (
+        <section className="lpv2-featured">
+          <div className="container">
 
-      {/* ── 3. Was dieses Produkt sichtbar macht ────────────────── */}
+            {/* Featured-Projekte — gross, mit zwei Textblöcken */}
+            {featuredProjects.map((project) => (
+              <div key={project.uuid} className="lfw-inner lfw-inner--single">
+                <div className="lfw-content">
+                  {project.content.project_status && (
+                    <p className="lfw-status-badge">{project.content.project_status}</p>
+                  )}
+                  <h2 className="lfw-title">{project.name}</h2>
+                  {project.content.project_teaser_1 && (
+                    <p className="lfw-teaser">{project.content.project_teaser_1}</p>
+                  )}
+                  {project.content.project_teaser_2 && (
+                    <p className="lfw-teaser lfw-teaser--space">{project.content.project_teaser_2}</p>
+                  )}
+                  <Link href={`/${project.full_slug}`} className="btn btn-primary lfw-cta">
+                    {project.content.project_cta_label || 'Arbeitsprobe ansehen →'}
+                  </Link>
+                </div>
+              </div>
+            ))}
+
+            {/* Weitere Projekte — kompaktere Cards */}
+            {otherProjects.length > 0 && (
+              <div className="lfw-grid">
+                {otherProjects.map((project) => (
+                  <div key={project.uuid} className="lfw-grid-card">
+                    {project.content.project_status && (
+                      <p className="lfw-status-badge">{project.content.project_status}</p>
+                    )}
+                    <h2 className="lfw-grid-card-title">{project.name}</h2>
+                    {project.content.project_teaser_1 && (
+                      <p className="lfw-grid-card-teaser">{project.content.project_teaser_1}</p>
+                    )}
+                    <Link href={`/${project.full_slug}`} className="lca-internal-link">
+                      {project.content.project_cta_label || 'Ansehen →'}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            )}
+
+          </div>
+        </section>
+      )}
+
+      {/* ── 3. Was diese Zusammenarbeit sichtbar macht ────────────── */}
       <section className="lpv2-what">
         <div className="container">
           <p className="section-label">Was diese Zusammenarbeit sichtbar macht</p>
@@ -212,7 +260,7 @@ export default function LabPage() {
         </div>
       </section>
 
-      {/* ── 6. Kai – einmal, interaktiv ─────────────────────────── */}
+      {/* ── 6. Kai – interaktiv ─────────────────────────────────── */}
       <KaiDialogue
         contextKey="lab"
         eyebrow="Eine Frage konkret machen"

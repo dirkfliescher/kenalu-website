@@ -57,6 +57,15 @@ import AboutTeamReference from './blocks/AboutTeamReference';
 import AboutEcosystemPartners from './blocks/AboutEcosystemPartners';
 import AboutCta from './blocks/AboutCta';
 
+// CMS-LAB-01: lab_* Komponenten für dynamische Lab-Seiten
+import LabHero from './blocks/LabHero';
+import LabTextSection from './blocks/LabTextSection';
+import LabHighlight from './blocks/LabHighlight';
+import LabComparison from './blocks/LabComparison';
+import LabDialogue from './blocks/LabDialogue';
+import LabFoundation from './blocks/LabFoundation';
+import LabCta from './blocks/LabCta';
+
 const Components = {
   hero: Hero,
   page_hero: PageHero,
@@ -117,10 +126,19 @@ const Components = {
   about_team_reference: AboutTeamReference,
   about_ecosystem_partners: AboutEcosystemPartners,
   about_cta: AboutCta,
+
+  // CMS-LAB-01: lab_* Komponenten
+  lab_hero: LabHero,
+  lab_text_section: LabTextSection,
+  lab_highlight: LabHighlight,
+  lab_comparison: LabComparison,
+  lab_dialogue: LabDialogue,
+  lab_foundation: LabFoundation,
+  lab_cta: LabCta,
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist
-const NO_REVEAL = new Set(['hero', 'page_hero', 'about_hero', 'team_hero', 'services_hero', 'service_hero']);
+const NO_REVEAL = new Set(['hero', 'page_hero', 'about_hero', 'team_hero', 'services_hero', 'service_hero', 'lab_hero']);
 
 export default function DynamicBlock({ blok }) {
   if (!blok) return null;
