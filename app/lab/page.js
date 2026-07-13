@@ -118,50 +118,51 @@ export default async function LabPage() {
         </section>
       )}
 
-      {/* ── 3. Was diese Zusammenarbeit sichtbar macht ────────────── */}
+      {/* ── 3. Was das Lab zeigt ────────────────────────────────── */}
       <section className="lpv2-what">
         <div className="container">
-          <p className="section-label">Was diese Zusammenarbeit sichtbar macht</p>
+          <p className="section-label">Was das Lab zeigt</p>
           <h2 className="lpv2-what-headline">
-            Nicht nur eine Website. Ein Beweis, was Mensch und KI gemeinsam leisten können.
+            Intelligente Erlebnisse entstehen nicht aus Briefings. Sie entstehen aus
+            echten Experimenten.
           </h2>
           <div className="lpv2-what-cards">
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">01</p>
-              <h3 className="lpv2-what-card-title">KI als vollwertiger Mitdenker</h3>
+              <h3 className="lpv2-what-card-title">KI nicht als Tool, sondern als Partner</h3>
               <p className="lpv2-what-card-text">
-                Von der ersten strategischen Frage bis zum laufenden Code Review: KI war
-                in jeder Phase dabei — nicht als Assistent, sondern als Mitgestalter.
+                Im Lab zeigen wir, was entsteht, wenn KI nicht zur Ausführung gerufen
+                wird, sondern von Anfang an mitdenkt — in Strategie, Konzept, Code
+                und Copy.
               </p>
             </div>
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">02</p>
-              <h3 className="lpv2-what-card-title">Volle Bandbreite in einem Produkt</h3>
+              <h3 className="lpv2-what-card-title">Vom Experiment zum Produkt</h3>
               <p className="lpv2-what-card-text">
-                Vision, Positionierung, Konzept, Design, Copy, Komponenten-Architektur,
-                CMS-Integration, SEO, GEO — alles gemeinsam erarbeitet und laufend
-                weiterentwickelt.
+                Hier wird nicht demonstriert, was KI theoretisch kann. Es wird gebaut:
+                konkret, nutzbar, mit echten Qualitätsansprüchen.
               </p>
             </div>
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">03</p>
-              <h3 className="lpv2-what-card-title">Menschliches Urteil als Mass</h3>
+              <h3 className="lpv2-what-card-title">Menschliches Urteil als Massstab</h3>
               <p className="lpv2-what-card-text">
-                KI produziert viel — und schnell. Was bleibt, entscheidet Dirk. Haltung,
-                Ton, Richtung und das letzte Wort: menschlich. Das ist das Modell.
+                KI produziert Breite, Geschwindigkeit und Varianten. Was davon bleibt,
+                entscheidet ein Mensch. Haltung, Ton und Richtung werden nie delegiert.
               </p>
             </div>
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">04</p>
-              <h3 className="lpv2-what-card-title">Sichtbar bleiben — auch für KI</h3>
+              <h3 className="lpv2-what-card-title">Sichtbar sein — auch für KI</h3>
               <p className="lpv2-what-card-text">
-                GEO — Generative Engine Optimization — ist Teil des laufenden Betriebs:
-                wie kenalu in KI-Antworten auftaucht, wird kontinuierlich beobachtet
-                und verbessert.
+                Was entsteht, wird nicht nur für Menschen gemacht. GEO — wie Produkte
+                in KI-gestützten Antworten auftauchen — ist Teil der Arbeit vom ersten
+                Tag an.
               </p>
             </div>
 
@@ -169,44 +170,7 @@ export default async function LabPage() {
         </div>
       </section>
 
-      {/* ── 4. Wie es aufgebaut ist (Tech Stack – nachrangig) ───── */}
-      <section className="lpv2-stack">
-        <div className="container container--narrow">
-          <p className="section-label">Wie es aufgebaut ist</p>
-          <p className="lpv2-stack-intro">
-            Der Stack unterstützt eine schnelle, flexible und weiterentwickelbare
-            Produktentwicklung.
-          </p>
-          <div className="lpv2-stack-items">
-            <div className="lpv2-stack-item">
-              <p className="lpv2-stack-tech">Next.js</p>
-              <p className="lpv2-stack-desc">
-                Für eine schnelle, moderne und flexibel erweiterbare Produktoberfläche.
-              </p>
-            </div>
-            <div className="lpv2-stack-item">
-              <p className="lpv2-stack-tech">Storyblok</p>
-              <p className="lpv2-stack-desc">
-                Damit Inhalte ohne Code gepflegt und weiterentwickelt werden können.
-              </p>
-            </div>
-            <div className="lpv2-stack-item">
-              <p className="lpv2-stack-tech">OpenAI</p>
-              <p className="lpv2-stack-desc">
-                Für AI-gestützte Interaktionen dort, wo sie wirklich sinnvoll sind.
-              </p>
-            </div>
-            <div className="lpv2-stack-item">
-              <p className="lpv2-stack-tech">Vercel</p>
-              <p className="lpv2-stack-desc">
-                Für eine schlanke, zuverlässige Auslieferung und schnelle Weiterentwicklung.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 5. Vom Gedanken zur Grundlage (Prozesslogik) ────────── */}
+      {/* ── 4. Vom Gedanken zur Grundlage (Prozesslogik) ────────── */}
       <section className="lpv2-process">
         <div className="container">
           <p className="section-label">Vom Gedanken zur Grundlage</p>
