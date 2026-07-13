@@ -35,7 +35,12 @@ export default function LabComparison({ blok }) {
         <div
           className="lca-canvas"
           role="img"
-          aria-label={blok.aria_label || ''}
+          aria-label={
+            blok.aria_label ||
+            (blok.left_title && blok.right_title
+              ? `Vergleich: ${blok.left_title} vs. ${blok.right_title}`
+              : 'Vergleich zwischen zwei Ansätzen')
+          }
         >
           <div className="lca-canvas-col lca-canvas-col--muted">
             <p className="lca-canvas-col-title">{blok.left_title}</p>

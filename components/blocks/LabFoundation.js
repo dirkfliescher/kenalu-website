@@ -28,7 +28,12 @@ export default function LabFoundation({ blok }) {
         <div
           className="lca-foundation"
           role="img"
-          aria-label={blok.aria_label || ''}
+          aria-label={
+            blok.aria_label ||
+            (blok.foundation_title
+              ? `Visualisierung: ${blok.foundation_title}`
+              : 'Foundation-Schichten Visualisierung')
+          }
         >
           {blok.foundation_title && (
             <p className="lca-foundation-title">{blok.foundation_title}</p>

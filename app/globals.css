@@ -7083,7 +7083,7 @@ p { color: var(--charcoal); }
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .lca-decision-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .lca-canvas {
@@ -7105,6 +7105,12 @@ p { color: var(--charcoal); }
   }
 
   .lca-msg { max-width: 95%; }
+}
+
+@media (max-width: 560px) {
+  .lca-decision-cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
