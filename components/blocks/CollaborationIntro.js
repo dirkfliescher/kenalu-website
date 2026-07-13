@@ -7,21 +7,29 @@ import Link from 'next/link';
  * Im Gegensatz zur restlichen About-Seite, die "ihr/euch" verwendet.
  */
 export default function CollaborationIntro({
+  blok,
   eyebrow = 'Mitwirken',
   headline = 'Passt du zu der Art, wie wir arbeiten?',
-  text = 'Kenalu bleibt im Kern klein. Je nach Vorhaben arbeiten wir mit Menschen zusammen, die in ihrem Fach tief sind, Verantwortung übernehmen und keine Distanz zwischen Denken und Machen brauchen.',
+  text = 'Kenalu bleibt im Kern klein und KI-kompetent. Je nach Vorhaben arbeiten wir mit Menschen zusammen, die in ihrem Fach tief sind — KI-Engineering, Experience Design oder Strategie — Verantwortung übernehmen und keine Distanz zwischen Denken und Machen brauchen.',
   ctaLabel = 'Kontakt aufnehmen →',
   ctaLink = '/contact',
 }) {
+  const _eyebrow  = blok?.eyebrow   ?? eyebrow;
+  const _headline = blok?.headline  ?? headline;
+  const _text     = blok?.text      ?? text;
+  // cta_label: leerer String in Storyblok = kein Button
+  const _ctaLabel = blok ? (blok.cta_label || null) : ctaLabel;
+  const _ctaLink  = blok?.cta_link  ?? ctaLink;
+
   return (
-    <div className="collab-intro">
+    <div id="mitwirken" className="collab-intro">
       <div className="container container--narrow">
-        {eyebrow && <p className="section-label">{eyebrow}</p>}
-        {headline && <h2 className="collab-intro-headline">{headline}</h2>}
-        {text && <p className="collab-intro-text">{text}</p>}
-        {ctaLabel && ctaLink && (
-          <Link href={ctaLink} className="collab-intro-cta">
-            {ctaLabel}
+        {_eyebrow  && <p className="section-label">{_eyebrow}</p>}
+        {_headline && <h2 className="collab-intro-headline">{_headline}</h2>}
+        {_text     && <p className="collab-intro-text">{_text}</p>}
+        {_ctaLabel && _ctaLink && (
+          <Link href={_ctaLink} className="collab-intro-cta">
+            {_ctaLabel}
           </Link>
         )}
       </div>

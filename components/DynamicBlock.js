@@ -42,6 +42,9 @@ import ServiceRelated from './blocks/ServiceRelated';
 import ServiceDetailCta from './blocks/ServiceDetailCta';
 
 import TeamHero from './blocks/TeamHero';
+import TeamIntro from './blocks/TeamIntro';
+import CollaborationIntro from './blocks/CollaborationIntro';
+import FitTest from './blocks/FitTest';
 import DirkProfile from './blocks/DirkProfile';
 import ProfilePage from './blocks/ProfilePage';
 
@@ -100,6 +103,9 @@ const Components = {
   service_detail_cta: ServiceDetailCta,
 
   team_hero: TeamHero,
+  team_intro: TeamIntro,
+  collaboration_intro: CollaborationIntro,
+  fit_test: FitTest,
   dirk_profile: DirkProfile,
   person_profile: ProfilePage,
 

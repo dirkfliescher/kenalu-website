@@ -43,20 +43,24 @@ export default function LabPage() {
         <div className="container">
           <div className="lfw-inner lfw-inner--single">
             <div className="lfw-content">
-              <p className="lfw-status-badge">Live Prototype · wird weiterentwickelt</p>
+              <p className="lfw-status-badge">Live · wird kontinuierlich weiterentwickelt</p>
               <h2 className="lfw-title">
-                kenalu.ch – ein Prototyp unseres Vorgehens
+                kenalu.ch – gemeinsam gebaut von Mensch und KI
               </h2>
               <p className="lfw-teaser">
-                kenalu.ch ist kein Kunden-Case. Es ist eine eigene Arbeitsprobe: ein sichtbares
-                Beispiel dafür, wie Positionierung, Content, Experience Design, AI und Engineering
-                in einem fokussierten Produkt zusammenfinden.
+                Diese Website ist kein Kunden-Case und kein Agentur-Produkt. Sie wurde von Dirk
+                und Claude — Anthropics KI — gemeinsam visioniert, geplant, konzipiert, designed
+                und umgesetzt. Vision, Haltung und Entscheidungen: Dirk. Strategie, Konzept,
+                Architektur, Code, Copy, SEO und GEO: in enger Zusammenarbeit zwischen Mensch
+                und KI.
               </p>
               <p className="lfw-teaser lfw-teaser--space">
-                Die Website wird in den kommenden Wochen weiterentwickelt, getestet und mit neuen
-                Funktionen, Prototypen und Erkenntnissen ergänzt. Sie zeigt nicht nur ein fertiges
-                Ergebnis, sondern auch, wie kenalu an Produkte herangeht: früh konkret, klar im
-                Zweck und offen für Weiterentwicklung.
+                Was das heisst in der Praxis: Jede Komponente wurde gemeinsam durchdacht. Jeder
+                Text iteriert. Code Reviews, Accessibility, Performance, Suchmaschinenoptimierung
+                und Generative Engine Optimization — also wie die Seite in KI-Antworten
+                auftaucht — laufen kontinuierlich. Die Website ist keine Momentaufnahme,
+                sondern ein laufendes Experiment darüber, was möglich ist, wenn KI wirklich
+                als Partner arbeitet.
               </p>
               <Link href="/lab/kenalu-website" className="btn btn-primary lfw-cta">
                 Arbeitsprobe ansehen →
@@ -69,45 +73,47 @@ export default function LabPage() {
       {/* ── 3. Was dieses Produkt sichtbar macht ────────────────── */}
       <section className="lpv2-what">
         <div className="container">
-          <p className="section-label">Was dieses Produkt sichtbar macht</p>
+          <p className="section-label">Was diese Zusammenarbeit sichtbar macht</p>
           <h2 className="lpv2-what-headline">
-            Nicht nur eine Website. Eine Arbeitsprobe für bessere Produktentscheidungen.
+            Nicht nur eine Website. Ein Beweis, was Mensch und KI gemeinsam leisten können.
           </h2>
           <div className="lpv2-what-cards">
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">01</p>
-              <h3 className="lpv2-what-card-title">Entscheidungen werden früher sichtbar</h3>
+              <h3 className="lpv2-what-card-title">KI als vollwertiger Mitdenker</h3>
               <p className="lpv2-what-card-text">
-                Statt eine Idee nur zu beschreiben, wird sie in eine Form gebracht, die Teams
-                anschauen, diskutieren und beurteilen können.
+                Von der ersten strategischen Frage bis zum laufenden Code Review: KI war
+                in jeder Phase dabei — nicht als Assistent, sondern als Mitgestalter.
               </p>
             </div>
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">02</p>
-              <h3 className="lpv2-what-card-title">Content bleibt beweglich</h3>
+              <h3 className="lpv2-what-card-title">Volle Bandbreite in einem Produkt</h3>
               <p className="lpv2-what-card-text">
-                Inhalte können sich mit dem Produkt weiterentwickeln, ohne dass jede kleine
-                Änderung zu einem technischen Projekt wird.
+                Vision, Positionierung, Konzept, Design, Copy, Komponenten-Architektur,
+                CMS-Integration, SEO, GEO — alles gemeinsam erarbeitet und laufend
+                weiterentwickelt.
               </p>
             </div>
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">03</p>
-              <h3 className="lpv2-what-card-title">AI bekommt eine klare Aufgabe</h3>
+              <h3 className="lpv2-what-card-title">Menschliches Urteil als Mass</h3>
               <p className="lpv2-what-card-text">
-                Kai ist kein Chatbot als Dekoration. Er hilft Interessierten, ihre Situation
-                einzuordnen und einen passenden nächsten Schritt zu erkennen.
+                KI produziert viel — und schnell. Was bleibt, entscheidet Dirk. Haltung,
+                Ton, Richtung und das letzte Wort: menschlich. Das ist das Modell.
               </p>
             </div>
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">04</p>
-              <h3 className="lpv2-what-card-title">Bestehendes und Eigenes greifen zusammen</h3>
+              <h3 className="lpv2-what-card-title">Sichtbar bleiben — auch für KI</h3>
               <p className="lpv2-what-card-text">
-                Bewährte Plattformen bilden das Fundament. Eigenständig entwickelt wird dort,
-                wo Nutzererlebnis, Differenzierung oder Wirkung es verlangen.
+                GEO — Generative Engine Optimization — ist Teil des laufenden Betriebs:
+                wie kenalu in KI-Antworten auftaucht, wird kontinuierlich beobachtet
+                und verbessert.
               </p>
             </div>
 

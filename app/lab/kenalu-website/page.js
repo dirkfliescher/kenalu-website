@@ -112,16 +112,16 @@ export default function KenaluWebsiteArtikel() {
         <div className="container">
           <p className="section-label">Eigene Arbeitsprobe</p>
           <h1 className="lca-hero-headline">
-            Wie eine Website vom Schaufenster zum Gespräch wird.
+            Wie eine Website vom Schaufenster zum Gespräch wird — und was entsteht, wenn Mensch und KI sie gemeinsam bauen.
           </h1>
           <p className="lca-hero-intro">
             Eine Beratung, die von Klarheit, Experience und Engineering spricht, sollte nicht
             mit einer statischen Broschüre starten. Deshalb wurde kenalu.ch als Produkt
-            gedacht: Sie gibt Orientierung, macht die Arbeitsweise sichtbar und eröffnet
-            einen Dialog.
+            gedacht — und als lebendiger Beweis für das, was kenalu propagiert: KI nicht als
+            Hilfsmittel am Rand, sondern als Kern des Prozesses und des Produkts.
           </p>
           <p className="lca-hero-meta">
-            kenalu.ch · Produkt, Inhalt und Dialog in einer weiterentwickelbaren Grundlage
+            kenalu.ch · Gebaut von Dirk Fliescher und Claude (Anthropic) · läuft und wird weiterentwickelt
           </p>
         </div>
       </section>
@@ -342,6 +342,56 @@ export default function KenaluWebsiteArtikel() {
         </div>
       </section>
 
+      {/* ── 4d. Highlight 04: Mensch-KI-Zusammenarbeit ─────────────── */}
+      <section className="lca-section lca-highlight lca-section--tinted">
+        <div className="container">
+          <p className="section-label lca-highlight-num">Highlight 04</p>
+          <h2 className="lca-h2">
+            Visioniert, geplant, gebaut und weiterentwickelt — Dirk und Claude gemeinsam.
+          </h2>
+          <p className="lca-lead">
+            kenalu.ch ist nicht das Produkt eines Teams von zehn Personen. Es ist das Ergebnis
+            einer engen Zusammenarbeit zwischen Dirk Fliescher und Claude, Anthropics KI-Modell.
+            Jede Entscheidung, jeder Text, jede Komponente, jeder Code-Review: gemeinsam
+            erarbeitet.
+          </p>
+          <p className="lca-text">
+            Was das konkret heisst: Dirk bringt die Vision, die Haltung und das letzte Wort.
+            Claude übernimmt Strategie, Konzept, Architektur, Implementierung, Copy, SEO und
+            GEO — immer in direktem Austausch, immer unter Dirks Urteil. Kein Vieraugenprinzip,
+            kein Agentur-Overhead. Zwei denkende Partner.
+          </p>
+          <div className="lca-decision-cards">
+            <div className="lca-card">
+              <p className="lca-card-title">Vollständig gemeinsam.</p>
+              <p className="lca-card-text">
+                Von der ersten strategischen Frage bis zum laufenden Code: Vision, Konzept,
+                Design, Implementierung, Content, Storyblok-Integration — alles co-authored.
+              </p>
+            </div>
+            <div className="lca-card">
+              <p className="lca-card-title">Kontinuierlich, nicht einmalig.</p>
+              <p className="lca-card-text">
+                Code Reviews, Accessibility, Performance, SEO und GEO laufen fortlaufend.
+                Die Website ist kein Release — sie ist ein lebendes Experiment.
+              </p>
+            </div>
+            <div className="lca-card">
+              <p className="lca-card-title">Menschliches Urteil als Mass.</p>
+              <p className="lca-card-text">
+                KI produziert Breite und Geschwindigkeit. Was bleibt, entscheidet Dirk.
+                Haltung, Ton und Richtung sind nicht delegiert — sie sind bewusst gewählt.
+              </p>
+            </div>
+          </div>
+          <p className="lca-text">
+            Das ist kein Experiment darüber, ob KI schreiben oder coden kann. Das ist ein
+            Experiment darüber, was ein Mensch mit der richtigen KI-Partnerschaft leisten
+            kann — und was das für Unternehmen bedeutet, die ähnliches vorhaben.
+          </p>
+        </div>
+      </section>
+
       {/* ── 5. Übertragbar ──────────────────────────────────────────── */}
       <section className="lca-section">
         <div className="container container--narrow">
@@ -372,15 +422,20 @@ export default function KenaluWebsiteArtikel() {
       <section className="lca-section lca-section--tinted">
         <div className="container container--narrow">
           <p className="section-label">Transparenz</p>
-          <h2 className="lca-h2">Eine Arbeitsprobe, keine Kundenreferenz.</h2>
+          <h2 className="lca-h2">Eine Arbeitsprobe — und ein ehrlicher Beweis.</h2>
           <p className="lca-text">
-            kenalu.ch ist ein eigenes Produkt von Kenalu. Die Website zeigt, wie wir Inhalte,
-            Orientierung, Dialog und technische Grundlage zusammen denken.
+            kenalu.ch ist ein eigenes Produkt von kenalu. Sie ist kein Beweis für Wirkung in
+            einem Kundenprojekt und keine Referenz für ein abgeschlossenes Mandat.
           </p>
           <p className="lca-text">
-            Sie ist kein Beweis für Wirkung in einem Kundenprojekt und keine Referenz für ein
-            abgeschlossenes Mandat. Gerade deshalb kann sie offen zeigen, welche
-            Entscheidungen wir getroffen haben und wie sich die Website weiterentwickelt.
+            Sie ist etwas anderes: ein öffentlich sichtbarer Beweis dafür, was entsteht, wenn
+            Dirk Fliescher und Claude — Anthropics KI-Modell — gemeinsam arbeiten. Ohne
+            Agentur. Ohne grosses Team. Mit klarer Aufgabenteilung: Vision und Urteil beim
+            Menschen. Breite, Geschwindigkeit und technische Exzellenz mit KI.
+          </p>
+          <p className="lca-text">
+            Gerade deshalb kann sie offen zeigen, welche Entscheidungen getroffen wurden,
+            wie sie sich weiterentwickelt — und was das Modell in der Praxis wirklich bedeutet.
           </p>
         </div>
       </section>
@@ -389,11 +444,11 @@ export default function KenaluWebsiteArtikel() {
       <section className="lca-cta-section">
         <div className="container container--narrow">
           <p className="section-label">Nächster Schritt</p>
-          <h2 className="lca-h2">Soll eure Website mehr können als informieren?</h2>
+          <h2 className="lca-h2">Wollt ihr sehen, was dieses Modell für euer Vorhaben bedeutet?</h2>
           <p className="lca-text">
-            Wenn eure Website eine offene Frage erklären, einen Service verständlicher machen
-            oder ein besseres Gespräch eröffnen soll, lasst uns anschauen, was dafür wirklich
-            nötig ist.
+            Ob Website, KI-Produkt, Agentensystem oder Prozessautomation: Lasst uns
+            anschauen, was entsteht, wenn Mensch und KI wirklich zusammenarbeiten —
+            und was das für euer Unternehmen konkret heisst.
           </p>
           <Link href="/contact" className="btn btn-primary">
             Gespräch starten →

@@ -128,6 +128,8 @@ scripts/ (gitignored — nie committen)
   cms-services.mjs               CMS-SERVICES-01: services_* + service_* + 5 Stories (lokal ausführen)
   cms-team-hero.mjs              TEAM-HERO-01: team_hero Komponente + team-page Story (lokal ausführen)
   cms-fix-after-slug-rename.mjs  POST-SLUG: Story-Namen umbenennen, team_hero befüllen, /team-Links → /about
+  cms-ki-repositioning.mjs       KI-REPO-01: Homepage, Services, Approach, Footer, 4 Service-Details (ausgeführt 2026-07-13)
+  cms-ki-about.mjs               KI-REPO-02: About-Seite — team_hero + KI-Inhalte in Storyblok (lokal ausführen)
   update-hero-labels.js          Storyblok: hero_label + contact_label leeren
   update-dirk-bio.mjs            /dirk Bio-Text aktualisieren (Syntheseversion) — slugsToTry: ['dirk', 'team/dirk-fliescher']
   reset-team-bio.mjs             team/dirk-fliescher bio_text entfernen (SEC-003-konform)
@@ -287,10 +289,16 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 
 ---
 
-## Offene Punkte (Stand: 2026-07-07)
+## Offene Punkte (Stand: 2026-07-13)
 
 | Punkt | Status | Details |
 |-------|--------|---------|
+| KI-Repositionierung: Script ausgeführt | ✅ Ausgeführt | `scripts/cms-ki-repositioning.mjs` läuft. Homepage, Services, Approach, Footer, 4 Service-Details mit KI-Inhalten aktualisiert (2026-07-13). Stories in Storyblok publizieren nicht vergessen. |
+| KI-Repositionierung: layout.js | ✅ Erledigt | Meta-Description, OG-Titel, JSON-LD auf KI-Positionierung aktualisiert (2026-07-13). |
+| KI-Repositionierung: About-Seite Storyblok | 🔧 Lokal ausführen | `scripts/cms-ki-about.mjs` bereit. Fügt `team_hero`-Block in die `about`-Story ein, aktualisiert `about_intro`, `about_beliefs` (neues KI-Belief), `about_team`. **Befehl:** `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-ki-about.mjs --apply` — dann Story in Storyblok publizieren. |
+| CollaborationIntro.js Default-Text | ✅ Erledigt | KI-Dimension ergänzt ("KI-kompetent und bewusst klein", "KI-Engineering, Experience Design oder Strategie"). |
+| Kai-System-Prompts: KI-Produkt-Fokus | 📋 Geplant | `/api/kai` System-Prompts sollen KI-Produkt-Positionierung reflektieren (Agenten, intelligente UX, Assistenzsysteme als Kern). |
+| Build-Check + Commit KI-Repositionierung | 📋 Geplant | Nach Storyblok-Publizierung: `npm run build` prüfen, dann `git add -A && git commit -m "feat: KI-Repositionierung — layout.js, CollaborationIntro, about page" && git push`. |
 | SEC-003 + OPS-002 | ✅ Abgeschlossen | Scripts gehärtet, Correction-Commit, Docs — gepusht als `19a233f` (2026-07-03). |
 | OPS-002: WIP-Branch | ✅ Vorhanden | `wip/cms-002-about-storyblok-first` → zeigt auf `49f0eb2`. CMS-002a-Arbeit lokal gesichert (Worktree + Branch). |
 | SEC-004: History-Cleanup | 📋 Geplant | `git filter-repo` für veralteten Token aus Git-History. Separate Absprache erforderlich. Voraussetzungen in `docs/arbeitsberichte/SEC-002-token-remediation-plan.md`. |
@@ -323,7 +331,7 @@ node scripts/update-hero-labels.js
 
 ---
 
-## Was vollständig erledigt ist (Stand: 2026-07-07)
+## Was vollständig erledigt ist (Stand: 2026-07-13)
 
 - ✅ Vollständige Website (alle Seiten, alle Komponenten)
 - ✅ Storyblok-Integration (CMS, ISR)
@@ -349,3 +357,8 @@ node scripts/update-hero-labels.js
 - ✅ /dirk Sprachen: Deutsch (Muttersprache), Englisch (Verhandlungssicher), Französisch (Grundkenntnisse) — hardcoded in DirkProfile.js, mit 33/66 Print-Layout
 - ✅ /dirk Bio-Text: Syntheseversion publiziert via `scripts/update-dirk-bio.mjs` (Story: `dirk`, Feld: `bio_text`)
 - ✅ /dirk Print-Layout: vollständig mit A4, Cover-Grid, CV-Raster, Seitenumbrüchen
+- ✅ KI-Repositionierung: `layout.js` Meta-Description, OG-Titel, JSON-LD auf KI-Produkte ausgerichtet
+- ✅ KI-Repositionierung: `cms-ki-repositioning.mjs` ausgeführt — Homepage, Services, Approach, Footer, 4 Service-Details aktualisiert
+- ✅ KI-Repositionierung: `CollaborationIntro.js` Default-Text mit KI-Dimension ergänzt
+- ✅ KI-Repositionierung: `app/about/page.js` FALLBACK_HERO und Metadata auf KI-Positionierung aktualisiert
+- ✅ KI-Repositionierung: `cms-ki-about.mjs` Script erstellt — About-Seite Storyblok-Integration (lokal ausführen)
