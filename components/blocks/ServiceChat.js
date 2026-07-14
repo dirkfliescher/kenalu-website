@@ -86,7 +86,7 @@ export default function ServiceChat({ serviceName = '', servicePrompts = [] }) {
             <h2 className="sc-headline">Passt das zu eurer Situation?</h2>
             <p className="sc-sub">
               Kai ist kenalus AI-Assistent. Stellt eure Fragen zu{' '}
-              {serviceName ? <strong>{serviceName}</strong> : 'diesem Service'} — er gibt euch eine ehrliche Einschätzung.
+              {serviceName ? <strong>{serviceName}</strong> : 'diesem Service'}. Er gibt euch eine ehrliche Einschätzung.
             </p>
           </>
         )}

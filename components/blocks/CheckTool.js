@@ -9,7 +9,7 @@ const QUESTIONS = [
     options: [
       { label: 'Sehr klar. Wir wissen genau, wo wir anfangen.', value: 1 },
       { label: 'Eher unklar. Wir haben Ideen, aber keine Priorisierung.', value: 2 },
-      { label: 'Nicht klar. Wir wissen, dass wir etwas tun sollten — aber nicht was.', value: 3 },
+      { label: 'Nicht klar. Wir wissen, dass wir etwas tun sollten, aber nicht was.', value: 3 },
     ],
   },
   {
@@ -66,17 +66,17 @@ const PROFILES = {
     service: '01 Klarheit',
     tagline: 'Bevor Budget fliesst, sollte die Frage beantwortet sein: Wo lohnt AI wirklich?',
     description:
-      'Ihr habt Interesse an AI — aber noch keine klare Grundlage für Entscheidungen. ' +
+      'Ihr habt Interesse an AI, aber noch keine klare Grundlage für Entscheidungen. ' +
       'Welche Use Cases sind relevant? Was ist technisch machbar, regulatorisch vertretbar, wirtschaftlich sinnvoll? ' +
       'Genau das liefert kenalu Klarheit: eine ehrliche Einschätzung, bevor etwas gebaut wird.',
     href: '/services#service-01',
   },
   rapidbuild: {
-    name: 'Ihr braucht etwas Greifbares — schnell.',
+    name: 'Ihr braucht etwas Greifbares. Und zwar schnell.',
     service: '02 Rapid Build',
     tagline: 'Die Richtung stimmt. Jetzt braucht es einen Beweis.',
     description:
-      'Ihr wisst ungefähr, was gebaut werden soll — aber es fehlt etwas zum Anfassen, Testen, Zeigen. ' +
+      'Ihr wisst ungefähr, was gebaut werden soll, aber es fehlt etwas zum Anfassen, Testen, Zeigen. ' +
       'Ein Prototyp oder funktionales MVP, das intern überzeugt und externe Entscheidungen vorbereitet. ' +
       'kenalu Rapid Build liefert das in Tagen, nicht Wochen.',
     href: '/services#service-02',
@@ -84,10 +84,10 @@ const PROFILES = {
   produkt: {
     name: 'Ihr seid bereit für das vollständige Produkt.',
     service: '03 Produkt',
-    tagline: 'Klarheit ist da. Jetzt geht es ums Bauen — vollständig, ohne Übergaben.',
+    tagline: 'Klarheit ist da. Jetzt geht es ums Bauen: vollständig, ohne Übergaben.',
     description:
       'Ihr wisst, was ihr wollt. Ihr habt Budget und Commitment. ' +
-      'Was jetzt zählt: ein Partner, der Discovery, Konzept, UX und Engineering nicht als separate Phasen behandelt — ' +
+      'Was jetzt zählt: ein Partner, der Discovery, Konzept, UX und Engineering nicht als separate Phasen behandelt, ' +
       'sondern als einen integrierten Prozess, von der ersten Research bis zum fertigen Produkt.',
     href: '/services#service-03',
   },
@@ -96,7 +96,7 @@ const PROFILES = {
     service: '04 Urteil',
     tagline: 'Etwas ist gebaut. Die Frage ist: hält es wirklich, was es verspricht?',
     description:
-      'Ihr habt eine AI-Lösung — intern oder extern entwickelt. ' +
+      'Ihr habt eine AI-Lösung, intern oder extern entwickelt. ' +
       'Jetzt wollt ihr wissen, ob der Ansatz solide ist, ob das Ergebnis für echte Nutzer funktioniert ' +
       'und welche Risiken unerkannt bleiben. kenalu Urteil gibt euch eine klare Einschätzung aus Bauerfahrung.',
     href: '/services#service-04',
@@ -200,7 +200,7 @@ export default function CheckTool() {
             </h1>
             <div className="check-intro-foot">
               <p className="check-intro-sub">
-                Nicht jedes Unternehmen braucht dasselbe. Sechs Fragen — und ihr seht,
+                Nicht jedes Unternehmen braucht dasselbe. Sechs Fragen. Ihr seht,
                 welche kenalu-Leistung zu eurer Situation passt.
               </p>
               <button className="btn btn-primary check-start-btn" onClick={start}>

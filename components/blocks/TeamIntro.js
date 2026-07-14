@@ -11,7 +11,7 @@ const SPIEL = {
         'Ich habe eine Zeit lang als Barista gearbeitet, bevor ich ins Consulting wechselte.',
       ],
       luege: 1,
-      erklaerung: 'Seoul war gelogen — aber Wien war mal knapp dran. Die Barista-Phase war real und lehrreicher als erwartet.',
+      erklaerung: 'Seoul war gelogen. Wien war mal knapp dran. Die Barista-Phase war real und lehrreicher als erwartet.',
     },
     {
       aussagen: [
@@ -40,7 +40,7 @@ const SPIEL = {
         'Ich habe während des Studiums ein kleines Startup gegründet und nach einem Jahr geschlossen.',
       ],
       luege: 1,
-      erklaerung: 'Japanisch wäre schön — aber leider nein. Das Startup und das Modell haben existiert. Beide lehrreich.',
+      erklaerung: 'Japanisch wäre schön. Leider nein. Das Startup und das Modell haben existiert. Beide lehrreich.',
     },
     {
       aussagen: [
@@ -58,7 +58,7 @@ const SPIEL = {
         'Ich habe noch nie einen Hackathon gewonnen, aber dreimal teilgenommen.',
       ],
       luege: 1,
-      erklaerung: 'Die Band ist erfunden — ich bin musikalisch eher Konsument. Kochen stimmt, Hackathons auch.',
+      erklaerung: 'Die Band ist erfunden. Ich bin musikalisch eher Konsument. Kochen stimmt, Hackathons auch.',
     },
   ],
 };
@@ -155,7 +155,7 @@ function ModeChat({ person }) {
       {messages.length === 0 && (
         <div className="ti-chat-empty">
           <p className="ti-chat-empty-text">
-            Stellt {name} eine Frage — über seinen Hintergrund, seine Arbeitsweise oder einfach was ihr wissen wollt.
+            Stellt {name} eine Frage: über seinen Hintergrund, seine Arbeitsweise oder einfach was ihr wissen wollt.
           </p>
           <div className="ti-chat-suggestions">
             {[
@@ -253,9 +253,9 @@ function ModeSpiel({ person }) {
 
   if (fertig) {
     const meldung = punkte === 3
-      ? 'Perfekt! Du kennst uns schon sehr gut.'
+      ? 'Perfekt! Ihr kennt uns schon sehr gut.'
       : punkte === 2
-      ? 'Gut gespielt — fast perfekt.'
+      ? 'Gut gespielt. Fast perfekt.'
       : punkte === 1
       ? 'Nicht schlecht für den Anfang.'
       : 'Wir sind schwerer zu durchschauen als gedacht.';
@@ -351,12 +351,12 @@ function ModeQuiz() {
     const other = match === 'dirk' ? 'Stan' : 'Dirk';
 
     const beschreibung = match === 'dirk'
-      ? 'Du denkst strategisch, schätzt den Kontext und willst erst verstehen, bevor du handelst. Das passt zu Dirks Arbeitsweise.'
-      : 'Du gehst direkt rein, arbeitest gerne im Flow und verlässt dich auf Struktur und Daten. Das ist Stans Terrain.';
+      ? 'Ihr denkt strategisch, schätzt den Kontext und wollt erst verstehen, bevor ihr handelt. Das passt zu Dirks Arbeitsweise.'
+      : 'Ihr geht direkt rein, arbeitet gerne im Flow und verlässt euch auf Struktur und Daten. Das ist Stans Terrain.';
 
     return (
       <div className="ti-quiz-ergebnis">
-        <p className="ti-quiz-match-label">Du passt besser zu</p>
+        <p className="ti-quiz-match-label">Ihr passt besser zu</p>
         <p className="ti-quiz-match-name">{matchName}</p>
         <p className="ti-quiz-match-desc">{beschreibung}</p>
         <p className="ti-quiz-match-sub">
@@ -411,7 +411,7 @@ export default function TeamIntro() {
           <p className="section-label">Interaktiv</p>
           <h2 className="ti-headline">Direkt fragen. Spielen. Vergleichen.</h2>
           <p className="ti-sub">
-            Stellt Dirk oder Stan eine Frage, findet die Lüge — oder seht, mit wem ihr mehr gemeinsam habt.
+            Stellt Dirk oder Stan eine Frage, findet die Lüge oder seht, mit wem ihr mehr gemeinsam habt.
           </p>
         </div>
 

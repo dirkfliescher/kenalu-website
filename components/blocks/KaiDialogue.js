@@ -231,7 +231,7 @@ export default function KaiDialogue({
         ...prev,
         {
           role: 'assistant',
-          content: 'Das hat leider nicht geklappt. Versucht es nochmal — oder schreibt uns direkt.',
+          content: 'Das hat leider nicht geklappt. Versucht es nochmal oder schreibt uns direkt.',
           widgets: [],
         },
       ]);

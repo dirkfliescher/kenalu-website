@@ -8,7 +8,7 @@ function DecisionMap({ items }) {
     <div
       className="artifact-decision-map"
       role="img"
-      aria-label="Entscheidungskarte: vier Felder — Was liegt auf dem Tisch, Welche Frage zählt, Was spricht dafür, Was folgt daraus"
+      aria-label="Entscheidungskarte mit vier Feldern: Was liegt auf dem Tisch, Welche Frage zählt, Was spricht dafür, Was folgt daraus"
     >
       {items.map((field, i) => (
         <div key={field._uid || i} className={`adm-field adm-field--${i + 1}`}>
@@ -29,7 +29,7 @@ function Sequence({ items }) {
     <div
       className="artifact-sequence"
       role="img"
-      aria-label="Testbarer Produktausschnitt: drei verbundene Schritte — Die Annahme, Der Moment, Die Reaktion"
+      aria-label="Testbarer Produktausschnitt mit drei verbundenen Schritten: Die Annahme, Der Moment, Die Reaktion"
     >
       {items.map((step, i) => (
         <div key={step._uid || i} className="aseq-step">
@@ -53,7 +53,7 @@ function Foundation({ items }) {
     <div
       className="artifact-foundation"
       role="img"
-      aria-label="Produktfundament: vier Ebenen — Was Menschen erleben, Was das Produkt verspricht, Woran es anschliesst, Wie es weiterwächst"
+      aria-label="Produktfundament mit vier Ebenen: Was Menschen erleben, Was das Produkt verspricht, Woran es anschliesst, Wie es weiterwächst"
     >
       {items.map((layer, i) => (
         <div
@@ -80,7 +80,7 @@ function Judgement({ items }) {
     <div
       className="artifact-judgement"
       role="img"
-      aria-label="Begründetes Urteil: drei Bereiche — Trägt, Muss geklärt werden, Sollte nicht weiterverfolgt werden — plus nächste Konsequenz"
+      aria-label="Begründetes Urteil mit drei Bereichen: Trägt, Muss geklärt werden, Sollte nicht weiterverfolgt werden. Plus nächste Konsequenz."
     >
       <div className="ajudge-areas">
         {areas.map((area) => (

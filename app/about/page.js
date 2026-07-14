@@ -6,7 +6,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: 'Über kenalu – kenalu',
-  description: 'KI-kompetentes Team hinter kenalu. Strategie, Experience Design und Engineering — mit KI als Kern, menschlichem Urteil als Mass.',
+  description: 'KI-kompetentes Team hinter kenalu. Strategie, Experience Design und Engineering. KI als Kern, menschliches Urteil als Mass.',
 };
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
@@ -42,7 +42,7 @@ const FALLBACK_HERO = {
   component: 'team_hero',
   eyebrow: 'Team',
   headline: 'Die Menschen, die KI in echte Produkte übersetzen.',
-  body: 'kenalu ist KI-kompetent und bewusst klein. Strategie, Experience Design und Engineering — mit KI als Werkzeug im Prozess und als Kern der Produkte, die wir bauen.',
+  body: 'kenalu ist KI-kompetent und bewusst klein. Strategie, Experience Design und Engineering. KI als Werkzeug im Prozess und als Kern der Produkte, die wir bauen.',
 };
 
 export default async function TeamPage() {

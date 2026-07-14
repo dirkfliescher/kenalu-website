@@ -347,7 +347,7 @@ export default function KenaluWebsiteArtikel() {
         <div className="container">
           <p className="section-label lca-highlight-num">Highlight 04</p>
           <h2 className="lca-h2">
-            Visioniert, geplant, gebaut und weiterentwickelt — Dirk und Claude gemeinsam.
+            Visioniert, geplant, gebaut und weiterentwickelt. Dirk und Claude gemeinsam.
           </h2>
           <p className="lca-lead">
             kenalu.ch ist nicht das Produkt eines Teams von zehn Personen. Es ist das Ergebnis
@@ -358,7 +358,7 @@ export default function KenaluWebsiteArtikel() {
           <p className="lca-text">
             Was das konkret heisst: Dirk bringt die Vision, die Haltung und das letzte Wort.
             Claude übernimmt Strategie, Konzept, Architektur, Implementierung, Copy, SEO und
-            GEO — immer in direktem Austausch, immer unter Dirks Urteil. Kein Vieraugenprinzip,
+            GEO: immer in direktem Austausch, immer unter Dirks Urteil. Kein Vieraugenprinzip,
             kein Agentur-Overhead. Zwei denkende Partner.
           </p>
           <div className="lca-decision-cards">
@@ -366,28 +366,28 @@ export default function KenaluWebsiteArtikel() {
               <p className="lca-card-title">Vollständig gemeinsam.</p>
               <p className="lca-card-text">
                 Von der ersten strategischen Frage bis zum laufenden Code: Vision, Konzept,
-                Design, Implementierung, Content, Storyblok-Integration — alles co-authored.
+                Design, Implementierung, Content, Storyblok-Integration. Alles co-authored.
               </p>
             </div>
             <div className="lca-card">
               <p className="lca-card-title">Kontinuierlich, nicht einmalig.</p>
               <p className="lca-card-text">
                 Code Reviews, Accessibility, Performance, SEO und GEO laufen fortlaufend.
-                Die Website ist kein Release — sie ist ein lebendes Experiment.
+                Die Website ist kein Release. Sie ist ein lebendes Experiment.
               </p>
             </div>
             <div className="lca-card">
               <p className="lca-card-title">Menschliches Urteil als Mass.</p>
               <p className="lca-card-text">
                 KI produziert Breite und Geschwindigkeit. Was bleibt, entscheidet Dirk.
-                Haltung, Ton und Richtung sind nicht delegiert — sie sind bewusst gewählt.
+                Haltung, Ton und Richtung sind nicht delegiert. Sie sind bewusst gewählt.
               </p>
             </div>
           </div>
           <p className="lca-text">
             Das ist kein Experiment darüber, ob KI schreiben oder coden kann. Das ist ein
             Experiment darüber, was ein Mensch mit der richtigen KI-Partnerschaft leisten
-            kann — und was das für Unternehmen bedeutet, die ähnliches vorhaben.
+            kann. Und was das für Unternehmen bedeutet, die ähnliches vorhaben.
           </p>
         </div>
       </section>
@@ -422,20 +422,20 @@ export default function KenaluWebsiteArtikel() {
       <section className="lca-section lca-section--tinted">
         <div className="container container--narrow">
           <p className="section-label">Transparenz</p>
-          <h2 className="lca-h2">Eine Arbeitsprobe — und ein ehrlicher Beweis.</h2>
+          <h2 className="lca-h2">Eine Arbeitsprobe. Und ein ehrlicher Beweis.</h2>
           <p className="lca-text">
             kenalu.ch ist ein eigenes Produkt von kenalu. Sie ist kein Beweis für Wirkung in
             einem Kundenprojekt und keine Referenz für ein abgeschlossenes Mandat.
           </p>
           <p className="lca-text">
             Sie ist etwas anderes: ein öffentlich sichtbarer Beweis dafür, was entsteht, wenn
-            Dirk Fliescher und Claude — Anthropics KI-Modell — gemeinsam arbeiten. Ohne
+            Dirk Fliescher und Claude (Anthropics KI-Modell) gemeinsam arbeiten. Ohne
             Agentur. Ohne grosses Team. Mit klarer Aufgabenteilung: Vision und Urteil beim
             Menschen. Breite, Geschwindigkeit und technische Exzellenz mit KI.
           </p>
           <p className="lca-text">
             Gerade deshalb kann sie offen zeigen, welche Entscheidungen getroffen wurden,
-            wie sie sich weiterentwickelt — und was das Modell in der Praxis wirklich bedeutet.
+            wie sie sich weiterentwickelt und was das Modell in der Praxis wirklich bedeutet.
           </p>
         </div>
       </section>
@@ -447,8 +447,8 @@ export default function KenaluWebsiteArtikel() {
           <h2 className="lca-h2">Wollt ihr sehen, was dieses Modell für euer Vorhaben bedeutet?</h2>
           <p className="lca-text">
             Ob Website, KI-Produkt, Agentensystem oder Prozessautomation: Lasst uns
-            anschauen, was entsteht, wenn Mensch und KI wirklich zusammenarbeiten —
-            und was das für euer Unternehmen konkret heisst.
+            anschauen, was entsteht, wenn Mensch und KI wirklich zusammenarbeiten.
+            Und was das für euer Unternehmen konkret heisst.
           </p>
           <Link href="/contact" className="btn btn-primary">
             Gespräch starten →

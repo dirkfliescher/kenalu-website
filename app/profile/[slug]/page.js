@@ -27,7 +27,7 @@ export async function generateMetadata({ params }) {
   const blok = await getProfile(slug);
   if (!blok) return { title: 'kenalu', robots: { index: false, follow: false } };
   return {
-    title:       `${blok.hero_eyebrow || slug} — kenalu`,
+    title:       `${blok.hero_eyebrow || slug} – kenalu`,
     description: blok.hero_intro || undefined,
     robots:      { index: false, follow: false },
   };

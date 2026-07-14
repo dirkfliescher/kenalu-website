@@ -19,8 +19,8 @@ const SERVICES = [
     tagline: 'In Tagen zu einem greifbaren Prototyp',
     when: [
       'Ihr habt eine klare Idee und wollt sie schnell testbar machen',
-      'Ihr wollt intern zeigen, was möglich ist — bevor ihr gross investiert',
-      'Ihr braucht ein MVP, das funktioniert — nicht poliert, aber echt',
+      'Ihr wollt intern zeigen, was möglich ist, bevor ihr gross investiert',
+      'Ihr braucht ein MVP, das funktioniert: nicht poliert, aber echt',
     ],
   },
   {
@@ -40,7 +40,7 @@ const SERVICES = [
     anchor: '#service-04',
     tagline: 'Unabhängige Einschätzung, klare Aussage',
     when: [
-      'Ihr habt ein Angebot, eine Strategie oder einen Plan — und wollt eine ehrliche Meinung',
+      'Ihr habt ein Angebot, eine Strategie oder einen Plan und wollt eine ehrliche Meinung dazu',
       'Ihr vertraut dem Lieferanten nicht blind und wollt eine zweite Stimme',
       'Ihr braucht jemanden, der klar sagt, was er sieht',
     ],

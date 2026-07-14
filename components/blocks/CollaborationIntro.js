@@ -10,7 +10,7 @@ export default function CollaborationIntro({
   blok,
   eyebrow = 'Mitwirken',
   headline = 'Passt du zu der Art, wie wir arbeiten?',
-  text = 'Kenalu bleibt im Kern klein und KI-kompetent. Je nach Vorhaben arbeiten wir mit Menschen zusammen, die in ihrem Fach tief sind — KI-Engineering, Experience Design oder Strategie — Verantwortung übernehmen und keine Distanz zwischen Denken und Machen brauchen.',
+  text = 'Kenalu bleibt im Kern klein und KI-kompetent. Je nach Vorhaben arbeiten wir mit Menschen zusammen, die in ihrem Fach tief sind: KI-Engineering, Experience Design oder Strategie. Sie übernehmen Verantwortung und brauchen keine Distanz zwischen Denken und Machen.',
   ctaLabel = 'Kontakt aufnehmen →',
   ctaLink = '/contact',
 }) {

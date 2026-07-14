@@ -5,7 +5,7 @@ import { useState } from 'react';
 // ── Daten ─────────────────────────────────────────────────────────
 const FRAGEN = [
   {
-    frage: 'Ein Kunde schickt dir ein 60-seitiges Briefing. Was machst du zuerst?',
+    frage: 'Ein Kunde schickt euch ein 60-seitiges Briefing. Was macht ihr zuerst?',
     optionen: [
       { label: 'Ich lese es komplett durch und mache Notizen.',                  punkte: 1 },
       { label: 'Ich fasse es auf eine Seite zusammen und frage, ob das stimmt.', punkte: 2 },
@@ -13,23 +13,23 @@ const FRAGEN = [
     ],
   },
   {
-    frage: 'Jemand sagt: «Mach einfach mal was mit AI.» Was sagst du?',
+    frage: 'Jemand sagt: «Mach einfach mal was mit AI.» Was sagt ihr?',
     optionen: [
-      { label: '«Gerne — ich schicke dir bis Freitag eine Roadmap.»',           punkte: 0 },
+      { label: '«Gerne, ich schicke euch bis Freitag eine Roadmap.»',           punkte: 0 },
       { label: '«Was soll sich für wen konkret verändern?»',                    punkte: 3 },
       { label: '«Wir sollten zuerst einen Workshop machen.»',                   punkte: 1 },
     ],
   },
   {
-    frage: 'Du merkst mitten im Projekt, dass ihr am falschen Problem arbeitet. Was passiert?',
+    frage: 'Ihr merkt mitten im Projekt, dass ihr am falschen Problem arbeitet. Was passiert?',
     optionen: [
-      { label: 'Ich mache weiter — wir haben ein Commitment.',                  punkte: 0 },
+      { label: 'Ich mache weiter. Wir haben ein Commitment.',                  punkte: 0 },
       { label: 'Ich vermerke es intern und schaue, ob es sich klärt.',          punkte: 1 },
       { label: 'Ich spreche es sofort an, auch wenn es unbequem ist.',          punkte: 3 },
     ],
   },
   {
-    frage: 'Was ist für dich ein gutes Meeting?',
+    frage: 'Was ist für euch ein gutes Meeting?',
     optionen: [
       { label: 'Alle reden, alle bringen sich ein.',                            punkte: 0 },
       { label: 'Wir haben Updates ausgetauscht und alle sind informiert.',      punkte: 1 },
@@ -45,7 +45,7 @@ const FRAGEN = [
     ],
   },
   {
-    frage: 'Wie arbeitest du am liebsten?',
+    frage: 'Wie arbeitet ihr am liebsten?',
     optionen: [
       { label: 'Mit klaren Prozessen und definierten Rollen.',                  punkte: 0 },
       { label: 'Im ständigen Austausch mit dem Team.',                          punkte: 1 },
@@ -59,15 +59,15 @@ const MAX = FRAGEN.reduce((s, f) => s + Math.max(...f.optionen.map(o => o.punkte
 const ERGEBNISSE = [
   {
     minScore: 15,
-    titel: 'Du passt.',
-    sub: 'Direkt, keine Überraschungen. Meld dich.',
+    titel: 'Ihr passt.',
+    sub: 'Direkt, keine Überraschungen. Meldet euch.',
     farbe: 'gut',
     cta: true,
   },
   {
     minScore: 8,
     titel: 'Wir müssten reden.',
-    sub: "Das Potenzial ist da. Aber irgendwo hakt's noch — und das ist ok.",
+    sub: "Das Potenzial ist da. Irgendwo hakt's noch, und das ist ok.",
     farbe: 'mittel',
     cta: false,
   },
@@ -123,7 +123,7 @@ export default function FitTest() {
             <p className="fit-sub">
               Wir arbeiten gerne mit Menschen zusammen, die fachlich tief gehen, Verantwortung
               übernehmen und nicht zwischen Denken und Machen unterscheiden.<br />
-              Sechs Fragen helfen dir einzuschätzen, ob das passt.
+              Sechs Fragen helfen euch einzuschätzen, ob das passt.
             </p>
           </div>
 

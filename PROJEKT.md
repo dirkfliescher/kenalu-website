@@ -308,17 +308,29 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 Neue Pflichtregeln für alle Texte — gilt für Code UND Storyblok:
 
 - **Hero-Headlines:** unter ~8 Wörter. Keine langen Sätze als Headline.
-- **Kein Gedankenstrich (—)** in Fliesstext oder Headlines.
+- **Kein Gedankenstrich (—)** in sichtbarem Fliesstext oder Headlines.
 - **Wenn eine Pause nötig ist:** Punkt oder Doppelpunkt statt Gedankenstrich.
 - **Nicht einfach streichen — Texte verbessern.**
+- **Anrede:** durchgängig ihr/euch/euer — auch in interaktiven Spielen, Quiz-Texten und Ergebnis-Meldungen.
 
-Bereits umgesetzt in Fallback-Dateien:
-- `services/_fallback-content.js`: Kundenziel-Satz + em-dash → Doppelpunkt im Hero
-- `services/klarheit/_fallback-content.js`: Headline → "Viele Optionen. Keine Entscheidung."
-- `services/produkt/_fallback-content.js`: Headline → "Tragfähig wird ein Produkt erst im Alltag."
-- `lab/page.js`: Karten-Texte und Headlines ohne Gedankenstriche
-- `lab/kenalu-website/page.js`: Hero-Headline gekürzt, Intro restructuriert
-- `insights/page.js`: Hero-Sub, Kai-Intro, Lab-Ref-Strip bereinigt
+**Umfassende Sweep-Session 2026-07-14 — alle Code-Dateien bereinigt:**
+
+20+ Dateien, ~60 em-Dashes ersetzt, zusätzliche du/dir/dich-Formen behoben:
+- `app/layout.js`, `app/about/page.js`, `app/check/page.js`, `app/dirk/page.js`
+- `app/lab/kenalu-website/page.js` (10 em-Dashes)
+- `app/profile/[slug]/page.js`: Seitentitel `—` → `–` (en-dash, konsistent mit Template)
+- `components/blocks/ServicesCompare.js`, `CollaborationIntro.js`, `ServiceDetailPage.js`
+- `components/blocks/ServiceChat.js`, `ServiceArtifact.js` (aria-labels)
+- `components/blocks/ProductMomentBuilder.js`, `KaiDialogue.js`
+- `components/blocks/CheckTool.js` (7 em-Dashes)
+- `components/blocks/TeamIntro.js`: em-Dashes + du/dir → ihr/euch in Spiel-Ergebnissen + Quiz-Beschreibungen
+- `components/blocks/DirkProfile.js`: bio_text (2×), cta_text, 3 Projekt-Texte, 4 Client-Namen, 1 Kompetenz-Text
+- `components/blocks/FitTest.js`: 2 em-Dashes + alle FRAGEN (du/dir → ihr/euch), Ergebnistitel + CTA
+- `components/blocks/LabBuilder.js`: "Optional — du" → "Optional. Ihr könnt..."
+- `app/api/kai/route.js`: Nutzersichtige Off-Topic-Antwort bereinigt
+- `scripts/cms-ux-writing-update.mjs`: Services Hero Headline-Patch hinzugefügt
+
+Bewusst ausgelassen (nicht nutzersichtig): Code-Kommentare (`//`), KI-System-Prompts in API-Routes, CSS-Separator `<span class="aw-person-sep">—</span>`, Storybook-Dateien, Placeholder-Strings (`'—'` für leere Felder).
 
 ---
 
@@ -328,8 +340,8 @@ Bereits umgesetzt in Fallback-Dateien:
 |-------|--------|---------|
 | CMS-SERVICES-02: Service-Detail-Stories erstellen | 🔧 Lokal ausführen | Script `scripts/cms-service-detail-create.mjs` bereit. Erstellt Ordner `service-detail` + 4 Stories: klarheit, rapid-build, produkt, urteil. **Befehl:** `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-service-detail-create.mjs` (Draft), dann mit `--publish` publizieren. Danach greifen die page.js-Dateien auf Storyblok-Inhalte statt Fallbacks zu. |
 | Nav.js: Logo-Bug auf Lab-Artikel-Seiten | ✅ Behoben | `/lab` war in `DARK_HERO_PAGES` als `startsWith`, was `/lab/*` fälschlicherweise erfasste. Jetzt Exakt-Match. **Git push ausstehend.** |
-| UX-Writing: Fallback-Dateien bereinigt | ✅ Erledigt | Hero-Headlines gekürzt (klarheit, produkt), alle Gedankenstriche entfernt/umgeformt (lab/page.js, insights/page.js, lab/kenalu-website/page.js, services/_fallback-content.js). **Git push ausstehend.** |
-| Git push: Session-Änderungen deployen | 🔧 Lokal ausführen | Mehrere Änderungen noch nicht gepusht: Nav.js, globals.css (2-column lca-decision-cards), LabComparison/LabFoundation aria-label, UX-Writing in Fallback-Dateien, neue Scripts. **Befehl:** `cd /Users/dirkfliescher/Documents/kenalu-website && git add -A && git commit -m "fix: Nav logo auf Lab-Artikeln, UX-Writing, responsive Karten, aria-labels" && git push` |
+| UX-Writing: Vollständige Sweep-Session | ✅ Erledigt | 20+ Code-Dateien bereinigt: ~60 em-Dashes ersetzt, du/dir → ihr/euch in FitTest/TeamIntro/LabBuilder/DirkProfile. Storyblok-Headline (Services Hero) via `cms-ux-writing-update.mjs` patchbar. **Git push ausstehend.** |
+| Git push: Session-Änderungen deployen | 🔧 Lokal ausführen | Alle Änderungen seit letztem Push noch nicht deployed: Nav.js, globals.css, UX-Writing-Sweep (20+ Dateien), du/dir→ihr/euch in FitTest/TeamIntro/LabBuilder/DirkProfile, neue Scripts. **Befehl:** `cd /Users/dirkfliescher/Documents/kenalu-website && git add -A && git commit -m "fix: UX-Writing-Sweep — em-dashes, du/dir→ihr/euch, Services-Hero-Headline" && git push` |
 | KI-Repositionierung: Script ausgeführt | ✅ Ausgeführt | `scripts/cms-ki-repositioning.mjs` läuft. Homepage, Services, Approach, Footer, 4 Service-Details mit KI-Inhalten aktualisiert (2026-07-13). Stories in Storyblok publizieren nicht vergessen. |
 | KI-Repositionierung: layout.js | ✅ Erledigt | Meta-Description, OG-Titel, JSON-LD auf KI-Positionierung aktualisiert (2026-07-13). |
 | KI-Repositionierung: About-Seite Storyblok | 🔧 Lokal ausführen | `scripts/cms-ki-about.mjs` bereit. Fügt `team_hero`-Block in die `about`-Story ein, aktualisiert `about_intro`, `about_beliefs` (neues KI-Belief), `about_team`. **Befehl:** `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-ki-about.mjs --apply` — dann Story in Storyblok publizieren. |
@@ -401,6 +413,6 @@ node scripts/update-hero-labels.js
 - ✅ KI-Repositionierung: `CollaborationIntro.js` Default-Text mit KI-Dimension ergänzt
 - ✅ KI-Repositionierung: `app/about/page.js` FALLBACK_HERO und Metadata auf KI-Positionierung aktualisiert
 - ✅ KI-Repositionierung: `cms-ki-about.mjs` Script erstellt — About-Seite Storyblok-Integration (lokal ausführen)
-- ✅ UX-Writing: Hero-Headlines gekürzt + Gedankenstriche entfernt — alle statischen Fallback-Dateien bereinigt (2026-07-14)
+- ✅ UX-Writing: Umfassende Sweep-Session — alle Code-Dateien bereinigt (2026-07-14): ~60 em-Dashes in 20+ Dateien ersetzt, zusätzlich du/dir/dich → ihr/euch/euer in FitTest, TeamIntro, LabBuilder, DirkProfile
 - ✅ Nav.js: Logo-Bug auf Lab-Artikel-Seiten behoben — `/lab` jetzt Exakt-Match (2026-07-14)
 - ✅ `cms-service-detail-create.mjs`: Script für 4 Service-Detail-Stories erstellt — SEC-003-konform, mit Ordner-Erstellung und Upsert-Logik (2026-07-14)

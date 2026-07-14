@@ -17,7 +17,7 @@ const KAI_PROMPTS = [
 const PLACEHOLDER_MOMENT =
   'Wird formuliert, sobald ihr die ersten drei Felder ausgefüllt und auf «Moment schärfen» geklickt habt.';
 const PLACEHOLDER_ASSUMPTION =
-  'Folgt aus dem ersten Moment — mit einer prüfbaren Hypothese.';
+  'Folgt aus dem ersten Moment, mit einer prüfbaren Hypothese.';
 const PLACEHOLDER_TESTING =
   'Zeigt, worauf ihr beim ersten Test achten solltet.';
 const DEFAULT_OUT_OF_SCOPE =
@@ -96,7 +96,7 @@ function KaiInline() {
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: 'Das hat leider nicht geklappt. Versucht es nochmal — oder überarbeitet die Eingaben direkt.' },
+        { role: 'assistant', content: 'Das hat leider nicht geklappt. Versucht es nochmal oder überarbeitet die Eingaben direkt.' },
       ]);
     } finally {
       setLoading(false);

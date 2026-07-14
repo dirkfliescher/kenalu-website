@@ -353,7 +353,7 @@ export default function LabBuilder() {
       )}
 
       {aktuellerSchritt.optional && !aktuelleAntwort && (
-        <p className="lb-optional-hint">Optional — du kannst diesen Schritt überspringen.</p>
+        <p className="lb-optional-hint">Optional. Ihr könnt diesen Schritt überspringen.</p>
       )}
 
       {/* Navigation */}

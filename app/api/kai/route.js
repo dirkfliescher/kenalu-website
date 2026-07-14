@@ -331,7 +331,7 @@ export async function POST(request) {
     const inScope = await isInScope(lastUserMessage);
     if (!inScope) {
       return NextResponse.json({
-        answer: 'Dazu kann ich euch leider nicht weiterhelfen — Kai ist auf digitale Produkte und kenalus Leistungen spezialisiert. Habt ihr eine Frage dazu?',
+        answer: 'Dazu kann ich euch leider nicht weiterhelfen. Kai ist auf digitale Produkte und kenalus Leistungen spezialisiert. Habt ihr eine Frage dazu?',
         showContact: false,
         widgets: [],
       });

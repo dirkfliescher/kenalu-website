@@ -3,17 +3,17 @@ import PrintButton from './PrintButton';
 export default function DirkProfile({ blok = {}, testimonials = [], photo = null, photoAlt = 'Dirk Fliescher' }) {
   const {
     hero_eyebrow    = 'Dirk Fliescher',
-    hero_headline   = 'Strategie, Nutzerperspektive, Umsetzung — in einer Person.',
-    hero_intro      = 'Ich begleite digitale Vorhaben von der ersten Frage bis zum fertigen Produkt. Nicht als Generalist, der alles macht — sondern als jemand, der die Perspektiven früh zusammenbringt, die am Ende den Unterschied machen.',
+    hero_headline   = 'Strategie, Nutzerperspektive, Umsetzung. In einer Person.',
+    hero_intro      = 'Ich begleite digitale Vorhaben von der ersten Frage bis zum fertigen Produkt. Nicht als Generalist, der alles macht. Sondern als jemand, der die Perspektiven früh zusammenbringt, die am Ende den Unterschied machen.',
     hero_location   = 'Zürich',
     hero_linkedin   = 'https://www.linkedin.com/in/dirkfliescher/',
     bio_headline    = 'Wer ich bin',
-    bio_text        = 'Seit über 25 Jahren arbeite ich an digitalen Projekten — in Banken, Beratungen, Agenturen und als selbstständiger Berater. Den Grundstein habe ich bei GFT Technologies und Credit Suisse gelegt: Projektmanagement in anspruchsvollen, regulierten Umgebungen. Danach habe ich mich auf Informationsarchitektur und strategische Beratung spezialisiert, bei Infocentric Research AG.\n\nSeit 2013 bin ich mit meiner eigenen Consulting GmbH unterwegs. Über elf Jahre war ich Partner bei viu, einem Schweizer Studio für digitale Produkte. Diese Kombination — strategische Tiefe, Nutzerperspektive und echte Umsetzungserfahrung — ist die Basis von kenalu.',
+    bio_text        = 'Seit über 25 Jahren arbeite ich an digitalen Projekten: in Banken, Beratungen, Agenturen und als selbstständiger Berater. Den Grundstein habe ich bei GFT Technologies und Credit Suisse gelegt: Projektmanagement in anspruchsvollen, regulierten Umgebungen. Danach habe ich mich auf Informationsarchitektur und strategische Beratung spezialisiert, bei Infocentric Research AG.\n\nSeit 2013 bin ich mit meiner eigenen Consulting GmbH unterwegs. Über elf Jahre war ich Partner bei viu, einem Schweizer Studio für digitale Produkte. Diese Kombination aus strategischer Tiefe, Nutzerperspektive und echter Umsetzungserfahrung ist die Basis von kenalu.',
     stations        = [],
     projects        = [],
     themes          = [],
     cta_headline    = 'Interesse an einem Gespräch?',
-    cta_text        = '30 Minuten, unverbindlich. Kein Pitch — ein ehrliches Gespräch über eure Ausgangslage.',
+    cta_text        = '30 Minuten, unverbindlich. Kein Pitch. Ein ehrliches Gespräch über eure Ausgangslage.',
     cta_label       = 'Gespräch starten',
     cta_href        = '/contact',
   } = blok;
@@ -62,15 +62,15 @@ export default function DirkProfile({ blok = {}, testimonials = [], photo = null
       client: 'Saferparty.ch',
       period: '2021 – 2022',
       sector: 'NGO · Public Health',
-      text: 'Relaunch der deutschsprachigen Informationsplattform zum sicheren Umgang mit Substanzen. Klare Informationsarchitektur, nutzerfreundliches Design — für eine Zielgruppe, die Vertrauen braucht, keine Belehrung.',
-      award: 'Best of Swiss Web 2022 — Silber, Public Value',
+      text: 'Relaunch der deutschsprachigen Informationsplattform zum sicheren Umgang mit Substanzen. Klare Informationsarchitektur, nutzerfreundliches Design: für eine Zielgruppe, die Vertrauen braucht, keine Belehrung.',
+      award: 'Best of Swiss Web 2022: Silber, Public Value',
     },
     {
       _uid: 'proj-2',
       client: 'Pax Lebensversicherung',
       period: '2020 – 2021',
       sector: 'Finanzdienstleistungen',
-      text: 'Relaunch der Online-Präsenz der Pax Schweizerischen Lebensversicherungs AG. Neues Design, neue Informationsarchitektur, neue technische Plattform auf Basis von Sitecore. End-to-end — von der Strategie bis zur Umsetzungsbegleitung.',
+      text: 'Relaunch der Online-Präsenz der Pax Schweizerischen Lebensversicherungs AG. Neues Design, neue Informationsarchitektur, neue technische Plattform auf Basis von Sitecore. End-to-end: von der Strategie bis zur Umsetzungsbegleitung.',
       award: null,
     },
     {
@@ -78,7 +78,7 @@ export default function DirkProfile({ blok = {}, testimonials = [], photo = null
       client: 'Kantonspolizei',
       period: '2021 – 2023',
       sector: 'Public Sector · Commerce',
-      text: 'Internes Bestellsystem für eine grosse Schweizer Kantonspolizei — für persönliches, verbrauchsgebundenes und Einsatzmaterial. Komplexe Anforderungen, klare Lösung auf Basis von SAP Commerce.',
+      text: 'Internes Bestellsystem für eine grosse Schweizer Kantonspolizei: für persönliches, verbrauchsgebundenes und Einsatzmaterial. Komplexe Anforderungen, klare Lösung auf Basis von SAP Commerce.',
       award: null,
     },
     {
@@ -91,7 +91,7 @@ export default function DirkProfile({ blok = {}, testimonials = [], photo = null
     },
     {
       _uid: 'proj-5',
-      client: 'SIX Group — Advanced Tax Services',
+      client: 'SIX Group: Advanced Tax Services',
       period: '2019 – 2020',
       sector: 'Finanzmarktinfrastruktur',
       text: 'Digitales Steuerprojekt bei SIX Group. Konzeption und Umsetzungsbegleitung im regulierten Finanzumfeld.',
@@ -99,15 +99,15 @@ export default function DirkProfile({ blok = {}, testimonials = [], photo = null
     },
     {
       _uid: 'proj-6',
-      client: 'SIX Group — Cyber Security Operations Center',
+      client: 'SIX Group: Cyber Security Operations Center',
       period: '2018',
       sector: 'Finanzdienstleistungen · Cybersecurity',
-      text: 'Aufbau und Unterstützung der Sales-Aktivitäten für das Cyber Security Operations Center bei SIX — für institutionelle Kunden aus der Finanzwelt.',
+      text: 'Aufbau und Unterstützung der Sales-Aktivitäten für das Cyber Security Operations Center bei SIX, für institutionelle Kunden aus der Finanzwelt.',
       award: null,
     },
     {
       _uid: 'proj-7',
-      client: 'SIX Payment Services — Website Relaunch',
+      client: 'SIX Payment Services: Website Relaunch',
       period: '2017 – 2019',
       sector: 'Finanzmarktinfrastruktur · Digital',
       text: 'Relaunch der Website von SIX Payment Services. Neukonzeption, Design und Umsetzungsbegleitung im komplexen Konzernumfeld.',
@@ -115,7 +115,7 @@ export default function DirkProfile({ blok = {}, testimonials = [], photo = null
     },
     {
       _uid: 'proj-8',
-      client: 'SIX Group — Digital ID',
+      client: 'SIX Group: Digital ID',
       period: '2018',
       sector: 'Finanzmarktinfrastruktur · Digital Identity',
       text: 'Konzeption und Umsetzungsbegleitung für ein Digital Identity-Vorhaben bei SIX Group.',
@@ -134,7 +134,7 @@ export default function DirkProfile({ blok = {}, testimonials = [], photo = null
     },
     {
       label: 'Technisches Verständnis',
-      text: 'Ich spreche die Sprache von Engineering-Teams — ohne selbst zu coden. Das verhindert teure Missverständnisse.',
+      text: 'Ich spreche die Sprache von Engineering-Teams, ohne selbst zu coden. Das verhindert teure Missverständnisse.',
     },
     {
       label: 'Unabhängige Einschätzung',

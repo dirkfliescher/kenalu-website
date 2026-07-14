@@ -14,7 +14,7 @@ export const metadata = {
     default: 'kenalu – Intelligent Experiences',
     template: '%s – kenalu',
   },
-  description: 'Kenalu baut KI-Produkte, die echte Arbeit übernehmen — Agenten, intelligente UX und Assistenzsysteme. KI-Kompetenz und menschliches Urteil kombiniert.',
+  description: 'Kenalu baut KI-Produkte, die echte Arbeit übernehmen: Agenten, intelligente UX und Assistenzsysteme. KI-Kompetenz und menschliches Urteil kombiniert.',
   keywords: ['KI-Produkte', 'AI Agents', 'Intelligent UX', 'KI-Strategie', 'Experience Design', 'Schweiz'],
   authors: [{ name: 'kenalu' }],
   openGraph: {
@@ -23,7 +23,7 @@ export const metadata = {
     url: 'https://kenalu.ch',
     siteName: 'kenalu',
     title: 'kenalu – KI-Produkte, die handeln.',
-    description: 'Kenalu baut Software, die handelt. Agenten, intelligente UX und Assistenz — mit KI als Kern.',
+    description: 'Kenalu baut Software, die handelt. Agenten, intelligente UX und Assistenz. KI als Kern.',
     images: [
       {
         url: '/og-image.png',
@@ -36,7 +36,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'kenalu – KI-Produkte, die handeln.',
-    description: 'Kenalu baut Software, die handelt. Agenten, intelligente UX und Assistenz — mit KI als Kern.',
+    description: 'Kenalu baut Software, die handelt. Agenten, intelligente UX und Assistenz. KI als Kern.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -55,7 +55,7 @@ const jsonLd = {
   name: 'kenalu',
   url: 'https://kenalu.ch',
   logo: 'https://kenalu.ch/og-image.png',
-  description: 'Kenalu baut KI-Produkte, die echte Arbeit übernehmen — Agenten, intelligente UX und Assistenzsysteme. KI-Kompetenz und menschliches Urteil kombiniert.',
+  description: 'Kenalu baut KI-Produkte, die echte Arbeit übernehmen: Agenten, intelligente UX und Assistenzsysteme. KI-Kompetenz und menschliches Urteil kombiniert.',
   founder: {
     '@type': 'Person',
     name: 'Dirk Fliescher',

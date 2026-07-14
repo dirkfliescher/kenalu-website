@@ -8,8 +8,8 @@ import DirkProfile from '../../components/blocks/DirkProfile';
 export const revalidate = 60;
 
 export const metadata = {
-  title: 'Dirk Fliescher — kenalu',
-  description: 'Dirk Fliescher ist Gründer von kenalu. Strategie, Nutzerperspektive und Umsetzung — in einer Person.',
+  title: 'Dirk Fliescher – kenalu',
+  description: 'Dirk Fliescher ist Gründer von kenalu. Strategie, Nutzerperspektive und Umsetzung. In einer Person.',
   robots: { index: false, follow: false }, // Hidden page: kein SEO-Crawling
 };
 

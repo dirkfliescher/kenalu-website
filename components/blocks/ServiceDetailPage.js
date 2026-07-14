@@ -37,7 +37,7 @@ const KAI_CONFIG = {
   Klarheit: {
     contextKey: 'service_klarheit',
     headline: 'Passt Klarheit zu eurer Situation?',
-    intro: 'Stellt eine Frage — Kai hilft euch einordnen.',
+    intro: 'Stellt eine Frage. Kai hilft euch einordnen.',
     initialMessage:
       'Was steht bei euch zur Entscheidung? Ich kann euch sagen, ob und wie eine externe Einschätzung helfen würde.',
     inputPlaceholder: 'Was steht zur Entscheidung?',
@@ -50,7 +50,7 @@ const KAI_CONFIG = {
   'Rapid Build': {
     contextKey: 'service_rapid_build',
     headline: 'Ist Rapid Build der richtige nächste Schritt?',
-    intro: 'Erzählt von eurer Idee — Kai hilft beim Einordnen.',
+    intro: 'Erzählt von eurer Idee. Kai hilft beim Einordnen.',
     initialMessage:
       'Erzählt mir von eurer Idee. Was soll der Prototyp zeigen oder beweisen?',
     inputPlaceholder: 'Was wollt ihr testen?',
@@ -76,7 +76,7 @@ const KAI_CONFIG = {
   Urteil: {
     contextKey: 'service_urteil',
     headline: 'Braucht ihr eine externe Einschätzung?',
-    intro: 'Beschreibt, worum es geht — Kai hilft beim Einordnen.',
+    intro: 'Beschreibt, worum es geht. Kai hilft beim Einordnen.',
     initialMessage:
       'Um was geht es bei eurem Projekt? Ich helfe euch einordnen, ob und wie eine externe Einschätzung helfen würde.',
     inputPlaceholder: 'Was soll beurteilt werden?',
