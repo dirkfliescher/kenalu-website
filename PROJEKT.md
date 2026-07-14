@@ -134,6 +134,8 @@ components/
 scripts/ (gitignored — nie committen)
   cms-rebuild-about.mjs          CMS-REBUILD-01: about_* in Storyblok aufbauen (lokal ausführen)
   cms-services.mjs               CMS-SERVICES-01: services_* + service_* + 5 Stories (lokal ausführen)
+  cms-service-detail-create.mjs  CMS-SERVICES-02: 4 service-detail/* Stories erstellen (lokal ausführen, NEU 2026-07-14)
+  cms-ux-writing-update.mjs      UX-Writing: services Hero + service-detail Headlines (Slugs korrigiert 2026-07-14)
   cms-team-hero.mjs              TEAM-HERO-01: team_hero Komponente + team-page Story (lokal ausführen)
   cms-fix-after-slug-rename.mjs  POST-SLUG: Story-Namen umbenennen, team_hero befüllen, /team-Links → /about
   cms-ki-repositioning.mjs       KI-REPO-01: Homepage, Services, Approach, Footer, 4 Service-Details (ausgeführt 2026-07-13)
@@ -199,11 +201,14 @@ Alle Full-Viewport-Heroes (ausser Homepage) zeigen unten mittig einen animierten
 ### Nav — DARK_HERO_PAGES
 
 ```js
-const DARK_HERO_PAGES = ['/services', '/approach', '/insights', '/about', '/lab', '/contact'];
+// /lab ist EXAKT-MATCH — Artikel-Seiten (/lab/*) haben hellen Hero
+const DARK_HERO_PAGES = ['/services', '/approach', '/insights', '/about', '/contact', '/dirk', '/profile'];
+const onDark = DARK_HERO_PAGES.some((p) => pathname?.startsWith(p)) || pathname === '/lab';
 ```
 
 Nav startet auf diesen Seiten mit hellem Text (ivory). Nach Scroll: dunkles Nav-Band.
 Auf `/contact` wird der CTA «Gespräch starten» ausgeblendet (Besucher ist bereits dort).
+**Wichtig:** `/lab` nur als Exakt-Match — sonst wäre das Logo auf Lab-Artikel-Seiten unsichtbar.
 
 ### Section-Labels
 
@@ -298,10 +303,33 @@ var(--softline)    /* Trennlinien: #e5e7eb */
 
 ---
 
-## Offene Punkte (Stand: 2026-07-13)
+## UX-Writing-Regeln (etabliert 2026-07-14)
+
+Neue Pflichtregeln für alle Texte — gilt für Code UND Storyblok:
+
+- **Hero-Headlines:** unter ~8 Wörter. Keine langen Sätze als Headline.
+- **Kein Gedankenstrich (—)** in Fliesstext oder Headlines.
+- **Wenn eine Pause nötig ist:** Punkt oder Doppelpunkt statt Gedankenstrich.
+- **Nicht einfach streichen — Texte verbessern.**
+
+Bereits umgesetzt in Fallback-Dateien:
+- `services/_fallback-content.js`: Kundenziel-Satz + em-dash → Doppelpunkt im Hero
+- `services/klarheit/_fallback-content.js`: Headline → "Viele Optionen. Keine Entscheidung."
+- `services/produkt/_fallback-content.js`: Headline → "Tragfähig wird ein Produkt erst im Alltag."
+- `lab/page.js`: Karten-Texte und Headlines ohne Gedankenstriche
+- `lab/kenalu-website/page.js`: Hero-Headline gekürzt, Intro restructuriert
+- `insights/page.js`: Hero-Sub, Kai-Intro, Lab-Ref-Strip bereinigt
+
+---
+
+## Offene Punkte (Stand: 2026-07-14)
 
 | Punkt | Status | Details |
 |-------|--------|---------|
+| CMS-SERVICES-02: Service-Detail-Stories erstellen | 🔧 Lokal ausführen | Script `scripts/cms-service-detail-create.mjs` bereit. Erstellt Ordner `service-detail` + 4 Stories: klarheit, rapid-build, produkt, urteil. **Befehl:** `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-service-detail-create.mjs` (Draft), dann mit `--publish` publizieren. Danach greifen die page.js-Dateien auf Storyblok-Inhalte statt Fallbacks zu. |
+| Nav.js: Logo-Bug auf Lab-Artikel-Seiten | ✅ Behoben | `/lab` war in `DARK_HERO_PAGES` als `startsWith`, was `/lab/*` fälschlicherweise erfasste. Jetzt Exakt-Match. **Git push ausstehend.** |
+| UX-Writing: Fallback-Dateien bereinigt | ✅ Erledigt | Hero-Headlines gekürzt (klarheit, produkt), alle Gedankenstriche entfernt/umgeformt (lab/page.js, insights/page.js, lab/kenalu-website/page.js, services/_fallback-content.js). **Git push ausstehend.** |
+| Git push: Session-Änderungen deployen | 🔧 Lokal ausführen | Mehrere Änderungen noch nicht gepusht: Nav.js, globals.css (2-column lca-decision-cards), LabComparison/LabFoundation aria-label, UX-Writing in Fallback-Dateien, neue Scripts. **Befehl:** `cd /Users/dirkfliescher/Documents/kenalu-website && git add -A && git commit -m "fix: Nav logo auf Lab-Artikeln, UX-Writing, responsive Karten, aria-labels" && git push` |
 | KI-Repositionierung: Script ausgeführt | ✅ Ausgeführt | `scripts/cms-ki-repositioning.mjs` läuft. Homepage, Services, Approach, Footer, 4 Service-Details mit KI-Inhalten aktualisiert (2026-07-13). Stories in Storyblok publizieren nicht vergessen. |
 | KI-Repositionierung: layout.js | ✅ Erledigt | Meta-Description, OG-Titel, JSON-LD auf KI-Positionierung aktualisiert (2026-07-13). |
 | KI-Repositionierung: About-Seite Storyblok | 🔧 Lokal ausführen | `scripts/cms-ki-about.mjs` bereit. Fügt `team_hero`-Block in die `about`-Story ein, aktualisiert `about_intro`, `about_beliefs` (neues KI-Belief), `about_team`. **Befehl:** `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-ki-about.mjs --apply` — dann Story in Storyblok publizieren. |
@@ -373,3 +401,6 @@ node scripts/update-hero-labels.js
 - ✅ KI-Repositionierung: `CollaborationIntro.js` Default-Text mit KI-Dimension ergänzt
 - ✅ KI-Repositionierung: `app/about/page.js` FALLBACK_HERO und Metadata auf KI-Positionierung aktualisiert
 - ✅ KI-Repositionierung: `cms-ki-about.mjs` Script erstellt — About-Seite Storyblok-Integration (lokal ausführen)
+- ✅ UX-Writing: Hero-Headlines gekürzt + Gedankenstriche entfernt — alle statischen Fallback-Dateien bereinigt (2026-07-14)
+- ✅ Nav.js: Logo-Bug auf Lab-Artikel-Seiten behoben — `/lab` jetzt Exakt-Match (2026-07-14)
+- ✅ `cms-service-detail-create.mjs`: Script für 4 Service-Detail-Stories erstellt — SEC-003-konform, mit Ordner-Erstellung und Upsert-Logik (2026-07-14)
