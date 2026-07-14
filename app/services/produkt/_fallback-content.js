@@ -4,7 +4,7 @@ export const FALLBACK_PRODUKT_BODY = [
     _uid: 'fp-hero',
     component: 'service_hero',
     sequence_label: '03 / Produkt',
-    headline: 'Ein Produkt beginnt nicht mit dem Release. Es beginnt damit, dass jemand seinen Alltag anders macht.',
+    headline: 'Tragfähig wird ein Produkt erst im Alltag.',
     intro: 'Die Richtung ist klar. Die Präsentation überzeugt. Vielleicht gibt es bereits erste Screens oder Anforderungen. Tragfähig wird ein Produkt aber erst, wenn Menschen es verstehen, Systeme es mittragen und die nächste Entwicklung nicht wieder bei null anfängt.',
     meta: 'Ein gemeinsames Produktvorhaben · Umfang abhängig von Ausgangslage und Produktmoment',
     cta_label: 'Den Produktmoment besprechen →',

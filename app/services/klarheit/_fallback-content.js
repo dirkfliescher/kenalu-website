@@ -4,7 +4,7 @@ export const FALLBACK_KLARHEIT_BODY = [
     _uid: 'fk-hero',
     component: 'service_hero',
     sequence_label: '01 / Klarheit',
-    headline: 'Alle sehen Möglichkeiten. Niemand kann sagen, welche jetzt zählt.',
+    headline: 'Viele Optionen. Keine Entscheidung.',
     intro: 'Neue AI-Ideen, Wünsche aus dem Business, ein digitales Angebot, das besser werden sollte, und vielleicht auch Druck, endlich etwas zu tun. Jede Richtung klingt plausibel. Genau deshalb fällt keine Entscheidung.',
     meta: 'Ein konzentrierter Entscheidungsraum · häufig 4–8 Arbeitstage',
     cta_label: 'Die offene Entscheidung besprechen →',

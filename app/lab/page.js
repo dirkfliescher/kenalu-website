@@ -61,9 +61,9 @@ export default async function LabPage() {
             Aus offenen Fragen wird etwas, das man sehen, testen und entscheiden kann.
           </h1>
           <p className="lpv2-hero-text">
-            Im Lab entstehen eigene Produkte, Experimente und — wo Kontext und Zustimmung es
-            erlauben — Prototypen aus konkreter Arbeit. Alles hier zeigt, wie kenalu aus einer
-            offenen Frage eine tragfähige Richtung macht.
+            Im Lab entstehen eigene Produkte und Experimente, wo möglich auch Prototypen aus
+            konkreter Arbeit. Alles hier zeigt, wie kenalu aus einer offenen Frage eine
+            tragfähige Richtung macht.
           </p>
         </div>
       </section>
@@ -133,8 +133,7 @@ export default async function LabPage() {
               <h3 className="lpv2-what-card-title">KI nicht als Tool, sondern als Partner</h3>
               <p className="lpv2-what-card-text">
                 Im Lab zeigen wir, was entsteht, wenn KI nicht zur Ausführung gerufen
-                wird, sondern von Anfang an mitdenkt — in Strategie, Konzept, Code
-                und Copy.
+                wird, sondern von Anfang an mitdenkt: im Konzept, im Code, in der Sprache.
               </p>
             </div>
 
@@ -158,11 +157,10 @@ export default async function LabPage() {
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">04</p>
-              <h3 className="lpv2-what-card-title">Sichtbar sein — auch für KI</h3>
+              <h3 className="lpv2-what-card-title">Sichtbar auch für KI</h3>
               <p className="lpv2-what-card-text">
-                Was entsteht, wird nicht nur für Menschen gemacht. GEO — wie Produkte
-                in KI-gestützten Antworten auftauchen — ist Teil der Arbeit vom ersten
-                Tag an.
+                Was entsteht, wird nicht nur für Menschen gemacht. GEO ist Teil der
+                Arbeit vom ersten Tag: wie Inhalte in KI-Antworten auftauchen.
               </p>
             </div>
 

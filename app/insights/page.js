@@ -84,8 +84,8 @@ export default async function Insights() {
           <div className="insights-hero-inner">
             <h1 className="insights-hero-headline">Perspektiven auf digitale Produkte und AI.</h1>
             <p className="insights-hero-sub">
-              Einblicke aus der Praxis — zu Strategie, Experience und dem, was bei der Umsetzung
-              tatsächlich zählt.
+              Einblicke aus der Praxis zu Strategie, Experience und dem, was bei der Umsetzung
+              zählt.
             </p>
           </div>
         </div>
@@ -104,7 +104,7 @@ export default async function Insights() {
             contextKey="insights"
             eyebrow="Kai"
             headline="Fragen zu den Beiträgen?"
-            intro="Kai beantwortet Fragen zu Strategie, Experience und AI — und hilft euch einordnen, was relevant ist."
+            intro="Kai beantwortet Fragen zu Strategie, Experience und AI. Er hilft euch einordnen, was relevant ist."
             initialMessage="Habt ihr Fragen zu den Beiträgen oder einem der Themen? Ich helfe euch weiter."
             inputPlaceholder="Was interessiert euch?"
             suggestedPrompts={[
@@ -136,7 +136,7 @@ export default async function Insights() {
               <p className="lab-ref-strip-eyebrow">Lab</p>
               <p className="lab-ref-strip-body">
                 Neben Texten und Perspektiven dokumentiert Kenalu im Lab auch konkrete
-                Arbeitsproben und Prototypen — als nachvollziehbare Ergänzung zu diesen
+                Arbeitsproben und Prototypen, als nachvollziehbare Ergänzung zu diesen
                 Beiträgen.
               </p>
             </div>

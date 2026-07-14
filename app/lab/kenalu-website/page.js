@@ -112,12 +112,12 @@ export default function KenaluWebsiteArtikel() {
         <div className="container">
           <p className="section-label">Eigene Arbeitsprobe</p>
           <h1 className="lca-hero-headline">
-            Wie eine Website vom Schaufenster zum Gespräch wird — und was entsteht, wenn Mensch und KI sie gemeinsam bauen.
+            Was entsteht, wenn eine Website mitdenkt.
           </h1>
           <p className="lca-hero-intro">
             Eine Beratung, die von Klarheit, Experience und Engineering spricht, sollte nicht
             mit einer statischen Broschüre starten. Deshalb wurde kenalu.ch als Produkt
-            gedacht — und als lebendiger Beweis für das, was kenalu propagiert: KI nicht als
+            gedacht. Als lebendiger Beweis für das, was kenalu propagiert: KI nicht als
             Hilfsmittel am Rand, sondern als Kern des Prozesses und des Produkts.
           </p>
           <p className="lca-hero-meta">

@@ -7,7 +7,7 @@ export const FALLBACK_SERVICES_BODY = [
     component: 'services_hero',
     eyebrow: 'Leistungen',
     headline: 'Nicht jede gute Idee braucht denselben Anfang.',
-    body: 'Ob Nutzer etwas verstehen, eine Entscheidung treffen oder konkret handeln sollen — das Erlebnis dahinter macht den Unterschied. Manche Vorhaben brauchen zuerst eine Entscheidung. Manche einen sichtbaren Beweis. Manche ein Produkt, das im Alltag trägt. Und manchmal braucht es eine ehrliche zweite Sicht, bevor etwas weiterläuft.',
+    body: 'Ob Nutzer etwas verstehen, eine Entscheidung treffen oder konkret handeln sollen: Das Erlebnis dahinter macht den Unterschied. Manche Vorhaben brauchen zuerst eine Entscheidung. Manche einen sichtbaren Beweis. Manche ein Produkt, das im Alltag trägt. Und manchmal braucht es eine ehrliche zweite Sicht, bevor etwas weiterläuft.',
   },
   {
     _uid: 'fs-cards',
