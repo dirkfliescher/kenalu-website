@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
-const SERVICES = [
+// ── Fallback-Daten (aktiver Inhalt, wenn Storyblok leer) ─────────────
+const DEFAULT_SERVICES = [
   {
     number: '01',
     name: 'Klarheit',
@@ -47,13 +48,32 @@ const SERVICES = [
   },
 ];
 
-export default function ServicesCompare() {
+// ── Storyblok → interne Struktur ─────────────────────────────────────
+function parseItems(blokItems) {
+  if (!blokItems?.length) return DEFAULT_SERVICES;
+  return blokItems.map((item) => ({
+    number:  item.number  || '',
+    name:    item.name    || '',
+    anchor:  item.anchor  || '#',
+    tagline: item.tagline || '',
+    // when_items: Textarea mit einem Eintrag pro Zeile
+    when: (item.when_items || '')
+      .split('\n')
+      .map((s) => s.trim())
+      .filter(Boolean),
+  }));
+}
+
+export default function ServicesCompare({ blok = {} }) {
+  const services = parseItems(blok.items);
+  const label    = blok.label || 'Was passt zu euch?';
+
   return (
     <section className="svc-compare">
       <div className="container container--wide">
-        <p className="section-label">Was passt zu euch?</p>
+        <p className="section-label">{label}</p>
         <div className="svc-compare-grid">
-          {SERVICES.map((svc) => (
+          {services.map((svc) => (
             <Link key={svc.number} href={`/services${svc.anchor}`} className="svc-compare-card">
               <div className="svc-compare-head">
                 <span className="svc-compare-number">{svc.number}</span>

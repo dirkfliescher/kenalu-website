@@ -99,7 +99,10 @@ components/
     EcosystemPartners.js         Partner-Sektion (nicht mehr für /about)
     CollaborationIntro.js        Zusammenarbeit-Intro
     ProductMomentBuilder.js      Lab: Produktmoment-Builder
-    FitTest.js                   Fit-Test
+    FitTest.js                   Fit-Test — blok-aware: parseFragen/parseErgebnisse, MAX aus Daten, Ergebnis bekommt Props (CONTENT-MIGRATE-01)
+    CheckTool.js                 AI Readiness Check — blok-aware: parseQuestions/parseProfiles, Scoring bleibt in JS (CONTENT-MIGRATE-01)
+    TeamIntro.js                 Team Intro — blok-aware: ModeSpiel bekommt runden-Prop, ModeQuiz bekommt quiz-Prop (CONTENT-MIGRATE-01)
+    ServicesCompare.js           Services Compare — blok-aware: parseItems, label aus blok (CONTENT-MIGRATE-01)
     AboutHero.js                 /about Hero (CMS-REBUILD-01)
     AboutWorkingWhy.js           /about Warum-Abschnitt (CMS-REBUILD-01)
     AboutWorkingSteps.js         /about Schritte (CMS-REBUILD-01)
@@ -144,6 +147,7 @@ scripts/ (gitignored — nie committen)
   update-hero-labels.js          Storyblok: hero_label + contact_label leeren
   update-dirk-bio.mjs            /dirk Bio-Text aktualisieren (Syntheseversion) — slugsToTry: ['dirk', 'team/dirk-fliescher']
   reset-team-bio.mjs             team/dirk-fliescher bio_text entfernen (SEC-003-konform)
+  cms-interactive-content.mjs    CONTENT-MIGRATE-01: Inhalte aus 5 Komponenten nach Storyblok (lokal ausführen — NEU 2026-07-14)
 
 docs/                            Projektdokumentation (Markdown)
 ```
@@ -341,7 +345,8 @@ Bewusst ausgelassen (nicht nutzersichtig): Code-Kommentare (`//`), KI-System-Pro
 | CMS-SERVICES-02: Service-Detail-Stories erstellen | 🔧 Lokal ausführen | Script `scripts/cms-service-detail-create.mjs` bereit. Erstellt Ordner `service-detail` + 4 Stories: klarheit, rapid-build, produkt, urteil. **Befehl:** `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-service-detail-create.mjs` (Draft), dann mit `--publish` publizieren. Danach greifen die page.js-Dateien auf Storyblok-Inhalte statt Fallbacks zu. |
 | Nav.js: Logo-Bug auf Lab-Artikel-Seiten | ✅ Behoben | `/lab` war in `DARK_HERO_PAGES` als `startsWith`, was `/lab/*` fälschlicherweise erfasste. Jetzt Exakt-Match. **Git push ausstehend.** |
 | UX-Writing: Vollständige Sweep-Session | ✅ Erledigt | 20+ Code-Dateien bereinigt: ~60 em-Dashes ersetzt, du/dir → ihr/euch in FitTest/TeamIntro/LabBuilder/DirkProfile. Storyblok-Headline (Services Hero) via `cms-ux-writing-update.mjs` patchbar. **Git push ausstehend.** |
-| Git push: Session-Änderungen deployen | 🔧 Lokal ausführen | Alle Änderungen seit letztem Push noch nicht deployed: Nav.js, globals.css, UX-Writing-Sweep (20+ Dateien), du/dir→ihr/euch in FitTest/TeamIntro/LabBuilder/DirkProfile, neue Scripts. **Befehl:** `cd /Users/dirkfliescher/Documents/kenalu-website && git add -A && git commit -m "fix: UX-Writing-Sweep — em-dashes, du/dir→ihr/euch, Services-Hero-Headline" && git push` |
+| CONTENT-MIGRATE-01: cms-interactive-content.mjs ausführen | 🔧 Lokal ausführen | Überführt Inhalte aus 5 Komponenten nach Storyblok. **Reihenfolge:** (1) `git add -A && git commit -m "feat: CONTENT-MIGRATE-01 — 5 Komponenten blok-aware, cms-interactive-content.mjs" && git push`. (2) Schema erstellen: `STORYBLOK_MANAGEMENT_TOKEN=<token> node scripts/cms-interactive-content.mjs --migrate-schema`. (3) Inhalte + Publish: `STORYBLOK_MANAGEMENT_TOKEN=<token> STORYBLOK_ALLOW_PUBLISH=YES node scripts/cms-interactive-content.mjs --migrate-schema --publish`. **Was das Script macht:** Erstellt 11 nested Component-Schemas (services_compare_card, fit_frage, fit_option, fit_ergebnis, team_intro_runde, team_intro_quiz_frage, check_frage, check_option, dirk_station, dirk_project, dirk_theme). Erweitert 5 Parent-Schemas. Befüllt 5 Stories (services, mitwirken, about/home, check, dirk). |
+| Git push: Session-Änderungen deployen | 🔧 Lokal ausführen | Alle Änderungen seit letztem Push noch nicht deployed: Nav.js, globals.css, UX-Writing-Sweep, CONTENT-MIGRATE-01 (5 Komponenten + check/page.js + neues Script). **Befehl:** `cd /Users/dirkfliescher/Documents/kenalu-website && git add -A && git commit -m "feat: CONTENT-MIGRATE-01 — 5 Komponenten blok-aware, check/page.js Storyblok-first, cms-interactive-content.mjs" && git push` |
 | KI-Repositionierung: Script ausgeführt | ✅ Ausgeführt | `scripts/cms-ki-repositioning.mjs` läuft. Homepage, Services, Approach, Footer, 4 Service-Details mit KI-Inhalten aktualisiert (2026-07-13). Stories in Storyblok publizieren nicht vergessen. |
 | KI-Repositionierung: layout.js | ✅ Erledigt | Meta-Description, OG-Titel, JSON-LD auf KI-Positionierung aktualisiert (2026-07-13). |
 | KI-Repositionierung: About-Seite Storyblok | 🔧 Lokal ausführen | `scripts/cms-ki-about.mjs` bereit. Fügt `team_hero`-Block in die `about`-Story ein, aktualisiert `about_intro`, `about_beliefs` (neues KI-Belief), `about_team`. **Befehl:** `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-ki-about.mjs --apply` — dann Story in Storyblok publizieren. |
@@ -416,3 +421,11 @@ node scripts/update-hero-labels.js
 - ✅ UX-Writing: Umfassende Sweep-Session — alle Code-Dateien bereinigt (2026-07-14): ~60 em-Dashes in 20+ Dateien ersetzt, zusätzlich du/dir/dich → ihr/euch/euer in FitTest, TeamIntro, LabBuilder, DirkProfile
 - ✅ Nav.js: Logo-Bug auf Lab-Artikel-Seiten behoben — `/lab` jetzt Exakt-Match (2026-07-14)
 - ✅ `cms-service-detail-create.mjs`: Script für 4 Service-Detail-Stories erstellt — SEC-003-konform, mit Ordner-Erstellung und Upsert-Logik (2026-07-14)
+- ✅ CONTENT-MIGRATE-01: 5 Komponenten blok-aware gemacht (2026-07-14):
+  - `ServicesCompare.js` → `parseItems(blok.items)`, `blok.label`
+  - `FitTest.js` → `parseFragen(blok.fragen)`, `parseErgebnisse(blok.ergebnisse)`, MAX aus Daten, Ergebnis bekommt Props (nicht mehr Modul-Scope)
+  - `TeamIntro.js` → `parseRunden(blok.dirk_runden/stan_runden)`, `parseQuiz(blok.quiz_fragen)`, ModeSpiel/ModeQuiz bekommen Daten als Props
+  - `CheckTool.js` → `parseQuestions(blok.questions)`, `parseProfiles(blok)`, `getProfile(answers, profiles)`, Scoring-Algorithmus bleibt in JS
+  - `DirkProfile.js` → war bereits blok-aware (nur Schema/Daten ausstehend)
+  - `app/check/page.js` → Storyblok-first: lädt "check"-Story, gibt `blok` an CheckTool weiter
+  - `scripts/cms-interactive-content.mjs` → SEC-003-konform, erstellt 11 Schemas + befüllt 5 Stories (lokal ausführen)

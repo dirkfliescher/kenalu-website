@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-// ── Daten ─────────────────────────────────────────────────────────
-const FRAGEN = [
+// ── Fallback-Daten (aktiver Inhalt, wenn Storyblok leer) ─────────────
+const DEFAULT_FRAGEN = [
   {
     frage: 'Ein Kunde schickt euch ein 60-seitiges Briefing. Was macht ihr zuerst?',
     optionen: [
@@ -54,9 +54,7 @@ const FRAGEN = [
   },
 ];
 
-const MAX = FRAGEN.reduce((s, f) => s + Math.max(...f.optionen.map(o => o.punkte)), 0);
-
-const ERGEBNISSE = [
+const DEFAULT_ERGEBNISSE = [
   {
     minScore: 15,
     titel: 'Ihr passt.',
@@ -80,15 +78,42 @@ const ERGEBNISSE = [
   },
 ];
 
-// ── Komponente ────────────────────────────────────────────────────
-export default function FitTest() {
+// ── Storyblok → interne Struktur ─────────────────────────────────────
+function parseFragen(blokFragen) {
+  if (!blokFragen?.length) return DEFAULT_FRAGEN;
+  return blokFragen.map((f) => ({
+    frage: f.frage || '',
+    optionen: (f.optionen || []).map((o) => ({
+      label:  o.label  || '',
+      punkte: Number(o.punkte ?? 0),
+    })),
+  }));
+}
+
+function parseErgebnisse(blokErgebnisse) {
+  if (!blokErgebnisse?.length) return DEFAULT_ERGEBNISSE;
+  return blokErgebnisse.map((e) => ({
+    minScore: Number(e.min_score ?? 0),
+    titel:    e.titel || '',
+    sub:      e.sub   || '',
+    farbe:    e.farbe || 'mittel',
+    cta:      e.cta === true || e.cta === 'true',
+  }));
+}
+
+// ── Haupt-Komponente ──────────────────────────────────────────────────
+export default function FitTest({ blok = {} }) {
+  const fragen     = parseFragen(blok.fragen);
+  const ergebnisse = parseErgebnisse(blok.ergebnisse);
+  const max        = fragen.reduce((s, f) => s + Math.max(...f.optionen.map((o) => o.punkte)), 0);
+
   const [schritt, setSchritt]     = useState(0);
   const [antworten, setAntworten] = useState([]);
   const [gewaehlt, setGewaehlt]   = useState(null);
   const [fertig, setFertig]       = useState(false);
 
-  const frage    = FRAGEN[schritt];
-  const progress = (schritt / FRAGEN.length) * 100;
+  const frage    = fragen[schritt];
+  const progress = (schritt / fragen.length) * 100;
 
   function waehle(idx) { setGewaehlt(idx); }
 
@@ -96,10 +121,10 @@ export default function FitTest() {
     if (gewaehlt === null) return;
     const next = [...antworten, frage.optionen[gewaehlt].punkte];
     setAntworten(next);
-    if (next.length >= FRAGEN.length) {
+    if (next.length >= fragen.length) {
       setFertig(true);
     } else {
-      setSchritt(s => s + 1);
+      setSchritt((s) => s + 1);
       setGewaehlt(null);
     }
   }
@@ -118,12 +143,18 @@ export default function FitTest() {
 
           {/* Linke Seite: Text */}
           <div className="fit-intro">
-            <p className="section-label">Eine ehrliche Einschätzung.</p>
-            <h2 className="fit-headline">6 Fragen.<br />Eine ehrliche Einschätzung.</h2>
+            <p className="section-label">{blok.label || 'Eine ehrliche Einschätzung.'}</p>
+            <h2 className="fit-headline">
+              {blok.headline || '6 Fragen.'}<br />
+              {blok.sub_headline || 'Eine ehrliche Einschätzung.'}
+            </h2>
             <p className="fit-sub">
-              Wir arbeiten gerne mit Menschen zusammen, die fachlich tief gehen, Verantwortung
-              übernehmen und nicht zwischen Denken und Machen unterscheiden.<br />
-              Sechs Fragen helfen euch einzuschätzen, ob das passt.
+              {blok.intro_text ||
+                'Wir arbeiten gerne mit Menschen zusammen, die fachlich tief gehen, Verantwortung übernehmen und nicht zwischen Denken und Machen unterscheiden.'
+              }<br />
+              {blok.intro_sub ||
+                'Sechs Fragen helfen euch einzuschätzen, ob das passt.'
+              }
             </p>
           </div>
 
@@ -132,13 +163,15 @@ export default function FitTest() {
             {fertig ? (
               <Ergebnis
                 antworten={antworten}
+                ergebnisse={ergebnisse}
+                max={max}
                 onNeustart={neustart}
               />
             ) : (
               <Quiz
                 frage={frage}
                 schritt={schritt}
-                total={FRAGEN.length}
+                total={fragen.length}
                 progress={progress}
                 gewaehlt={gewaehlt}
                 onWaehle={waehle}
@@ -153,7 +186,7 @@ export default function FitTest() {
   );
 }
 
-// ── Quiz-Schritt ──────────────────────────────────────────────────
+// ── Quiz-Schritt ──────────────────────────────────────────────────────
 function Quiz({ frage, schritt, total, progress, gewaehlt, onWaehle, onWeiter }) {
   return (
     <div className="fit-quiz">
@@ -184,10 +217,13 @@ function Quiz({ frage, schritt, total, progress, gewaehlt, onWaehle, onWeiter })
   );
 }
 
-// ── Ergebnis ──────────────────────────────────────────────────────
-function Ergebnis({ antworten, onNeustart }) {
+// ── Ergebnis ──────────────────────────────────────────────────────────
+// Bekommt ergebnisse + max als Props (nicht mehr aus Modul-Scope)
+function Ergebnis({ antworten, ergebnisse, max, onNeustart }) {
   const score    = antworten.reduce((s, p) => s + p, 0);
-  const ergebnis = ERGEBNISSE.find(e => score >= e.minScore);
+  const ergebnis = ergebnisse.find((e) => score >= e.minScore);
+
+  if (!ergebnis) return null;
 
   return (
     <div className="fit-ergebnis">
@@ -195,7 +231,7 @@ function Ergebnis({ antworten, onNeustart }) {
         {ergebnis.titel}
       </div>
       <p className="fit-result-sub">{ergebnis.sub}</p>
-      <p className="fit-result-score">{score} / {MAX} Punkte</p>
+      <p className="fit-result-score">{score} / {max} Punkte</p>
       {ergebnis.cta && (
         <a href="/contact" className="btn btn-primary fit-cta">
           Gespräch anfragen →

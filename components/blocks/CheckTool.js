@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-const QUESTIONS = [
+// ── Fallback-Daten (aktiver Inhalt, wenn Storyblok leer) ─────────────
+const DEFAULT_QUESTIONS = [
   {
     axis: 'clarity',
     question: 'Wie klar ist euch, wo AI in eurem Kontext wirklich Hebel erzeugt?',
@@ -60,7 +61,7 @@ const QUESTIONS = [
 ];
 
 // Jedes Profil empfiehlt eine kenalu-Leistung
-const PROFILES = {
+const DEFAULT_PROFILES = {
   klarheit: {
     name: 'Ihr braucht Klarheit zuerst.',
     service: '01 Klarheit',
@@ -103,52 +104,90 @@ const PROFILES = {
   },
 };
 
-function getProfile(answers) {
+// ── Storyblok → interne Struktur ─────────────────────────────────────
+function parseQuestions(blokQuestions) {
+  if (!blokQuestions?.length) return DEFAULT_QUESTIONS;
+  return blokQuestions.map((q) => ({
+    axis:     q.axis     || 'clarity',
+    question: q.question || '',
+    options:  (q.options || []).map((o) => ({
+      label: o.label        || '',
+      value: Number(o.value ?? 1),
+    })),
+  }));
+}
+
+function parseProfiles(blok) {
+  // Profile werden als Gruppe von Feldern auf dem blok gespeichert:
+  // blok.profile_klarheit_name, blok.profile_klarheit_tagline, usw.
+  const keys = ['klarheit', 'rapidbuild', 'produkt', 'urteil'];
+  const hasAny = keys.some((k) => blok[`profile_${k}_name`]);
+  if (!hasAny) return DEFAULT_PROFILES;
+
+  return Object.fromEntries(
+    keys.map((k) => [
+      k,
+      {
+        name:        blok[`profile_${k}_name`]        || DEFAULT_PROFILES[k].name,
+        service:     blok[`profile_${k}_service`]     || DEFAULT_PROFILES[k].service,
+        tagline:     blok[`profile_${k}_tagline`]     || DEFAULT_PROFILES[k].tagline,
+        description: blok[`profile_${k}_description`] || DEFAULT_PROFILES[k].description,
+        href:        blok[`profile_${k}_href`]        || DEFAULT_PROFILES[k].href,
+      },
+    ])
+  );
+}
+
+// ── Scoring-Algorithmus (bleibt immer in JS) ──────────────────────────
+function getProfile(answers, profiles) {
   // answers[0..1] → clarity (1=klar, 3=unklar)
   // answers[2..3] → urgency (1=gering, 3=hoch)
   // answers[4..5] → maturity (1=fortgeschritten, 3=anfang)
 
   const clarity  = answers[0] + answers[1];   // 2–6
   const urgency  = answers[2] + answers[3];   // 2–6
-  const maturity = answers[4] + answers[5];   // 2–6
 
   // Bestehendes reviewen → Urteil
-  if (answers[5] === 1) return PROFILES.urteil;
+  if (answers[5] === 1) return profiles.urteil;
 
   // Schnell was bauen → Rapid Build
-  if (answers[5] === 2 && clarity <= 4) return PROFILES.rapidbuild;
+  if (answers[5] === 2 && clarity <= 4) return profiles.rapidbuild;
 
   // Keine Klarheit → Klarheit
-  if (clarity >= 5) return PROFILES.klarheit;
+  if (clarity >= 5) return profiles.klarheit;
 
   // Urgency hoch + Maturity niedrig → Klarheit
-  if (urgency >= 5 && maturity >= 5) return PROFILES.klarheit;
+  if (urgency >= 5 && (answers[4] + answers[5]) >= 5) return profiles.klarheit;
 
   // Bereit, Klarheit da → Produkt
-  if (clarity <= 3 && urgency >= 4) return PROFILES.produkt;
+  if (clarity <= 3 && urgency >= 4) return profiles.produkt;
 
   // Rapid Build als guter Default für "irgendwo in der Mitte"
-  return PROFILES.rapidbuild;
+  return profiles.rapidbuild;
 }
 
-export default function CheckTool() {
-  const [phase, setPhase]   = useState('intro');
-  const [current, setCurrent] = useState(0);
-  const [answers, setAnswers] = useState([]);
-  const [selected, setSelected] = useState(null);
-  const [profile, setProfile] = useState(null);
-  const [email, setEmail]   = useState('');
-  const [emailSending, setEmailSending] = useState(false);
-  const [emailSent, setEmailSent] = useState(false);
+// ── Haupt-Komponente ──────────────────────────────────────────────────
+export default function CheckTool({ blok = {} }) {
+  const questions = parseQuestions(blok.questions);
+  const profiles  = parseProfiles(blok);
 
-  const total    = QUESTIONS.length;
-  const q        = QUESTIONS[current];
+  const [phase, setPhase]       = useState('intro');
+  const [current, setCurrent]   = useState(0);
+  const [answers, setAnswers]   = useState([]);
+  const [selected, setSelected] = useState(null);
+  const [profile, setProfile]   = useState(null);
+  const [email, setEmail]       = useState('');
+  const [emailSending, setEmailSending] = useState(false);
+  const [emailSent, setEmailSent]       = useState(false);
+
+  const total    = questions.length;
+  const q        = questions[current];
   const progress = (current / total) * 100;
 
   const AXIS_LABELS = {
-    clarity:  'Orientierung',
-    urgency:  'Dringlichkeit',
-    maturity: 'Stand heute',
+    clarity:  blok.label_clarity  || 'Orientierung',
+    urgency:  blok.label_urgency  || 'Dringlichkeit',
+    maturity: blok.label_maturity || 'Stand heute',
   };
 
   function start() { setPhase('quiz'); setCurrent(0); setAnswers([]); setSelected(null); }
@@ -158,7 +197,7 @@ export default function CheckTool() {
     const newAnswers = [...answers, selected];
     if (current + 1 >= total) {
       setAnswers(newAnswers);
-      setProfile(getProfile(newAnswers));
+      setProfile(getProfile(newAnswers, profiles));
       setPhase('result');
     } else {
       setAnswers(newAnswers);
@@ -194,17 +233,19 @@ export default function CheckTool() {
       <main className="check-page">
         <section className="check-intro">
           <div className="check-intro-inner">
-            <p className="section-label">AI Readiness · 6 Fragen · 2 Minuten</p>
+            <p className="section-label">
+              {blok.intro_label || 'AI Readiness · 6 Fragen · 2 Minuten'}
+            </p>
             <h1 className="check-intro-headline">
-              Wo steht ihr<br />mit AI?
+              {blok.intro_headline || <span>Wo steht ihr<br />mit AI?</span>}
             </h1>
             <div className="check-intro-foot">
               <p className="check-intro-sub">
-                Nicht jedes Unternehmen braucht dasselbe. Sechs Fragen. Ihr seht,
-                welche kenalu-Leistung zu eurer Situation passt.
+                {blok.intro_sub ||
+                  'Nicht jedes Unternehmen braucht dasselbe. Sechs Fragen. Ihr seht, welche kenalu-Leistung zu eurer Situation passt.'}
               </p>
               <button className="btn btn-primary check-start-btn" onClick={start}>
-                Einschätzung starten →
+                {blok.start_label || 'Einschätzung starten →'}
               </button>
             </div>
           </div>
@@ -258,7 +299,7 @@ export default function CheckTool() {
       <main className="check-page">
         <section className="check-result">
           <div className="container">
-            <p className="section-label">Eure Einschätzung</p>
+            <p className="section-label">{blok.result_label || 'Eure Einschätzung'}</p>
 
             <div className="check-profile-card">
               <div className="check-profile-content">

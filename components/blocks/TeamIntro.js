@@ -1,8 +1,8 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
 
-// ── Spiel-Daten (Placeholder – wird via Storyblok ersetzt) ────────
-const SPIEL = {
+// ── Fallback-Daten (aktiver Inhalt, wenn Storyblok leer) ─────────────
+const DEFAULT_SPIEL = {
   dirk: [
     {
       aussagen: [
@@ -63,36 +63,34 @@ const SPIEL = {
   ],
 };
 
-// ── Quiz-Daten ────────────────────────────────────────────────────
-const QUIZ = [
-  {
-    frage: 'Ein neues Projekt startet. Was machst du zuerst?',
-    dirk_label: 'Kontext klären',
-    stan_label: 'Direkt loslegen',
-  },
-  {
-    frage: 'Wie triffst du schwierige Entscheidungen?',
-    dirk_label: 'Aus dem Bauch',
-    stan_label: 'Mit Daten',
-  },
-  {
-    frage: 'Was ist dein liebster Arbeitsmodus?',
-    dirk_label: 'Denken + Austausch',
-    stan_label: 'Deep Work solo',
-  },
-  {
-    frage: 'Ein Projekt läuft nicht gut. Wie reagierst du?',
-    dirk_label: 'Reframen',
-    stan_label: 'Root Cause',
-  },
-  {
-    frage: 'Was bedeutet Qualität für dich?',
-    dirk_label: 'Erlebnis',
-    stan_label: 'Zuverlässigkeit',
-  },
+const DEFAULT_QUIZ = [
+  { frage: 'Ein neues Projekt startet. Was machst du zuerst?',       dirk_label: 'Kontext klären',   stan_label: 'Direkt loslegen'  },
+  { frage: 'Wie triffst du schwierige Entscheidungen?',              dirk_label: 'Aus dem Bauch',     stan_label: 'Mit Daten'        },
+  { frage: 'Was ist dein liebster Arbeitsmodus?',                    dirk_label: 'Denken + Austausch', stan_label: 'Deep Work solo'   },
+  { frage: 'Ein Projekt läuft nicht gut. Wie reagierst du?',         dirk_label: 'Reframen',          stan_label: 'Root Cause'       },
+  { frage: 'Was bedeutet Qualität für dich?',                        dirk_label: 'Erlebnis',          stan_label: 'Zuverlässigkeit'  },
 ];
 
-// ── Sub-Komponenten ───────────────────────────────────────────────
+// ── Storyblok → interne Struktur ─────────────────────────────────────
+function parseRunden(blokRunden, personDefault) {
+  if (!blokRunden?.length) return personDefault;
+  return blokRunden.map((r) => ({
+    aussagen: [r.aussage_1, r.aussage_2, r.aussage_3].filter(Boolean),
+    luege:       Number(r.luege ?? 0),
+    erklaerung:  r.erklaerung || '',
+  }));
+}
+
+function parseQuiz(blokQuiz) {
+  if (!blokQuiz?.length) return DEFAULT_QUIZ;
+  return blokQuiz.map((q) => ({
+    frage:      q.frage      || '',
+    dirk_label: q.dirk_label || '',
+    stan_label: q.stan_label || '',
+  }));
+}
+
+// ── Sub-Komponenten ───────────────────────────────────────────────────
 
 function PersonToggle({ person, onChange }) {
   return (
@@ -216,28 +214,28 @@ function ModeChat({ person }) {
 }
 
 // Modus 2: 3 Aussagen, 1 Lüge
-function ModeSpiel({ person }) {
-  const runden = SPIEL[person];
-  const [runde, setRunde]     = useState(0);
+// runden: Array von { aussagen, luege, erklaerung } — kommt als Prop
+function ModeSpiel({ person, runden }) {
+  const [runde, setRunde]       = useState(0);
   const [gewaehlt, setGewaehlt] = useState(null);
-  const [punkte, setPunkte]   = useState(0);
-  const [fertig, setFertig]   = useState(false);
+  const [punkte, setPunkte]     = useState(0);
+  const [fertig, setFertig]     = useState(false);
 
-  const aktuelle = runden[runde];
+  const aktuelle  = runden[runde];
   const aufgeloest = gewaehlt !== null;
-  const richtig = gewaehlt === aktuelle.luege;
+  const richtig    = gewaehlt === aktuelle.luege;
 
   function waehle(idx) {
     if (aufgeloest) return;
     setGewaehlt(idx);
-    if (idx === aktuelle.luege) setPunkte(p => p + 1);
+    if (idx === aktuelle.luege) setPunkte((p) => p + 1);
   }
 
   function weiter() {
     if (runde + 1 >= runden.length) {
       setFertig(true);
     } else {
-      setRunde(r => r + 1);
+      setRunde((r) => r + 1);
       setGewaehlt(null);
     }
   }
@@ -322,18 +320,19 @@ function ModeSpiel({ person }) {
 }
 
 // Modus 3: Wer bist du eher?
-function ModeQuiz() {
-  const [schritt, setSchritt] = useState(0);
+// quiz: Array von { frage, dirk_label, stan_label } — kommt als Prop
+function ModeQuiz({ quiz }) {
+  const [schritt, setSchritt]     = useState(0);
   const [antworten, setAntworten] = useState([]);
-  const [fertig, setFertig]   = useState(false);
+  const [fertig, setFertig]       = useState(false);
 
   function waehle(person) {
     const next = [...antworten, person];
     setAntworten(next);
-    if (next.length >= QUIZ.length) {
+    if (next.length >= quiz.length) {
       setFertig(true);
     } else {
-      setSchritt(s => s + 1);
+      setSchritt((s) => s + 1);
     }
   }
 
@@ -344,11 +343,11 @@ function ModeQuiz() {
   }
 
   if (fertig) {
-    const dirkCount = antworten.filter(a => a === 'dirk').length;
+    const dirkCount = antworten.filter((a) => a === 'dirk').length;
     const stanCount = antworten.length - dirkCount;
-    const match = dirkCount >= stanCount ? 'dirk' : 'stan';
+    const match     = dirkCount >= stanCount ? 'dirk' : 'stan';
     const matchName = match === 'dirk' ? 'Dirk' : 'Stan';
-    const other = match === 'dirk' ? 'Stan' : 'Dirk';
+    const other     = match === 'dirk' ? 'Stan' : 'Dirk';
 
     const beschreibung = match === 'dirk'
       ? 'Ihr denkt strategisch, schätzt den Kontext und wollt erst verstehen, bevor ihr handelt. Das passt zu Dirks Arbeitsweise.'
@@ -369,15 +368,15 @@ function ModeQuiz() {
     );
   }
 
-  const q = QUIZ[schritt];
-  const progress = (schritt / QUIZ.length) * 100;
+  const q        = quiz[schritt];
+  const progress = (schritt / quiz.length) * 100;
 
   return (
     <div className="ti-quiz">
       <div className="ti-quiz-progress-bar">
         <div className="ti-quiz-progress-fill" style={{ width: `${progress}%` }} />
       </div>
-      <p className="ti-quiz-counter">{schritt + 1} / {QUIZ.length}</p>
+      <p className="ti-quiz-counter">{schritt + 1} / {quiz.length}</p>
       <p className="ti-quiz-frage">{q.frage}</p>
       <div className="ti-quiz-optionen">
         <button className="ti-quiz-option" onClick={() => waehle('dirk')}>
@@ -391,14 +390,21 @@ function ModeQuiz() {
   );
 }
 
-// ── Haupt-Komponente ──────────────────────────────────────────────
+// ── Haupt-Komponente ──────────────────────────────────────────────────
 const MODI = [
   { id: 'chat',  label: 'Fragen stellen' },
   { id: 'spiel', label: '3 Aussagen, 1 Lüge' },
   { id: 'quiz',  label: 'Wer bist du eher?' },
 ];
 
-export default function TeamIntro() {
+export default function TeamIntro({ blok = {} }) {
+  // Storyblok-Daten parsen, Fallback auf Hardcode
+  const spiel = {
+    dirk: parseRunden(blok.dirk_runden, DEFAULT_SPIEL.dirk),
+    stan: parseRunden(blok.stan_runden, DEFAULT_SPIEL.stan),
+  };
+  const quiz = parseQuiz(blok.quiz_fragen);
+
   const [modus, setModus]   = useState('chat');
   const [person, setPerson] = useState('dirk');
 
@@ -408,10 +414,10 @@ export default function TeamIntro() {
     <section className="ti-section">
       <div className="container">
         <div className="ti-header">
-          <p className="section-label">Interaktiv</p>
-          <h2 className="ti-headline">Direkt fragen. Spielen. Vergleichen.</h2>
+          <p className="section-label">{blok.label || 'Interaktiv'}</p>
+          <h2 className="ti-headline">{blok.headline || 'Direkt fragen. Spielen. Vergleichen.'}</h2>
           <p className="ti-sub">
-            Stellt Dirk oder Stan eine Frage, findet die Lüge oder seht, mit wem ihr mehr gemeinsam habt.
+            {blok.sub || 'Stellt Dirk oder Stan eine Frage, findet die Lüge oder seht, mit wem ihr mehr gemeinsam habt.'}
           </p>
         </div>
 
@@ -437,8 +443,8 @@ export default function TeamIntro() {
           {/* Inhalte */}
           <div className="ti-content">
             {modus === 'chat'  && <ModeChat  key={person} person={person} />}
-            {modus === 'spiel' && <ModeSpiel key={person} person={person} />}
-            {modus === 'quiz'  && <ModeQuiz />}
+            {modus === 'spiel' && <ModeSpiel key={person} person={person} runden={spiel[person]} />}
+            {modus === 'quiz'  && <ModeQuiz  quiz={quiz} />}
           </div>
         </div>
       </div>
