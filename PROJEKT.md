@@ -53,6 +53,8 @@ Fünf getrackte Scripts auf `origin/main` wurden in SEC-003 gehärtet:
 - Services: `186361777859852`
 - About (Arbeitsweise/approach): `186589241977666`
 - Über kenalu (about): `192824515818108`
+- Custom AI Product Development: `211100241791605` (slug: `custom-ai-product`, Root-Ebene — noch nicht in service-detail-Ordner)
+- AI Development Consulting: `211100245330550` (slug: `ai-development-consulting`, Root-Ebene — noch nicht in service-detail-Ordner)
 - Rate Limit: 6 Requests/Sekunde → Scripts mit `await sleep(300)` vor jedem Request
 
 ---
@@ -151,6 +153,8 @@ scripts/ (gitignored — nie committen)
   cms-interactive-content.mjs    CONTENT-MIGRATE-01: Inhalte aus 5 Komponenten nach Storyblok (lokal ausführen — NEU 2026-07-14)
 
 docs/                            Projektdokumentation (Markdown)
+  pages/                         Per-Page-Docs (homepage.md, services.md, approach.md, etc.)
+  components/                    Per-Komponenten-Docs (Hero.md, KaiDialogue.md, etc.)
 ```
 
 ---
@@ -339,7 +343,21 @@ Bewusst ausgelassen (nicht nutzersichtig): Code-Kommentare (`//`), KI-System-Pro
 
 ---
 
-## Offene Punkte (Stand: 2026-08-19)
+## Offene Punkte (Stand: 2026-08-20)
+
+| Punkt | Status | Details |
+|-------|--------|---------|
+| FOKUS-REPOSITIONIERUNG: Homepage | ✅ Published (2026-08-20) | `scripts/migrate-homepage.mjs` ausgeführt. Neue These, zwei CTAs, Produktkreislauf. hero_accent_word = "verändert" (Terracotta). |
+| FOKUS-REPOSITIONIERUNG: Neue Service-Stories | 🔧 Draft — publizieren morgen | `scripts/migrate-new-services.mjs` ausgeführt. Stories als Draft: custom-ai-product (ID: 211100241791605), ai-development-consulting (ID: 211100245330550). Slugs auf Root-Ebene (nicht im service-detail-Ordner). Script `scripts/publish-new-services.mjs` bereit. |
+| FOKUS-REPOSITIONIERUNG: /services | 🔧 Draft — publizieren morgen | `scripts/migrate-services.mjs` ausgeführt (Draft). Neue Struktur: 2 primäre Bereiche + 4 Arbeitsformen. Mit `STORYBLOK_ALLOW_PUBLISH=YES node scripts/migrate-services.mjs --publish` publizieren. |
+| FOKUS-REPOSITIONIERUNG: /approach | 🔧 Script bereit — lokal ausführen | `scripts/migrate-approach.mjs` erstellt (2026-08-20). Felder: about_hero, about_working_why, about_working_steps, about_working_benefits, about_team_reference, about_cta aktualisiert. about_ecosystem_partners bleibt unverändert. **Ausführen:** `node scripts/migrate-approach.mjs --dry-run`, dann `node scripts/migrate-approach.mjs`, dann mit STORYBLOK_ALLOW_PUBLISH=YES publizieren. |
+| FOKUS-REPOSITIONIERUNG: Footer-Tagline | 📋 Ausstehend | `config/footer` in Storyblok. Neue Tagline: "Individuelle Software und AI-Produkte. Agentenunterstützt entwickelt, von Menschen verantwortet." Script fehlt noch. |
+| FOKUS-REPOSITIONIERUNG: Kai-Prompts | ✅ Erledigt (2026-08-20) | `/api/kai/route.js` aktualisiert: KENALU_BASE neu (Kernthese + 2 Leistungsbereiche), KENALU_SERVICES um Custom AI Product + AI Consulting erweitert, CONTEXT_CONFIG homepage/services/about überarbeitet, neue Keys `custom-ai-product` und `ai-development-consulting` hinzugefügt. Widget-Pflichtregeln angepasst. |
+| FOKUS-REPOSITIONIERUNG: sd_scenarios — Custom AI Product | 🔧 Lokal ausführen | `SdScenarios.js` erstellt, in DynamicBlock.js registriert, CSS hinzugefügt. Script: `scripts/patch-custom-ai-scenarios.mjs`. 3 Erkennungsmomente: falsche Logik / Wissen in Köpfen / zu komplex für Standard. `node scripts/patch-custom-ai-scenarios.mjs --dry-run`, dann ohne --dry-run. |
+| FOKUS-REPOSITIONIERUNG: page.js git push | 🔧 Lokal ausführen | `app/services/custom-ai-product/page.js`, `app/services/ai-development-consulting/page.js`, `components/blocks/SdScenarios.js`, `components/DynamicBlock.js`, `app/globals.css`, `app/api/kai/route.js` geändert — noch nicht gepusht. `rm -f .git/HEAD.lock && git add -A && git commit -m "feat: neue Service-Seiten, Kai-Update, sd_scenarios" && git push` |
+| Storyblok Free Plan: 3 Publishes/Tag | ⚠️ Limit beachten | Nach 3 Publishes pro Tag bricht PUT mit 422 ab. Morgen: publish-new-services.mjs + migrate-services.mjs --publish. |
+
+## Offene Punkte (Altbestand, Stand: 2026-08-19)
 
 | Punkt | Status | Details |
 |-------|--------|---------|

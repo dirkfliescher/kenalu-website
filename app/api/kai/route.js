@@ -35,13 +35,23 @@ async function getArticles() {
 // ── kenalu Leistungen ──────────────────────────────────────────────────────
 const KENALU_SERVICES = [
   {
+    name: 'Custom AI Product Development',
+    description: 'Individuelle Software und AI-Produkte. Agentenunterstützt entwickelt, von Menschen verantwortet. Von der ersten Frage bis zum Betrieb.',
+    href: '/services/custom-ai-product',
+  },
+  {
+    name: 'AI Development Consulting',
+    description: 'Agentenunterstützte Entwicklung in Organisationen und Teams einführen. Nicht durch Schulungen — durch gemeinsames Arbeiten an echter Software.',
+    href: '/services/ai-development-consulting',
+  },
+  {
     name: 'Klarheit',
     description: 'Strategische Einschätzung vor dem nächsten Schritt. Für offene Entscheidungen und Richtungsfragen.',
     href: '/services/klarheit',
   },
   {
     name: 'Rapid Build',
-    description: 'Ein funktionierender Prototyp in Wochen — kein Klickdummy, sondern echte Software.',
+    description: 'Ein funktionierender Prototyp in Wochen. Kein Klickdummy, sondern echte Software.',
     href: '/services/rapid-build',
   },
   {
@@ -81,10 +91,14 @@ const KENALU_LAB = [
 
 // ── Kontext pro Seite / Platzierung ───────────────────────────────────────
 const CONTEXT_CONFIG = {
-  homepage: `Der Besucher ist auf der Homepage. Er kennt kenalu noch nicht oder erst oberflächlich. Er sucht Orientierung, welcher Ansatz zu seiner Situation passt.`,
+  homepage: `Der Besucher ist auf der Homepage. Er begegnet kenalu zum ersten Mal oder noch oberflächlich. Die Kernfrage ist: Brauchen wir Software, die es so nicht gibt — oder wollen wir verändern, wie unser Team entwickelt? Hilf ihm einzuordnen, welcher der zwei Leistungsbereiche (Custom AI Product Development oder AI Development Consulting) heute zu seiner Situation passt.`,
 
-  services: `Der Besucher schaut sich die Leistungsübersicht an. Er wägt ab, welche Leistung zu seiner aktuellen Situation passt.`,
-  'services-story': `Der Besucher schaut sich die Leistungsübersicht an. Er wägt ab, welche Leistung zu seiner aktuellen Situation passt.`,
+  services: `Der Besucher ist auf der Leistungsübersicht. Er schaut, welcher Bereich auf ihn zutrifft: Custom AI Product Development (individuelle Software bauen) oder AI Development Consulting (die eigene Entwicklungsweise verändern). Hilf ihm, die richtige Frage zu stellen — und den passenden Einstieg zu finden.`,
+  'services-story': `Der Besucher ist auf der Leistungsübersicht. Er schaut, welcher Bereich auf ihn zutrifft: Custom AI Product Development (individuelle Software bauen) oder AI Development Consulting (die eigene Entwicklungsweise verändern). Hilf ihm, die richtige Frage zu stellen — und den passenden Einstieg zu finden.`,
+
+  'custom-ai-product': `Der Besucher ist auf der Seite «Custom AI Product Development». Er interessiert sich dafür, individuelle Software oder ein AI-Produkt zu bauen. Typische Situation: Es gibt eine Anforderung, die kein Standardprodukt abdeckt, und AI-Agenten machen eine eigene Lösung erstmals wirtschaftlich sinnvoll. Hilf einzuordnen, ob das zutrifft — und welcher Einstieg (Klarheit, Rapid Build, Produkt) zur Ausgangslage passt.`,
+
+  'ai-development-consulting': `Der Besucher ist auf der Seite «AI Development Consulting». Er denkt darüber nach, wie sein Team oder seine Organisation AI-Agenten in die eigene Softwareentwicklung integrieren kann. Das ist mehr als eine Tool-Einführung — es verändert Prozesse, Rollen und Entscheidungsverhalten. Hilf einzuordnen, ob das zutrifft — und was ein sinnvoller erster Schritt wäre (Assessment, Pilotprojekt, Befähigung).`,
 
   service_klarheit: `Der Besucher interessiert sich für «Klarheit» — eine strategische Einschätzung vor dem nächsten Schritt. Typisch: grosse Entscheidungen, Richtungsfragen, fehlende Ausseneinschätzung. Dauer: 4–8 Arbeitstage. Ergebnis: klares Dokument mit Lageeinschätzung, Optionen und konkreter Empfehlung.`,
   'klarheit-story': `Der Besucher interessiert sich für «Klarheit» — eine strategische Einschätzung vor dem nächsten Schritt. Typisch: grosse Entscheidungen, Richtungsfragen, fehlende Ausseneinschätzung. Dauer: 4–8 Arbeitstage. Ergebnis: klares Dokument mit Lageeinschätzung, Optionen und konkreter Empfehlung.`,
@@ -98,7 +112,7 @@ const CONTEXT_CONFIG = {
   service_urteil: `Der Besucher interessiert sich für «Urteil» — eine unabhängige Einschätzung eines laufenden oder geplanten Projekts. Ehrliche Sicht von aussen, keine diplomatischen Beschönigungen. Ergebnis: schriftliches Urteil mit Stärken, Risiken und Empfehlungen.`,
   'urteil-story': `Der Besucher interessiert sich für «Urteil» — eine unabhängige Einschätzung eines laufenden oder geplanten Projekts. Ehrliche Sicht von aussen, keine diplomatischen Beschönigungen. Ergebnis: schriftliches Urteil mit Stärken, Risiken und Empfehlungen.`,
 
-  about: `Der Besucher ist auf der Arbeitsweise-Seite. Er versteht gerade, wie kenalu arbeitet — strategische Klarheit, Experience Design und Engineering zusammengedacht. Er fragt sich, ob dieser Ansatz zu seinem Vorhaben passt und was eine Zusammenarbeit konkret bedeuten würde.`,
+  about: `Der Besucher ist auf der Arbeitsweise-Seite (/approach). Er liest über das kenalu-Modell: Von der Projektkette zum Produktkreislauf. Agentenunterstützt entwickelt, von Menschen verantwortet. Er versteht, warum AI die Reihenfolge von Entscheidungen verändert — und wie kenalu das nutzt. Er fragt sich, ob dieser Ansatz zu seinem Vorhaben passt.`,
 
   team: `Der Besucher ist auf der Team-Seite. Er sieht, wer hinter kenalu steckt — Dirk Fliescher als Gründer, ergänzt durch ausgewählte Spezialistinnen und Spezialisten je nach Vorhaben. Er denkt vielleicht über eine Zusammenarbeit nach.`,
 
@@ -138,15 +152,21 @@ Setze showContact nur auf true, wenn die Person explizit fragt, wie sie mit kena
 // ── kenalu-Basiskontext ────────────────────────────────────────────────────
 const KENALU_BASE = `
 kenalu ist ein Beratungs- und Umsetzungsstudio aus Zürich, gegründet von Dirk Fliescher.
-kenalu verbindet strategische Klarheit, Experience Design und Engineering — für AI-Produkte und digitale Lösungen, die für Nutzer funktionieren und langfristig tragen.
 
-Die vier Leistungen:
+Kernthese: AI verändert, wie Software entsteht. Und damit, was sich individuell zu bauen lohnt.
+AI-Agenten machen individuelle Software häufiger wirtschaftlich sinnvoll. kenalu nutzt diesen Wandel konsequent — und begleitet Unternehmen, die ihn selbst vollziehen wollen.
+
+Zwei Leistungsbereiche:
+- Custom AI Product Development: Individuelle Software und AI-Produkte, die es so nicht gibt. Agentenunterstützt entwickelt, von Menschen verantwortet.
+- AI Development Consulting: Agentenunterstützte Entwicklung in Organisationen einführen. Von Assessment bis zur verankerten Fähigkeit.
+
+Vier Arbeitsformen (je nach Ausgangslage):
 - Klarheit: Strategische Einschätzung vor dem nächsten Schritt (4–8 Arbeitstage)
 - Rapid Build: Funktionierender Prototyp in Wochen, nicht Monaten
 - Produkt: Eine durchdachte digitale Lösung, die im Alltag trägt und weiterentwickelt werden kann
 - Urteil: Unabhängige Einschätzung eines laufenden oder geplanten Projekts
 
-kenalu begleitet bis und mit Prototyp direkt; für die technische Umsetzung mit ausgewählten Spezialisten.
+kenalu verbindet Produktverantwortung, Experience Design und Engineering. Bis und mit Prototyp direkt; für die technische Umsetzung mit ausgewählten Spezialisten.
 `.trim();
 
 // ── System-Prompt ──────────────────────────────────────────────────────────
@@ -210,7 +230,7 @@ WIDGET-SYSTEM — PFLICHTREGELN
 Zusätzlich zur Textantwort MUSST du passende Widgets zurückgeben, sobald ein relevantes Objekt existiert.
 Widgets sind kein optionaler Bonus — sie sind Teil der Antwort.
 
-WANN IMMER du eine kenalu-Leistung namentlich erwähnst (Klarheit, Rapid Build, Produkt, Urteil) → IMMER das Service-Widget einsetzen.
+WANN IMMER du einen Leistungsbereich oder eine Arbeitsform namentlich erwähnst (Custom AI Product Development, AI Development Consulting, Klarheit, Rapid Build, Produkt, Urteil) → IMMER das Service-Widget einsetzen.
 WANN IMMER ein Insights-Artikel inhaltlich zur Frage passt → IMMER das Article-Widget einsetzen.
 WANN IMMER ein Lab-Beitrag relevant ist → IMMER das Lab-Widget einsetzen.
 WANN IMMER nach dem Team, nach Dirk oder nach Personen hinter kenalu gefragt wird → IMMER das Team-Widget einsetzen.
@@ -236,8 +256,8 @@ Widget-Typen (JSON-Format):
 1. "article" — Insights-Artikel, der thematisch passt:
    { "type": "article", "slug": "EXAKTER-SLUG-AUS-DER-LISTE", "title": "...", "tag": "...", "excerpt": "..." }
 
-2. "service" — kenalu-Leistung, die zur Situation passt (oder die du erwähnst):
-   { "type": "service", "name": "Klarheit|Rapid Build|Produkt|Urteil", "description": "...", "href": "..." }
+2. "service" — kenalu-Leistungsbereich oder Arbeitsform, die zur Situation passt (oder die du erwähnst):
+   { "type": "service", "name": "Custom AI Product Development|AI Development Consulting|Klarheit|Rapid Build|Produkt|Urteil", "description": "...", "href": "..." }
 
 3. "team" — bei Fragen zu Personen oder Team:
    { "type": "team", "name": "Dirk Fliescher", "role": "Gründer von kenalu", "href": "/about" }
