@@ -11,7 +11,7 @@ const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN
 
 export const metadata = {
   title: 'Insights – kenalu',
-  description: 'Gedanken, Perspektiven und Einblicke von kenalu.',
+  description: 'Perspektiven zu AI-gestützter Produktentwicklung: wann sich Bauen lohnt, was dabei zählt — und wie AI die Entscheidung verändert.',
 };
 
 async function getPageContent() {
@@ -82,10 +82,10 @@ export default async function Insights() {
         <div className="container">
           <p className="section-label">Insights</p>
           <div className="insights-hero-inner">
-            <h1 className="insights-hero-headline">Perspektiven auf digitale Produkte und AI.</h1>
+            <h1 className="insights-hero-headline">Perspektiven zu AI und individueller Softwareentwicklung.</h1>
             <p className="insights-hero-sub">
-              Einblicke aus der Praxis zu Strategie, Experience und dem, was bei der Umsetzung
-              zählt.
+              Wann sich Bauen lohnt, wann nicht — und was sich verändert, wenn AI
+              die Entwicklung von Produkten neu definiert.
             </p>
           </div>
         </div>
@@ -103,14 +103,14 @@ export default async function Insights() {
           <KaiDialogue
             contextKey="insights"
             eyebrow="Kai"
-            headline="Fragen zu den Beiträgen?"
-            intro="Kai beantwortet Fragen zu Strategie, Experience und AI. Er hilft euch einordnen, was relevant ist."
-            initialMessage="Habt ihr Fragen zu den Beiträgen oder einem der Themen? Ich helfe euch weiter."
-            inputPlaceholder="Was interessiert euch?"
+            headline="Fragen zu den Themen?"
+            intro="Kai hilft euch einordnen, was für eure Situation relevant ist — ob ihr etwas bauen wollt, noch evaluiert oder einfach verstehen möchtet, was sich verändert."
+            initialMessage="Habt ihr Fragen zu einem der Beiträge oder zu eurer eigenen Situation? Ich helfe euch weiter."
+            inputPlaceholder="Was beschäftigt euch?"
             suggestedPrompts={[
-              'Was bedeutet das für unser Unternehmen?',
-              'Wie fangen wir damit an?',
-              'Was sollten wir als nächstes lesen?',
+              'Lohnt es sich für uns, etwas selbst zu bauen?',
+              'Wie unterscheidet sich das von Standard-AI-Tools?',
+              'Was wäre ein guter erster Schritt für uns?',
             ]}
           />
 
@@ -135,9 +135,8 @@ export default async function Insights() {
             <div className="lab-ref-strip-text">
               <p className="lab-ref-strip-eyebrow">Lab</p>
               <p className="lab-ref-strip-body">
-                Neben Texten und Perspektiven dokumentiert Kenalu im Lab auch konkrete
-                Arbeitsproben und Prototypen, als nachvollziehbare Ergänzung zu diesen
-                Beiträgen.
+                Neben Perspektiven dokumentiert kenalu im Lab konkrete Arbeitsproben
+                und Prototypen — als Beweis, nicht nur als Versprechen.
               </p>
             </div>
             <Link href="/lab" className="btn btn-secondary lab-ref-strip-cta">
