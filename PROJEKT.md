@@ -51,7 +51,8 @@ Fünf getrackte Scripts auf `origin/main` wurden in SEC-003 gehärtet:
 **Bekannte Story-IDs:**
 - Home: `185993926251643`
 - Services: `186361777859852`
-- About: `186589241977666`
+- About (Arbeitsweise/approach): `186589241977666`
+- Über kenalu (about): `192824515818108`
 - Rate Limit: 6 Requests/Sekunde → Scripts mit `await sleep(300)` vor jedem Request
 
 ---
@@ -338,7 +339,7 @@ Bewusst ausgelassen (nicht nutzersichtig): Code-Kommentare (`//`), KI-System-Pro
 
 ---
 
-## Offene Punkte (Stand: 2026-07-14)
+## Offene Punkte (Stand: 2026-08-19)
 
 | Punkt | Status | Details |
 |-------|--------|---------|
@@ -346,7 +347,8 @@ Bewusst ausgelassen (nicht nutzersichtig): Code-Kommentare (`//`), KI-System-Pro
 | Nav.js: Logo-Bug auf Lab-Artikel-Seiten | ✅ Behoben | `/lab` war in `DARK_HERO_PAGES` als `startsWith`, was `/lab/*` fälschlicherweise erfasste. Jetzt Exakt-Match. **Git push ausstehend.** |
 | UX-Writing: Vollständige Sweep-Session | ✅ Erledigt | 20+ Code-Dateien bereinigt: ~60 em-Dashes ersetzt, du/dir → ihr/euch in FitTest/TeamIntro/LabBuilder/DirkProfile. Storyblok-Headline (Services Hero) via `cms-ux-writing-update.mjs` patchbar. **Git push ausstehend.** |
 | CONTENT-MIGRATE-01: cms-interactive-content.mjs ausführen | 🔧 Lokal ausführen | Überführt Inhalte aus 5 Komponenten nach Storyblok. **Reihenfolge:** (1) `git add -A && git commit -m "feat: CONTENT-MIGRATE-01 — 5 Komponenten blok-aware, cms-interactive-content.mjs" && git push`. (2) Schema erstellen: `STORYBLOK_MANAGEMENT_TOKEN=<token> node scripts/cms-interactive-content.mjs --migrate-schema`. (3) Inhalte + Publish: `STORYBLOK_MANAGEMENT_TOKEN=<token> STORYBLOK_ALLOW_PUBLISH=YES node scripts/cms-interactive-content.mjs --migrate-schema --publish`. **Was das Script macht:** Erstellt 11 nested Component-Schemas (services_compare_card, fit_frage, fit_option, fit_ergebnis, team_intro_runde, team_intro_quiz_frage, check_frage, check_option, dirk_station, dirk_project, dirk_theme). Erweitert 5 Parent-Schemas. Befüllt 5 Stories (services, mitwirken, about/home, check, dirk). |
-| Git push: Session-Änderungen deployen | 🔧 Lokal ausführen | Alle Änderungen seit letztem Push noch nicht deployed: Nav.js, globals.css, UX-Writing-Sweep, CONTENT-MIGRATE-01 (5 Komponenten + check/page.js + neues Script). **Befehl:** `cd /Users/dirkfliescher/Documents/kenalu-website && git add -A && git commit -m "feat: CONTENT-MIGRATE-01 — 5 Komponenten blok-aware, check/page.js Storyblok-first, cms-interactive-content.mjs" && git push` |
+| FitTest-Inhalte nach Storyblok migriert | ✅ Erledigt (2026-08-19) | `scripts/migrate-fittest.mjs` ausgeführt. 6 Fragen + 3 Ergebnisse in Story `192824515818108` (Über kenalu) in Block `fit_test` (Index 3) geschrieben und publiziert. Fallbacks in `FitTest.js` bleiben als Sicherheitsnetz erhalten. |
+| Git push: Session-Änderungen deployen | ✅ Erledigt | Commit `1f94a53` auf main gepusht (2026-07-14). 6 Files, 253 Insertions, 116 Deletions. Vercel deployed automatisch. |
 | KI-Repositionierung: Script ausgeführt | ✅ Ausgeführt | `scripts/cms-ki-repositioning.mjs` läuft. Homepage, Services, Approach, Footer, 4 Service-Details mit KI-Inhalten aktualisiert (2026-07-13). Stories in Storyblok publizieren nicht vergessen. |
 | KI-Repositionierung: layout.js | ✅ Erledigt | Meta-Description, OG-Titel, JSON-LD auf KI-Positionierung aktualisiert (2026-07-13). |
 | KI-Repositionierung: About-Seite Storyblok | 🔧 Lokal ausführen | `scripts/cms-ki-about.mjs` bereit. Fügt `team_hero`-Block in die `about`-Story ein, aktualisiert `about_intro`, `about_beliefs` (neues KI-Belief), `about_team`. **Befehl:** `STORYBLOK_ALLOW_WRITE=YES node scripts/cms-ki-about.mjs --apply` — dann Story in Storyblok publizieren. |
