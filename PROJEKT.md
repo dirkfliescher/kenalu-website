@@ -55,7 +55,16 @@ Fünf getrackte Scripts auf `origin/main` wurden in SEC-003 gehärtet:
 - Über kenalu (about): `192824515818108`
 - Custom AI Product Development: `211100241791605` (slug: `custom-ai-product`, Root-Ebene — noch nicht in service-detail-Ordner)
 - AI Development Consulting: `211100245330550` (slug: `ai-development-consulting`, Root-Ebene — noch nicht in service-detail-Ordner)
+- Insights-Artikel "Wann es sich lohnt, selbst zu bauen": `211146866159718` (Draft, slug: `wann-es-sich-lohnt-selbst-zu-bauen`)
+- Insights-Ordner parent_id: `186603415195063`
 - Rate Limit: 6 Requests/Sekunde → Scripts mit `await sleep(300)` vor jedem Request
+
+**Publish-Backlog (3 Publishes nötig — ab morgen verfügbar):**
+1. `STORYBLOK_ALLOW_PUBLISH=YES node scripts/migrate-approach.mjs --publish` (Approach-Seite)
+2. `STORYBLOK_ALLOW_PUBLISH=YES node scripts/patch-custom-ai-scenarios.mjs --publish` (sd_scenarios auf custom-ai-product)
+3. `STORYBLOK_ALLOW_PUBLISH=YES node scripts/patch-homepage-proof.mjs --publish` (home_proof auf Homepage)
+4. `STORYBLOK_ALLOW_PUBLISH=YES node scripts/create-insight-wann-bauen.mjs --publish` (Insights-Artikel)
+→ Alle 4 brauchen je 1 Publish → auf 2 Tage aufteilen
 
 ---
 
