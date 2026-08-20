@@ -18,7 +18,6 @@ export default function SdScenarios({ blok }) {
           <div className="sd-scenarios-grid">
             {scenarios.map((s, i) => (
               <div key={i} className="sd-scenario">
-                <span className="sd-scenario-number">0{i + 1}</span>
                 <h3 className="sd-scenario-title">{s.title}</h3>
                 {s.body && <p className="sd-scenario-body">{s.body}</p>}
               </div>

@@ -50,13 +50,20 @@ export async function generateMetadata() {
 
 // ── Vergleichs-Daten ──────────────────────────────────────────────────────────
 
-const CLASSIC_ITEMS = ['Strategie', 'Design', 'Entwicklung', 'AI', 'Beratung'];
+const CLASSIC_ITEMS = [
+  'Strategie & Konzept',
+  'UX Design',
+  'Frontend-Entwicklung',
+  'Backend-Entwicklung',
+  'QA & Testing',
+  'Content & SEO',
+];
 
 const KENALU_ITEMS = [
-  { name: 'Klarheit',     desc: 'Wissen, worauf sich der nächste Schritt lohnt.' },
-  { name: 'Rapid Build',  desc: 'Eine Annahme sichtbar machen, bevor viel investiert wird.' },
-  { name: 'Produkt',      desc: 'Aus einer Richtung ein Produkt machen, das im Alltag funktioniert.' },
-  { name: 'Urteil',       desc: 'Eine zweite Sicht, bevor ihr euch festlegt.' },
+  { name: 'Vision & Entscheidungen',  desc: 'Dirk: Positionierung, Produktlogik, Haltung, letztes Wort.' },
+  { name: 'Code & Architektur',       desc: 'AI-Agenten: Komponenten, Storyblok-Schema, API-Routen, Bugfixes.' },
+  { name: 'Copy & Inhalte',           desc: 'AI-Agenten: Textentwürfe, Struktur, SEO — Dirk: Qualitätsurteil.' },
+  { name: 'Iteration & Betrieb',      desc: 'Gemeinsam: Reviews, Refactoring, neue Sektionen, Verbesserungen.' },
 ];
 
 const FOUNDATION_LAYERS = [
@@ -214,7 +221,7 @@ export default function KenaluWebsiteArtikel() {
             aria-label="Gegenüberstellung: Klassische Leistungslogik vs. Entscheidungslogik von kenalu"
           >
             <div className="lca-canvas-col lca-canvas-col--muted">
-              <p className="lca-canvas-col-title">Klassische Leistungslogik</p>
+              <p className="lca-canvas-col-title">Klassische Rollenverteilung</p>
               <ul className="lca-canvas-list">
                 {CLASSIC_ITEMS.map((item) => (
                   <li key={item} className="lca-canvas-item">{item}</li>
@@ -223,7 +230,7 @@ export default function KenaluWebsiteArtikel() {
             </div>
             <div className="lca-canvas-divider" aria-hidden="true">→</div>
             <div className="lca-canvas-col lca-canvas-col--featured">
-              <p className="lca-canvas-col-title">Entscheidungslogik von kenalu</p>
+              <p className="lca-canvas-col-title">Agentenunterstützte Entwicklung</p>
               <ul className="lca-canvas-list">
                 {KENALU_ITEMS.map((item) => (
                   <li key={item.name} className="lca-canvas-item lca-canvas-item--rich">
@@ -236,16 +243,17 @@ export default function KenaluWebsiteArtikel() {
           </div>
 
           <p className="lca-text lca-canvas-closing">
-            Die Veränderung ist klein, aber entscheidend: Die Website beginnt nicht mit dem,
-            was Kenalu intern anbietet. Sie beginnt mit dem, was bei einer Person gerade
-            entschieden werden muss.
+            Was früher ein Team von vier bis fünf Personen brauchte, hat Dirk mit AI-Agenten
+            allein gebaut. Nicht weil weniger Kompetenz gefragt ist — sondern weil AI-Agenten
+            den grössten Teil der Ausführung übernehmen. Was bleibt: Verantwortung, Urteil,
+            Richtung.
           </p>
           <p className="lca-notice">
-            Die Darstellung beschreibt eine Informationsarchitektur. Sie ist keine Bewertung
-            anderer Websites oder Agenturmodelle.
+            Die Darstellung beschreibt die Arbeitsteilung bei kenalu.ch. Sie ist keine Bewertung
+            anderer Entwicklungsmodelle.
           </p>
-          <Link href="/services" className="lca-internal-link">
-            Zu den vier Einstiegen →
+          <Link href="/services/custom-ai-product" className="lca-internal-link">
+            Custom AI Product Development →
           </Link>
         </div>
       </section>
@@ -342,52 +350,59 @@ export default function KenaluWebsiteArtikel() {
         </div>
       </section>
 
-      {/* ── 4d. Highlight 04: Mensch-KI-Zusammenarbeit ─────────────── */}
+      {/* ── 4d. Highlight 04: Agentenunterstützte Entwicklung ───────── */}
       <section className="lca-section lca-highlight lca-section--tinted">
         <div className="container">
           <p className="section-label lca-highlight-num">Highlight 04</p>
           <h2 className="lca-h2">
-            Visioniert, geplant, gebaut und weiterentwickelt. Dirk und Claude gemeinsam.
+            Eine Person. AI-Agenten. Eine vollständige Website.
           </h2>
           <p className="lca-lead">
-            kenalu.ch ist nicht das Produkt eines Teams von zehn Personen. Es ist das Ergebnis
-            einer engen Zusammenarbeit zwischen Dirk Fliescher und Claude, Anthropics KI-Modell.
-            Jede Entscheidung, jeder Text, jede Komponente, jeder Code-Review: gemeinsam
-            erarbeitet.
+            kenalu.ch wurde von Dirk Fliescher allein gebaut — mit AI-Agenten als direkte
+            Entwicklungspartner. Nicht um zu zeigen, was AI kann. Sondern weil es die
+            ehrlichste Art ist, das zu beweisen, was kenalu vertritt.
           </p>
           <p className="lca-text">
-            Was das konkret heisst: Dirk bringt die Vision, die Haltung und das letzte Wort.
-            Claude übernimmt Strategie, Konzept, Architektur, Implementierung, Copy, SEO und
-            GEO: immer in direktem Austausch, immer unter Dirks Urteil. Kein Vieraugenprinzip,
-            kein Agentur-Overhead. Zwei denkende Partner.
+            Was AI-Agenten konkret übernommen haben: Komponentencode, Storyblok-Schema,
+            API-Routen, Refactoring, Bugfixes, SEO-Struktur, Textentwürfe, Code-Reviews.
+            Was Dirk verantwortet hat: Positionierung, Produktentscheidungen, Architektur,
+            Qualitätsurteil, Tonalität, alles Sichtbare.
+          </p>
+          <p className="lca-text">
+            Agentenunterstützt bedeutet nicht weniger Verantwortung. Es bedeutet, schneller
+            an den Stellen zu sein, wo Verantwortung wirklich gefragt ist.
           </p>
           <div className="lca-decision-cards">
             <div className="lca-card">
-              <p className="lca-card-title">Vollständig gemeinsam.</p>
+              <p className="lca-card-title">Entwicklungszeit halbiert.</p>
               <p className="lca-card-text">
-                Von der ersten strategischen Frage bis zum laufenden Code: Vision, Konzept,
-                Design, Implementierung, Content, Storyblok-Integration. Alles co-authored.
+                Was früher ein kleines Team über Monate erarbeitet hätte, entstand in Wochen.
+                Nicht weil weniger Sorgfalt gefragt war — sondern weil AI-Agenten den grössten
+                Teil der Ausführung übernehmen.
               </p>
             </div>
             <div className="lca-card">
-              <p className="lca-card-title">Kontinuierlich, nicht einmalig.</p>
+              <p className="lca-card-title">Kein Overhead, keine Übergaben.</p>
               <p className="lca-card-text">
-                Code Reviews, Accessibility, Performance, SEO und GEO laufen fortlaufend.
-                Die Website ist kein Release. Sie ist ein lebendes Experiment.
+                Strategie, Design, Entwicklung und Content entstanden im selben Prozess.
+                Keine Briefings, keine Missverständnisse zwischen Rollen, keine Wartezeiten
+                zwischen Disziplinen.
               </p>
             </div>
             <div className="lca-card">
-              <p className="lca-card-title">Menschliches Urteil als Mass.</p>
+              <p className="lca-card-title">Evolutionär, nicht einmalig.</p>
               <p className="lca-card-text">
-                KI produziert Breite und Geschwindigkeit. Was bleibt, entscheidet Dirk.
-                Haltung, Ton und Richtung sind nicht delegiert. Sie sind bewusst gewählt.
+                Die Website wird laufend weiterentwickelt. Neue Sektionen, neue Positionierung,
+                neue Leistungsbereiche. Jede Änderung entsteht in derselben Arbeitsweise —
+                ohne Projektstart, ohne Agenturbrief.
               </p>
             </div>
           </div>
           <p className="lca-text">
-            Das ist kein Experiment darüber, ob KI schreiben oder coden kann. Das ist ein
-            Experiment darüber, was ein Mensch mit der richtigen KI-Partnerschaft leisten
-            kann. Und was das für Unternehmen bedeutet, die ähnliches vorhaben.
+            Das ist kein Experiment über die Leistungsfähigkeit von AI. Es ist ein
+            Arbeitsbeweis: Wie agentenunterstützte Entwicklung im Alltag aussieht — und
+            was das für Unternehmen bedeutet, die eigene Software bauen oder ihre
+            Entwicklungsweise verändern wollen.
           </p>
         </div>
       </section>
@@ -397,24 +412,32 @@ export default function KenaluWebsiteArtikel() {
         <div className="container container--narrow">
           <p className="section-label">Übertragbar</p>
           <h2 className="lca-h2">
-            Das gleiche Muster gilt auch für andere digitale Produkte.
+            Was hier funktioniert, gilt auch für euer Vorhaben.
           </h2>
           <p className="lca-text">
-            Die Website zeigt im Kleinen, wie Kenalu auch an anderen Vorhaben arbeitet:
+            kenalu.ch ist nicht nur eine Website. Es ist eine Arbeitsprobe für zwei Dinge,
+            die kenalu für andere Unternehmen tut:
           </p>
           <ul className="lca-list">
-            <li>Zuerst die Entscheidung hinter dem Vorhaben verstehen.</li>
-            <li>Danach die entscheidende Annahme sichtbar machen.</li>
             <li>
-              Dann eine Grundlage bauen, die im Alltag funktioniert und weiterentwickelt
-              werden kann.
+              <strong>Individuelle Software bauen</strong> — agentenunterstützt, von Menschen
+              verantwortet. Wenn Standardlösungen nicht passen und die Rechnung für eine eigene
+              Lösung heute anders aussieht als früher.
+            </li>
+            <li>
+              <strong>Agentenunterstützte Entwicklung einführen</strong> — in bestehenden
+              Teams und Organisationen. Nicht durch Schulungen, sondern durch gemeinsames
+              Arbeiten an echter Software.
             </li>
           </ul>
           <p className="lca-text">
-            Ob es um ein Kundenportal, einen internen Service, eine neue Experience oder einen
-            AI-Anwendungsfall geht: Gute digitale Produkte beginnen nicht mit einer
-            Funktionsliste. Sie beginnen mit einer klaren Frage.
+            Die Arbeitsweise dahinter ist dieselbe: früh etwas Funktionierendes bauen,
+            mit realen Erkenntnissen weiterentwickeln, Menschen dort in der Verantwortung
+            lassen, wo Maschinen nichts entscheiden sollten.
           </p>
+          <Link href="/services" className="lca-internal-link">
+            Leistungen von kenalu ansehen →
+          </Link>
         </div>
       </section>
 

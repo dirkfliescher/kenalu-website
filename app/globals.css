@@ -7814,14 +7814,6 @@ p { color: var(--charcoal); }
   gap: 0.75rem;
 }
 
-.sd-scenario-number {
-  font-family: var(--font-headline);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--terracotta);
-}
-
 .sd-scenario-title {
   font-family: var(--font-headline);
   font-size: 1rem;
