@@ -143,6 +143,21 @@ export default function KaiDialogue({
     return () => { if (typewriterRef.current) clearTimeout(typewriterRef.current); };
   }, []);
 
+  // Prefill von externen Komponenten (z.B. SdScenarios-Karten)
+  useEffect(() => {
+    function handlePrefill(e) {
+      const text = e.detail?.text;
+      if (!text) return;
+      setInput(text);
+      setTimeout(() => {
+        document.getElementById('kai-dialogue')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        inputRef.current?.focus();
+      }, 50);
+    }
+    window.addEventListener('kai:prefill', handlePrefill);
+    return () => window.removeEventListener('kai:prefill', handlePrefill);
+  }, []);
+
   // ── Typewriter-Effekt ────────────────────────────────────────────────────
   const typewrite = useCallback((fullText, finalWidgets, showContactFlag) => {
     const len = fullText.length;
@@ -255,7 +270,7 @@ export default function KaiDialogue({
   }
 
   return (
-    <section className="kai-dialogue">
+    <section id="kai-dialogue" className="kai-dialogue">
       <div className="container container--narrow">
         <div className="kai-dialogue-inner">
 

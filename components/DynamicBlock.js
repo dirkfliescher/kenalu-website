@@ -57,8 +57,9 @@ import AboutTeamReference from './blocks/AboutTeamReference';
 import AboutEcosystemPartners from './blocks/AboutEcosystemPartners';
 import AboutCta from './blocks/AboutCta';
 
-// FOKUS-REPOSITIONIERUNG: sd_scenarios für Custom AI Product Development
+// FOKUS-REPOSITIONIERUNG: sd_scenarios + home_proof
 import SdScenarios from './blocks/SdScenarios';
+import HomeProof from './blocks/HomeProof';
 
 // CMS-LAB-01: lab_* Komponenten für dynamische Lab-Seiten
 import LabHero from './blocks/LabHero';
@@ -130,8 +131,9 @@ const Components = {
   about_ecosystem_partners: AboutEcosystemPartners,
   about_cta: AboutCta,
 
-  // FOKUS-REPOSITIONIERUNG: sd_scenarios
+  // FOKUS-REPOSITIONIERUNG: sd_scenarios + home_proof
   sd_scenarios: SdScenarios,
+  home_proof: HomeProof,
 
   // CMS-LAB-01: lab_* Komponenten
   lab_hero: LabHero,
