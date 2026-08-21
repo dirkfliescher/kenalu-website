@@ -352,6 +352,16 @@ Bewusst ausgelassen (nicht nutzersichtig): Code-Kommentare (`//`), KI-System-Pro
 
 ---
 
+## Offene Punkte (Stand: 2026-08-21)
+
+| Punkt | Status | Details |
+|-------|--------|---------|
+| **Insights-Artikel publizieren** | 🔧 Lokal ausführen | 3 Artikel als Draft; Scripts jetzt mit Slug-Lookup. Befehle: `STORYBLOK_ALLOW_PUBLISH=YES node scripts/create-insight-ai-wollen-nicht-koennen.mjs --publish`, `STORYBLOK_ALLOW_PUBLISH=YES node scripts/create-insight-standard-plus-ai.mjs --publish`, `STORYBLOK_ALLOW_PUBLISH=YES node scripts/create-insight-was-wir-bauen.mjs --publish`. **wann-es-sich-lohnt** (ID: 211146866159718) direkt mit `STORYBLOK_ALLOW_PUBLISH=YES node scripts/create-insight-wann-bauen.mjs --publish`. |
+| **Arbeitsformen in Storyblok erstellen** | 🔧 Lokal ausführen | `scripts/migrate-arbeitsformen.mjs` gefixt: sucht jetzt unter `service-detail/*` (nicht `services/*`), erstellt Ordner + 4 Stories wenn nicht vorhanden. Befehl: `node scripts/migrate-arbeitsformen.mjs --dry-run`, dann `node scripts/migrate-arbeitsformen.mjs`. Dann mit `--publish`. |
+| **lab/kenalu-website publizieren** | 🔧 Lokal ausführen | Draft-ID 193186167349853. Direkt via API: `curl -X GET "https://mapi.storyblok.com/v1/spaces/293099469334951/stories/193186167349853/publish" -H "Authorization: $STORYBLOK_MANAGEMENT_TOKEN"` |
+| **home_proof auf Homepage publizieren** | 🔧 Lokal ausführen | Draft-Block bereit. Script: `STORYBLOK_ALLOW_PUBLISH=YES node scripts/patch-homepage-proof.mjs --publish` (Story ID 185993926251643). |
+| **Git push nach Session** | 🔧 Ausstehend | Neue Scripts in `scripts/` committen. `git add -A && git commit -m "feat: insight-scripts slug-lookup, migrate-arbeitsformen fix" && git push` |
+
 ## Offene Punkte (Stand: 2026-08-20)
 
 | Punkt | Status | Details |
