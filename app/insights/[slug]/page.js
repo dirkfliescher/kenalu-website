@@ -122,7 +122,7 @@ export default async function InsightArticle({ params }) {
         <div className="container">
           {content.insight_tag && <div className="hero-label">{content.insight_tag}</div>}
           {content.insight_title && <h1>{content.insight_title}</h1>}
-          {date && <p>{date}</p>}
+          {date && <p className="insight-article-date">{date}</p>}
         </div>
       </section>
 
