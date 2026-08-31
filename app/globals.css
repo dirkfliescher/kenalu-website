@@ -17,6 +17,7 @@
   --stone:    #686E72;
   --softline: #D8D4CE;
   --terracotta: #C5694A;
+  --terracotta-on-dark: #E8856A; /* Hellere Variante für Texte auf Charcoal-Hintergrund (WCAG AA: ≥5.6:1) */
   --ocean-dark:      #0e2c3c;
   --terracotta-dark: #b15a3d;
   --charcoal-dark:   #1e2124;
@@ -255,7 +256,7 @@ p { color: var(--charcoal); }
 .outcome-card:hover { border-color: var(--terracotta); transform: translateY(-2px); }
 .outcome-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
 .outcome-number { font-family: var(--font-headline); font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.25); letter-spacing: 0.05em; }
-.outcome-area { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta); background: rgba(197,105,74,0.15); padding: 0.25rem 0.65rem; border-radius: 20px; }
+.outcome-area { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta-on-dark); background: rgba(197,105,74,0.15); padding: 0.25rem 0.65rem; border-radius: 20px; }
 .outcome-headline { font-family: var(--font-headline); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ivory); margin-bottom: 0.75rem; line-height: 1.25; }
 .outcome-body { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.65; }
 
@@ -4822,7 +4823,7 @@ p { color: var(--charcoal); }
   font-family: var(--font-headline);
   font-size: 0.7rem;
   font-weight: 700;
-  color: var(--terracotta);
+  color: var(--terracotta-on-dark); /* --terracotta (#C5694A) zu dunkel auf Charcoal (3.9:1) → lightened ≥5.6:1 */
   letter-spacing: 0.08em;
 }
 
