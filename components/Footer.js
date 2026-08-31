@@ -31,7 +31,7 @@ export default async function Footer() {
             <p>{tagline}</p>
           </div>
           <div className="footer-nav">
-            <h4>Navigation</h4>
+            <h2 className="footer-col-label">Navigation</h2>
             <ul>
               <li><Link href="/services">Leistungen</Link></li>
               <li><Link href="/approach">Arbeitsweise</Link></li>
@@ -42,7 +42,7 @@ export default async function Footer() {
             </ul>
           </div>
           <div className="footer-contact">
-            <h4>Kontakt</h4>
+            <h2 className="footer-col-label">Kontakt</h2>
             <p><a href={`mailto:${email}`}>{email}</a></p>
             <p>{address}</p>
           </div>

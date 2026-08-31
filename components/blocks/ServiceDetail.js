@@ -24,7 +24,7 @@ export default function ServiceDetail({ blok }) {
       </div>
       {items.length > 0 && (
         <div className="sdi-details">
-          <h4>Was dabei entsteht</h4>
+          <h3 className="sdi-was-entsteht">Was dabei entsteht</h3>
           <ul className="sdi-list">
             {items.map((item, i) => (
               <li key={i}>{item}</li>

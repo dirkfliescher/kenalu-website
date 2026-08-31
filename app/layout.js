@@ -3,6 +3,7 @@ import './globals.css';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import SpacebarNav from '../components/SpacebarNav';
+import FontLoader from '../components/FontLoader';
 
 export const revalidate = 60;
 
@@ -89,8 +90,6 @@ export default function RootLayout({ children }) {
     <html lang="de" className={inter.className}>
       <head>
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
-        <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" crossOrigin="anonymous" />
-        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -98,6 +97,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <a href="#main-content" className="skip-link">Zum Inhalt springen</a>
+        <FontLoader />
         <SpacebarNav />
         <Nav />
         <main id="main-content">
