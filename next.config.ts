@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Kritisches CSS inline → non-blocking render für den Rest (benötigt critters)
+    optimizeCss: true,
+  },
   async redirects() {
     return [
       // Slug-Umbenennung 2026-07-06:
