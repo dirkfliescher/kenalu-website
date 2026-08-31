@@ -297,19 +297,19 @@ p { color: var(--charcoal); }
 .footer { background: var(--charcoal); padding: 5rem var(--gutter) 2.5rem; color: var(--ivory); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .footer-logo { font-family: var(--font-headline); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.04em; display: block; margin-bottom: 0.75rem; }
-.footer-brand p { font-size: 0.9rem; color: var(--stone); max-width: 280px; line-height: 1.6; }
+.footer-brand p { font-size: 0.9rem; color: var(--softline); max-width: 280px; line-height: 1.6; }
 /* footer-col-label: h2 styled wie h4, korrekte Heading-Hierarchie im Footer-Landmark */
-.footer .footer-col-label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); margin-bottom: 1rem; line-height: 1; }
+.footer .footer-col-label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--softline); margin-bottom: 1rem; line-height: 1; }
 .footer-nav ul, .footer-contact p { display: flex; flex-direction: column; gap: 0.6rem; }
 .footer-nav a, .footer-contact a { font-size: 0.9rem; color: var(--softline); transition: color var(--transition); }
 .footer-nav a:hover, .footer-contact a:hover { color: var(--ivory); }
 .footer-contact p { font-size: 0.9rem; color: var(--softline); }
-.footer-bottom { padding-top: 2rem; font-size: 0.8rem; color: var(--stone); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer-bottom { padding-top: 2rem; font-size: 0.8rem; color: var(--softline); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
 .footer-legal { display: flex; gap: 1.5rem; }
-.footer-legal a { color: var(--stone); text-decoration: none; transition: color var(--transition); }
+.footer-legal a { color: var(--softline); text-decoration: none; transition: color var(--transition); }
 .footer-legal a:hover { color: var(--ivory); }
-.footer-built { color: var(--stone); }
-.footer-built a { color: var(--stone); text-decoration: none; transition: color var(--transition); }
+.footer-built { color: var(--softline); }
+.footer-built a { color: var(--softline); text-decoration: none; transition: color var(--transition); }
 .footer-built a:hover { color: var(--ivory); }
 .experience-wall { padding: 6rem var(--gutter); background: var(--mineral); }
 .experience-wall-note { font-size: 0.9rem; color: var(--stone); line-height: 1.7; max-width: 640px; margin-bottom: 3rem; padding: 1rem 1.25rem; background: var(--ivory); border-left: 3px solid var(--sage); border-radius: 0 var(--radius) var(--radius) 0; }
@@ -530,7 +530,7 @@ p { color: var(--charcoal); }
 .insights-featured-image img { width: 100%; height: 100%; object-fit: cover; }
 .insights-featured-body { background: var(--charcoal); color: var(--ivory); padding: 3.5rem; display: flex; flex-direction: column; justify-content: flex-end; }
 .insights-featured-body .insight-tag { background: rgba(255,255,255,0.1); color: var(--softline); }
-.insights-featured-body .insight-date { color: var(--stone); }
+.insights-featured-body .insight-date { color: var(--softline); }
 .insights-featured-body h2 { color: var(--ivory); margin: 1.25rem 0 1rem; font-size: clamp(1.4rem, 2.5vw, 2rem); line-height: 1.2; }
 .insights-featured-body p { color: var(--softline); line-height: 1.65; margin-bottom: 2rem; }
 .insights-featured-body .link-arrow { color: var(--sage); }
@@ -5851,7 +5851,7 @@ p { color: var(--charcoal); }
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--mineral, #6b7280);
+  color: var(--stone); /* --mineral war zu hell auf ivory → --stone gibt 4.9:1 (WCAG AA) */
   margin: 0;
 }
 
