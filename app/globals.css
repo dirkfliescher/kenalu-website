@@ -6020,7 +6020,7 @@ p { color: var(--charcoal); }
 }
 
 .kai-dialogue-input::placeholder {
-  color: var(--mineral, #9ca3af);
+  color: var(--stone); /* --mineral war zu hell → --stone gibt 5.3:1 auf weiss (WCAG AA) */
 }
 
 .kai-dialogue-send {
@@ -6050,7 +6050,7 @@ p { color: var(--charcoal); }
 /* ── Datenschutz ── */
 .kai-dialogue-privacy {
   font-size: 0.75rem;
-  color: var(--mineral, #9ca3af);
+  color: var(--stone); /* --mineral war zu hell (1.3:1 auf weiss) → --stone gibt 5.3:1 */
   padding: 0.5rem 1rem 0.75rem;
   margin: 0;
   line-height: 1.4;
