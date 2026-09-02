@@ -160,6 +160,12 @@ scripts/ (gitignored — nie committen)
   update-dirk-bio.mjs            /dirk Bio-Text aktualisieren (Syntheseversion) — slugsToTry: ['dirk', 'team/dirk-fliescher']
   reset-team-bio.mjs             team/dirk-fliescher bio_text entfernen (SEC-003-konform)
   cms-interactive-content.mjs    CONTENT-MIGRATE-01: Inhalte aus 5 Komponenten nach Storyblok (lokal ausführen — NEU 2026-07-14)
+  update-approach-emporix.mjs   REPO-01: Emporix neutralisieren in about_ecosystem_partners (2026-09-02)
+  update-about-ki.mjs           REPO-02: KI-Formulierung in team_hero + collaboration_intro (2026-09-02)
+  update-lab-framing.mjs        REPO-03: Lab-Hero Framing "Experimente = Produktfragen" (2026-09-02)
+  update-homepage-card.mjs      REPO-04: Homepage Karte 01 Custom-AI Beschreibung (2026-09-02)
+  update-custom-ai-b2b.mjs      REPO-05: Custom AI Product — B2B-Beispiel + Produkt-These (2026-09-02)
+  create-insight-commerce-plattform.mjs  REPO-06: Insights-Artikel Commerce-Plattform 2026 (2026-09-02)
 
 docs/                            Projektdokumentation (Markdown)
   pages/                         Per-Page-Docs (homepage.md, services.md, approach.md, etc.)
@@ -352,10 +358,16 @@ Bewusst ausgelassen (nicht nutzersichtig): Code-Kommentare (`//`), KI-System-Pro
 
 ---
 
-## Offene Punkte (Stand: 2026-08-21)
+## Offene Punkte (Stand: 2026-09-02)
 
 | Punkt | Status | Details |
 |-------|--------|---------|
+| **Inhalts-Repositionierung: Emporix neutralisieren** | 🔧 Lokal ausführen | `node scripts/update-approach-emporix.mjs --dry-run`, dann `node scripts/update-approach-emporix.mjs`. Entfernt "Zertifizierter Solution Partner"-Label, plattform-agnostische Formulierung. Dann publish. |
+| **Inhalts-Repositionierung: About KI-Formulierung** | 🔧 Lokal ausführen | `node scripts/update-about-ki.mjs --dry-run`, dann `node scripts/update-about-ki.mjs`. Aktualisiert team_hero body + collaboration_intro. |
+| **Inhalts-Repositionierung: Lab Framing** | 🔧 Lokal ausführen | `node scripts/update-lab-framing.mjs --dry-run`, dann `node scripts/update-lab-framing.mjs`. Stärkt "Experimente beantworten konkrete Produktfragen". |
+| **Inhalts-Repositionierung: Homepage Karte** | 🔧 Lokal ausführen | `node scripts/update-homepage-card.mjs --dry-run`, dann `node scripts/update-homepage-card.mjs`. Schärft Custom-AI-Product-Beschreibung (criteria-based statt Feature-Liste). |
+| **Inhalts-Repositionierung: Custom AI B2B-Beispiel** | 🔧 Lokal ausführen | `node scripts/update-custom-ai-b2b.mjs --dry-run`, dann `node scripts/update-custom-ai-b2b.mjs`. Ergänzt konkretes B2B-Szenario in service_scene. |
+| **Insights: Commerce-Plattform-Artikel** | 🔧 Lokal ausführen | `node scripts/create-insight-commerce-plattform.mjs --dry-run`, dann `node scripts/create-insight-commerce-plattform.mjs`. Slug: `commerce-plattform-2026`. Kriterienbasiert, kein Emporix-Vorzug. |
 | **Insights-Artikel publizieren** | 🔧 Lokal ausführen | 3 Artikel als Draft; Scripts jetzt mit Slug-Lookup. Befehle: `STORYBLOK_ALLOW_PUBLISH=YES node scripts/create-insight-ai-wollen-nicht-koennen.mjs --publish`, `STORYBLOK_ALLOW_PUBLISH=YES node scripts/create-insight-standard-plus-ai.mjs --publish`, `STORYBLOK_ALLOW_PUBLISH=YES node scripts/create-insight-was-wir-bauen.mjs --publish`. **wann-es-sich-lohnt** (ID: 211146866159718) direkt mit `STORYBLOK_ALLOW_PUBLISH=YES node scripts/create-insight-wann-bauen.mjs --publish`. |
 | **Arbeitsformen in Storyblok erstellen** | 🔧 Lokal ausführen | `scripts/migrate-arbeitsformen.mjs` gefixt: sucht jetzt unter `service-detail/*` (nicht `services/*`), erstellt Ordner + 4 Stories wenn nicht vorhanden. Befehl: `node scripts/migrate-arbeitsformen.mjs --dry-run`, dann `node scripts/migrate-arbeitsformen.mjs`. Dann mit `--publish`. |
 | **lab/kenalu-website publizieren** | 🔧 Lokal ausführen | Draft-ID 193186167349853. Direkt via API: `curl -X GET "https://mapi.storyblok.com/v1/spaces/293099469334951/stories/193186167349853/publish" -H "Authorization: $STORYBLOK_MANAGEMENT_TOKEN"` |
