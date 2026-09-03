@@ -401,15 +401,53 @@ Dann max. 3 Publishes/Tag:
 | **CORR1: Storyblok-Inhalte publizieren** | 🔧 Morgen (max. 3/Tag) | Homepage zuerst, dann Services, dann About — Rest am Folgetag |
 | **CORR1: Visuell prüfen** | 🔧 Nach Publish | Homepage: kein Doppelpfeil, Headline-Umbruch korrekt. /services, /services/custom-ai-product (Adoption), /approach (Capability), /about, Footer |
 
-## Offene Punkte (Stand: 2026-09-02, Session 2)
+## Offene Punkte (Stand: 2026-09-03, Lab Experiment Framework)
+
+**Lab-Experiment-Framework ist im Code komplett. Jetzt Reihenfolge:**
+
+1. `node scripts/setup-lab-experiment-schema.mjs` — Schema erstellen/aktualisieren (`is_root: true`, direkte Felder)
+2. `STORYBLOK_ALLOW_PUBLISH=YES node scripts/create-lab-experiment-01.mjs --publish` — Experiment 01 publizieren
+3. `node scripts/create-lab-experiments-drafts.mjs` — Experimente 02+03 als Draft anlegen
+4. `git add -A && git commit -m "feat: LAB-EXPERIMENT-01 — Direct-Fields-Schema, Detail-/Übersichtsseite" && git push` — Deploy Vercel
+
+Dann 1 Publish/Tag für Experiment 01 (bereits oben im Script-Aufruf). Exp. 02+03 erst nach redaktioneller Prüfung publizieren.
+
+### Architektur (LAB-EXPERIMENT-01 — Direct-Fields)
+
+`lab_experiment`-Stories haben **keine body[]**. Alle Inhalte als direkte Felder:
+
+```
+component:         'lab_experiment'   ← PFLICHT — wird für CDN-Filter und Rendering benötigt
+eyebrow:           'kenalu Lab · Experiment 01'
+intro:             '...'              ← Kurzbeschreibung (Card + Hero)
+status:            'Experiment'       ← Wird auf Card als Badge angezeigt
+project_featured:  true/false         ← Featured-Card (gross) oder Grid-Card (klein)
+project_cta_label: 'Experiment ansehen'
+question:          '...'              ← Die Produktfrage (Pflicht)
+context:           '...'              ← Hintergrund (optional)
+experiment:        '...'              ← Was gebaut/getestet wurde (Pflicht)
+learning:          '...'              ← Erkenntnis
+next_step:         '...'              ← Was als Nächstes (optional)
+related_service_label/url             ← Verwandte Leistung
+related_insight_label/url             ← Verwandter Artikel
+seo_title, seo_description            ← Optional
+```
+
+Warum so und nicht mit body[]: Sauberer Content-Typ, klare Felder im Storyblok-Editor, keine Verwechslung von gleich benannten Blöcken.
+
+### Rendering-Logik (Frontend)
+
+- `app/lab/page.js → normalizeProject()`: erkennt `lab_experiment` via `c.component`, mappt `status → project_status`, `intro → project_teaser_1`, `question → project_teaser_2`
+- `app/lab/[slug]/page.js`: erkennt `component === 'lab_experiment'`, rendert Hero aus `eyebrow`/`story.name`/`intro`, dann `<LabExperiment blok={c} />`, dann Abschluss-CTA
+- `components/blocks/LabExperiment.js`: bereits vollständig implementiert (lca-exp-* CSS)
 
 | Punkt | Status | Details |
 |-------|--------|---------|
-| **Lab Experiment Framework: Schema erstellen** | 🔧 Lokal ausführen | `node scripts/setup-lab-experiment-schema.mjs` — erstellt/aktualisiert `lab_experiment` in Storyblok (Frage / Kontext / Experiment / Erkenntnis / next_step + related links). Idempotent: PUT wenn vorhanden. |
-| **Lab Experiment 01 erstellen** | 🔧 Lokal ausführen | `node scripts/create-lab-experiment-01.mjs` — erstellt/aktualisiert "Wenn Software anfängt zu handeln" (lab/wenn-software-handelt). Mit `STORYBLOK_ALLOW_PUBLISH=YES ... --publish` direkt publizieren oder manuell im Editor. |
-| **Lab Experimente 02+03 erstellen** | 🔧 Lokal ausführen | `node scripts/create-lab-experiments-drafts.mjs` — erstellt "Beschreiben statt navigieren" + "Wissen wann man nicht handeln sollte" als Draft. Zuerst Schema-Script ausführen. |
-| **Git push (Lab Experiment Framework)** | 🔧 Ausstehend | `LabExperiment.js`, `DynamicBlock.js`, `globals.css` (lca-exp-* CSS), `lab/page.js`, `PROJEKT.md` + 3 neue Scripts committen: `git add -A && git commit -m "feat: LAB-EXPERIMENT-01 — Frage/Experiment/Erkenntnis Framework" && git push` |
-| **Über kenalu (about) publizieren** | 🔧 Morgen | Publish-Limit erreicht. Direkt im Storyblok-Editor oder: `STORYBLOK_ALLOW_PUBLISH=YES node scripts/update-about-ki.mjs --publish` |
+| **Schema erstellen** | 🔧 Lokal ausführen | `node scripts/setup-lab-experiment-schema.mjs` |
+| **Experiment 01 erstellen + publizieren** | 🔧 Lokal ausführen | `STORYBLOK_ALLOW_PUBLISH=YES node scripts/create-lab-experiment-01.mjs --publish` |
+| **Experimente 02+03 als Draft anlegen** | 🔧 Lokal ausführen | `node scripts/create-lab-experiments-drafts.mjs` |
+| **Git push** | 🔧 Ausstehend | `git add -A && git commit -m "feat: LAB-EXPERIMENT-01 — Direct-Fields-Schema, Detail-/Übersichtsseite" && git push` |
+| **Über kenalu (about) publizieren** | 🔧 Morgen | Publish-Limit beachten. Im Storyblok-Editor oder: `STORYBLOK_ALLOW_PUBLISH=YES node scripts/update-about-ki.mjs --publish` |
 
 ## Offene Punkte (Stand: 2026-09-02)
 

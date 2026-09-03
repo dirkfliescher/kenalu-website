@@ -24,7 +24,49 @@ export const metadata = {
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 /**
+ * Normalisiert eine Story auf das Projektkarten-Format.
+ * Unterstützt zwei Schemas:
+ *   - lab_experiment: hat project_status, project_teaser_1 direkt
+ *   - lab_article:    älteres Schema — Felder aus lab_hero-Block extrahieren
+ */
+function normalizeProject(story) {
+  const c = story.content || {};
+
+  if (c.component === 'lab_experiment') {
+    return {
+      ...story,
+      content: {
+        ...c,
+        project_status:    c.status            || c.project_status || '',
+        project_featured:  c.project_featured  !== false,
+        project_teaser_1:  c.intro             || c.question       || '',
+        project_teaser_2:  c.intro ? (c.question || '') : '',
+        project_cta_label: c.project_cta_label || 'Experiment ansehen',
+      },
+    };
+  }
+
+  if (c.component === 'lab_article') {
+    const heroBlock = (c.body || []).find((b) => b.component === 'lab_hero');
+    return {
+      ...story,
+      content: {
+        ...c,
+        project_status:   c.project_status   || 'Arbeitsprobe',
+        project_featured: c.project_featured !== false,
+        project_teaser_1: c.project_teaser_1 || heroBlock?.intro || '',
+        project_teaser_2: c.project_teaser_2 || '',
+        project_cta_label: c.project_cta_label || 'Arbeitsprobe ansehen',
+      },
+    };
+  }
+
+  return story;
+}
+
+/**
  * Lädt alle Lab-Projekte aus Storyblok.
+ * Zeigt lab_experiment- und lab_article-Stories.
  * Projekte mit project_featured = true erscheinen zuerst (im Featured-Format),
  * alle anderen folgen als Grid-Cards.
  */
@@ -36,10 +78,10 @@ async function getLabProjects() {
       sort_by: 'content.project_featured:desc,first_published_at:desc',
       per_page: 25,
     });
-    // Nur Stories mit project_status oder project_teaser_1 anzeigen
-    return (data.stories || []).filter(
-      (s) => s.content?.project_status || s.content?.project_teaser_1,
-    );
+    const PROJEKT_KOMPONENTEN = ['lab_experiment', 'lab_article'];
+    return (data.stories || [])
+      .filter((s) => PROJEKT_KOMPONENTEN.includes(s.content?.component))
+      .map(normalizeProject);
   } catch {
     return [];
   }

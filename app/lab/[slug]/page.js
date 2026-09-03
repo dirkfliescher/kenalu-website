@@ -1,6 +1,8 @@
+import Link from 'next/link';
 import StoryblokClient from 'storyblok-js-client';
 import { notFound } from 'next/navigation';
 import DynamicBlock from '@/components/DynamicBlock';
+import LabExperiment from '@/components/blocks/LabExperiment';
 
 export const revalidate = 60;
 
@@ -68,10 +70,46 @@ export default async function LabProjectPage({ params }) {
     notFound();
   }
 
+  // ── lab_experiment: direkte Felder, kein body[] ──────────────────────
+  if (story.content?.component === 'lab_experiment') {
+    const c = story.content;
+    return (
+      <main className="lca-page">
+
+        {/* Hero */}
+        <section className="lca-hero">
+          <div className="container">
+            {c.eyebrow && <p className="section-label">{c.eyebrow}</p>}
+            <h1 className="lca-hero-headline">{story.name}</h1>
+            {c.intro && <p className="lca-hero-intro">{c.intro}</p>}
+          </div>
+        </section>
+
+        {/* Experiment-Inhalt */}
+        <LabExperiment blok={c} />
+
+        {/* Abschluss-CTA */}
+        <section className="lca-section lca-section--tinted">
+          <div className="container container--narrow">
+            <p className="section-label">Nächster Schritt</p>
+            <p className="lca-lead">Eine eigene Frage konkret machen?</p>
+            <div className="lca-exp-related" style={{ marginTop: '1.5rem' }}>
+              <Link href="/contact" className="btn btn-primary">Gespräch starten →</Link>
+              <Link href="/lab" className="lca-internal-link" style={{ marginLeft: '1.5rem' }}>
+                Zurück zum Lab
+              </Link>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    );
+  }
+
+  // ── lab_article: body[]-Blocks ────────────────────────────────────────
   const blocks = story.content?.body || [];
 
   if (blocks.length === 0) {
-    // Kein Body definiert — Fallback auf leere Seite mit Hinweis
     return (
       <main className="lca-page">
         <section className="lca-section">
