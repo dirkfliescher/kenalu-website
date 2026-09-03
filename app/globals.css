@@ -7014,6 +7014,50 @@ p { color: var(--charcoal); }
   font-weight: 700;
 }
 
+/* ── LAB-EXPERIMENT-01: Frage / Experiment / Erkenntnis ────── */
+
+.lca-experiment {
+  /* Wrapper — kein eigenes Padding, Sections handhaben das */
+}
+
+.lca-exp-block {
+  /* Innerer Block innerhalb einer lca-section */
+  position: relative;
+}
+
+.lca-exp-num {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--mineral);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.lca-exp-section--learning {
+  background: var(--charcoal);
+  color: var(--ivory);
+}
+
+.lca-exp-section--learning .section-label {
+  color: rgba(250, 248, 245, 0.42);
+}
+
+.lca-exp-section--learning .lca-text-block p {
+  color: var(--ivory);
+}
+
+.lca-exp-section--learning .lca-exp-num {
+  color: rgba(250, 248, 245, 0.18);
+}
+
+.lca-exp-related {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
 /* ── Closing CTA ───────────────────────────────────────────── */
 .lca-cta-section {
   padding: 5rem 0 6rem;

@@ -12,32 +12,32 @@ const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500'] });
 export const metadata = {
   metadataBase: new URL('https://kenalu.ch'),
   title: {
-    default: 'kenalu – Intelligent Experiences',
-    template: '%s – kenalu',
+    default: 'kenalu — Individuelle Software und AI-Produkte',
+    template: '%s | kenalu',
   },
-  description: 'Kenalu baut KI-Produkte, die echte Arbeit übernehmen: Agenten, intelligente UX und Assistenzsysteme. KI-Kompetenz und menschliches Urteil kombiniert.',
-  keywords: ['KI-Produkte', 'AI Agents', 'Intelligent UX', 'KI-Strategie', 'Experience Design', 'Schweiz'],
+  description: 'Agentenunterstützt entwickelt, von Menschen verantwortet. Wir entwickeln individuelle Software und AI-Produkte — von der ersten Frage über den Betrieb bis zur Weiterentwicklung. Zürich.',
+  keywords: ['Individuelle Software', 'AI-Produkte', 'KI-Strategie', 'Experience Design', 'Zürich', 'Schweiz'],
   authors: [{ name: 'kenalu' }],
   openGraph: {
     type: 'website',
     locale: 'de_CH',
     url: 'https://kenalu.ch',
     siteName: 'kenalu',
-    title: 'kenalu – KI-Produkte, die handeln.',
-    description: 'Kenalu baut Software, die handelt. Agenten, intelligente UX und Assistenz. KI als Kern.',
+    title: 'kenalu — Individuelle Software und AI-Produkte',
+    description: 'Agentenunterstützt entwickelt, von Menschen verantwortet. Wir entwickeln individuelle Software und AI-Produkte — von der ersten Frage über den Betrieb bis zur Weiterentwicklung. Zürich.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'kenalu – KI-Produkte, die handeln.',
+        alt: 'kenalu — Individuelle Software und AI-Produkte',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'kenalu – KI-Produkte, die handeln.',
-    description: 'Kenalu baut Software, die handelt. Agenten, intelligente UX und Assistenz. KI als Kern.',
+    title: 'kenalu — Individuelle Software und AI-Produkte',
+    description: 'Agentenunterstützt entwickelt, von Menschen verantwortet. Wir entwickeln individuelle Software und AI-Produkte — von der ersten Frage über den Betrieb bis zur Weiterentwicklung. Zürich.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -56,7 +56,7 @@ const jsonLd = {
   name: 'kenalu',
   url: 'https://kenalu.ch',
   logo: 'https://kenalu.ch/og-image.png',
-  description: 'Kenalu baut KI-Produkte, die echte Arbeit übernehmen: Agenten, intelligente UX und Assistenzsysteme. KI-Kompetenz und menschliches Urteil kombiniert.',
+  description: 'Agentenunterstützt entwickelt, von Menschen verantwortet. Individuelle Software und AI-Produkte — von der ersten Frage über den Betrieb bis zur Weiterentwicklung. Zürich.',
   founder: {
     '@type': 'Person',
     name: 'Dirk Fliescher',

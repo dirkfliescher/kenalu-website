@@ -61,9 +61,9 @@ export default async function LabPage() {
             Aus offenen Fragen wird etwas, das man sehen, testen und entscheiden kann.
           </h1>
           <p className="lpv2-hero-text">
-            Im Lab entstehen eigene Produkte und Experimente, wo möglich auch Prototypen aus
-            konkreter Arbeit. Alles hier zeigt, wie kenalu aus einer offenen Frage eine
-            tragfähige Richtung macht.
+            Ein Experiment muss nicht gross sein. Es muss eine wichtige Frage beantworten.
+            Im Lab zeigen wir, wie wir konkrete Produktannahmen überprüfen: mit einer Frage,
+            einem gezielten Versuch und einer ehrlichen Erkenntnis.
           </p>
         </div>
       </section>
@@ -118,49 +118,49 @@ export default async function LabPage() {
         </section>
       )}
 
-      {/* ── 3. Was das Lab zeigt ────────────────────────────────── */}
+      {/* ── 3. Wie das Lab funktioniert ─────────────────────────── */}
       <section className="lpv2-what">
         <div className="container">
-          <p className="section-label">Was das Lab zeigt</p>
+          <p className="section-label">Wie das Lab funktioniert</p>
           <h2 className="lpv2-what-headline">
-            Intelligente Erlebnisse entstehen nicht aus Briefings. Sie entstehen aus
-            echten Experimenten.
+            Das Lab ist kein Showroom. Es ist ein Ort, an dem wir konkrete
+            Produktannahmen überprüfen.
           </h2>
           <div className="lpv2-what-cards">
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">01</p>
-              <h3 className="lpv2-what-card-title">KI nicht als Tool, sondern als Partner</h3>
+              <h3 className="lpv2-what-card-title">Die Frage vor der Lösung</h3>
               <p className="lpv2-what-card-text">
-                Im Lab zeigen wir, was entsteht, wenn KI nicht zur Ausführung gerufen
-                wird, sondern von Anfang an mitdenkt: im Konzept, im Code, in der Sprache.
+                Jedes Experiment beginnt mit einer konkreten Produktfrage oder Annahme,
+                nicht mit einer Technologie. Was wollen wir herausfinden?
               </p>
             </div>
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">02</p>
-              <h3 className="lpv2-what-card-title">Vom Experiment zum Produkt</h3>
+              <h3 className="lpv2-what-card-title">Gezielt und begrenzt bauen</h3>
               <p className="lpv2-what-card-text">
-                Hier wird nicht demonstriert, was KI theoretisch kann. Es wird gebaut:
-                konkret, nutzbar, mit echten Qualitätsansprüchen.
+                Wir bauen gerade genug, um die Annahme zu prüfen. Kein vollständiges
+                Produkt, keine Demo. Etwas, das eine wichtige Frage sichtbar beantwortet.
               </p>
             </div>
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">03</p>
-              <h3 className="lpv2-what-card-title">Menschliches Urteil als Massstab</h3>
+              <h3 className="lpv2-what-card-title">Ehrliche Erkenntnis</h3>
               <p className="lpv2-what-card-text">
-                KI produziert Breite, Geschwindigkeit und Varianten. Was davon bleibt,
-                entscheidet ein Mensch. Haltung, Ton und Richtung werden nie delegiert.
+                Auch ein negatives Ergebnis ist ein Ergebnis. Wir dokumentieren, was wir
+                gelernt haben — nicht nur, was funktioniert hat.
               </p>
             </div>
 
             <div className="lpv2-what-card">
               <p className="lpv2-what-card-num">04</p>
-              <h3 className="lpv2-what-card-title">Sichtbar auch für KI</h3>
+              <h3 className="lpv2-what-card-title">Bewusst entscheiden was folgt</h3>
               <p className="lpv2-what-card-text">
-                Was entsteht, wird nicht nur für Menschen gemacht. GEO ist Teil der
-                Arbeit vom ersten Tag: wie Inhalte in KI-Antworten auftauchen.
+                Danach ist klarer, ob wir weiterbauen, anders weiterdenken oder bewusst
+                nicht investieren. Auf Basis von Erkenntnissen, nicht von Annahmen.
               </p>
             </div>
 
@@ -168,53 +168,53 @@ export default async function LabPage() {
         </div>
       </section>
 
-      {/* ── 4. Vom Gedanken zur Grundlage (Prozesslogik) ────────── */}
+      {/* ── 4. Think big. Start narrow. ─────────────────────────── */}
       <section className="lpv2-process">
         <div className="container">
-          <p className="section-label">Vom Gedanken zur Grundlage</p>
+          <p className="section-label">Jedes Experiment folgt derselben Logik</p>
           <h2 className="lpv2-process-headline">
-            Ein Prototyp muss nicht gross sein. Er muss eine wichtige Frage beantworten.
+            Gross denken. Eng beginnen. Lernen. Dann entscheiden.
           </h2>
           <p className="lpv2-process-intro">
-            Nicht jede Idee braucht sofort ein grosses Projekt. Manchmal braucht es zuerst
-            etwas Sichtbares, damit Teams eine offene Frage besser verstehen, intern diskutieren
-            oder mit ersten Nutzern prüfen können.
+            Wir beginnen mit einer grossen Produktfrage, isolieren eine konkrete Annahme
+            und bauen gerade genug, um sie zu prüfen. Was wir daraus lernen, bestimmt,
+            was als Nächstes sinnvoll ist.
           </p>
           <div className="lpv2-process-steps">
 
             <div className="lpv2-process-step">
               <p className="lpv2-process-step-num">01</p>
-              <h3 className="lpv2-process-step-title">Die eigentliche Frage finden</h3>
+              <h3 className="lpv2-process-step-title">Annahme isolieren</h3>
               <p className="lpv2-process-step-text">
-                Was soll für Kunden, Mitarbeitende oder Prozesse besser werden?
-                Welche Entscheidung ist noch offen?
+                Welche konkrete Produktfrage wollen wir beantworten?
+                Was muss stimmen, damit eine Idee funktioniert?
               </p>
             </div>
 
             <div className="lpv2-process-step">
               <p className="lpv2-process-step-num">02</p>
-              <h3 className="lpv2-process-step-title">Etwas Greifbares bauen</h3>
+              <h3 className="lpv2-process-step-title">Gezielt bauen</h3>
               <p className="lpv2-process-step-text">
-                Eine Idee wird in einen Prototypen, ein MVP oder eine konkrete Produktlogik
-                übersetzt.
+                Wir bauen das Minimum, das nötig ist, um die Annahme zu prüfen —
+                nicht mehr und nicht weniger.
               </p>
             </div>
 
             <div className="lpv2-process-step">
               <p className="lpv2-process-step-num">03</p>
-              <h3 className="lpv2-process-step-title">Sichtbar prüfen</h3>
+              <h3 className="lpv2-process-step-title">Am echten Fall testen</h3>
               <p className="lpv2-process-step-text">
-                Teams, Stakeholder oder erste Nutzer können sehen, verstehen und Rückmeldung
-                geben.
+                Mit echten Situationen, nicht Sandboxes. Erkenntnisse entstehen
+                am Produkt, nicht am Papier.
               </p>
             </div>
 
             <div className="lpv2-process-step">
               <p className="lpv2-process-step-num">04</p>
-              <h3 className="lpv2-process-step-title">Bewusst entscheiden</h3>
+              <h3 className="lpv2-process-step-title">Auf Basis von Erkenntnissen entscheiden</h3>
               <p className="lpv2-process-step-text">
-                Danach ist klarer, ob ihr weiterbaut, anders weiterdenkt oder bewusst nicht
-                investiert.
+                Weiterbauen, anders ansetzen oder bewusst nicht investieren.
+                Die Erkenntnis entscheidet, nicht die Annahme.
               </p>
             </div>
 

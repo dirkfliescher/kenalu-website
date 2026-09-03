@@ -142,8 +142,9 @@ components/
     LabDialogue.js               Lab-Dialog-Demo mit Nachrichten (CMS-LAB-01)
     LabFoundation.js             Lab-Foundation-Layers (CMS-LAB-01)
     LabCta.js                    Lab-CTA-Sektion (CMS-LAB-01)
+    LabExperiment.js             Lab-Experiment Frage/Experiment/Erkenntnis (LAB-EXPERIMENT-01) — lca-exp-* CSS
     ...weitere Storyblok-Blöcke
-  DynamicBlock.js                Registry (about_* + services_* + service_* + team_hero + lab_* registriert)
+  DynamicBlock.js                Registry (about_* + services_* + service_* + team_hero + lab_* + lab_experiment registriert)
   Nav.js, Footer.js, WaveBackground.js
 
 scripts/ (gitignored — nie committen)
@@ -166,6 +167,9 @@ scripts/ (gitignored — nie committen)
   update-homepage-card.mjs      REPO-04: Homepage Karte 01 Custom-AI Beschreibung (2026-09-02)
   update-custom-ai-b2b.mjs      REPO-05: Custom AI Product — B2B-Beispiel + Produkt-These (2026-09-02)
   create-insight-commerce-plattform.mjs  REPO-06: Insights-Artikel Commerce-Plattform 2026 (2026-09-02)
+  setup-lab-experiment-schema.mjs       LAB-EXP-01: Storyblok-Schema lab_experiment erstellen/aktualisieren (2026-09-02)
+  create-lab-experiment-01.mjs          LAB-EXP-02: Experiment 01 "Wenn Software anfängt zu handeln" erstellen (2026-09-02)
+  create-lab-experiments-drafts.mjs     LAB-EXP-03: Experimente 02+03 als Draft erstellen (2026-09-02)
 
 docs/                            Projektdokumentation (Markdown)
   pages/                         Per-Page-Docs (homepage.md, services.md, approach.md, etc.)
@@ -357,6 +361,16 @@ Neue Pflichtregeln für alle Texte — gilt für Code UND Storyblok:
 Bewusst ausgelassen (nicht nutzersichtig): Code-Kommentare (`//`), KI-System-Prompts in API-Routes, CSS-Separator `<span class="aw-person-sep">—</span>`, Storybook-Dateien, Placeholder-Strings (`'—'` für leere Felder).
 
 ---
+
+## Offene Punkte (Stand: 2026-09-02, Session 2)
+
+| Punkt | Status | Details |
+|-------|--------|---------|
+| **Lab Experiment Framework: Schema erstellen** | 🔧 Lokal ausführen | `node scripts/setup-lab-experiment-schema.mjs` — erstellt/aktualisiert `lab_experiment` in Storyblok (Frage / Kontext / Experiment / Erkenntnis / next_step + related links). Idempotent: PUT wenn vorhanden. |
+| **Lab Experiment 01 erstellen** | 🔧 Lokal ausführen | `node scripts/create-lab-experiment-01.mjs` — erstellt/aktualisiert "Wenn Software anfängt zu handeln" (lab/wenn-software-handelt). Mit `STORYBLOK_ALLOW_PUBLISH=YES ... --publish` direkt publizieren oder manuell im Editor. |
+| **Lab Experimente 02+03 erstellen** | 🔧 Lokal ausführen | `node scripts/create-lab-experiments-drafts.mjs` — erstellt "Beschreiben statt navigieren" + "Wissen wann man nicht handeln sollte" als Draft. Zuerst Schema-Script ausführen. |
+| **Git push (Lab Experiment Framework)** | 🔧 Ausstehend | `LabExperiment.js`, `DynamicBlock.js`, `globals.css` (lca-exp-* CSS), `lab/page.js`, `PROJEKT.md` + 3 neue Scripts committen: `git add -A && git commit -m "feat: LAB-EXPERIMENT-01 — Frage/Experiment/Erkenntnis Framework" && git push` |
+| **Über kenalu (about) publizieren** | 🔧 Morgen | Publish-Limit erreicht. Direkt im Storyblok-Editor oder: `STORYBLOK_ALLOW_PUBLISH=YES node scripts/update-about-ki.mjs --publish` |
 
 ## Offene Punkte (Stand: 2026-09-02)
 

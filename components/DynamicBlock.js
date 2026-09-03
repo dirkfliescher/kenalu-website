@@ -69,6 +69,8 @@ import LabComparison from './blocks/LabComparison';
 import LabDialogue from './blocks/LabDialogue';
 import LabFoundation from './blocks/LabFoundation';
 import LabCta from './blocks/LabCta';
+// LAB-EXPERIMENT-01: lab_experiment — Frage / Experiment / Erkenntnis
+import LabExperiment from './blocks/LabExperiment';
 
 const Components = {
   hero: Hero,
@@ -143,6 +145,8 @@ const Components = {
   lab_dialogue: LabDialogue,
   lab_foundation: LabFoundation,
   lab_cta: LabCta,
+  // LAB-EXPERIMENT-01
+  lab_experiment: LabExperiment,
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist
