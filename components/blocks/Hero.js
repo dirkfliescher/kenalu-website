@@ -24,7 +24,12 @@ export default function Hero({ blok }) {
         {blok.hero_label && <div className="hero-label">{blok.hero_label}</div>}
         {blok.hero_headline && (
           <h1 className="hero-headline">
-            {renderHeadline(blok.hero_headline, blok.hero_accent_word)}
+            <span className="hero-headline-main">
+              {renderHeadline(blok.hero_headline, blok.hero_accent_word)}
+            </span>
+            {blok.hero_headline_emphasis && (
+              <span className="hero-headline-emphasis">{blok.hero_headline_emphasis}</span>
+            )}
           </h1>
         )}
         {blok.hero_subline && <p className="hero-sub">{blok.hero_subline}</p>}

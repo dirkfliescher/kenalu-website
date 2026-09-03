@@ -5,7 +5,8 @@ import DynamicBlock from '../../../components/DynamicBlock';
 export const revalidate = 60;
 
 const SEO_DEFAULTS = {
-  title: 'AI Development Consulting — Agentenunterstützte Entwicklung einführen | kenalu',
+  // Kein '| kenalu' hier — layout.js-Template ergänzt es automatisch
+  title: 'AI Development Consulting — Agentenunterstützte Entwicklung einführen',
   description:
     'kenalu begleitet Entwicklungsteams und Organisationen beim Einführen agentenunterstützter Produktentwicklung. Nicht durch Schulungen. Durch gemeinsames Arbeiten an echter Software.',
 };

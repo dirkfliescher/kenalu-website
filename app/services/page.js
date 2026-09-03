@@ -7,7 +7,8 @@ import { FALLBACK_SERVICES_BODY } from './_fallback-content';
 export const revalidate = 60;
 
 export const metadata = {
-  title: 'Leistungen — Individuelle Software und AI-gestützte Produktentwicklung | kenalu',
+  // Kein '| kenalu' hier — layout.js-Template ergänzt es automatisch
+  title: 'Leistungen — Individuelle Software und AI-gestützte Produktentwicklung',
   description:
     'Zwei Wege zu Software, die zum Unternehmen passt: kenalu entwickelt individuelle digitale Produkte oder verankert die Fähigkeit dazu in euren Teams. AI-gestützt. Von Menschen verantwortet.',
   alternates: { canonical: 'https://kenalu.ch/services' },

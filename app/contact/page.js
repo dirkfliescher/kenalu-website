@@ -6,8 +6,18 @@ export const revalidate = 60;
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 export const metadata = {
-  title: 'Gespräch starten – kenalu',
+  // Kein '– kenalu' hier — layout.js-Template ergänzt es automatisch
+  title: 'Gespräch starten',
   description: 'Startet ein Erstgespräch mit Dirk Fliescher von kenalu. Kein Pitch. Ein ehrliches Gespräch über eure Ausgangslage und den nächsten sinnvollen Schritt.',
+  alternates: { canonical: 'https://kenalu.ch/contact' },
+  openGraph: {
+    title: 'Gespräch starten | kenalu',
+    description: 'Startet ein Erstgespräch mit Dirk Fliescher von kenalu. Kein Pitch. Ein ehrliches Gespräch über eure Ausgangslage und den nächsten sinnvollen Schritt.',
+    url: 'https://kenalu.ch/contact',
+    siteName: 'kenalu',
+    locale: 'de_CH',
+    type: 'website',
+  },
 };
 
 async function getContent() {

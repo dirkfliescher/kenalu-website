@@ -5,8 +5,10 @@ export const revalidate = 60;
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 export const metadata = {
-  title: 'Datenschutz – kenalu',
+  title: 'Datenschutz',
   description: 'Datenschutzerklärung von kenalu und der dirk fliescher consulting gmbh.',
+  alternates: { canonical: 'https://kenalu.ch/datenschutz' },
+  robots: { index: false, follow: false },
 };
 
 async function getLegalContent(slug) {

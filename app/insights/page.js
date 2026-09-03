@@ -10,8 +10,18 @@ export const revalidate = 60;
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
 
 export const metadata = {
-  title: 'Insights – kenalu',
-  description: 'Perspektiven zu AI-gestützter Produktentwicklung: wann sich Bauen lohnt, was dabei zählt — und wie AI die Entscheidung verändert.',
+  // Kein '– kenalu' hier — layout.js-Template ergänzt es automatisch
+  title: 'Insights',
+  description: 'Perspektiven zu AI-gestützter Produktentwicklung: wann sich Bauen lohnt, was dabei zählt, und wie AI die Entscheidung verändert.',
+  alternates: { canonical: 'https://kenalu.ch/insights' },
+  openGraph: {
+    title: 'Insights | kenalu',
+    description: 'Perspektiven zu AI-gestützter Produktentwicklung: wann sich Bauen lohnt, was dabei zählt, und wie AI die Entscheidung verändert.',
+    url: 'https://kenalu.ch/insights',
+    siteName: 'kenalu',
+    locale: 'de_CH',
+    type: 'website',
+  },
 };
 
 async function getPageContent() {

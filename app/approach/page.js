@@ -7,7 +7,8 @@ import { FALLBACK_ABOUT_BODY } from './_fallback-content';
 export const revalidate = 60;
 
 export const metadata = {
-  title: 'Arbeitsweise — Wie kenalu individuelle Software entwickelt | kenalu',
+  // Kein '| kenalu' hier — layout.js-Template ergänzt es automatisch
+  title: 'Arbeitsweise — Wie kenalu individuelle Software entwickelt',
   description:
     'kenalu beginnt beim tatsächlichen Bedarf, nicht bei einem Standardprodukt. AI-gestützte Entwicklung, menschliche Verantwortung. Mit jedem Projekt wächst eine wiederverwendbare Entwicklungsintelligenz.',
   alternates: { canonical: 'https://kenalu.ch/approach' },

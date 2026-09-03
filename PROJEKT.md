@@ -372,20 +372,34 @@ Bewusst ausgelassen (nicht nutzersichtig): Code-Kommentare (`//`), KI-System-Pro
 
 ---
 
-## Offene Punkte (Stand: 2026-09-03, REPO2-Positionierung)
+## Offene Punkte (Stand: 2026-09-03, REPO2 + Korrekturen)
+
+**Morgen koordiniert veröffentlichen (alles als Draft bereit):**
+
+Reihenfolge:
+1. `node scripts/reposition-schemas.mjs` — Schemas (home_positioning, approach_capability, service_scene.text_3, **hero.hero_headline_emphasis neu**)
+2. `node scripts/reposition-homepage.mjs` — Hero (Split-Headline, kein Pfeil im CTA), home_positioning, service_entry_grid
+3. `node scripts/reposition-services.mjs` — /services Hero + CardGrid
+4. `node scripts/reposition-custom-ai.mjs` — service_hero intro + Adoption-Block
+5. `node scripts/reposition-approach.mjs` — approach_capability-Block
+6. `node scripts/reposition-about.mjs` — team_hero body
+7. `node scripts/reposition-footer.mjs` — footer_tagline
+8. `node scripts/reposition-ai-consulting.mjs` — Konsistenzcheck AI Consulting
+
+Danach: `git add -A && git commit -m "feat: REPO2 + CORR1 — Positionierung, Headline-Split, Metadaten, Canonicals" && git push`
+
+Dann max. 3 Publishes/Tag:
+- `STORYBLOK_ALLOW_PUBLISH=YES node scripts/reposition-homepage.mjs --publish`
+- `STORYBLOK_ALLOW_PUBLISH=YES node scripts/reposition-services.mjs --publish`
+- `STORYBLOK_ALLOW_PUBLISH=YES node scripts/reposition-about.mjs --publish`
+(Rest am Folgetag)
 
 | Punkt | Status | Details |
 |-------|--------|---------|
-| **REPO2: Schemas erstellen** | 🔧 Lokal ausführen | `node scripts/reposition-schemas.mjs` — erstellt home_positioning, approach_capability, erweitert service_scene um text_3 |
-| **REPO2: Homepage** | 🔧 Lokal ausführen | `node scripts/reposition-homepage.mjs` dann `STORYBLOK_ALLOW_PUBLISH=YES node scripts/reposition-homepage.mjs --publish` |
-| **REPO2: Services** | 🔧 Lokal ausführen | `node scripts/reposition-services.mjs` dann mit `--publish` |
-| **REPO2: Custom AI Product** | 🔧 Lokal ausführen | `node scripts/reposition-custom-ai.mjs` dann mit `--publish` |
-| **REPO2: Approach** | 🔧 Lokal ausführen | `node scripts/reposition-approach.mjs` dann mit `--publish` |
-| **REPO2: About** | 🔧 Lokal ausführen | `node scripts/reposition-about.mjs` dann mit `--publish` |
-| **REPO2: Footer** | 🔧 Lokal ausführen | `node scripts/reposition-footer.mjs` dann mit `--publish` — Fallback in Footer.js bereits aktualisiert |
-| **REPO2: AI Development Consulting** | 🔧 Lokal ausführen | `node scripts/reposition-ai-consulting.mjs` dann mit `--publish` |
-| **REPO2: Git push** | 🔧 Ausstehend | Neue Komponenten, CSS, Scripts und Metadaten pushen: `git add -A && git commit -m "feat: REPO2 — neue Positionierung (Komponenten, CSS, Metadaten)" && git push` |
-| **REPO2: Storyblok nach Publish prüfen** | 🔧 Nach Script-Ausführung | Homepage Desktop + Mobile, /services, /services/custom-ai-product, /approach, /about, /lab, Footer visuell testen |
+| **CORR1: Scripts lokal ausführen (alle als Draft)** | 🔧 Morgen | Alle 8 reposition-*.mjs in Reihenfolge oben. Kein --publish. |
+| **CORR1: Git push** | 🔧 Ausstehend | `git add -A && git commit -m "feat: REPO2 + CORR1 — Positionierung, Headline-Split, Metadaten, Canonicals" && git push` |
+| **CORR1: Storyblok-Inhalte publizieren** | 🔧 Morgen (max. 3/Tag) | Homepage zuerst, dann Services, dann About — Rest am Folgetag |
+| **CORR1: Visuell prüfen** | 🔧 Nach Publish | Homepage: kein Doppelpfeil, Headline-Umbruch korrekt. /services, /services/custom-ai-product (Adoption), /approach (Capability), /about, Footer |
 
 ## Offene Punkte (Stand: 2026-09-02, Session 2)
 

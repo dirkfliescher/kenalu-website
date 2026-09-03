@@ -5,8 +5,18 @@ import DynamicBlock from '../../components/DynamicBlock';
 export const revalidate = 60;
 
 export const metadata = {
-  title: 'Über kenalu – kenalu',
-  description: 'KI-kompetentes Team hinter kenalu. Strategie, Experience Design und Engineering. KI als Kern, menschliches Urteil als Mass.',
+  // Kein '– kenalu' hier — layout.js-Template ergänzt es automatisch
+  title: 'Über kenalu',
+  description: 'kenalu verbindet Produktverantwortung, Experience Design und Engineering. Bewusst klein, direkt und AI-kompetent.',
+  alternates: { canonical: 'https://kenalu.ch/about' },
+  openGraph: {
+    title: 'Über kenalu | kenalu',
+    description: 'kenalu verbindet Produktverantwortung, Experience Design und Engineering. Bewusst klein, direkt und AI-kompetent.',
+    url: 'https://kenalu.ch/about',
+    siteName: 'kenalu',
+    locale: 'de_CH',
+    type: 'website',
+  },
 };
 
 const Storyblok = new StoryblokClient({ accessToken: process.env.STORYBLOK_TOKEN });
@@ -41,8 +51,8 @@ const FALLBACK_HERO = {
   _uid: 'team-hero-fallback',
   component: 'team_hero',
   eyebrow: 'Team',
-  headline: 'Die Menschen, die KI in echte Produkte übersetzen.',
-  body: 'kenalu ist KI-kompetent und bewusst klein. Strategie, Experience Design und Engineering. KI als Werkzeug im Prozess und als Kern der Produkte, die wir bauen.',
+  headline: 'Die Menschen hinter kenalu.',
+  body: 'kenalu verbindet Produktverantwortung, Experience Design und Engineering. Bewusst klein, direkt und AI-kompetent.\n\nAI ist immer Teil unseres Entwicklungsprozesses. Im Produkt selbst setzen wir sie dort ein, wo sie einen konkreten Nutzen schafft. Architektur, Qualität, Sicherheit und Produktentscheidungen bleiben in menschlicher Verantwortung.',
 };
 
 export default async function TeamPage() {

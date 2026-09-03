@@ -158,6 +158,9 @@ p { color: var(--charcoal); }
 .hero .hero-label { display: none; }
 .hero-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage-text); margin-bottom: 0.75rem; }
 .hero-headline { margin-bottom: 2rem; color: var(--charcoal); font-weight: 800; }
+.hero-headline-main { display: block; }
+/* Zweiter Satz im Hero: auf Desktop zusammenbleiben, nie umbrechen */
+.hero-headline-emphasis { display: block; white-space: nowrap; }
 .hero-sub { font-size: clamp(1rem, 1.8vw, 1.15rem); color: var(--stone); max-width: 460px; margin-bottom: 2.5rem; line-height: 1.7; }
 .hero-ctas { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
 .hero-wave { position: absolute; left: 0; right: 0; bottom: 0; height: 38%; min-height: 220px; pointer-events: none; z-index: 1; overflow: hidden; }

@@ -5,14 +5,15 @@ import KaiDialogue from '@/components/blocks/KaiDialogue';
 export const revalidate = 60;
 
 export const metadata = {
-  title: 'Lab | kenalu',
+  // Kein '| kenalu' hier — layout.js-Template ergänzt es automatisch
+  title: 'Lab',
   description:
-    'Im kenalu Lab entsteht, was Teams sehen, testen und entscheiden können – Arbeitsproben, Prototypen und eigene Produkte.',
+    'Im kenalu Lab entsteht, was Teams sehen, testen und entscheiden können. Arbeitsproben, Prototypen und eigene Produkte.',
   alternates: { canonical: 'https://kenalu.ch/lab' },
   openGraph: {
     title: 'Lab | kenalu',
     description:
-      'Im kenalu Lab entsteht, was Teams sehen, testen und entscheiden können – Arbeitsproben, Prototypen und eigene Produkte.',
+      'Im kenalu Lab entsteht, was Teams sehen, testen und entscheiden können. Arbeitsproben, Prototypen und eigene Produkte.',
     url: 'https://kenalu.ch/lab',
     siteName: 'kenalu',
     locale: 'de_CH',

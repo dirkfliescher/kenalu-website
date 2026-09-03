@@ -5,9 +5,10 @@ import DynamicBlock from '../../../components/DynamicBlock';
 export const revalidate = 60;
 
 const SEO_DEFAULTS = {
-  title: 'Custom AI Product Development — Individuelle Software und AI-Produkte | kenalu',
+  // Kein '| kenalu' hier — layout.js-Template ergänzt es automatisch
+  title: 'Custom AI Product Development — Individuelle Software und AI-Produkte',
   description:
-    'kenalu entwickelt individuelle Software und AI-Produkte. Agentenunterstützt entwickelt, von Menschen verantwortet. Von der ersten Frage bis zum Betrieb.',
+    'kenalu entwickelt individuelle Software und AI-Produkte. Von der ersten Frage bis zum Betrieb. AI-gestützt entwickelt, von Menschen verantwortet.',
 };
 
 function hasContent(body) {
