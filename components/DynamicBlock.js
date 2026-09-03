@@ -72,6 +72,10 @@ import LabCta from './blocks/LabCta';
 // LAB-EXPERIMENT-01: lab_experiment — Frage / Experiment / Erkenntnis
 import LabExperiment from './blocks/LabExperiment';
 
+// REPO2: Positionierungsabschnitte
+import HomePositioning from './blocks/HomePositioning';
+import ApproachCapability from './blocks/ApproachCapability';
+
 const Components = {
   hero: Hero,
   page_hero: PageHero,
@@ -147,6 +151,10 @@ const Components = {
   lab_cta: LabCta,
   // LAB-EXPERIMENT-01
   lab_experiment: LabExperiment,
+
+  // REPO2: Positionierungsabschnitte
+  home_positioning: HomePositioning,
+  approach_capability: ApproachCapability,
 };
 
 // Der Hero läuft ohne Reveal, damit der erste Eindruck sofort sichtbar ist

@@ -7,9 +7,19 @@ import { FALLBACK_ABOUT_BODY } from './_fallback-content';
 export const revalidate = 60;
 
 export const metadata = {
-  title: 'Arbeitsweise – kenalu',
+  title: 'Arbeitsweise — Wie kenalu individuelle Software entwickelt | kenalu',
   description:
-    'Kenalu verbindet strategisches Denken, Nutzerperspektive und technische Realität – von der ersten Frage bis zum fertigen Produkt.',
+    'kenalu beginnt beim tatsächlichen Bedarf, nicht bei einem Standardprodukt. AI-gestützte Entwicklung, menschliche Verantwortung. Mit jedem Projekt wächst eine wiederverwendbare Entwicklungsintelligenz.',
+  alternates: { canonical: 'https://kenalu.ch/approach' },
+  openGraph: {
+    title: 'Arbeitsweise — Wie kenalu individuelle Software entwickelt | kenalu',
+    description:
+      'kenalu beginnt beim tatsächlichen Bedarf, nicht bei einem Standardprodukt. AI-gestützte Entwicklung, menschliche Verantwortung.',
+    url: 'https://kenalu.ch/approach',
+    siteName: 'kenalu',
+    locale: 'de_CH',
+    type: 'website',
+  },
 };
 
 function hasContent(body) {

@@ -64,6 +64,8 @@ export default async function LabPage() {
             Ein Experiment muss nicht gross sein. Es muss eine wichtige Frage beantworten.
             Im Lab zeigen wir, wie wir konkrete Produktannahmen überprüfen: mit einer Frage,
             einem gezielten Versuch und einer ehrlichen Erkenntnis.
+            Die Erkenntnisse, Muster und Entwicklungslogiken aus diesen Experimenten fliessen
+            in zukünftige Produkte ein – jeweils neu angepasst an ihren Kontext.
           </p>
         </div>
       </section>

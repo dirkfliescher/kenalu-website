@@ -143,6 +143,8 @@ components/
     LabFoundation.js             Lab-Foundation-Layers (CMS-LAB-01)
     LabCta.js                    Lab-CTA-Sektion (CMS-LAB-01)
     LabExperiment.js             Lab-Experiment Frage/Experiment/Erkenntnis (LAB-EXPERIMENT-01) — lca-exp-* CSS
+    HomePositioning.js           Homepage Haltungsabschnitt (REPO2) — hpos-* CSS
+    ApproachCapability.js        Approach "Was mit jedem Projekt wächst" (REPO2) — apc-* CSS
     ...weitere Storyblok-Blöcke
   DynamicBlock.js                Registry (about_* + services_* + service_* + team_hero + lab_* + lab_experiment registriert)
   Nav.js, Footer.js, WaveBackground.js
@@ -170,6 +172,14 @@ scripts/ (gitignored — nie committen)
   setup-lab-experiment-schema.mjs       LAB-EXP-01: Storyblok-Schema lab_experiment erstellen/aktualisieren (2026-09-02)
   create-lab-experiment-01.mjs          LAB-EXP-02: Experiment 01 "Wenn Software anfängt zu handeln" erstellen (2026-09-02)
   create-lab-experiments-drafts.mjs     LAB-EXP-03: Experimente 02+03 als Draft erstellen (2026-09-02)
+  reposition-schemas.mjs                REPO2-01: Schemas home_positioning + approach_capability (2026-09-03)
+  reposition-homepage.mjs               REPO2-02: Hero, home_positioning, service_entry_grid (2026-09-03)
+  reposition-services.mjs               REPO2-03: /services Hero + CardGrid (2026-09-03)
+  reposition-custom-ai.mjs              REPO2-04: service_hero intro + Adoption-Block (2026-09-03)
+  reposition-approach.mjs               REPO2-05: approach_capability Block (2026-09-03)
+  reposition-about.mjs                  REPO2-06: team_hero body /about (2026-09-03)
+  reposition-footer.mjs                 REPO2-07: footer_tagline (2026-09-03)
+  reposition-ai-consulting.mjs          REPO2-08: AI Development Consulting Konsistenz (2026-09-03)
 
 docs/                            Projektdokumentation (Markdown)
   pages/                         Per-Page-Docs (homepage.md, services.md, approach.md, etc.)
@@ -361,6 +371,21 @@ Neue Pflichtregeln für alle Texte — gilt für Code UND Storyblok:
 Bewusst ausgelassen (nicht nutzersichtig): Code-Kommentare (`//`), KI-System-Prompts in API-Routes, CSS-Separator `<span class="aw-person-sep">—</span>`, Storybook-Dateien, Placeholder-Strings (`'—'` für leere Felder).
 
 ---
+
+## Offene Punkte (Stand: 2026-09-03, REPO2-Positionierung)
+
+| Punkt | Status | Details |
+|-------|--------|---------|
+| **REPO2: Schemas erstellen** | 🔧 Lokal ausführen | `node scripts/reposition-schemas.mjs` — erstellt home_positioning, approach_capability, erweitert service_scene um text_3 |
+| **REPO2: Homepage** | 🔧 Lokal ausführen | `node scripts/reposition-homepage.mjs` dann `STORYBLOK_ALLOW_PUBLISH=YES node scripts/reposition-homepage.mjs --publish` |
+| **REPO2: Services** | 🔧 Lokal ausführen | `node scripts/reposition-services.mjs` dann mit `--publish` |
+| **REPO2: Custom AI Product** | 🔧 Lokal ausführen | `node scripts/reposition-custom-ai.mjs` dann mit `--publish` |
+| **REPO2: Approach** | 🔧 Lokal ausführen | `node scripts/reposition-approach.mjs` dann mit `--publish` |
+| **REPO2: About** | 🔧 Lokal ausführen | `node scripts/reposition-about.mjs` dann mit `--publish` |
+| **REPO2: Footer** | 🔧 Lokal ausführen | `node scripts/reposition-footer.mjs` dann mit `--publish` — Fallback in Footer.js bereits aktualisiert |
+| **REPO2: AI Development Consulting** | 🔧 Lokal ausführen | `node scripts/reposition-ai-consulting.mjs` dann mit `--publish` |
+| **REPO2: Git push** | 🔧 Ausstehend | Neue Komponenten, CSS, Scripts und Metadaten pushen: `git add -A && git commit -m "feat: REPO2 — neue Positionierung (Komponenten, CSS, Metadaten)" && git push` |
+| **REPO2: Storyblok nach Publish prüfen** | 🔧 Nach Script-Ausführung | Homepage Desktop + Mobile, /services, /services/custom-ai-product, /approach, /about, /lab, Footer visuell testen |
 
 ## Offene Punkte (Stand: 2026-09-02, Session 2)
 

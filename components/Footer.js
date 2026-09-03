@@ -17,7 +17,7 @@ async function getFooterContent() {
 export default async function Footer() {
   const f = await getFooterContent();
 
-  const tagline   = f?.footer_tagline   || 'Strategie, Experience Design und Engineering für digitale Produkte und AI-Lösungen, die tragen.';
+  const tagline   = f?.footer_tagline   || 'Individuelle digitale Produkte. AI-gestützt entwickelt. Von Menschen verantwortet.';
   const email     = f?.footer_email     || 'dirk@fliescher.ch';
   const address   = f?.footer_address   || 'Zürich, Schweiz';
   const copyright = f?.footer_copyright || `© ${new Date().getFullYear()} kenalu. Dirk Fliescher Consulting GmbH`;

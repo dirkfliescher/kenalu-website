@@ -7,14 +7,14 @@ import { FALLBACK_SERVICES_BODY } from './_fallback-content';
 export const revalidate = 60;
 
 export const metadata = {
-  title: 'Leistungen für digitale Produktentscheidungen | kenalu',
+  title: 'Leistungen — Individuelle Software und AI-gestützte Produktentwicklung | kenalu',
   description:
-    'Vier Einstiege für digitale Vorhaben: Klarheit schaffen, eine Idee sichtbar machen, ein Produkt entwickeln oder eine unabhängige zweite Sicht einholen.',
+    'Zwei Wege zu Software, die zum Unternehmen passt: kenalu entwickelt individuelle digitale Produkte oder verankert die Fähigkeit dazu in euren Teams. AI-gestützt. Von Menschen verantwortet.',
   alternates: { canonical: 'https://kenalu.ch/services' },
   openGraph: {
-    title: 'Leistungen für digitale Produktentscheidungen | kenalu',
+    title: 'Leistungen — Individuelle Software und AI-gestützte Produktentwicklung | kenalu',
     description:
-      'Vier Einstiege für digitale Vorhaben: Klarheit schaffen, eine Idee sichtbar machen, ein Produkt entwickeln oder eine unabhängige zweite Sicht einholen.',
+      'Zwei Wege zu Software, die zum Unternehmen passt: kenalu entwickelt individuelle digitale Produkte oder verankert die Fähigkeit dazu in euren Teams. AI-gestützt. Von Menschen verantwortet.',
     url: 'https://kenalu.ch/services',
     siteName: 'kenalu',
     locale: 'de_CH',

@@ -12,32 +12,32 @@ const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500'] });
 export const metadata = {
   metadataBase: new URL('https://kenalu.ch'),
   title: {
-    default: 'kenalu — Individuelle Software und AI-Produkte',
+    default: 'kenalu – Individuelle Software und AI-gestützte Produktentwicklung',
     template: '%s | kenalu',
   },
-  description: 'Agentenunterstützt entwickelt, von Menschen verantwortet. Wir entwickeln individuelle Software und AI-Produkte — von der ersten Frage über den Betrieb bis zur Weiterentwicklung. Zürich.',
-  keywords: ['Individuelle Software', 'AI-Produkte', 'KI-Strategie', 'Experience Design', 'Zürich', 'Schweiz'],
+  description: 'kenalu entwickelt individuelle digitale Produkte, die zu Unternehmen, Prozessen und Nutzern passen. AI-gestützt entwickelt und von Menschen verantwortet.',
+  keywords: ['Individuelle Software', 'individuelle digitale Produkte', 'AI-gestützte Softwareentwicklung', 'Custom AI Product Development', 'Experience Design', 'Zürich', 'Schweiz'],
   authors: [{ name: 'kenalu' }],
   openGraph: {
     type: 'website',
     locale: 'de_CH',
     url: 'https://kenalu.ch',
     siteName: 'kenalu',
-    title: 'kenalu — Individuelle Software und AI-Produkte',
-    description: 'Agentenunterstützt entwickelt, von Menschen verantwortet. Wir entwickeln individuelle Software und AI-Produkte — von der ersten Frage über den Betrieb bis zur Weiterentwicklung. Zürich.',
+    title: 'kenalu – Individuelle Software und AI-gestützte Produktentwicklung',
+    description: 'kenalu entwickelt individuelle digitale Produkte, die zu Unternehmen, Prozessen und Nutzern passen. AI-gestützt entwickelt und von Menschen verantwortet.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'kenalu — Individuelle Software und AI-Produkte',
+        alt: 'kenalu – Individuelle Software und AI-gestützte Produktentwicklung',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'kenalu — Individuelle Software und AI-Produkte',
-    description: 'Agentenunterstützt entwickelt, von Menschen verantwortet. Wir entwickeln individuelle Software und AI-Produkte — von der ersten Frage über den Betrieb bis zur Weiterentwicklung. Zürich.',
+    title: 'kenalu – Individuelle Software und AI-gestützte Produktentwicklung',
+    description: 'kenalu entwickelt individuelle digitale Produkte, die zu Unternehmen, Prozessen und Nutzern passen. AI-gestützt entwickelt und von Menschen verantwortet.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -56,7 +56,7 @@ const jsonLd = {
   name: 'kenalu',
   url: 'https://kenalu.ch',
   logo: 'https://kenalu.ch/og-image.png',
-  description: 'Agentenunterstützt entwickelt, von Menschen verantwortet. Individuelle Software und AI-Produkte — von der ersten Frage über den Betrieb bis zur Weiterentwicklung. Zürich.',
+  description: 'kenalu entwickelt individuelle digitale Produkte, die zu Unternehmen, Prozessen und Nutzern passen. AI-gestützt entwickelt und von Menschen verantwortet.',
   founder: {
     '@type': 'Person',
     name: 'Dirk Fliescher',

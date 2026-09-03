@@ -7,6 +7,7 @@ export default function ServiceScene({ blok }) {
         {blok.headline && <h2 className="sd-scene-h2">{blok.headline}</h2>}
         {blok.text_1 && <p className="sd-scene-text">{blok.text_1}</p>}
         {blok.text_2 && <p className="sd-scene-text">{blok.text_2}</p>}
+        {blok.text_3 && <p className="sd-scene-text">{blok.text_3}</p>}
       </div>
     </section>
   );

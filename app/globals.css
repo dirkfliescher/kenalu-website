@@ -7014,6 +7014,99 @@ p { color: var(--charcoal); }
   font-weight: 700;
 }
 
+/* ── REPO2: HomePositioning — Unsere Haltung ────────────────── */
+.hpos-section {
+  padding: 5rem 0;
+  background: var(--ivory);
+}
+.hpos-headline {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--charcoal);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 1rem 0 2rem;
+}
+.hpos-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+.hpos-text {
+  color: var(--stone);
+  line-height: 1.75;
+  font-size: 1.05rem;
+}
+.hpos-quote {
+  border-left: 3px solid var(--sage);
+  padding-left: 1.5rem;
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  line-height: 1.55;
+}
+@media (max-width: 640px) {
+  .hpos-section { padding: 3.5rem 0; }
+  .hpos-headline { font-size: 1.6rem; }
+}
+
+/* ── REPO2: ApproachCapability — Was mit jedem Projekt wächst ── */
+.apc-section {
+  padding: 5rem 0;
+  background: var(--ivory);
+  border-top: 1px solid var(--softline);
+}
+.apc-header {
+  max-width: 620px;
+  margin-bottom: 2.5rem;
+}
+.apc-headline {
+  font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+  font-weight: 700;
+  color: var(--charcoal);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 1rem 0 1.25rem;
+}
+.apc-intro {
+  color: var(--stone);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+.apc-highlight {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  line-height: 1.55;
+  max-width: 640px;
+  padding: 2rem 0;
+  border-top: 1px solid var(--softline);
+  border-bottom: 1px solid var(--softline);
+  margin-bottom: 3rem;
+}
+.apc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 3.5rem;
+}
+.apc-item-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 0.4rem;
+}
+.apc-item-text {
+  color: var(--stone);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+@media (max-width: 640px) {
+  .apc-section { padding: 3rem 0; }
+  .apc-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+}
+
 /* ── LAB-EXPERIMENT-01: Frage / Experiment / Erkenntnis ────── */
 
 .lca-experiment {
